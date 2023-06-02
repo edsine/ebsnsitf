@@ -16,3 +16,8 @@ Route::prefix('workflowengine')->group(function() {
 });
 
 Route::resource('field-types', Modules\WorkflowEngine\Http\Controllers\FieldTypeController::class);
+Route::resource('actor-types', Modules\WorkflowEngine\Http\Controllers\ActorTypeController::class);
+Route::resource('step-activities', Modules\WorkflowEngine\Http\Controllers\StepActivityController::class);
+Route::resource('step-types', Modules\WorkflowEngine\Http\Controllers\StepTypeController::class);
+Route::resource('workflow-types', Modules\WorkflowEngine\Http\Controllers\WorkflowTypeController::class);
+Route::resource('actor-roles', Modules\WorkflowEngine\Http\Controllers\ActorRoleController::class);
