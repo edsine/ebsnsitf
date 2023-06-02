@@ -26,7 +26,7 @@ class StepActivityController extends AppBaseController
     {
         $stepActivities = $this->stepActivityRepository->paginate(10);
 
-        return view('step_activities.index')
+        return view('workflowengine::step_activities.index')
             ->with('stepActivities', $stepActivities);
     }
 
@@ -35,7 +35,7 @@ class StepActivityController extends AppBaseController
      */
     public function create()
     {
-        return view('step_activities.create');
+        return view('workflowengine::step_activities.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class StepActivityController extends AppBaseController
             return redirect(route('stepActivities.index'));
         }
 
-        return view('step_activities.show')->with('stepActivity', $stepActivity);
+        return view('workflowengine::step_activities.show')->with('stepActivity', $stepActivity);
     }
 
     /**
@@ -81,7 +81,7 @@ class StepActivityController extends AppBaseController
             return redirect(route('stepActivities.index'));
         }
 
-        return view('step_activities.edit')->with('stepActivity', $stepActivity);
+        return view('workflowengine::step_activities.edit')->with('stepActivity', $stepActivity);
     }
 
     /**

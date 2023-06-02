@@ -11,13 +11,12 @@
 |
 */
 
-Route::prefix('workflowengine')->group(function() {
+Route::prefix('workflowengine')->group(function () {
     Route::get('/', 'WorkflowEngineController@index');
+    Route::resource('fieldTypes', Modules\WorkflowEngine\Http\Controllers\FieldTypeController::class);
+    Route::resource('actorTypes', Modules\WorkflowEngine\Http\Controllers\ActorTypeController::class);
+    Route::resource('stepActivities', Modules\WorkflowEngine\Http\Controllers\StepActivityController::class);
+    Route::resource('stepTypes', Modules\WorkflowEngine\Http\Controllers\StepTypeController::class);
+    Route::resource('workflowTypes', Modules\WorkflowEngine\Http\Controllers\WorkflowTypeController::class);
+    Route::resource('actorRoles', Modules\WorkflowEngine\Http\Controllers\ActorRoleController::class);
 });
-
-Route::resource('field-types', Modules\WorkflowEngine\Http\Controllers\FieldTypeController::class);
-Route::resource('actor-types', Modules\WorkflowEngine\Http\Controllers\ActorTypeController::class);
-Route::resource('step-activities', Modules\WorkflowEngine\Http\Controllers\StepActivityController::class);
-Route::resource('step-types', Modules\WorkflowEngine\Http\Controllers\StepTypeController::class);
-Route::resource('workflow-types', Modules\WorkflowEngine\Http\Controllers\WorkflowTypeController::class);
-Route::resource('actor-roles', Modules\WorkflowEngine\Http\Controllers\ActorRoleController::class);

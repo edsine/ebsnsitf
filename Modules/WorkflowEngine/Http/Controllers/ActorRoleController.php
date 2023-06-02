@@ -26,7 +26,7 @@ class ActorRoleController extends AppBaseController
     {
         $actorRoles = $this->actorRoleRepository->paginate(10);
 
-        return view('actor_roles.index')
+        return view('workflowengine::actor_roles.index')
             ->with('actorRoles', $actorRoles);
     }
 
@@ -35,7 +35,7 @@ class ActorRoleController extends AppBaseController
      */
     public function create()
     {
-        return view('actor_roles.create');
+        return view('workflowengine::actor_roles.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class ActorRoleController extends AppBaseController
             return redirect(route('actorRoles.index'));
         }
 
-        return view('actor_roles.show')->with('actorRole', $actorRole);
+        return view('workflowengine::actor_roles.show')->with('actorRole', $actorRole);
     }
 
     /**
@@ -81,7 +81,7 @@ class ActorRoleController extends AppBaseController
             return redirect(route('actorRoles.index'));
         }
 
-        return view('actor_roles.edit')->with('actorRole', $actorRole);
+        return view('workflowengine::actor_roles.edit')->with('actorRole', $actorRole);
     }
 
     /**

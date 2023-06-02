@@ -23,7 +23,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    @include('actor_roles.show_fields')
+                    @include('workflowengine::actor_roles.show_fields')
                 </div>
             </div>
         </div>

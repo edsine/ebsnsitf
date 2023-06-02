@@ -24,7 +24,7 @@
             <div class="card-body">
 
                 <div class="row">
-                    @include('actor_types.fields')
+                    @include('workflowengine::actor_types.fields')
                 </div>
 
             </div>

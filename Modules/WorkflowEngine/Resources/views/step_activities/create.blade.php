@@ -24,7 +24,7 @@
             <div class="card-body">
 
                 <div class="row">
-                    @include('step_activities.fields')
+                    @include('workflowengine::step_activities.fields')
                 </div>
 
             </div>
