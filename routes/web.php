@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,9 +39,9 @@ Route::get('/create-form', function () {
 });
 
 Route::resource('form', FormController::class);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::resource('users', 'UserController')->middleware('auth');
+Route::resource('users', UserController::class)->middleware('auth');
 
 Auth::routes();
 
