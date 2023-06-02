@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>@lang('models/fieldTypes.plural')</h1>
+                    <h1>Field Types</h1>
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right"
                        href="{{ route('fieldTypes.create') }}">
-                         @lang('crud.add_new')
+                       Add New
                     </a>
                 </div>
             </div>
@@ -24,7 +24,7 @@
         <div class="clearfix"></div>
 
         <div class="card">
-            @include('field_types.table')
+            @include('workflowengine::field_types.table')
         </div>
     </div>
 

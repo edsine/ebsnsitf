@@ -10,10 +10,9 @@
                     </h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="{{ route('fieldTypes.index') }}">
-                                                    Back
-                                            </a>
+                    <a class="btn btn-default float-right" href="{{ route('fieldTypes.index') }}">
+                        Back
+                    </a>
                 </div>
             </div>
         </div>
@@ -23,7 +22,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    @include('field_types.show_fields')
+                    @include('workflowengine::field_types.show_fields')
                 </div>
             </div>
         </div>

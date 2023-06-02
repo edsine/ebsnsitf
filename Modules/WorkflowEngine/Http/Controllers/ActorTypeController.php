@@ -26,7 +26,7 @@ class ActorTypeController extends AppBaseController
     {
         $actorTypes = $this->actorTypeRepository->paginate(10);
 
-        return view('actor_types.index')
+        return view('workflowengine::actor_types.index')
             ->with('actorTypes', $actorTypes);
     }
 
@@ -35,7 +35,7 @@ class ActorTypeController extends AppBaseController
      */
     public function create()
     {
-        return view('actor_types.create');
+        return view('workflowengine::actor_types.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class ActorTypeController extends AppBaseController
             return redirect(route('actorTypes.index'));
         }
 
-        return view('actor_types.show')->with('actorType', $actorType);
+        return view('workflowengine::actor_types.show')->with('actorType', $actorType);
     }
 
     /**
@@ -81,7 +81,7 @@ class ActorTypeController extends AppBaseController
             return redirect(route('actorTypes.index'));
         }
 
-        return view('actor_types.edit')->with('actorType', $actorType);
+        return view('workflowengine::actor_types.edit')->with('actorType', $actorType);
     }
 
     /**

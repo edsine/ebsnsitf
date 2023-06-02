@@ -26,7 +26,7 @@ class StepTypeController extends AppBaseController
     {
         $stepTypes = $this->stepTypeRepository->paginate(10);
 
-        return view('step_types.index')
+        return view('workflowengine::step_types.index')
             ->with('stepTypes', $stepTypes);
     }
 
@@ -35,7 +35,7 @@ class StepTypeController extends AppBaseController
      */
     public function create()
     {
-        return view('step_types.create');
+        return view('workflowengine::step_types.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class StepTypeController extends AppBaseController
             return redirect(route('stepTypes.index'));
         }
 
-        return view('step_types.show')->with('stepType', $stepType);
+        return view('workflowengine::step_types.show')->with('stepType', $stepType);
     }
 
     /**
@@ -81,7 +81,7 @@ class StepTypeController extends AppBaseController
             return redirect(route('stepTypes.index'));
         }
 
-        return view('step_types.edit')->with('stepType', $stepType);
+        return view('workflowengine::step_types.edit')->with('stepType', $stepType);
     }
 
     /**

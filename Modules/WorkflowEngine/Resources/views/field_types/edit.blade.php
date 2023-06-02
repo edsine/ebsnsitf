@@ -6,7 +6,7 @@
             <div class="row mb-2">
                 <div class="col-sm-12">
                     <h1>
-                        @lang('crud.edit') @lang('models/fieldTypes.singular')
+                        Edit Field Type
                     </h1>
                 </div>
             </div>
@@ -23,13 +23,13 @@
 
             <div class="card-body">
                 <div class="row">
-                    @include('field_types.fields')
+                    @include('workflowengine::field_types.fields')
                 </div>
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('fieldTypes.index') }}" class="btn btn-default"> @lang('crud.cancel') </a>
+                <a href="{{ route('fieldTypes.index') }}" class="btn btn-default"> Cancel </a>
             </div>
 
             {!! Form::close() !!}

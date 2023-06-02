@@ -26,7 +26,7 @@ class WorkflowTypeController extends AppBaseController
     {
         $workflowTypes = $this->workflowTypeRepository->paginate(10);
 
-        return view('workflow_types.index')
+        return view('workflowengine::workflow_types.index')
             ->with('workflowTypes', $workflowTypes);
     }
 
@@ -35,7 +35,7 @@ class WorkflowTypeController extends AppBaseController
      */
     public function create()
     {
-        return view('workflow_types.create');
+        return view('workflowengine::workflow_types.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class WorkflowTypeController extends AppBaseController
             return redirect(route('workflowTypes.index'));
         }
 
-        return view('workflow_types.show')->with('workflowType', $workflowType);
+        return view('workflowengine::workflow_types.show')->with('workflowType', $workflowType);
     }
 
     /**
@@ -81,7 +81,7 @@ class WorkflowTypeController extends AppBaseController
             return redirect(route('workflowTypes.index'));
         }
 
-        return view('workflow_types.edit')->with('workflowType', $workflowType);
+        return view('workflowengine::workflow_types.edit')->with('workflowType', $workflowType);
     }
 
     /**

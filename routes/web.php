@@ -34,11 +34,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/create-form', function () {
-    return view('create_form');
-});
-
-Route::resource('form', FormController::class);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::resource('users', UserController::class)->middleware('auth');

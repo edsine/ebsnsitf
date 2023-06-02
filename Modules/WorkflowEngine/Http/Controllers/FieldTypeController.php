@@ -26,7 +26,7 @@ class FieldTypeController extends AppBaseController
     {
         $fieldTypes = $this->fieldTypeRepository->paginate(10);
 
-        return view('field_types.index')
+        return view('workflowengine::field_types.index')
             ->with('fieldTypes', $fieldTypes);
     }
 
@@ -35,7 +35,7 @@ class FieldTypeController extends AppBaseController
      */
     public function create()
     {
-        return view('field_types.create');
+        return view('workflowengine::field_types.create');
     }
 
     /**
@@ -47,7 +47,7 @@ class FieldTypeController extends AppBaseController
 
         $fieldType = $this->fieldTypeRepository->create($input);
 
-        Flash::success(__('messages.saved', ['model' => __('models/fieldTypes.singular')]));
+        Flash::success('Field Type saved successfully.');
 
         return redirect(route('fieldTypes.index'));
     }
@@ -60,12 +60,12 @@ class FieldTypeController extends AppBaseController
         $fieldType = $this->fieldTypeRepository->find($id);
 
         if (empty($fieldType)) {
-            Flash::error(__('models/fieldTypes.singular').' '.__('messages.not_found'));
+            Flash::error('Field Type not found');
 
             return redirect(route('fieldTypes.index'));
         }
 
-        return view('field_types.show')->with('fieldType', $fieldType);
+        return view('workflowengine::field_types.show')->with('fieldType', $fieldType);
     }
 
     /**
@@ -76,12 +76,12 @@ class FieldTypeController extends AppBaseController
         $fieldType = $this->fieldTypeRepository->find($id);
 
         if (empty($fieldType)) {
-            Flash::error(__('models/fieldTypes.singular').' '.__('messages.not_found'));
+            Flash::error('Field Type not found');
 
             return redirect(route('fieldTypes.index'));
         }
 
-        return view('field_types.edit')->with('fieldType', $fieldType);
+        return view('workflowengine::field_types.edit')->with('fieldType', $fieldType);
     }
 
     /**
@@ -99,7 +99,7 @@ class FieldTypeController extends AppBaseController
 
         $fieldType = $this->fieldTypeRepository->update($request->all(), $id);
 
-        Flash::success(__('messages.updated', ['model' => __('models/fieldTypes.singular')]));
+        Flash::success('Field Type updated successfully.');
 
         return redirect(route('fieldTypes.index'));
     }
@@ -114,14 +114,14 @@ class FieldTypeController extends AppBaseController
         $fieldType = $this->fieldTypeRepository->find($id);
 
         if (empty($fieldType)) {
-            Flash::error(__('models/fieldTypes.singular').' '.__('messages.not_found'));
+            Flash::error('Field Type not found');
 
             return redirect(route('fieldTypes.index'));
         }
 
         $this->fieldTypeRepository->delete($id);
 
-        Flash::success(__('messages.deleted', ['model' => __('models/fieldTypes.singular')]));
+        Flash::success('Field Type deleted successfully.');
 
         return redirect(route('fieldTypes.index'));
     }

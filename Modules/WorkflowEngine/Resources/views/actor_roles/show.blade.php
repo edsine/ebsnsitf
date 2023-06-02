@@ -6,14 +6,13 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>
-                    @lang('models/actorRoles.singular') @lang('crud.detail')
+                       Actor Role Details
                     </h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="{{ route('actorRoles.index') }}">
-                                                    @lang('crud.back')
-                                            </a>
+                    <a class="btn btn-default float-right" href="{{ route('actorRoles.index') }}">
+                        Back
+                    </a>
                 </div>
             </div>
         </div>
@@ -23,7 +22,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    @include('actor_roles.show_fields')
+                    @include('workflowengine::actor_roles.show_fields')
                 </div>
             </div>
         </div>

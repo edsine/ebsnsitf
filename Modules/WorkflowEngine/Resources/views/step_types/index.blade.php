@@ -24,7 +24,7 @@
         <div class="clearfix"></div>
 
         <div class="card">
-            @include('step_types.table')
+            @include('workflowengine::step_types.table')
         </div>
     </div>
 

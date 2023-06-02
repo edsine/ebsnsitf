@@ -1,18 +1,17 @@
 <!-- Field Type Field -->
 <div class="col-sm-12">
-    {!! Form::label('field_type', __('models/fieldTypes.fields.field_type').':') !!}
+    {!! Form::label('field_type', 'Field type:') !!}
     <p>{{ $fieldType->field_type }}</p>
 </div>
 
 <!-- Created At Field -->
 <div class="col-sm-12">
-    {!! Form::label('created_at', __('models/fieldTypes.fields.created_at').':') !!}
+    {!! Form::label('created_at', 'Created at:') !!}
     <p>{{ $fieldType->created_at }}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="col-sm-12">
-    {!! Form::label('updated_at', __('models/fieldTypes.fields.updated_at').':') !!}
+    {!! Form::label('updated_at', 'Updated at:') !!}
     <p>{{ $fieldType->updated_at }}</p>
 </div>
-

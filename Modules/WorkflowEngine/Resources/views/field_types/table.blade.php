@@ -4,7 +4,7 @@
             <thead>
             <tr>
                 <th>Field Type</th>
-                <th colspan="3">crud.action</th>
+                <th colspan="3">Action</th>
             </tr>
             </thead>
             <tbody>
