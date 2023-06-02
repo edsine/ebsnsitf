@@ -2,31 +2,19 @@
     {
         "name": "id",
         "dbType": "id",
-        "htmlType": "",
+        "htmlType": "number",
         "validations": "",
         "searchable": false,
         "fillable": false,
         "primary": true,
         "inForm": false,
         "inIndex": false,
-        "inView": false
-    },
-    {
-        "name": "field_type",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
         "inView": true
     },
     {
         "name": "created_at",
         "dbType": "timestamp",
-        "htmlType": "",
+        "htmlType": "date",
         "validations": "",
         "searchable": false,
         "fillable": false,
@@ -38,7 +26,7 @@
     {
         "name": "updated_at",
         "dbType": "timestamp",
-        "htmlType": "",
+        "htmlType": "date",
         "validations": "",
         "searchable": false,
         "fillable": false,
@@ -46,5 +34,33 @@
         "inForm": false,
         "inIndex": false,
         "inView": true
+    },
+    {
+        "name": "workflow_name",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "workflow_type_id",
+        "dbType": "integer",
+        "htmlType": "number",
+        "validations": "",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,WorkflowType,workflow_type_id,id"
     }
 ]

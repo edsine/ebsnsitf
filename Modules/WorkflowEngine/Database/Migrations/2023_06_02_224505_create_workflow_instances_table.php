@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('forms', function (Blueprint $table) {
-            $table->id();
-            $table->string("name") ;
+        Schema::create('workflow_instances', function (Blueprint $table) {
+            $table->id('id');
+            $table->dateTime('date_completed');
             $table->timestamps();
+            $table->softDeletes();
+            $table->foreignId('workflow_id')->constrained('workflows')->onDelete('cascade');
+            $table->foreignId('started_by')->constrained('users')->onDelete('cascade');
         });
     }
 
@@ -24,9 +27,9 @@ return new class extends Migration
      * Reverse the migrations.
      *
      * @return void
-     */ 
+     */
     public function down()
     {
-        Schema::dropIfExists('forms');
+        Schema::drop('workflow_instances');
     }
 };
