@@ -1,6 +1,6 @@
-<!-- Workfllow Name Field -->
+<!-- Workflow Name Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('workflow_name', 'Workfllow Name:') !!}
+    {!! Form::label('workflow_name', 'Workflow Name:') !!}
     {!! Form::text('workflow_name', null, ['class' => 'form-control']) !!}
 </div>
 

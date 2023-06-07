@@ -3,7 +3,7 @@
         <table class="table" id="workflows-table">
             <thead>
             <tr>
-                <th>Workfllow Name</th>
+                <th>Workflow Name</th>
                 <th>Workflow Type Id</th>
                 <th colspan="3">Action</th>
             </tr>

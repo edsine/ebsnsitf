@@ -16,9 +16,9 @@
     <p>{{ $workflow->updated_at }}</p>
 </div>
 
-<!-- Workfllow Name Field -->
+<!-- Workflow Name Field -->
 <div class="col-sm-12">
-    {!! Form::label('workflow_name', 'Workfllow Name:') !!}
+    {!! Form::label('workflow_name', 'Workflow Name:') !!}
     <p>{{ $workflow->workflow_name }}</p>
 </div>
 
