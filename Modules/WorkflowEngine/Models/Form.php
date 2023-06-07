@@ -3,7 +3,11 @@
 namespace Modules\WorkflowEngine\Models;
 
 use Illuminate\Database\Eloquent\Model;
- use Illuminate\Database\Eloquent\SoftDeletes; use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
+
 /**
  * @OA\Schema(
  *      schema="Form",
@@ -56,9 +60,12 @@ use Illuminate\Database\Eloquent\Model;
  *          format="int32"
  *      )
  * )
- */class Form extends Model
+ */ class Form extends Model implements Auditable
 {
-     use SoftDeletes;    use HasFactory;    public $table = 'forms';
+    use SoftDeletes;
+    use HasFactory;
+    use AuditingAuditable;
+    public $table = 'forms';
 
     public $fillable = [
         'form_name',
@@ -73,9 +80,7 @@ use Illuminate\Database\Eloquent\Model;
         'workflow_id' => 'integer'
     ];
 
-    public static array $rules = [
-
-    ];
+    public static array $rules = [];
 
     public function workflow(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

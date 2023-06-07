@@ -3,7 +3,11 @@
 namespace Modules\WorkflowEngine\Models;
 
 use Illuminate\Database\Eloquent\Model;
- use Illuminate\Database\Eloquent\SoftDeletes; use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
+
 /**
  * @OA\Schema(
  *      schema="WorkflowStep",
@@ -112,9 +116,12 @@ use Illuminate\Database\Eloquent\Model;
  *          type="string",
  *      )
  * )
- */class WorkflowStep extends Model
+ */ class WorkflowStep extends Model implements Auditable
 {
-     use SoftDeletes;    use HasFactory;    public $table = 'workflow_steps';
+    use SoftDeletes;
+    use HasFactory;
+    use AuditingAuditable;
+    public $table = 'workflow_steps';
 
     public $fillable = [
         'workflow_id',
@@ -143,9 +150,7 @@ use Illuminate\Database\Eloquent\Model;
         'step_name' => 'string'
     ];
 
-    public static array $rules = [
-        
-    ];
+    public static array $rules = [];
 
     public function parentStep(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

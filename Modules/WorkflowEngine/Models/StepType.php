@@ -3,7 +3,11 @@
 namespace Modules\WorkflowEngine\Models;
 
 use Illuminate\Database\Eloquent\Model;
- use Illuminate\Database\Eloquent\SoftDeletes; use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
+
 /**
  * @OA\Schema(
  *      schema="StepType",
@@ -32,9 +36,12 @@ use Illuminate\Database\Eloquent\Model;
  *          format="date-time"
  *      )
  * )
- */class StepType extends Model
+ */ class StepType extends Model implements Auditable
 {
-     use SoftDeletes;    use HasFactory;    public $table = 'step_types';
+    use SoftDeletes;
+    use HasFactory;
+    use AuditingAuditable;
+    public $table = 'step_types';
 
     public $fillable = [
         'step_type'
@@ -47,6 +54,4 @@ use Illuminate\Database\Eloquent\Model;
     public static array $rules = [
         'step_type' => 'required'
     ];
-
-    
 }

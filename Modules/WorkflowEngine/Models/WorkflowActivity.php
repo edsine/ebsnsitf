@@ -3,7 +3,11 @@
 namespace Modules\WorkflowEngine\Models;
 
 use Illuminate\Database\Eloquent\Model;
- use Illuminate\Database\Eloquent\SoftDeletes; use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
+
 /**
  * @OA\Schema(
  *      schema="WorkflowActivity",
@@ -88,9 +92,12 @@ use Illuminate\Database\Eloquent\Model;
  *          format="int32"
  *      )
  * )
- */class WorkflowActivity extends Model
+ */ class WorkflowActivity extends Model implements Auditable
 {
-     use SoftDeletes;    use HasFactory;    public $table = 'workflow_activities';
+    use SoftDeletes;
+    use HasFactory;
+    use AuditingAuditable;
+    public $table = 'workflow_activities';
 
     public $fillable = [
         'workflow_step_id',
@@ -113,9 +120,7 @@ use Illuminate\Database\Eloquent\Model;
         'workflow_instance_id' => 'integer'
     ];
 
-    public static array $rules = [
-        
-    ];
+    public static array $rules = [];
 
     public function workflowStep(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
