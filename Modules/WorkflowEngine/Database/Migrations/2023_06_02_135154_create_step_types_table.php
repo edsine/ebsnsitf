@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('step_types', function (Blueprint $table) {
             $table->id('id');
-            $table->string('step_type');
+            $table->string('step_type')->unique();
             $table->timestamps();
             $table->softDeletes();
         });

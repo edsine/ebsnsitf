@@ -41,7 +41,7 @@ class FormController extends AppBaseController
     public function create()
     {
         $workflows = $this->workflowRepository->all()->pluck('workflow_name', 'id');
-        $workflows->prepend('Select workflow', 0);
+        $workflows->prepend('Select workflow', '');
         return view('workflowengine::forms.create')->with('workflows', $workflows);
     }
 
@@ -89,7 +89,7 @@ class FormController extends AppBaseController
         }
 
         $workflows = $this->workflowRepository->all()->pluck('workflow_name', 'id');
-        $workflows->prepend('Select workflow', 0);
+        $workflows->prepend('Select workflow', '');
         return view('workflowengine::forms.edit')->with(['form' => $form, 'workflows' => $workflows]);
     }
 

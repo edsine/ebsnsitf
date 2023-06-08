@@ -62,22 +62,22 @@ class WorkflowStepController extends AppBaseController
     public function create()
     {
         $workflow_steps = $this->workflowStepRepository->all()->pluck('step_name', 'id');
-        $workflow_steps->prepend('Select workflow step', 0);
+        $workflow_steps->prepend('Select workflow step', '');
 
         $workflows = $this->workflowRepository->all()->pluck('workflow_name', 'id');
-        $workflows->prepend('Select workflow', 0);
+        $workflows->prepend('Select workflow', '');
 
         $actor_types = $this->actorTypeRepository->all()->pluck('actor_type', 'id');
-        $actor_types->prepend('Select actor type', 0);
+        $actor_types->prepend('Select actor type', '');
 
         $actor_roles = $this->actorRoleRepository->all()->pluck('actor_role', 'id');
-        $actor_roles->prepend('Select actor role', 0);
+        $actor_roles->prepend('Select actor role', '');
 
         $step_types = $this->stepTypeRepository->all()->pluck('step_type', 'id');
-        $step_types->prepend('Select step type', 0);
+        $step_types->prepend('Select step type', '');
 
         $step_activities = $this->stepActivityRepository->all()->pluck('step_activity', 'id');
-        $step_activities->prepend('Select step activity', 0);
+        $step_activities->prepend('Select step activity', '');
 
         return view('workflowengine::workflow_steps.create')->with(['workflow_steps' => $workflow_steps, 'workflows' => $workflows, 'actor_types' => $actor_types, 'actor_roles' => $actor_roles, 'step_types' => $step_types, 'step_activities' => $step_activities]);
     }
@@ -126,22 +126,22 @@ class WorkflowStepController extends AppBaseController
         }
 
         $workflow_steps = $this->workflowStepRepository->all()->pluck('step_name', 'id');
-        $workflow_steps->prepend('Select workflow step', 0);
+        $workflow_steps->prepend('Select workflow step', '');
 
         $workflows = $this->workflowRepository->all()->pluck('workflow_name', 'id');
-        $workflows->prepend('Select workflow', 0);
+        $workflows->prepend('Select workflow', '');
 
         $actor_types = $this->actorTypeRepository->all()->pluck('actor_type', 'id');
-        $actor_types->prepend('Select actor type', 0);
+        $actor_types->prepend('Select actor type', '');
 
         $actor_roles = $this->actorRoleRepository->all()->pluck('actor_role', 'id');
-        $actor_roles->prepend('Select actor role', 0);
+        $actor_roles->prepend('Select actor role', '');
 
         $step_types = $this->stepTypeRepository->all()->pluck('step_type', 'id');
-        $step_types->prepend('Select step type', 0);
+        $step_types->prepend('Select step type', '');
 
         $step_activities = $this->stepActivityRepository->all()->pluck('step_activity', 'id');
-        $step_activities->prepend('Select step activity', 0);
+        $step_activities->prepend('Select step activity', '');
 
         return view('workflowengine::workflow_steps.edit')->with(['workflowStep' => $workflowStep, 'workflow_steps' => $workflow_steps, 'workflows' => $workflows, 'actor_types' => $actor_types, 'actor_roles' => $actor_roles, 'step_types' => $step_types, 'step_activities' => $step_activities]);
     }

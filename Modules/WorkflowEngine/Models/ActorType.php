@@ -52,6 +52,6 @@ use OwenIt\Auditing\Contracts\Auditable;
     ];
 
     public static array $rules = [
-        'actor_type' => 'required'
+        'actor_type' => 'required|unique:actor_types,actor_type'
     ];
 }

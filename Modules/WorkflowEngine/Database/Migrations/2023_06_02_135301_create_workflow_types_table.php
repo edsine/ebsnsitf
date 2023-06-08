@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('workflow_types', function (Blueprint $table) {
             $table->id('id');
-            $table->string('workflow_type');
+            $table->string('workflow_type')->unique();
             $table->timestamps();
             $table->softDeletes();
         });

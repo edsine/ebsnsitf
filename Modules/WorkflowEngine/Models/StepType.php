@@ -52,6 +52,6 @@ use OwenIt\Auditing\Contracts\Auditable;
     ];
 
     public static array $rules = [
-        'step_type' => 'required'
+        'step_type' => 'required|unique:step_types,step_type'
     ];
 }

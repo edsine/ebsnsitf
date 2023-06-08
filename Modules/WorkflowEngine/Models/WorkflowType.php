@@ -52,6 +52,6 @@ use OwenIt\Auditing\Contracts\Auditable;
     ];
 
     public static array $rules = [
-        'workflow_type' => 'required'
+        'workflow_type' => 'required|unique:workflow_types,workflow_type'
     ];
 }

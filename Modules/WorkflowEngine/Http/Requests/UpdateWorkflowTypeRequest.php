@@ -25,7 +25,8 @@ class UpdateWorkflowTypeRequest extends FormRequest
     public function rules()
     {
         $rules = WorkflowType::$rules;
-        
+        $id = $this->route('workflowType');
+        $rules['workflow_type'] = 'required|unique:workflow_types,workflow_type,' . $id;
         return $rules;
     }
 }

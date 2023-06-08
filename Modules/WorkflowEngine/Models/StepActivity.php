@@ -52,6 +52,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
     ];
 
     public static array $rules = [
-        'step_activity' => 'required'
+        'step_activity' => 'required|unique:step_activities,step_activity'
     ];
 }

@@ -41,7 +41,7 @@ class WorkflowController extends AppBaseController
     public function create()
     {
         $workflow_types = $this->workflowTypeRepository->all()->pluck('workflow_type', 'id');
-        $workflow_types->prepend('Select workflow type', 0);
+        $workflow_types->prepend('Select workflow type', '');
         return view('workflowengine::workflows.create')->with('workflow_types', $workflow_types);
     }
 
@@ -89,7 +89,7 @@ class WorkflowController extends AppBaseController
         }
 
         $workflow_types = $this->workflowTypeRepository->all()->pluck('workflow_type', 'id');
-        $workflow_types->prepend('Select workflow type', 0);
+        $workflow_types->prepend('Select workflow type', '');
         return view('workflowengine::workflows.edit')->with(['workflow' => $workflow, 'workflow_types' => $workflow_types]);
     }
 

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('actor_roles', function (Blueprint $table) {
             $table->id('id');
-            $table->string('actor_role');
+            $table->string('actor_role')->unique();
             $table->timestamps();
             $table->softDeletes();
         });

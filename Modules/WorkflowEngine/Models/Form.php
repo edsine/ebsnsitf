@@ -80,7 +80,10 @@ use OwenIt\Auditing\Contracts\Auditable;
         'workflow_id' => 'integer'
     ];
 
-    public static array $rules = [];
+    public static array $rules = [
+        'form_name' => 'required|unique:forms,form_name',
+        'has_workflow' => 'required',
+    ];
 
     public function workflow(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

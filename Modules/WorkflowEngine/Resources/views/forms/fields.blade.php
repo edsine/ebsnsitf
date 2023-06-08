@@ -23,10 +23,12 @@
 @push('page_scripts')
     <script type="text/javascript">
         const checkbox = document.getElementById('has_workflow');
+        const workflow = document.getElementById('workflow_id');
         const workflowDiv = document.getElementById('workflow_id_div');
 
         if (!checkbox.checked) {
             workflowDiv.classList.add('d-none');
+            workflow.selectedIndex = 0;
         }
 
 
@@ -35,6 +37,7 @@
                 workflowDiv.classList.remove('d-none');
             } else {
                 workflowDiv.classList.add('d-none');
+                workflow.selectedIndex = 0;
             }
         });
     </script>

@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('forms', function (Blueprint $table) {
             $table->id('id');
-            $table->string('form_name');
+            $table->string('form_name')->unique();
             $table->integer('has_workflow');
-            $table->foreignId('workflow_id')->constrained('workflows')->onDelete('cascade');
+            $table->foreignId('workflow_id')->nullable()->constrained('workflows')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

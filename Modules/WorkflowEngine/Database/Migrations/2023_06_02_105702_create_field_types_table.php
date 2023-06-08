@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('field_types', function (Blueprint $table) {
             $table->id('id');
-            $table->string('field_type');
+            $table->string('field_type')->unique();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -25,7 +25,8 @@ class UpdateActorRoleRequest extends FormRequest
     public function rules()
     {
         $rules = ActorRole::$rules;
-        
+        $id = $this->route('actorRole');
+        $rules['actor_role'] = 'required|unique:actor_roles,actor_role,' . $id;
         return $rules;
     }
 }

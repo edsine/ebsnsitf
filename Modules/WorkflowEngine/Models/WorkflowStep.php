@@ -152,6 +152,11 @@ use OwenIt\Auditing\Contracts\Auditable;
 
     public static array $rules = [];
 
+    public function workflow(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(\Modules\WorkflowEngine\Models\Workflow::class, 'workflow_id', 'id');
+    }
+
     public function parentStep(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(\Modules\WorkflowEngine\Models\WorkflowStep::class, 'parent_step_id', 'id');

@@ -52,6 +52,6 @@ use OwenIt\Auditing\Contracts\Auditable;
     ];
 
     public static array $rules = [
-        'field_type' => 'required'
+        'field_type' => 'required|unique:field_types,field_type'
     ];
 }
