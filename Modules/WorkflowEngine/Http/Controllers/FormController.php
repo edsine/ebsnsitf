@@ -8,15 +8,20 @@ use App\Http\Controllers\AppBaseController;
 use Modules\WorkflowEngine\Repositories\FormRepository;
 use Illuminate\Http\Request;
 use Flash;
+use Modules\WorkflowEngine\Repositories\WorkflowRepository;
 
 class FormController extends AppBaseController
 {
     /** @var FormRepository $formRepository*/
     private $formRepository;
 
-    public function __construct(FormRepository $formRepo)
+    /** @var WorkflowRepository $workflowRepository*/
+    private $workflowRepository;
+
+    public function __construct(FormRepository $formRepo, WorkflowRepository $workflowRepo)
     {
         $this->formRepository = $formRepo;
+        $this->workflowRepository = $workflowRepo;
     }
 
     /**
@@ -35,7 +40,9 @@ class FormController extends AppBaseController
      */
     public function create()
     {
-        return view('workflowengine::forms.create');
+        $workflows = $this->workflowRepository->all()->pluck('workflow_name', 'id');
+        $workflows->prepend('Select workflow', '');
+        return view('workflowengine::forms.create')->with('workflows', $workflows);
     }
 
     /**
@@ -81,7 +88,9 @@ class FormController extends AppBaseController
             return redirect(route('forms.index'));
         }
 
-        return view('workflowengine::forms.edit')->with('form', $form);
+        $workflows = $this->workflowRepository->all()->pluck('workflow_name', 'id');
+        $workflows->prepend('Select workflow', '');
+        return view('workflowengine::forms.edit')->with(['form' => $form, 'workflows' => $workflows]);
     }
 
     /**

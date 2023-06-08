@@ -146,14 +146,14 @@ class UserController extends AppBaseController
     {
         $user = $this->userRepository->find($id);
 
-        if ($user->hasRole('super-admin')) {
-            Flash::error('Cannot delete super admin');
+        if (empty($user)) {
+            Flash::error('User not found');
 
             return redirect(route('users.index'));
         }
 
-        if (empty($user)) {
-            Flash::error('User not found');
+        if ($user->hasRole('super-admin')) {
+            Flash::error('Cannot delete super admin');
 
             return redirect(route('users.index'));
         }

@@ -18,14 +18,14 @@
 
 <!-- Workflow Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('workflow_id', 'Workflow Id:') !!}
-    <p>{{ $workflowInstance->workflow_id }}</p>
+    {!! Form::label('workflow_id', 'Workflow') !!}
+    <p>{{ $workflowInstance->workflow ? $workflowInstance->workflow->workflow_name : '' }}</p>
 </div>
 
 <!-- Started By Field -->
 <div class="col-sm-12">
     {!! Form::label('started_by', 'Started By:') !!}
-    <p>{{ $workflowInstance->started_by }}</p>
+    <p>{{ $workflowInstance->startedBy ? $workflowInstance->startedBy->name : '' }}</p>
 </div>
 
 <!-- Date Completed Field -->

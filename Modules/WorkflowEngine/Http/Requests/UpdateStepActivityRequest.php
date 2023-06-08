@@ -25,7 +25,8 @@ class UpdateStepActivityRequest extends FormRequest
     public function rules()
     {
         $rules = StepActivity::$rules;
-        
+        $id = $this->route('stepActivity');
+        $rules['step_activity'] = 'required|unique:step_activities,step_activity,' . $id;
         return $rules;
     }
 }

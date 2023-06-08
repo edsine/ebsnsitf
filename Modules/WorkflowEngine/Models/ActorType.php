@@ -3,7 +3,11 @@
 namespace Modules\WorkflowEngine\Models;
 
 use Illuminate\Database\Eloquent\Model;
- use Illuminate\Database\Eloquent\SoftDeletes; use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
+
 /**
  * @OA\Schema(
  *      schema="ActorType",
@@ -32,9 +36,12 @@ use Illuminate\Database\Eloquent\Model;
  *          format="date-time"
  *      )
  * )
- */class ActorType extends Model
+ */ class ActorType extends Model implements Auditable
 {
-     use SoftDeletes;    use HasFactory;    public $table = 'actor_types';
+    use SoftDeletes;
+    use HasFactory;
+    use AuditingAuditable;
+    public $table = 'actor_types';
 
     public $fillable = [
         'actor_type'
@@ -45,8 +52,6 @@ use Illuminate\Database\Eloquent\Model;
     ];
 
     public static array $rules = [
-        'actor_type' => 'required'
+        'actor_type' => 'required|unique:actor_types,actor_type'
     ];
-
-    
 }

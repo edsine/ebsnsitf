@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('id');
             $table->string('field_name');
             $table->string('field_label');
-            $table->text('field_options');
+            $table->text('field_options')->nullable();
             $table->integer('is_required');
             $table->timestamps();
             $table->softDeletes();

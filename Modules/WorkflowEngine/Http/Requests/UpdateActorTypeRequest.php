@@ -25,7 +25,8 @@ class UpdateActorTypeRequest extends FormRequest
     public function rules()
     {
         $rules = ActorType::$rules;
-        
+        $id = $this->route('actorType');
+        $rules['actor_type'] = 'required|unique:actor_types,actor_type,' . $id;
         return $rules;
     }
 }

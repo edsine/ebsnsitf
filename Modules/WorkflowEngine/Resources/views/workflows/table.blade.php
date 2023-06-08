@@ -3,8 +3,8 @@
         <table class="table" id="workflows-table">
             <thead>
             <tr>
-                <th>Workfllow Name</th>
-                <th>Workflow Type Id</th>
+                <th>Workflow Name</th>
+                <th>Workflow Type</th>
                 <th colspan="3">Action</th>
             </tr>
             </thead>
@@ -12,7 +12,7 @@
             @foreach($workflows as $workflow)
                 <tr>
                     <td>{{ $workflow->workflow_name }}</td>
-                    <td>{{ $workflow->workflow_type_id }}</td>
+                    <td>{{ $workflow->workflowType ? $workflow->workflowType->workflow_type : '' }}</td>
                     <td  style="width: 120px">
                         {!! Form::open(['route' => ['workflows.destroy', $workflow->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
