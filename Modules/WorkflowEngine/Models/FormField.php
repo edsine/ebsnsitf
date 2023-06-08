@@ -108,7 +108,13 @@ use OwenIt\Auditing\Contracts\Auditable;
         'is_required' => 'integer'
     ];
 
-    public static array $rules = [];
+    public static array $rules = [
+        'form_id' => 'required',
+        'field_name' => 'required',
+        'field_type_id' => 'required',
+        'field_label' => 'required',
+        'is_required'  => 'required'
+    ];
 
     public function form(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

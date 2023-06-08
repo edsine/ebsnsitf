@@ -18,8 +18,8 @@
 
 <!-- Workflow Step Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('workflow_step_id', 'Workflow Step Id:') !!}
-    <p>{{ $workflowActivity->workflow_step_id }}</p>
+    {!! Form::label('workflow_step_id', 'Workflow Step:') !!}
+    <p>{{ $workflowActivity->workflowStep ? $workflowActivity->workflowStep->step_name : '' }}</p>
 </div>
 
 <!-- Status Field -->
@@ -30,8 +30,8 @@
 
 <!-- User Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('user_id', 'User Id:') !!}
-    <p>{{ $workflowActivity->user_id }}</p>
+    {!! Form::label('user_id', 'User:') !!}
+    <p>{{ $workflowActivity->user ? $workflowActivity->user->name : '' }}</p>
 </div>
 
 <!-- Comment Field -->
@@ -53,8 +53,14 @@
 </div>
 
 <!-- Workflow Instance Id Field -->
-<div class="col-sm-12">
+{{-- <div class="col-sm-12">
     {!! Form::label('workflow_instance_id', 'Workflow Instance Id:') !!}
     <p>{{ $workflowActivity->workflow_instance_id }}</p>
-</div>
+</div> --}}
 
+<!-- Workflow Id Field -->
+<div class="col-sm-12">
+    {!! Form::label('workflow_id', 'Workflow:') !!}
+    <p>{{ $workflowActivity->workflowInstance ? ($workflowActivity->workflowInstance->workflow ? $workflowActivity->workflowInstance->workflow->workflow_name : '') : '' }}
+    </p>
+</div>

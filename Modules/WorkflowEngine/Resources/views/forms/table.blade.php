@@ -5,7 +5,7 @@
             <tr>
                 <th>Form Name</th>
                 <th>Has Workflow</th>
-                <th>Workflow Id</th>
+                <th>Workflow</th>
                 <th colspan="3">Action</th>
             </tr>
             </thead>
@@ -13,8 +13,8 @@
             @foreach($forms as $form)
                 <tr>
                     <td>{{ $form->form_name }}</td>
-                    <td>{{ $form->has_workflow }}</td>
-                    <td>{{ $form->workflow_id }}</td>
+                    <td>{{ $form->has_workflow ? 'Yes': 'No' }}</td>
+                    <td>{{ $form->workflow ? $form->workflow->workflow_name : '' }}</td>
                     <td  style="width: 120px">
                         {!! Form::open(['route' => ['forms.destroy', $form->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

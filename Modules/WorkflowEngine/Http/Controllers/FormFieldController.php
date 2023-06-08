@@ -8,15 +8,25 @@ use App\Http\Controllers\AppBaseController;
 use Modules\WorkflowEngine\Repositories\FormFieldRepository;
 use Illuminate\Http\Request;
 use Flash;
+use Modules\WorkflowEngine\Repositories\FieldTypeRepository;
+use Modules\WorkflowEngine\Repositories\FormRepository;
 
 class FormFieldController extends AppBaseController
 {
     /** @var FormFieldRepository $formFieldRepository*/
     private $formFieldRepository;
 
-    public function __construct(FormFieldRepository $formFieldRepo)
+    /** @var FormRepository $formRepository*/
+    private $formRepository;
+
+    /** @var FieldTypeRepository $fieldTypeRepository*/
+    private $fieldTypeRepository;
+
+    public function __construct(FormFieldRepository $formFieldRepo, FormRepository $formRepo, FieldTypeRepository $fieldTypeRepo)
     {
         $this->formFieldRepository = $formFieldRepo;
+        $this->formRepository = $formRepo;
+        $this->fieldTypeRepository = $fieldTypeRepo;
     }
 
     /**
@@ -35,7 +45,13 @@ class FormFieldController extends AppBaseController
      */
     public function create()
     {
-        return view('workflowengine::form_fields.create');
+        $forms = $this->formRepository->all()->pluck('form_name', 'id');
+        $forms->prepend('Select form', 0);
+
+        $field_types = $this->fieldTypeRepository->all()->pluck('field_type', 'id');
+        $field_types->prepend('Select field type', 0);
+
+        return view('workflowengine::form_fields.create')->with(['forms' => $forms, 'field_types' => $field_types]);
     }
 
     /**
@@ -81,7 +97,13 @@ class FormFieldController extends AppBaseController
             return redirect(route('formFields.index'));
         }
 
-        return view('workflowengine::form_fields.edit')->with('formField', $formField);
+        $forms = $this->formRepository->all()->pluck('form_name', 'id');
+        $forms->prepend('Select form', 0);
+
+        $field_types = $this->fieldTypeRepository->all()->pluck('field_type', 'id');
+        $field_types->prepend('Select field type', 0);
+
+        return view('workflowengine::form_fields.edit')->with(['formField' => $formField, 'forms' => $forms, 'field_types' => $field_types]);
     }
 
     /**

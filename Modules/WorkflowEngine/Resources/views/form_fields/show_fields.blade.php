@@ -18,8 +18,8 @@
 
 <!-- Form Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('form_id', 'Form Id:') !!}
-    <p>{{ $formField->form_id }}</p>
+    {!! Form::label('form_id', 'Form:') !!}
+    <p>{{ $formField->form ? $formField->form->form_name : '' }}</p>
 </div>
 
 <!-- Field Name Field -->
@@ -30,8 +30,8 @@
 
 <!-- Field Type Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('field_type_id', 'Field Type Id:') !!}
-    <p>{{ $formField->field_type_id }}</p>
+    {!! Form::label('field_type_id', 'Field Type:') !!}
+    <p>{{ $formField->fieldType ? $formField->fieldType->field_type : '' }}</p>
 </div>
 
 <!-- Field Label Field -->
@@ -49,6 +49,6 @@
 <!-- Is Required Field -->
 <div class="col-sm-12">
     {!! Form::label('is_required', 'Is Required:') !!}
-    <p>{{ $formField->is_required }}</p>
+    <p>{{ $formField->is_required ? 'Yes' : 'No' }}</p>
 </div>
 

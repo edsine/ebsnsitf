@@ -8,15 +8,20 @@ use App\Http\Controllers\AppBaseController;
 use Modules\WorkflowEngine\Repositories\WorkflowRepository;
 use Illuminate\Http\Request;
 use Flash;
+use Modules\WorkflowEngine\Repositories\WorkflowTypeRepository;
 
 class WorkflowController extends AppBaseController
 {
     /** @var WorkflowRepository $workflowRepository*/
     private $workflowRepository;
 
-    public function __construct(WorkflowRepository $workflowRepo)
+    /** @var WorkflowTypeRepository $workflowTypeRepository*/
+    private $workflowTypeRepository;
+
+    public function __construct(WorkflowRepository $workflowRepo, WorkflowTypeRepository $workflowTypeRepo)
     {
         $this->workflowRepository = $workflowRepo;
+        $this->workflowTypeRepository = $workflowTypeRepo;
     }
 
     /**
@@ -35,7 +40,9 @@ class WorkflowController extends AppBaseController
      */
     public function create()
     {
-        return view('workflowengine::workflows.create');
+        $workflow_types = $this->workflowTypeRepository->all()->pluck('workflow_type', 'id');
+        $workflow_types->prepend('Select workflow type', 0);
+        return view('workflowengine::workflows.create')->with('workflow_types', $workflow_types);
     }
 
     /**
@@ -81,7 +88,9 @@ class WorkflowController extends AppBaseController
             return redirect(route('workflows.index'));
         }
 
-        return view('workflowengine::workflows.edit')->with('workflow', $workflow);
+        $workflow_types = $this->workflowTypeRepository->all()->pluck('workflow_type', 'id');
+        $workflow_types->prepend('Select workflow type', 0);
+        return view('workflowengine::workflows.edit')->with(['workflow' => $workflow, 'workflow_types' => $workflow_types]);
     }
 
     /**
