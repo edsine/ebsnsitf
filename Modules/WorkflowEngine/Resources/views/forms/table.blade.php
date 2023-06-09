@@ -18,6 +18,10 @@
                     <td  style="width: 120px">
                         {!! Form::open(['route' => ['forms.destroy', $form->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
+                            <a href="{{ route('forms.addFormFieldsView', [$form->id]) }}"
+                                class='btn btn-default btn-xs'>
+                                 <i class="far fa-edit"></i>
+                             </a>
                             <a href="{{ route('forms.show', [$form->id]) }}"
                                class='btn btn-default btn-xs'>
                                 <i class="far fa-eye"></i>
