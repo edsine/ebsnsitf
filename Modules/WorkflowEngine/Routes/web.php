@@ -20,7 +20,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('workflowTypes', Modules\WorkflowEngine\Http\Controllers\WorkflowTypeController::class);
         Route::resource('actorRoles', Modules\WorkflowEngine\Http\Controllers\ActorRoleController::class);
         Route::resource('forms', Modules\WorkflowEngine\Http\Controllers\FormController::class);
-        Route::get('forms/addFields/{id}', [Modules\WorkflowEngine\Http\Controllers\FormController::class, 'addFormFieldsView'])->name('forms.addFormFieldsView');
+        Route::get('forms/create/formFields/{id}', [Modules\WorkflowEngine\Http\Controllers\FormController::class, 'createFormFields'])->name('forms.formFields.create');
+        Route::post('forms/storeFormFields', [Modules\WorkflowEngine\Http\Controllers\FormController::class, 'storeFormFields'])->name('forms.formFields.store');
         Route::resource('workflows', Modules\WorkflowEngine\Http\Controllers\WorkflowController::class);
         Route::resource('workflowInstances', Modules\WorkflowEngine\Http\Controllers\WorkflowInstanceController::class);
         Route::resource('formFields', Modules\WorkflowEngine\Http\Controllers\FormFieldController::class);

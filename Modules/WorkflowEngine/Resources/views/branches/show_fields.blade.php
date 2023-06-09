@@ -7,7 +7,7 @@
 <!-- Branch Region Field -->
 <div class="col-sm-12">
     {!! Form::label('branch_region', 'Branch Region:') !!}
-    <p>{{ $branch->branch_region }}</p>
+    <p>{{ getBranchRegions()[$branch->branch_region] }}</p>
 </div>
 
 <!-- Branch Code Field -->
@@ -25,7 +25,7 @@
 <!-- Highest Rank Field -->
 <div class="col-sm-12">
     {!! Form::label('highest_rank', 'Highest Rank:') !!}
-    <p>{{ $branch->highest_rank }}</p>
+    <p>{{ getRanks()[$branch->highest_rank] }}</p>
 </div>
 
 <!-- Staff Strength Field -->
@@ -37,7 +37,7 @@
 <!-- Managing Id Field -->
 <div class="col-sm-12">
     {!! Form::label('managing_id', 'Managing Id:') !!}
-    <p>{{ $branch->managing_id }}</p>
+    <p>{{ $branch->manager ? $branch->manager->email : '' }}</p>
 </div>
 
 <!-- Branch Email Field -->
@@ -69,4 +69,3 @@
     {!! Form::label('updated_at', 'Updated At:') !!}
     <p>{{ $branch->updated_at }}</p>
 </div>
-

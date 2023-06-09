@@ -7,7 +7,7 @@
 <!-- Branch Region Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('branch_region', 'Branch Region:') !!}
-    {!! Form::select('branch_region', [], null, ['class' => 'form-control custom-select']) !!}
+    {!! Form::select('branch_region', getBranchRegions(), null, ['class' => 'form-control custom-select']) !!}
 </div>
 
 <!-- Branch Code Field -->
@@ -25,7 +25,7 @@
 <!-- Highest Rank Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('highest_rank', 'Highest Rank:') !!}
-    {!! Form::select('highest_rank', [], null, ['class' => 'form-control custom-select']) !!}
+    {!! Form::select('highest_rank', getRanks(), null, ['class' => 'form-control custom-select']) !!}
 </div>
 
 <!-- Staff Strength Field -->
@@ -37,7 +37,7 @@
 <!-- Managing Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('managing_id', 'Managing Id:') !!}
-    {!! Form::select('managing_id', [], null, ['class' => 'form-control custom-select']) !!}
+    {!! Form::select('managing_id', $users, null, ['class' => 'form-control custom-select']) !!}
 </div>
 
 <!-- Branch Email Field -->

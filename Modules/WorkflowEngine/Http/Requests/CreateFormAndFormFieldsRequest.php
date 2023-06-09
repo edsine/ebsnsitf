@@ -5,7 +5,7 @@ namespace Modules\WorkflowEngine\Http\Requests;
 use Modules\WorkflowEngine\Models\FormField;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateFormFieldRequest extends FormRequest
+class CreateFormAndFormFieldsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class UpdateFormFieldRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = FormField::$rules;
-        $id = $this->route('formField');
-        $rules['field_name'] = 'required|unique:form_fields,field_name,' . $id . 'form_id';
-
+        $rules = [
+            'form_id' => 'required',
+            'form_fields' => 'required',
+        ];
         return $rules;
     }
 }
