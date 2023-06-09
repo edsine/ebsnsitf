@@ -2,25 +2,30 @@
 
 namespace Modules\WorkflowEngine\Http\Controllers;
 
-use Modules\WorkflowEngine\Http\Requests\CreateFormRequest;
-use Modules\WorkflowEngine\Http\Requests\UpdateFormRequest;
+use Flash;
+use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Modules\WorkflowEngine\Repositories\FormRepository;
-use Illuminate\Http\Request;
-use Flash;
+use Modules\WorkflowEngine\Http\Requests\CreateFormRequest;
+use Modules\WorkflowEngine\Http\Requests\UpdateFormRequest;
 use Modules\WorkflowEngine\Repositories\WorkflowRepository;
+use Modules\WorkflowEngine\Repositories\FieldTypeRepository;
 
 class FormController extends AppBaseController
 {
     /** @var FormRepository $formRepository*/
     private $formRepository;
 
+    /** @var FieldTypeRepository $fieldTypeRepository*/
+    private $fieldTypeRepository;
+
     /** @var WorkflowRepository $workflowRepository*/
     private $workflowRepository;
 
-    public function __construct(FormRepository $formRepo, WorkflowRepository $workflowRepo)
+    public function __construct(FormRepository $formRepo, WorkflowRepository $workflowRepo, FieldTypeRepository $fieldTypeRepo)
     {
         $this->formRepository = $formRepo;
+        $this->fieldTypeRepository = $fieldTypeRepo;
         $this->workflowRepository = $workflowRepo;
     }
 
@@ -133,5 +138,26 @@ class FormController extends AppBaseController
         Flash::success('Form deleted successfully.');
 
         return redirect(route('forms.index'));
+    }
+
+    /**
+     * Show the form for adding form fields to a form.
+     *
+     * @throws \Exception
+     */
+    public function addFormFieldsView($id)
+    {
+        $form = $this->formRepository->find($id);
+
+        if (empty($form)) {
+            Flash::error('Form not found');
+
+            return redirect(route('forms.index'));
+        }
+
+        $field_types = $this->fieldTypeRepository->all()->pluck('field_type', 'id');
+        $field_types->prepend('Select field type', '');
+
+        return view('workflowengine::forms.add_form_fields')->with(['form' => $form, 'field_types' => $field_types]);
     }
 }
