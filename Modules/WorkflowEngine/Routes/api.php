@@ -50,7 +50,3 @@ Route::prefix('workflowengine')->group(function () {
     Route::resource('workflow-activities', Modules\WorkflowEngine\Http\Controllers\API\WorkflowActivityAPIController::class)
         ->except(['create', 'edit']);
 });
-
-
-Route::resource('branches', Modules\WorkflowEngine\Http\Controllers\API\BranchAPIController::class)
-    ->except(['create', 'edit']);
