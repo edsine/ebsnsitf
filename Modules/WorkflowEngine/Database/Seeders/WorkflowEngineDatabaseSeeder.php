@@ -16,6 +16,11 @@ class WorkflowEngineDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call(ActorRolesTableSeeder::class);
+        $this->call(ActorTypesTableSeeder::class);
+        $this->call(FieldTypesTableSeeder::class);
+        $this->call(StepActivitiesTableSeeder::class);
+        $this->call(StepTypesTableSeeder::class);
+        $this->call(WorkflowTypesTableSeeder::class);
     }
 }

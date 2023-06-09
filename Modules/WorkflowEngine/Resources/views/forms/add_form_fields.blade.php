@@ -6,7 +6,7 @@
             <div class="row mb-2">
                 <div class="col-sm-12">
                     <h1>
-                    Add Form fields to {{$form->form_name}}
+                        Add Form fields to {{ $form->form_name }}
                     </h1>
                 </div>
             </div>
@@ -19,10 +19,9 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'forms.store']) !!}
-
+            {!! Form::open(['route' => 'forms.formFields.store', 'class' => 'repeater']) !!}
+            {!! Form::hidden('form_id', $form->id, []) !!}
             <div class="card-body">
-
                 <div class="row">
                     @include('workflowengine::forms.add_form_fields_fields')
                 </div>

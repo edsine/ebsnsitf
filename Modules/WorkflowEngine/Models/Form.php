@@ -89,4 +89,9 @@ use OwenIt\Auditing\Contracts\Auditable;
     {
         return $this->belongsTo(\Modules\WorkflowEngine\Models\Workflow::class, 'workflow_id', 'id');
     }
+
+    public function formFields(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(\Modules\WorkflowEngine\Models\FormField::class);
+    }
 }
