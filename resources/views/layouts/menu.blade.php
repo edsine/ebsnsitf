@@ -1,32 +1,3 @@
-<!-- need to remove -->
-<!-- <li class="nav-item">
-    <a href="{{ route('home') }}" class="nav-link {{ Request::is('home') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-home"></i>
-        <p>Home</p>
-    </a>
-</li>
-
-@include('workflowengine::layouts.menu')
-
-<li class="nav-item">
-    <a href="{{ route('roles.index') }}" class="nav-link {{ Request::is('roles*') ? 'active' : '' }}">
-        <i class="nav-icon fa fa-home"></i>
-        <p>Roles</p>
-    </a>
-</li>
-
-
-<li class="nav-item">
-    <a href="{{ route('users.index') }}" class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
-        <i class="nav-icon fa fa-user"></i>
-        <p>Users</p>
-    </a>
-</li> -->
-
-
-
-
-
 <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
     <!--begin::Menu wrapper-->
     <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer" data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px" data-kt-scroll-save-state="true">
@@ -112,7 +83,7 @@
             <div class="menu-item pt-5">
                 <!--begin:Menu content-->
                 <div class="menu-content">
-                    <span class="menu-heading fw-bold text-uppercase fs-7">Pages</span>
+                    <span class="menu-heading fw-bold text-uppercase fs-7">Actions</span>
                 </div>
                 <!--end:Menu content-->
             </div>
@@ -131,7 +102,7 @@
                         </span>
                         <!--end::Svg Icon-->
                     </span>
-                    <span class="menu-title">Widgets</span>
+                    <span class="menu-title">Workflows</span>
                     <span class="menu-arrow"></span>
                 </span>
                 <!--end:Menu link-->
@@ -140,11 +111,11 @@
                     <!--begin:Menu item-->
                     <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="../../demo1/dist/widgets/lists.html">
+                        <a class="menu-link" href="{{ route('home') }}">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Lists</span>
+                            <span class="menu-title">List Workflows</span>
                         </a>
                         <!--end:Menu link-->
                     </div>
@@ -152,11 +123,11 @@
                     <!--begin:Menu item-->
                     <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="../../demo1/dist/widgets/statistics.html">
+                        <a class="menu-link" href="{{ route('home') }}">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Statistics</span>
+                            <span class="menu-title">Create Workflow</span>
                         </a>
                         <!--end:Menu link-->
                     </div>
@@ -164,51 +135,15 @@
                     <!--begin:Menu item-->
                     <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="../../demo1/dist/widgets/charts.html">
+                        <a class="menu-link" href="{{ route('home') }}">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Charts</span>
+                            <span class="menu-title">Activate Workflows</span>
                         </a>
                         <!--end:Menu link-->
                     </div>
-                    <!--end:Menu item-->
-                    <!--begin:Menu item-->
-                    <div class="menu-item">
-                        <!--begin:Menu link-->
-                        <a class="menu-link" href="../../demo1/dist/widgets/mixed.html">
-                            <span class="menu-bullet">
-                                <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">Mixed</span>
-                        </a>
-                        <!--end:Menu link-->
-                    </div>
-                    <!--end:Menu item-->
-                    <!--begin:Menu item-->
-                    <div class="menu-item">
-                        <!--begin:Menu link-->
-                        <a class="menu-link" href="../../demo1/dist/widgets/tables.html">
-                            <span class="menu-bullet">
-                                <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">Tables</span>
-                        </a>
-                        <!--end:Menu link-->
-                    </div>
-                    <!--end:Menu item-->
-                    <!--begin:Menu item-->
-                    <div class="menu-item">
-                        <!--begin:Menu link-->
-                        <a class="menu-link" href="../../demo1/dist/widgets/feeds.html">
-                            <span class="menu-bullet">
-                                <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">Feeds</span>
-                        </a>
-                        <!--end:Menu link-->
-                    </div>
-                    <!--end:Menu item-->
+                    <!--end:Menu item-->                   
                 </div>
                 <!--end:Menu sub-->
             </div>
