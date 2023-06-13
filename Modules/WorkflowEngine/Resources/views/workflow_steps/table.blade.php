@@ -21,9 +21,9 @@
                     <tr>
                         <td>{{ $workflowStep->workflow ? $workflowStep->workflow->workflow_name : '' }}</td>
                         <td>{{ $workflowStep->step_order }}</td>
-                        <td>{{ $workflowStep->parentStep ? $workflowStep->parentStep->workflow_name : '' }}</td>
-                        <td>{{ $workflowStep->nextApproved ? $workflowStep->nextApproved->workflow_name : '' }}</td>
-                        <td>{{ $workflowStep->nextRejected ? $workflowStep->nextRejected->workflow_name : '' }}</td>
+                        <td>{{ $workflowStep->parentStep ? $workflowStep->parentStep->step_name : '' }}</td>
+                        <td>{{ $workflowStep->nextApproved ? $workflowStep->nextApproved->step_name : '' }}</td>
+                        <td>{{ $workflowStep->nextRejected ? $workflowStep->nextRejected->step_name : '' }}</td>
                         <td>{{ $workflowStep->actorType ? $workflowStep->actorType->actor_type : '' }}</td>
                         <td>{{ $workflowStep->actorRole ? $workflowStep->actorRole->actor_role : '' }}</td>
                         <td>{{ $workflowStep->stepActivity ? $workflowStep->stepActivity->step_activity : '' }}</td>
