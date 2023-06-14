@@ -2,11 +2,12 @@
 
 namespace Modules\WorkflowEngine\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use OwenIt\Auditing\Auditable as AuditingAuditable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @OA\Schema(
@@ -147,4 +148,9 @@ use OwenIt\Auditing\Auditable as AuditingAuditable;
         'branch_phone' => 'required|unique:branches,branch_phone',
         'branch_address' => 'required'
     ];
+
+    public function manager(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class, 'managing_id', 'id');
+    }
 }

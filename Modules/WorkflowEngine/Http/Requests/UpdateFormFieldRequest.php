@@ -25,7 +25,9 @@ class UpdateFormFieldRequest extends FormRequest
     public function rules()
     {
         $rules = FormField::$rules;
-        
+        $id = $this->route('formField');
+        $rules['field_name'] = 'required|unique:form_fields,field_name,' . $id . 'form_id';
+
         return $rules;
     }
 }

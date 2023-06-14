@@ -5,6 +5,7 @@ namespace Modules\WorkflowEngine\Http\Controllers;
 use Modules\WorkflowEngine\Http\Requests\CreateBranchRequest;
 use Modules\WorkflowEngine\Http\Requests\UpdateBranchRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\UserRepository;
 use Modules\WorkflowEngine\Repositories\BranchRepository;
 use Illuminate\Http\Request;
 use Flash;
@@ -14,9 +15,13 @@ class BranchController extends AppBaseController
     /** @var BranchRepository $branchRepository*/
     private $branchRepository;
 
-    public function __construct(BranchRepository $branchRepo)
+    /** @var UserRepository $userRepository*/
+    private $userRepository;
+
+    public function __construct(BranchRepository $branchRepo, UserRepository $userRepo)
     {
         $this->branchRepository = $branchRepo;
+        $this->userRepository = $userRepo;
     }
 
     /**
@@ -35,7 +40,9 @@ class BranchController extends AppBaseController
      */
     public function create()
     {
-        return view('workflowengine::branches.create');
+        $users = $this->userRepository->all()->pluck('email', 'id');
+        $users->prepend('Select user', '');
+        return view('workflowengine::branches.create')->with('users', $users);
     }
 
     /**
@@ -81,7 +88,9 @@ class BranchController extends AppBaseController
             return redirect(route('branches.index'));
         }
 
-        return view('workflowengine::branches.edit')->with('branch', $branch);
+        $users = $this->userRepository->all()->pluck('email', 'id');
+        $users->prepend('Select user', '');
+        return view('workflowengine::branches.edit')->with(['branch' => $branch, 'users' => $users]);
     }
 
     /**
