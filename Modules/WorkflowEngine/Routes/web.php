@@ -28,5 +28,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('workflowSteps', Modules\WorkflowEngine\Http\Controllers\WorkflowStepController::class);
         Route::resource('workflowActivities', Modules\WorkflowEngine\Http\Controllers\WorkflowActivityController::class);
         Route::resource('branches', Modules\WorkflowEngine\Http\Controllers\BranchController::class);
+        Route::resource('departments', Modules\WorkflowEngine\Http\Controllers\DepartmentController::class);
     });
 });

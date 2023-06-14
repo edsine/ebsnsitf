@@ -7,9 +7,11 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use Flash;
 use Response;
 use Hash;
+use DB;
 
 class UserController extends AppBaseController
 {
@@ -42,7 +44,8 @@ class UserController extends AppBaseController
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::pluck('name','id')->all();
+        return view('users.create',compact('roles'));
     }
 
     /**
@@ -54,6 +57,7 @@ class UserController extends AppBaseController
      */
     public function store(CreateUserRequest $request)
     {
+
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
         $user = $this->userRepository->create($input);
@@ -93,6 +97,8 @@ class UserController extends AppBaseController
     public function edit($id)
     {
         $user = $this->userRepository->find($id);
+        $roles = Role::pluck('name','id')->all();
+        //$userRole = $user->roles->pluck('name','id')->all();
 
         if (empty($user)) {
             Flash::error('User not found');
@@ -100,7 +106,7 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        return view('users.edit')->with('user', $user);
+        return view('users.edit',compact('user','roles'));
     }
 
     /**
@@ -113,6 +119,7 @@ class UserController extends AppBaseController
      */
     public function update($id, UpdateUserRequest $request)
     {
+
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
@@ -127,6 +134,9 @@ class UserController extends AppBaseController
             unset($input['password']);
         }
         $user = $this->userRepository->update($input, $id);
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+    
+        $user->assignRole($request->input('roles'));
 
         Flash::success('User updated successfully.');
 
