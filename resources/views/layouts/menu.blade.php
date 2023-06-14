@@ -8,6 +8,8 @@
 
 @include('workflowengine::layouts.menu')
 
+@include('shared::layouts.menu')
+
 <li class="nav-item">
     <a href="{{ route('roles.index') }}" class="nav-link {{ Request::is('roles*') ? 'active' : '' }}">
         <i class="nav-icon fa fa-home"></i>

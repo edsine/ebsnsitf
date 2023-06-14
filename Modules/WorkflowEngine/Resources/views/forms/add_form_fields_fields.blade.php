@@ -96,7 +96,9 @@
                 isFirstItemUndeletable: true
             });
 
-            repeater.setList(<?php echo !empty(old('form_field')) ? json_encode(old('form_field')) : $form->formFields; ?>);
+            const values = <?php echo !empty(old('form_field')) ? json_encode(old('form_field')) : $form->formFields; ?>
+
+            repeater.setList(values);
         });
     </script>
 @endpush

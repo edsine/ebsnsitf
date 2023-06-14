@@ -6,6 +6,7 @@ use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\RoleRepository;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Flash;
@@ -18,9 +19,13 @@ class UserController extends AppBaseController
     /** @var $userRepository UserRepository */
     private $userRepository;
 
-    public function __construct(UserRepository $userRepo)
+    /** @var $userRepository UserRepository */
+    private $roleRepository;
+
+    public function __construct(UserRepository $userRepo, RoleRepository $roleRepo)
     {
         $this->userRepository = $userRepo;
+        $this->roleRepository = $roleRepo;
     }
 
     /**
@@ -46,6 +51,9 @@ class UserController extends AppBaseController
     {
         $roles = Role::pluck('name','id')->all();
         return view('users.create',compact('roles'));
+        $roles = $this->roleRepository->all()->pluck('name', 'id');
+        $roles->prepend('Select role', '');
+        return view('users.create')->with('roles', $roles);
     }
 
     /**
@@ -61,6 +69,17 @@ class UserController extends AppBaseController
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
         $user = $this->userRepository->create($input);
+
+        $role = $this->roleRepository->find($input['role_id']);
+
+        if (empty($role)) {
+            Flash::error('Role not found');
+
+            return redirect(route('users.index'));
+        }
+
+
+        $user->assignRole($role->name);
 
         Flash::success('User saved successfully.');
 
@@ -107,6 +126,13 @@ class UserController extends AppBaseController
         }
 
         return view('users.edit',compact('user','roles'));
+        $user['role_id'] = $user->roles()->first()->id;
+
+        $roles = $this->roleRepository->all()->pluck('name', 'id');
+
+        $roles->prepend('Select role', '');
+
+        return view('users.edit')->with(['user' => $user, 'roles' => $roles]);
     }
 
     /**
@@ -127,16 +153,31 @@ class UserController extends AppBaseController
 
             return redirect(route('users.index'));
         }
+
         $input =  $request->all();
+
+        $role = $this->roleRepository->find($input['role_id']);
+
+        if (empty($role)) {
+            Flash::error('Role not found');
+
+            return redirect(route('users.index'));
+        }
+
         if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
         } else {
             unset($input['password']);
         }
+
         $user = $this->userRepository->update($input, $id);
         DB::table('model_has_roles')->where('model_id',$id)->delete();
     
         $user->assignRole($request->input('roles'));
+
+        $user->roles()->detach();
+        $user->assignRole($role->name);
+
 
         Flash::success('User updated successfully.');
 

@@ -28,9 +28,10 @@ class UpdateUserRequest extends FormRequest
         $rules = [
           'first_name'     => 'required',
           'email'    => 'required|email|unique:users,email,'.$id,
-          'password' => 'confirmed'
+          'password' => 'confirmed',
+          'role_id'  => 'required'
         ];
-        
+
         return $rules;
     }
 }

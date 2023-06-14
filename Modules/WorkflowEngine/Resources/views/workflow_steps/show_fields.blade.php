@@ -31,19 +31,19 @@
 <!-- Parent Step Id Field -->
 <div class="col-sm-12">
     {!! Form::label('parent_step_id', 'Parent Step:') !!}
-    <p>{{ $workflowStep->parentStep ? $workflowStep->parentStep->workflow_name : ''}}</p>
+    <p>{{ $workflowStep->parentStep ? $workflowStep->parentStep->step_name : ''}}</p>
 </div>
 
 <!-- Next Approved Id Field -->
 <div class="col-sm-12">
     {!! Form::label('next_approved_id', 'Next Approved:') !!}
-    <p>{{ $workflowStep->nextApproved ? $workflowStep->nextApproved->workflow_name : ''}}</p>
+    <p>{{ $workflowStep->nextApproved ? $workflowStep->nextApproved->step_name : ''}}</p>
 </div>
 
 <!-- Next Rejected Id Field -->
 <div class="col-sm-12">
     {!! Form::label('next_rejected_id', 'Next Rejected:') !!}
-    <p>{{ $workflowStep->nextRejected ? $workflowStep->nextRejected->workflow_name : '' }}</p>
+    <p>{{ $workflowStep->nextRejected ? $workflowStep->nextRejected->step_name : '' }}</p>
 </div>
 
 <!-- Actor Type Id Field -->
