@@ -11,6 +11,9 @@ use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Repositories\PermissionRepository;
 use App\Http\Controllers\AppBaseController;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use DB;
 
 class RoleController extends AppBaseController
 {

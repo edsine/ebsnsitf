@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Modules\WorkflowEngine\Http\Requests;
 
+use Modules\WorkflowEngine\Models\Department;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUserRequest extends FormRequest
+class CreateDepartmentRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,14 +24,6 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->route('user');
-        $rules = [
-          'first_name'     => 'required',
-          'email'    => 'required|email|unique:users,email,'.$id,
-          'password' => 'confirmed',
-          'role_id'  => 'required'
-        ];
-
-        return $rules;
+        return Department::$rules;
     }
 }
