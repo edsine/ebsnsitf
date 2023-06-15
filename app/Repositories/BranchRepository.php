@@ -2,24 +2,30 @@
 
 namespace App\Repositories;
 
-use App\Models\User;
-use Modules\WorkflowEngine\Models\Staff;
+use Modules\WorkflowEngine\Models\Branch;
 use App\Repositories\BaseRepository;
 
 /**
- * Class UserRepository
+ * Class BranchRepository
  * @package App\Repositories
 */
 
-class UserRepository extends BaseRepository
+class BranchRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'first_name',
-        'email',
-        'password'
+        'branch_name',
+        'branch_region',
+        'branch_code',
+        'last_ecsnumber',
+        'highest_rank',
+        'staff_strength',
+        'managing_id',
+        'branch_email',
+        'branch_phone',
+        'branch_address'
     ];
 
     /**
@@ -37,7 +43,7 @@ class UserRepository extends BaseRepository
      **/
     public function model(): string
     {
-        return User::class;
+        return Branch::class;
     }
 
 }
