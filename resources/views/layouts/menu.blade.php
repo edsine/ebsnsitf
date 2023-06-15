@@ -123,6 +123,9 @@
                 <!--end:Menu content-->
             </div>
             <!--end:Menu item-->
+
+            @include('documentmanager::layouts.menu')
+
             <!--begin:Menu item-->
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                 <!--begin:Menu link-->
@@ -214,7 +217,7 @@
                                 <!--begin:Menu link-->
                                 <a class="menu-link" href="{{ route('roles.create') }}">
                                     <span class=" menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
+                                        <span class="bullet bullet-dot"></span>
                                     </span>
                                     <span class="menu-title">Create Role</span>
                                 </a>
