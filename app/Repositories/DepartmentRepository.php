@@ -2,24 +2,22 @@
 
 namespace App\Repositories;
 
-use App\Models\User;
-use Modules\WorkflowEngine\Models\Staff;
+use Modules\WorkflowEngine\Models\Department;
 use App\Repositories\BaseRepository;
 
 /**
- * Class UserRepository
+ * Class DepartmentRepository
  * @package App\Repositories
 */
 
-class UserRepository extends BaseRepository
+class DepartmentRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'first_name',
-        'email',
-        'password'
+        'dep_unit',
+        'status',
     ];
 
     /**
@@ -37,7 +35,7 @@ class UserRepository extends BaseRepository
      **/
     public function model(): string
     {
-        return User::class;
+        return Department::class;
     }
 
 }
