@@ -3,9 +3,9 @@
         <table class="table" id="form-fields-table">
             <thead>
             <tr>
-                <th>Form Id</th>
+                <th>Form</th>
                 <th>Field Name</th>
-                <th>Field Type Id</th>
+                <th>Field Type</th>
                 <th>Field Label</th>
                 <th>Field Options</th>
                 <th>Is Required</th>
@@ -15,12 +15,12 @@
             <tbody>
             @foreach($formFields as $formField)
                 <tr>
-                    <td>{{ $formField->form_id }}</td>
+                    <td>{{ $formField->form ? $formField->form->form_name : '' }}</td>
                     <td>{{ $formField->field_name }}</td>
-                    <td>{{ $formField->field_type_id }}</td>
+                    <td>{{ $formField->fieldType ? $formField->fieldType->field_type : '' }}</td>
                     <td>{{ $formField->field_label }}</td>
                     <td>{{ $formField->field_options }}</td>
-                    <td>{{ $formField->is_required }}</td>
+                    <td>{{ $formField->is_required ? 'Yes' : 'No' }}</td>
                     <td  style="width: 120px">
                         {!! Form::open(['route' => ['formFields.destroy', $formField->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

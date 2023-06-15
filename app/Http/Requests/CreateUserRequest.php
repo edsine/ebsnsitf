@@ -25,9 +25,10 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
        $rules = [
-          'name'                  => 'required',
+          'first_name'                  => 'required',
           'email'                 => 'required|email|unique:users,email',
-          'password'              => 'required|confirmed'
+          'password'              => 'required|confirmed',
+          'roles'               => 'required'
        ];
 
         return $rules;

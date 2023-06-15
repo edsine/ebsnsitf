@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id('id');
             $table->string('field_name');
             $table->string('field_label');
-            $table->text('field_options');
+            $table->text('field_options')->nullable();
             $table->integer('is_required');
             $table->timestamps();
-            $table->softDeletes();
             $table->foreignId('form_id')->constrained('forms')->onDelete('cascade');
+            $table->unique(['form_id', 'field_name']);
             $table->foreignId('field_type_id')->constrained('field_types')->onDelete('cascade');
         });
     }

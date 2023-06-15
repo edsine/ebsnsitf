@@ -58,49 +58,49 @@ return [
 
     'path' => [
 
-        'migration'         => base_path('Modules/WorkflowEngine/Database/Migrations/'),
+        'migration'         => base_path('Modules/DocumentManager/Database/Migrations/'),
 
-        'model'             => base_path('Modules/WorkflowEngine/Models/'),
+        'model'             => base_path('Modules/DocumentManager/Models/'),
 
-        'datatables'        => base_path('Modules/WorkflowEngine/DataTables/'),
+        'datatables'        => base_path('Modules/DocumentManager/DataTables/'),
 
-        'livewire_tables'   => base_path('Modules/WorkflowEngine/Http/Livewire/'),
+        'livewire_tables'   => base_path('Modules/DocumentManager/Http/Livewire/'),
 
-        'repository'        => base_path('Modules/WorkflowEngine/Repositories/'),
+        'repository'        => base_path('Modules/DocumentManager/Repositories/'),
 
-        'routes'            => base_path('Modules/WorkflowEngine/Routes/web.php'),
+        'routes'            => base_path('Modules/DocumentManager/Routes/web.php'),
 
-        'api_routes'        => base_path('Modules/WorkflowEngine/Routes/api.php'),
+        'api_routes'        => base_path('Modules/DocumentManager/Routes/api.php'),
 
-        'request'           => base_path('Modules/WorkflowEngine/Http/Requests/'),
+        'request'           => base_path('Modules/DocumentManager/Http/Requests/'),
 
-        'api_request'       => base_path('Modules/WorkflowEngine/Http/Requests/API/'),
+        'api_request'       => base_path('Modules/DocumentManager/Http/Requests/API/'),
 
-        'controller'        => base_path('Modules/WorkflowEngine/Http/Controllers/'),
+        'controller'        => base_path('Modules/DocumentManager/Http/Controllers/'),
 
-        'api_controller'    => base_path('Modules/WorkflowEngine/Http/Controllers/API/'),
+        'api_controller'    => base_path('Modules/DocumentManager/Http/Controllers/API/'),
 
-        'api_resource'      => base_path('Modules/WorkflowEngine/Http/Resources/'),
+        'api_resource'      => base_path('Modules/DocumentManager/Http/Resources/'),
 
-        'schema_files'      => base_path('Modules/WorkflowEngine/model_schemas/'),
+        'schema_files'      => base_path('Modules/DocumentManager/model_schemas/'),
 
-        'seeder'            => base_path('Modules/WorkflowEngine/Database/Seeders/'),
+        'seeder'            => base_path('Modules/DocumentManager/Database/Seeders/'),
 
-        'database_seeder'   => base_path('Modules/WorkflowEngine/Database/Seeders/DatabaseSeeder.php'),
+        'database_seeder'   => base_path('Modules/DocumentManager/Database/Seeders/DatabaseSeeder.php'),
 
-        'factory'           => base_path('Modules/WorkflowEngine/Database/factories/'),
+        'factory'           => base_path('Modules/DocumentManager/Database/factories/'),
 
-        'view_provider'     => base_path('Modules/WorkflowEngine/Providers/ViewServiceProvider.php'),
+        'view_provider'     => base_path('Modules/DocumentManager/Providers/ViewServiceProvider.php'),
 
-        'tests'             => base_path('Modules/WorkflowEngine/Tests/'),
+        'tests'             => base_path('Modules/DocumentManager/Tests/'),
 
-        'repository_test'   => base_path('Modules/WorkflowEngine/Tests/Repositories/'),
+        'repository_test'   => base_path('Modules/DocumentManager/Tests/Repositories/'),
 
-        'api_test'          => base_path('Modules/WorkflowEngine/Tests/APIs/'),
+        'api_test'          => base_path('Modules/DocumentManager/Tests/APIs/'),
 
-        'views'             => base_path('Modules/WorkflowEngine/Resources/views/'),
+        'views'             => base_path('Modules/DocumentManager/Resources/views/'),
 
-        'menu_file'         => base_path('Modules/WorkflowEngine/Resources/views/layouts/menu.blade.php'),
+        'menu_file'         => base_path('Modules/DocumentManager/Resources/views/layouts/menu.blade.php'),
     ],
     /*
     |--------------------------------------------------------------------------
@@ -142,33 +142,33 @@ return [
 
     'namespace' => [
 
-        'model'             => 'Modules\WorkflowEngine\Models',
+        'model'             => 'Modules\DocumentManager\Models',
 
-        'datatables'        => 'Modules\WorkflowEngine\DataTables',
+        'datatables'        => 'Modules\DocumentManager\DataTables',
 
-        'livewire_tables'   => 'Modules\WorkflowEngine\Http\Livewire',
+        'livewire_tables'   => 'Modules\DocumentManager\Http\Livewire',
 
-        'repository'        => 'Modules\WorkflowEngine\Repositories',
+        'repository'        => 'Modules\DocumentManager\Repositories',
 
-        'controller'        => 'Modules\WorkflowEngine\Http\Controllers',
+        'controller'        => 'Modules\DocumentManager\Http\Controllers',
 
-        'api_controller'    => 'Modules\WorkflowEngine\Http\Controllers\API',
+        'api_controller'    => 'Modules\DocumentManager\Http\Controllers\API',
 
-        'api_resource'      => 'Modules\WorkflowEngine\Http\Resources',
+        'api_resource'      => 'Modules\DocumentManager\Http\Resources',
 
-        'request'           => 'Modules\WorkflowEngine\Http\Requests',
+        'request'           => 'Modules\DocumentManager\Http\Requests',
 
-        'api_request'       => 'Modules\WorkflowEngine\Http\Requests\API',
+        'api_request'       => 'Modules\DocumentManager\Http\Requests\API',
 
-        'seeder'            => 'Modules\WorkflowEngine\Database\Seeders',
+        'seeder'            => 'Modules\DocumentManager\Database\Seeders',
 
-        'factory'           => 'Modules\WorkflowEngine\Database\Factories',
+        'factory'           => 'Modules\DocumentManager\Database\Factories',
 
-        'tests'             => 'Modules\WorkflowEngine\Tests',
+        'tests'             => 'Modules\DocumentManager\Tests',
 
-        'repository_test'   => 'Modules\WorkflowEngine\Tests\Repositories',
+        'repository_test'   => 'Modules\DocumentManager\Tests\Repositories',
 
-        'api_test'          => 'Modules\WorkflowEngine\Tests\APIs',
+        'api_test'          => 'Modules\DocumentManager\Tests\APIs',
     ],
 
     /*

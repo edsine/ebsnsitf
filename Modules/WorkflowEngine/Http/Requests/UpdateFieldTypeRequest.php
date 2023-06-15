@@ -25,7 +25,8 @@ class UpdateFieldTypeRequest extends FormRequest
     public function rules()
     {
         $rules = FieldType::$rules;
-        
+        $id = $this->route('fieldType');
+        $rules['field_type'] = 'required|unique:field_types,field_type,' . $id;
         return $rules;
     }
 }

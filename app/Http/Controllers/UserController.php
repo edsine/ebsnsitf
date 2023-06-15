@@ -5,20 +5,45 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\UserRepository;
+use App\Repositories\StaffRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\RoleRepository;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use App\Repositories\BranchRepository;
+use App\Repositories\DepartmentRepository;
 use Flash;
 use Response;
 use Hash;
+use DB;
+use Illuminate\Support\Collection;
+
+
 
 class UserController extends AppBaseController
 {
     /** @var $userRepository UserRepository */
     private $userRepository;
 
-    public function __construct(UserRepository $userRepo)
+    /** @var $userRepository UserRepository */
+    private $roleRepository;
+
+    /** @var $branchRepository BranchRepository */
+    private $branchRepository;
+
+    /** @var $departmentRepository DepartmentRepository */
+    private $departmentRepository;
+
+    /** @var $staffRepository StaffRepository */
+    private $staffRepository;
+
+    public function __construct(UserRepository $userRepo, RoleRepository $roleRepo, BranchRepository $branchRepo, DepartmentRepository $departmentRepo, StaffRepository $staffRepo)
     {
         $this->userRepository = $userRepo;
+        $this->roleRepository = $roleRepo;
+        $this->branchRepository = $branchRepo;
+        $this->departmentRepository = $departmentRepo;
+        $this->staffRepository = $staffRepo;
     }
 
     /**
@@ -42,7 +67,12 @@ class UserController extends AppBaseController
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::pluck('name','id')->all();
+        $roles = $this->roleRepository->all()->pluck('name', 'id');
+        $roles->prepend('Select role', '');
+        $branch = $this->branchRepository->all()->pluck('branch_name', 'id');
+        $department = $this->departmentRepository->all()->pluck('dep_unit', 'id');
+        return view('users.create', compact('roles', 'branch', 'department'));
     }
 
     /**
@@ -54,9 +84,36 @@ class UserController extends AppBaseController
      */
     public function store(CreateUserRequest $request)
     {
+
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
         $user = $this->userRepository->create($input);
+
+        // Retrieve the value of the checkbox
+        $checkboxValue = $request->input('checkbox');
+
+        // Check if the checkbox is checked
+        if ($checkboxValue == 1) {
+        // Checkbox is checked
+        $input['user_id'] = $user->id;
+        if ($request->hasFile('profile_picture')) {
+            $file = $request->file('profile_picture');
+            $path = $file->store('public');
+            $input['profile_picture'] = $path;
+        }
+        $this->staffRepository->create($input);
+        } 
+
+        $role = $this->roleRepository->find($input['roles']);
+
+        if (empty($role)) {
+            Flash::error('Role not found');
+
+            return redirect(route('users.index'));
+        }
+
+
+        $user->assignRole($role->name);
 
         Flash::success('User saved successfully.');
 
@@ -72,15 +129,13 @@ class UserController extends AppBaseController
      */
     public function show($id)
     {
-        $user = $this->userRepository->find($id);
+        $mergedResults = DB::table('users')
+        ->join('staff', 'users.id', '=', 'staff.user_id')
+        ->where('user_id', $id)
+        ->first();
 
-        if (empty($user)) {
-            Flash::error('User not found');
-
-            return redirect(route('users.index'));
-        }
-
-        return view('users.show')->with('user', $user);
+        return view('users.show')->with('user', $mergedResults);
+        //dd($mergedResults);
     }
 
     /**
@@ -93,6 +148,8 @@ class UserController extends AppBaseController
     public function edit($id)
     {
         $user = $this->userRepository->find($id);
+        $roles = Role::pluck('name','id')->all();
+        //$userRole = $user->roles->pluck('name','id')->all();
 
         if (empty($user)) {
             Flash::error('User not found');
@@ -100,7 +157,14 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        return view('users.edit')->with('user', $user);
+        return view('users.edit',compact('user','roles'));
+        $user['role_id'] = $user->roles()->first()->id;
+
+        $roles = $this->roleRepository->all()->pluck('name', 'id');
+
+        $roles->prepend('Select role', '');
+
+        return view('users.edit')->with(['user' => $user, 'roles' => $roles]);
     }
 
     /**
@@ -113,6 +177,7 @@ class UserController extends AppBaseController
      */
     public function update($id, UpdateUserRequest $request)
     {
+
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
@@ -120,13 +185,31 @@ class UserController extends AppBaseController
 
             return redirect(route('users.index'));
         }
+
         $input =  $request->all();
+
+        $role = $this->roleRepository->find($input['roles']);
+
+        if (empty($role)) {
+            Flash::error('Role not found');
+
+            return redirect(route('users.index'));
+        }
+
         if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
         } else {
             unset($input['password']);
         }
+
         $user = $this->userRepository->update($input, $id);
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+    
+        $user->assignRole($request->input('roles'));
+
+        $user->roles()->detach();
+        $user->assignRole($role->name);
+
 
         Flash::success('User updated successfully.');
 
@@ -146,14 +229,14 @@ class UserController extends AppBaseController
     {
         $user = $this->userRepository->find($id);
 
-        if ($user->hasRole('super-admin')) {
-            Flash::error('Cannot delete super admin');
+        if (empty($user)) {
+            Flash::error('User not found');
 
             return redirect(route('users.index'));
         }
 
-        if (empty($user)) {
-            Flash::error('User not found');
+        if ($user->hasRole('super-admin')) {
+            Flash::error('Cannot delete super admin');
 
             return redirect(route('users.index'));
         }

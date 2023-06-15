@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use Modules\WorkflowEngine\Models\Staff;
 use App\Repositories\BaseRepository;
 
 /**
@@ -16,7 +17,7 @@ class UserRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'name',
+        'first_name',
         'email',
         'password'
     ];

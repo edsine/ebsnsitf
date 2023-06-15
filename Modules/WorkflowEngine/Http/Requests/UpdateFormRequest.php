@@ -25,7 +25,8 @@ class UpdateFormRequest extends FormRequest
     public function rules()
     {
         $rules = Form::$rules;
-        
+        $id = $this->route('form');
+        $rules['form_name'] = 'required|unique:forms,form_name,' . $id;
         return $rules;
     }
 }

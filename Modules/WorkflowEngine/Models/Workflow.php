@@ -5,6 +5,8 @@ namespace Modules\WorkflowEngine\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * @OA\Schema(
@@ -50,10 +52,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          format="int32"
  *      )
  * )
- */ class Workflow extends Model
+ */ class Workflow extends Model implements Auditable
 {
     use SoftDeletes;
     use HasFactory;
+    use AuditingAuditable;
     public $table = 'workflows';
 
     public $fillable = [
@@ -67,7 +70,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
         'workflow_type_id' => 'integer'
     ];
 
-    public static array $rules = [];
+    public static array $rules = [
+        'workflow_name' => 'required|unique:workflows,workflow_name',
+        'workflow_type_id' => 'required'
+    ];
 
     public function workflowType(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

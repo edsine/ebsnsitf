@@ -1,9 +1,3 @@
-<!-- Id Field -->
-<div class="col-sm-12">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{{ $form->id }}</p>
-</div>
-
 <!-- Created At Field -->
 <div class="col-sm-12">
     {!! Form::label('created_at', 'Created At:') !!}
@@ -25,12 +19,12 @@
 <!-- Has Workflow Field -->
 <div class="col-sm-12">
     {!! Form::label('has_workflow', 'Has Workflow:') !!}
-    <p>{{ $form->has_workflow }}</p>
+    <p>{{ $form->has_workflow ? 'Yes' : 'No ' }}</p>
 </div>
 
 <!-- Workflow Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('workflow_id', 'Workflow Id:') !!}
-    <p>{{ $form->workflow_id }}</p>
+    {!! Form::label('workflow_id', 'Workflow:') !!}
+    <p>{{ $form->workflow ? $form->workflow->workflow_name : '' }}</p>
 </div>
 

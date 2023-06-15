@@ -1,7 +1,7 @@
 <!-- Form Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('form_id', 'Form Id:') !!}
-    {!! Form::text('form_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('form_id', 'Form:') !!}
+    {!! Form::select('form_id', $forms, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Field Name Field -->
@@ -12,8 +12,8 @@
 
 <!-- Field Type Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('field_type_id', 'Field Type Id:') !!}
-    {!! Form::text('field_type_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('field_type_id', 'Field Type:') !!}
+    {!! Form::select('field_type_id', $field_types, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Field Label Field -->

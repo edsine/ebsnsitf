@@ -25,7 +25,8 @@ class UpdateStepTypeRequest extends FormRequest
     public function rules()
     {
         $rules = StepType::$rules;
-        
+        $id = $this->route('stepType');
+        $rules['step_type'] = 'required|unique:step_types,step_type,' . $id;
         return $rules;
     }
 }
