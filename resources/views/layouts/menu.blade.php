@@ -8,6 +8,8 @@
 
 @include('workflowengine::layouts.menu')
 
+@include('documentmanager::layouts.menu')
+
 @include('shared::layouts.menu')
 
 <li class="nav-item">
