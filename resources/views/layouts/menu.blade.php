@@ -112,6 +112,9 @@
             </div>
             <!--end:Menu item-->
             <!--begin:Menu item-->
+            @include('shared::layouts.menu')
+            <!--end:Menu item-->
+            <!--begin:Menu item-->
             <div class="menu-item pt-5">
                 <!--begin:Menu content-->
                 <div class="menu-content">
@@ -156,7 +159,7 @@
                             <!--begin:Menu item-->
                             <div class="menu-item">
                                 <!--begin:Menu link-->
-                                <a class="menu-link" href="../../demo1/dist/apps/user-management/users/list.html">
+                                <a href="{{ route('users.index') }}" class="menu-link {{ Request::is('users*') ? 'active' : '' }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -168,11 +171,11 @@
                             <!--begin:Menu item-->
                             <div class="menu-item">
                                 <!--begin:Menu link-->
-                                <a class="menu-link" href="../../demo1/dist/apps/user-management/users/view.html">
+                                <a class="menu-link" class="btn btn-primary float-right" href="{{ route('users.create') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
-                                    <span class="menu-title">View User</span>
+                                    <span class="menu-title">Create User</span>
                                 </a>
                                 <!--end:Menu link-->
                             </div>
@@ -197,7 +200,7 @@
                             <!--begin:Menu item-->
                             <div class="menu-item">
                                 <!--begin:Menu link-->
-                                <a class="menu-link" href="../../demo1/dist/apps/user-management/roles/list.html">
+                                <a href="{{ route('roles.index') }}" class="menu-link {{ Request::is('roles*') ? 'active' : '' }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -209,11 +212,11 @@
                             <!--begin:Menu item-->
                             <div class="menu-item">
                                 <!--begin:Menu link-->
-                                <a class="menu-link" href="../../demo1/dist/apps/user-management/roles/view.html">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
+                                <a class="menu-link" href="{{ route('roles.create') }}">
+                                    <span class=" menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
                                     </span>
-                                    <span class="menu-title">View Role</span>
+                                    <span class="menu-title">Create Role</span>
                                 </a>
                                 <!--end:Menu link-->
                             </div>
@@ -225,7 +228,7 @@
                     <!--begin:Menu item-->
                     <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="../../demo1/dist/apps/user-management/permissions.html">
+                        <a class="menu-link" href="">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>

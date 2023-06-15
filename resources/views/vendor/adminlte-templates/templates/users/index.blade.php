@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> 
 
     <div class="content px-3">
 
