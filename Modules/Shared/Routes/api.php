@@ -17,3 +17,7 @@ Route::prefix('Shared')->group(function () {
     Route::resource('branches', Modules\Shared\Http\Controllers\API\BranchAPIController::class)
         ->except(['create', 'edit']);
 });
+
+
+Route::resource('departments', Modules\Shared\Http\Controllers\API\DepartmentAPIController::class)
+    ->except(['create', 'edit']);

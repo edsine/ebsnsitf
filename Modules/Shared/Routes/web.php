@@ -14,5 +14,7 @@
 Route::middleware(['auth'])->group(function () {
     Route::prefix('shared')->group(function () {
         Route::resource('branches', Modules\Shared\Http\Controllers\BranchController::class);
+        Route::get('branches/departments/get/{id}', [Modules\Shared\Http\Controllers\BranchController::class, 'departments'])->name('branches.departments.get');
+        Route::resource('departments', Modules\Shared\Http\Controllers\DepartmentController::class);
     });
 });

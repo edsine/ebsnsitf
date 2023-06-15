@@ -1,4 +1,5 @@
 {
     "WorkflowEngine": true,
-    "Shared": true
+    "Shared": true,
+    "DocumentManager": true
 }
