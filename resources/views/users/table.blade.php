@@ -3,7 +3,7 @@
         <table class="table" id="field-types-table">
             <thead>
             <tr>
-                <th>Name</th>
+                <th>Full Name</th>
                 <th>Email</th>
                 <th colspan="3">Action</th>
             </tr>
@@ -11,7 +11,7 @@
             <tbody>
             @foreach($users as $user)
                 <tr>
-                    <td>{!! $user->name !!}</td>
+                    <td>{!! $user->first_name.' '.$user->middle_name.' '.$user->last_name !!}</td>
                     <td>{!! $user->email !!}</td>
                     <td  style="width: 120px">
                         {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
