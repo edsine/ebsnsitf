@@ -9,18 +9,23 @@ use App\Repositories\UserRepository;
 use Modules\Shared\Repositories\BranchRepository;
 use Illuminate\Http\Request;
 use Flash;
+use Modules\Shared\Repositories\DepartmentRepository;
 
 class BranchController extends AppBaseController
 {
     /** @var BranchRepository $branchRepository*/
     private $branchRepository;
 
+    /** @var DepartmentRepository $departmentRepository*/
+    private $departmentRepository;
+
     /** @var UserRepository $userRepository*/
     private $userRepository;
 
-    public function __construct(BranchRepository $branchRepo, UserRepository $userRepo)
+    public function __construct(BranchRepository $branchRepo, DepartmentRepository $departmentRepo, UserRepository $userRepo)
     {
         $this->branchRepository = $branchRepo;
+        $this->departmentRepository = $departmentRepo;
         $this->userRepository = $userRepo;
     }
 
@@ -133,5 +138,23 @@ class BranchController extends AppBaseController
         Flash::success('Branch deleted successfully.');
 
         return redirect(route('branches.index'));
+    }
+
+    /**
+     * Get departments relating to a branch.
+     */
+
+    public function departments($branch_id)
+    {
+        $branch = $this->branchRepository->find($branch_id);
+
+        if (empty($branch)) {
+            return [];
+        }
+
+        $deparments = $this->departmentRepository->findByBranch($branch_id);
+
+        return $deparments;
+
     }
 }
