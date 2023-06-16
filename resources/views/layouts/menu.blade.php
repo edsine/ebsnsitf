@@ -149,6 +149,8 @@
             <!--end:Menu item-->
 
             @include('documentmanager::layouts.menu')
+            
+            @include('employermanager::layouts.menu')
 
             <!--begin:Menu item-->
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
