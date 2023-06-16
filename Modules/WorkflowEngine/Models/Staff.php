@@ -45,7 +45,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
     ];
 
     protected $casts = [
-        'dep_unit' => 'string',
+        'department_unit' => 'string',
         'status' => 'integer',
     ];
 
@@ -55,7 +55,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
     }
 
     /* public static array $rules = [
-        'dep_unit' => 'required|unique:departments,dep_unit',
+        'department_unit' => 'required|unique:departments,department_unit',
         'status' => 'required',
     ]; */
 

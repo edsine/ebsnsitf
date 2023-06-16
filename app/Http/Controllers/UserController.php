@@ -17,7 +17,7 @@ use Response;
 use Hash;
 use DB;
 use Illuminate\Support\Collection;
-
+use App\Models\User;
 
 
 class UserController extends AppBaseController
@@ -58,6 +58,7 @@ class UserController extends AppBaseController
         $users = $this->userRepository->paginate(10);
 
         return view('users.index')->with('users', $users);
+        
     }
 
     /**
@@ -71,7 +72,7 @@ class UserController extends AppBaseController
         $roles = $this->roleRepository->all()->pluck('name', 'id');
         $roles->prepend('Select role', '');
         $branch = $this->branchRepository->all()->pluck('branch_name', 'id');
-        $department = $this->departmentRepository->all()->pluck('dep_unit', 'id');
+        $department = $this->departmentRepository->all()->pluck('department_unit', 'id');
         return view('users.create', compact('roles', 'branch', 'department'));
     }
 
@@ -101,9 +102,9 @@ class UserController extends AppBaseController
         //Check for file upload and upload to public  directory
         if ($request->hasFile('profile_picture')) {
             $file = $request->file('profile_picture');
+            $fileName = $file->hashName();
             $path = $file->store('public');
-            $filename = $file->getClientOriginalName();
-             $input['profile_picture'] = $filename;
+            $input['profile_picture'] = $fileName;
         }
         //Create a new staff
         $this->staffRepository->create($input);
@@ -134,16 +135,9 @@ class UserController extends AppBaseController
      */
     public function show($id)
     {
-        $mergedResults = DB::table('users')
-        ->join('staff', 'users.id', '=', 'staff.user_id')
-        ->join('roles', 'users.roles', '=', 'roles.id')
-        ->join('departments', 'staff.department_id', '=', 'departments.id')
-        ->join('branches', 'staff.branch_id', '=', 'branches.id')
-        ->where('user_id', $id)
-        ->first();
+        $mergedResults = $this->userRepository->getSomeTablesData($id);
 
         return view('users.show')->with('user', $mergedResults);
-        //dd($mergedResults);
     }
 
     /**
@@ -159,10 +153,10 @@ class UserController extends AppBaseController
         $user = $this->userRepository->getByUserId($id);
         
         $branch = $this->branchRepository->all()->pluck('branch_name', 'id');
-        $department = $this->departmentRepository->all()->pluck('dep_unit', 'id');
+        $department = $this->departmentRepository->all()->pluck('department_unit', 'id');
         
         if (empty($user)) {
-            Flash::error('User not found');
+            Flash::error('User not a staff so it can not be edited');
 
             return redirect(route('users.index'));
         }
@@ -211,9 +205,9 @@ class UserController extends AppBaseController
          //Check for file upload and upload to public  directory
          if ($request->hasFile('profile_picture')) {
              $file = $request->file('profile_picture');
+             $fileName = $file->hashName();
              $path = $file->store('public');
-             $filename = $file->getClientOriginalName();
-             $input['profile_picture'] = $filename;
+             $input['profile_picture'] = $fileName;
          }else{
             // prevent picture from updating db since there is no upload
              unset($input['profile_picture']);
