@@ -15,10 +15,9 @@ return new class extends Migration
     {
         //
         Schema::table('users', function($table) {
-            $table->unsignedBigInteger('roles')->after('remember_token');
-            $table->string('first_name')->after('name');
-            $table->string('middle_name')->after('name');
-            $table->string('last_name')->after('name');
+            $table->string('first_name');
+            $table->string('middle_name')->nullable();
+            $table->string('last_name');
         });
     
     }
@@ -32,7 +31,9 @@ return new class extends Migration
     {
         //
         Schema::table('users', function($table) {
-            $table->dropColumn('roles');
+            $table->dropColumn('first_name');
+            $table->dropColumn('middle_name');
+            $table->dropColumn('last_name');
         });
     }
 };

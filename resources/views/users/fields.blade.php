@@ -72,10 +72,10 @@
 </div>
 
 <!-- Dash Field -->
-<div class="form-group col-sm-4">
+{{-- <div class="form-group col-sm-4">
     {!! Form::label('dash_type', 'Dash Type') !!}
     {!! Form::number('dash_type', null, ['class' => 'form-control']) !!}
-</div>
+</div> --}}
 </div>
 
 <div  style="display: flex;">
