@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         //
-        Schema::create('departments', function($table) {
-            $table->bigIncrements('id');
-            $table->string('dep_unit')->nullable();
-            $table->integer('status')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
+        // Schema::create('departments', function($table) {
+        //     $table->bigIncrements('id');
+        //     $table->string('dep_unit')->nullable();
+        //     $table->integer('status')->nullable();
+        //     $table->timestamps();
+        //     $table->softDeletes();
            
-        });
+        // });
 
         /* Schema::create('branches', function($table) {
             $table->bigIncrements('id');
