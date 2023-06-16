@@ -29,14 +29,14 @@
 <div class="col-sm-4">
     {!! Form::label('roles', 'Roles') !!}
     <div class="form-group">
-        <p>{!! $user->roles !!}</p>
+        <p>{!! $user->name !!}</p>
     </div>
 </div>
 
-<!-- My Groups Field -->
+<!-- Position Field -->
 <div class="form-group col-sm-4">
-    {!! Form::label('my_groups', 'My Groups') !!}
-    <p>{!! $user->my_groups !!}</p>
+    {!! Form::label('position', 'Level') !!}
+    <p>{!! $user->position !!}</p>
 </div>
 
 <!-- Staff Form Fields -->
@@ -45,9 +45,9 @@
 
 <!-- Department Field -->
 <div class="col-sm-4">
-    {!! Form::label('department_id', 'Department') !!}
+    {!! Form::label('department_unit', 'Department Unit') !!}
     <div class="form-group">
-        <p>{!! $user->department_id !!}</p>
+        <p>{!! $user->department_unit !!}</p>
     </div>
 </div>
 
@@ -55,16 +55,16 @@
 <div class="col-sm-4">
     {!! Form::label('branch_id', 'Branch') !!}
     <div class="form-group">
-        <p>{!! $user->branch_id !!}</p>
+        <p>{!! $user->branch_name !!}</p>
     </div>
 </div>
 
-<!-- Dash Field -->
+{{-- <!-- Dash Field -->
 <div class="form-group col-sm-4">
     {!! Form::label('dash_type', 'Dash Type') !!}
     <p>{!! $user->dash_type !!}</p>
 </div>
-</div>
+</div> --}}
 
 <div  style="display: flex;">
 <!-- Gender Field -->
@@ -113,7 +113,12 @@
 <div class="form-group col-sm-4">
     {!! Form::label('status', 'Status') !!}
     <div class="">
-        <p>{!! $user->status !!}</p>
+        <p> @if (isset($user->status) && $user->status == 1)
+            <span class="btn btn-sm btn-success">Active</span>
+        @else
+            <span class="btn btn-sm btn-danger">In-Active</span>
+        @endif
+            </p>
     </div>
 
 </div>
@@ -172,22 +177,18 @@
         <p>{!! $user->office_position !!}</p>
     </div>
     
-    <!-- Position Field -->
-    <div class="form-group col-sm-4">
-        {!! Form::label('position', 'Position') !!}
-        <p>{!! $user->position !!}</p>
-    </div>
-    
-</div>
-
-<div  style="display: flex;">
     <!-- About Me Field -->
     <div class="form-group col-sm-4">
         {!! Form::label('about_me', 'About Me') !!}
         <p>{!! $user->about_me !!}</p>
     </div>
     
-    <!-- Total Received Email Field -->
+</div>
+
+<div  style="display: flex;">
+    
+    
+    {{-- <!-- Total Received Email Field -->
     <div class="form-group col-sm-4">
         {!! Form::label('total_received_email', 'Total Received Email') !!}
         <p>{!! $user->total_received_email !!}</p>
@@ -197,11 +198,11 @@
     <div class="form-group col-sm-4">
         {!! Form::label('total_sent_email', 'Total Sent Email') !!}
         <p>{!! $user->total_sent_email !!}</p>
-    </div>
+    </div> --}}
     
 </div>
 
-<div  style="display: flex;">
+{{-- <div  style="display: flex;">
     
     <!-- Total Draft Email Field -->
     <div class="form-group col-sm-4">
@@ -217,7 +218,7 @@
     
     
 
-</div>
+</div> --}}
 
 </div>
 

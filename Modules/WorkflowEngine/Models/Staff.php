@@ -49,6 +49,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
         'status' => 'integer',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     /* public static array $rules = [
         'dep_unit' => 'required|unique:departments,dep_unit',
         'status' => 'required',

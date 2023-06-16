@@ -40,4 +40,12 @@ class UserRepository extends BaseRepository
         return User::class;
     }
 
+    public function getByUserId($id)
+    {
+        return $user = User::join('staff', 'users.id', '=', 'staff.user_id')
+        ->select('users.*','staff.*', 'users.id as userId', 'staff.id as staff_id')
+        ->where('staff.user_id', $id)
+        ->first();
+    }
+
 }
