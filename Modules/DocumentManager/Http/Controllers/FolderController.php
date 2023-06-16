@@ -34,7 +34,8 @@ class FolderController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $folders = $this->folderRepository->paginate(10);
+        // Gets folders without a parent folder
+        $folders = $this->folderRepository->rootFolders()->paginate(10);
 
         return view('documentmanager::folders.index')
             ->with('folders', $folders);
@@ -64,12 +65,12 @@ class FolderController extends AppBaseController
     {
         $input = $request->all();
 
-        if(empty($input['branch_id']) && empty($input['department_id']) && empty($input['parent_folder_id'])){
+        if (empty($input['branch_id']) && empty($input['department_id']) && empty($input['parent_folder_id'])) {
             Flash::error('Parent folder and (branch and department) fields cannot be empty');
             return redirect()->back();
         }
 
-        if(empty($input['branch_id']) && empty($input['department_id']) && !empty($input['parent_folder_id'])){
+        if (empty($input['branch_id']) && empty($input['department_id']) && !empty($input['parent_folder_id'])) {
             $parent_folder = $this->folderRepository->find($input['parent_folder_id']);
             if (empty($parent_folder)) {
                 Flash::error('Parent Folder not found');
@@ -85,7 +86,7 @@ class FolderController extends AppBaseController
 
         Flash::success('Folder saved successfully.');
 
-        return redirect(route('folders.index'));
+        return redirect()->back();
     }
 
     /**
@@ -100,8 +101,17 @@ class FolderController extends AppBaseController
 
             return redirect(route('folders.index'));
         }
+        $sub_folders = $folder->subFolders()->paginate(10);
+        $documents = $folder->documents()->paginate(10);
 
-        return view('documentmanager::folders.show')->with('folder', $folder);
+        $branches = $this->branchRepository->all()->pluck('branch_name', 'id');
+        $branches->prepend('Select branch', '');
+
+        $departments = $this->departmentRepository->all()->pluck('name', 'id');
+        $departments->prepend('Select department', '');
+
+
+        return view('documentmanager::folders.show')->with(['folder' => $folder, 'sub_folders' => $sub_folders, 'documents' => $documents, 'branches' => $branches, 'departments' => $departments]);
     }
 
     /**
@@ -130,6 +140,29 @@ class FolderController extends AppBaseController
     }
 
     /**
+     * Show the modal form for editing the specified Sub Folder.
+     */
+    public function editSubFolder($id, $parent_folder_id)
+    {
+        $sub_folder = $this->folderRepository->find($id);
+        $parent_folder = $this->folderRepository->find($parent_folder_id);
+
+        if (empty($parent_folder)) {
+            Flash::error('Parent Folder not found');
+
+            return redirect(route('folders.index'));
+        }
+
+        if (empty($sub_folder)) {
+            Flash::error('Sub Folder not found');
+
+            return redirect(route('folders.show', $parent_folder->id));
+        }
+
+        return view('documentmanager::folders.edit_folder')->with(['sub_folder' => $sub_folder, 'parent_folder' => $parent_folder])->render();
+    }
+
+    /**
      * Update the specified Folder in storage.
      */
     public function update($id, UpdateFolderRequest $request)
@@ -143,12 +176,12 @@ class FolderController extends AppBaseController
             return redirect(route('folders.index'));
         }
 
-        if(empty($input['branch_id']) && empty($input['branch_id']) && empty($input['parent_folder_id'])){
+        if (empty($input['branch_id']) && empty($input['branch_id']) && empty($input['parent_folder_id'])) {
             Flash::error('Parent folder and (branch and department) fields cannot be empty');
             return redirect()->back();
         }
 
-        if(empty($input['branch_id']) && empty($input['branch_id']) && !empty($input['parent_folder_id'])){
+        if (empty($input['branch_id']) && empty($input['branch_id']) && !empty($input['parent_folder_id'])) {
             $parent_folder = $this->folderRepository->find($input['parent_folder_id']);
             if (empty($parent_folder)) {
                 Flash::error('Parent Folder not found');
@@ -164,6 +197,9 @@ class FolderController extends AppBaseController
 
         Flash::success('Folder updated successfully.');
 
+        if($parent_folder) {
+            return redirect(route('folders.show', $parent_folder->id));
+        }
         return redirect(route('folders.index'));
     }
 
@@ -186,6 +222,6 @@ class FolderController extends AppBaseController
 
         Flash::success('Folder deleted successfully.');
 
-        return redirect(route('folders.index'));
+        return redirect()->back();
     }
 }

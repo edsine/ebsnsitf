@@ -19,11 +19,22 @@
 
         <div class="card">
 
-            {!! Form::model($folder, ['route' => ['folders.update', $folder->id], 'method' => 'patch']) !!}
+            {!! Form::model($sub_folder, ['route' => ['folders.update', $sub_folder->id], 'method' => 'patch']) !!}
 
             <div class="card-body">
                 <div class="row">
-                    @include('documentmanager::folders.fields')
+                    {!! Form::hidden('parent_folder_id', $parent_folder->id) !!}
+                    <!-- Name Field -->
+                    <div class="form-group col-sm-6">
+                        {!! Form::label('name', 'Name:') !!}
+                        {!! Form::text('name', null, ['class' => 'form-control', 'required']) !!}
+                    </div>
+
+                    <!-- Description Field -->
+                    <div class="form-group col-sm-12 col-lg-12">
+                        {!! Form::label('description', 'Description:') !!}
+                        {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+                    </div>
                 </div>
             </div>
 

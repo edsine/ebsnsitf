@@ -10,12 +10,6 @@
     {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Parent Folder Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('parent_folder_id', 'Parent Folder:') !!}
-    {!! Form::select('parent_folder_id', $folders, null, ['class' => 'form-control custom-select']) !!}
-</div>
-
 <!-- Branch Id Field -->
 <div id="branch_id_div" class="form-group col-sm-6">
     {!! Form::label('branch_id', 'Branch:') !!}
