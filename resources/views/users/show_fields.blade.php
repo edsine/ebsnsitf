@@ -63,8 +63,8 @@
 <div class="form-group col-sm-4">
     {!! Form::label('dash_type', 'Dash Type') !!}
     <p>{!! $user->dash_type !!}</p>
-</div>
-</div> --}}
+</div>--}}
+</div> 
 
 <div  style="display: flex;">
 <!-- Gender Field -->
@@ -105,7 +105,7 @@
         {!! Form::label('profile_picture', 'Profile Picture') !!}
         <div class="form-group">
             <p>
-                <img style="width: 100px;height: 100px" src="{{ url('storage/') }}{!! '/'.$user->profile_picture !!}" alt="Image"></p>
+                <img style="width: 50px;height: 50px" src="{{ url('storage/') }}{!! '/'.$user->profile_picture !!}" alt="Image"></p>
         </div>
     </div>
     

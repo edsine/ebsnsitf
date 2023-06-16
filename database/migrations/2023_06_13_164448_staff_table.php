@@ -16,7 +16,7 @@ return new class extends Migration
         //
         // Schema::create('departments', function($table) {
         //     $table->bigIncrements('id');
-        //     $table->string('dep_unit')->nullable();
+        //     $table->string('department_unit')->nullable();
         //     $table->integer('status')->nullable();
         //     $table->timestamps();
         //     $table->softDeletes();

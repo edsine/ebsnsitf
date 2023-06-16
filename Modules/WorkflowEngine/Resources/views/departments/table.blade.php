@@ -11,7 +11,7 @@
             <tbody>
                 @foreach ($departments as $department)
                     <tr>
-                        <td>{{ $department->dep_unit }}</td>
+                        <td>{{ $department->department_unit }}</td>
                         <td>
                             @if (isset($department->status) && $department->status == 1)
                                 <span class="btn btn-sm btn-success">Active</span>
