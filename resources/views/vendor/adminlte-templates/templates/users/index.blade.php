@@ -8,14 +8,14 @@
                     <h1 class="pull-left">Users</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-primary float-right"
+                    <a class="btn btn-primary float-end"
                        href="{{ route('users.create') }}">
                         Add New
                     </a>
                 </div>
             </div>
         </div>
-    </section> 
+    </section>
 
     <div class="content px-3">
 
@@ -24,7 +24,7 @@
         <div class="clearfix"></div>
 
         <div class="card">
-            <div class="card-body p-0">
+            <div class="card-body p-5">
                 @include('users.table')
 
                 <div class="card-footer clearfix">

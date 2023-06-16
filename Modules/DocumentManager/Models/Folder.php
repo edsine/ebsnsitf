@@ -81,6 +81,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
         return $this->belongsTo(\Modules\DocumentManager\Models\Folder::class, 'parent_folder_id', 'id');
     }
 
+    public function subFolders(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(\Modules\DocumentManager\Models\Folder::class, 'parent_folder_id', 'id');
+    }
+
+    public function documents(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(\Modules\DocumentManager\Models\Document::class);
+    }
+
     public function branch(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(\Modules\Shared\Models\branch::class, 'branch_id', 'id');

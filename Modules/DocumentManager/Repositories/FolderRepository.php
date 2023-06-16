@@ -23,4 +23,11 @@ class FolderRepository extends BaseRepository
         return Folder::class;
     }
 
+    public function rootFolders()
+    {
+        $query = $this->model->newQuery();
+
+        return $query->where('parent_folder_id', '=', null);
+    }
+
 }

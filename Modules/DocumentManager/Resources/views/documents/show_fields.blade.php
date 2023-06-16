@@ -12,20 +12,20 @@
 
 <!-- Document Url Field -->
 <div class="col-sm-12">
-    {!! Form::label('document_url', 'Document Url:') !!}
-    <p>{{ $document->document_url }}</p>
+    {!! Form::label('document_url', 'Document:') !!}
+    <p><a target="_blank" href="{{ asset($document->document_url) }}">View</a></p>
 </div>
 
 <!-- Folder Id Field -->
 <div class="col-sm-12">
     {!! Form::label('folder_id', 'Folder:') !!}
-    <p>{{ $document->folder_id }}</p>
+    <p>{{ $document->folder ? $document->folder->name : '' }}</p>
 </div>
 
 <!-- Created By Field -->
 <div class="col-sm-12">
     {!! Form::label('created_by', 'Created By:') !!}
-    <p>{{ $document->created_by }}</p>
+    <p>{{ $document->createdBy ? $document->createdBy->name : '' }}</p>
 </div>
 
 <!-- Created At Field -->
@@ -39,4 +39,3 @@
     {!! Form::label('updated_at', 'Updated At:') !!}
     <p>{{ $document->updated_at }}</p>
 </div>
-
