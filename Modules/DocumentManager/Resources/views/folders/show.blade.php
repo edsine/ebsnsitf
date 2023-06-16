@@ -11,10 +11,27 @@
                     <p>
                         Name: {{ $folder->name }}
                     </p>
+                    <p>
+                        Path:
+                        <span>
+                            @foreach (array_reverse($folder->getAllAncestors()) as $ancestor)
+                                <a href="{{ route('folders.show', $ancestor->id) }}">
+                                    {{ $ancestor->name }}/
+                                </a>
+                            @endforeach
+                            <a href="#">
+                                {{ $folder->name }}
+                            </a>
+                        </span>
+                    </p>
                 </div>
                 <div class="col-sm-6">
                     @if ($folder->parentFolder)
-                        <a class="btn btn-default float-right" href="{{ route('folders.show', $folder->parentFolder->id) }}">
+                        <a class="btn btn-primary float-end" href="{{ route('folders.show', $folder->parentFolder->id) }}">
+                            Back
+                        </a>
+                    @else
+                        <a class="btn btn-primary float-end" href="{{ route('folders.index') }}">
                             Back
                         </a>
                     @endif
@@ -30,7 +47,7 @@
         <div class="card mb-5">
             <div class="card-body">
                 <div class="row">
-                    @include('documentmanager::folders.sub_folders')
+                    @include('documentmanager::folders.sub_folders.index')
                 </div>
             </div>
         </div>
@@ -39,7 +56,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    @include('documentmanager::folders.documents')
+                    @include('documentmanager::folders.documents.index')
                 </div>
             </div>
         </div>

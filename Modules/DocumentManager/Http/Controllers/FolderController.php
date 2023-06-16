@@ -140,7 +140,7 @@ class FolderController extends AppBaseController
     }
 
     /**
-     * Show the modal form for editing the specified Sub Folder.
+     * Show the form for editing the specified Sub Folder.
      */
     public function editSubFolder($id, $parent_folder_id)
     {
@@ -159,7 +159,7 @@ class FolderController extends AppBaseController
             return redirect(route('folders.show', $parent_folder->id));
         }
 
-        return view('documentmanager::folders.edit_folder')->with(['sub_folder' => $sub_folder, 'parent_folder' => $parent_folder])->render();
+        return view('documentmanager::folders.sub_folders.edit')->with(['sub_folder' => $sub_folder, 'parent_folder' => $parent_folder])->render();
     }
 
     /**
@@ -215,7 +215,7 @@ class FolderController extends AppBaseController
         if (empty($folder)) {
             Flash::error('Folder not found');
 
-            return redirect(route('folders.index'));
+            return redirect()->back();
         }
 
         $this->folderRepository->delete($id);

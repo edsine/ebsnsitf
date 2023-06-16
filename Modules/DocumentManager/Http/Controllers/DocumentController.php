@@ -11,6 +11,7 @@ use Modules\DocumentManager\Repositories\DocumentRepository;
 use Modules\DocumentManager\Http\Requests\CreateDocumentRequest;
 use Modules\DocumentManager\Http\Requests\UpdateDocumentRequest;
 use Modules\DocumentManager\Repositories\DocumentVersionRepository;
+use Modules\DocumentManager\Http\Requests\CreateDocumentVersionRequest;
 
 class DocumentController extends AppBaseController
 {
@@ -56,7 +57,25 @@ class DocumentController extends AppBaseController
 
         $documentVersions = $document->documentVersions()->paginate(10);
 
-        return view('documentmanager::documents.document_versions')
+        return view('documentmanager::documents.document_versions.index')
+            ->with(['document' => $document, 'documentVersions' => $documentVersions]);
+    }
+
+        /**
+     * Display a listing of the Document in a folder Versions.
+     */
+    public function folderDocumentVersions(Request $request, $id)
+    {
+        $document = $this->documentRepository->find($id);
+
+        if (empty($document)) {
+            Flash::error('Document not found');
+
+            return redirect(route('documents.index'));
+        }
+        $documentVersions = $document->documentVersions()->paginate(10);
+
+        return view('documentmanager::folders.documents.document_versions.index')
             ->with(['document' => $document, 'documentVersions' => $documentVersions]);
     }
 
@@ -113,7 +132,10 @@ class DocumentController extends AppBaseController
 
         Flash::success('Document saved successfully.');
 
-        return redirect(route('documents.index'));
+
+        return redirect(route('folders.show', $folder->id));
+
+        // return redirect(route('documents.index'));
     }
 
     /**
@@ -150,10 +172,33 @@ class DocumentController extends AppBaseController
         return view('documentmanager::documents.edit')->with(['document' => $document, 'folders' => $folders]);
     }
 
+        /**
+     * Show the form for editing the specified document in a folder.
+     */
+    public function folderEditDocument($id, $folder_id)
+    {
+        $document = $this->documentRepository->find($id);
+        $folder = $this->folderRepository->find($folder_id);
+
+        if (empty($folder)) {
+            Flash::error('Folder not found');
+
+            return redirect()->back();
+        }
+
+        if (empty($document)) {
+            Flash::error('Document not found');
+
+            return redirect(route('folders.show', $folder_id));
+        }
+
+        return view('documentmanager::folders.documents.edit')->with(['document' => $document,'folder' => $folder]);
+    }
+
     /**
      * Update the specified Document in storage.
      */
-    public function update($id, UpdateDocumentRequest $request)
+    public function update($id, CreateDocumentVersionRequest $request)
     {
         $input = $request->all();
         $document = $this->documentRepository->find($id);
@@ -177,12 +222,7 @@ class DocumentController extends AppBaseController
 
         // Get new version count
         $document_versions_count = $document->documentVersions()->withTrashed()->count();
-        if ($document_versions_count == 0) {
-            $new_count = 2;
-        } else {
-            $new_count = $document_versions_count + 1;
-        }
-
+        $new_count = $document_versions_count + 2;
         // Save file
 
         $file = $request->file('file');
@@ -196,10 +236,10 @@ class DocumentController extends AppBaseController
 
         // Save document
 
-        $document_input['title'] = $input['title'];
-        $document_input['description'] = $input['description'];
+        // $document_input['title'] = $input['title'];
+        // $document_input['description'] = $input['description'];
 
-        $document = $this->documentRepository->update($document_input, $id);
+        // $document = $this->documentRepository->update($document_input, $id);
 
         // Save document version
 
@@ -212,7 +252,8 @@ class DocumentController extends AppBaseController
 
         Flash::success('Document updated successfully.');
 
-        return redirect(route('documents.index'));
+        return redirect(route('folders.show', $documents_folder->id));
+        // return redirect(route('documents.index'));
     }
 
     /**
@@ -227,13 +268,13 @@ class DocumentController extends AppBaseController
         if (empty($document)) {
             Flash::error('Document not found');
 
-            return redirect(route('documents.index'));
+            return redirect()->back();
         }
 
         $this->documentRepository->delete($id);
 
         Flash::success('Document deleted successfully.');
 
-        return redirect(route('documents.index'));
+        return redirect()->back();
     }
 }

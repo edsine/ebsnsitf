@@ -79,10 +79,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
     ];
 
     public static array $rules = [
-        'version_number' => 'required',
-        'document_id' => 'required',
-        'document_url' => 'required',
-        'created_by' => 'required'
+        'file' => 'required'
     ];
 
     public function createdBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo

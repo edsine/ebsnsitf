@@ -18,9 +18,17 @@ Route::prefix('documentmanager')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::prefix('documentmanager')->group(function () {
         Route::resource('folders', Modules\DocumentManager\Http\Controllers\FolderController::class);
+
         Route::get('folders/edit/sub_folders/{id}/{parent_folder_id}', [Modules\DocumentManager\Http\Controllers\FolderController::class, 'editSubFolder'])->name('folders.edit.sub_folders');
+
+        Route::get('folders/edit/documents/{id}/{folder_id}', [Modules\DocumentManager\Http\Controllers\DocumentController::class, 'folderEditDocument'])->name('folders.documents.edit');
+
+        Route::get('folders/documents/documentVersions/{id}', [Modules\DocumentManager\Http\Controllers\DocumentController::class, 'folderDocumentVersions'])->name('folders.documents.documentVersions.index');
+
         Route::resource('documents', Modules\DocumentManager\Http\Controllers\DocumentController::class);
+
         Route::get('documents/documentVersions/{id}', [Modules\DocumentManager\Http\Controllers\DocumentController::class, 'documentVersions'])->name('documents.documentVersions.index');
+
         Route::resource('documentVersions', Modules\DocumentManager\Http\Controllers\DocumentVersionController::class);
     });
 });
