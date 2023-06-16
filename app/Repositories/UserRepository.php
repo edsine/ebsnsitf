@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use Modules\WorkflowEngine\Models\Staff;
 use App\Repositories\BaseRepository;
 
 /**

@@ -2,7 +2,6 @@
 
 namespace Modules\Shared\Models;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -151,6 +150,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
     public function manager(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class, 'managing_id', 'id');
+        return $this->belongsTo(\App\Models\User::class, 'managing_id', 'id');
     }
 }
