@@ -25,7 +25,6 @@ class User extends Authenticatable implements Auditable
         'name',
         'email',
         'password',
-        'roles',
         'first_name',
         'middle_name',
         'last_name',
@@ -50,8 +49,4 @@ class User extends Authenticatable implements Auditable
         'email_verified_at' => 'datetime',
     ];
 
-    public function staff()
-    {
-        return $this->hasOne(Staff::class);
-    }
 }

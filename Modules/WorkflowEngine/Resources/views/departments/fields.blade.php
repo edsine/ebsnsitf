@@ -1,7 +1,7 @@
 <!-- Department Unit Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('dep_unit', 'Department Unit:') !!}
-    {!! Form::text('dep_unit', null, ['class' => 'form-control']) !!}
+    {!! Form::label('department_unit', 'Department Unit:') !!}
+    {!! Form::text('department_unit', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Status Field -->

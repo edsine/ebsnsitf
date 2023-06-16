@@ -26,7 +26,7 @@ class UpdateDepartmentRequest extends FormRequest
     {
         $rules = Department::$rules;
         $id = $this->route('department');
-        $rules['dep_unit'] = 'required|unique:departments,dep_unit,' . $id;
+        $rules['department_unit'] = 'required|unique:departments,department_unit,' . $id;
         return $rules;
     }
 }
