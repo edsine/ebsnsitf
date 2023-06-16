@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use Modules\WorkflowEngine\Models\Staff;
 use App\Repositories\BaseRepository;
 
 /**
@@ -37,6 +38,14 @@ class UserRepository extends BaseRepository
     public function model(): string
     {
         return User::class;
+    }
+
+    public function getByUserId($id)
+    {
+        return $user = User::join('staff', 'users.id', '=', 'staff.user_id')
+        ->select('users.*','staff.*', 'users.id as userId', 'staff.id as staff_id')
+        ->where('staff.user_id', $id)
+        ->first();
     }
 
 }

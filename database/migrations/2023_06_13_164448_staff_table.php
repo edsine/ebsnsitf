@@ -16,8 +16,8 @@ return new class extends Migration
         //
         // Schema::create('departments', function($table) {
         //     $table->bigIncrements('id');
-        //     $table->string('dep_unit');
-        //     $table->integer('status');
+        //     $table->string('dep_unit')->nullable();
+        //     $table->integer('status')->nullable();
         //     $table->timestamps();
         //     $table->softDeletes();
 
@@ -42,44 +42,45 @@ return new class extends Migration
 
         Schema::create('staff', function($table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')
                 ->references('id')
                 ->on('departments')
                 ->onDelete('cascade');
-            $table->unsignedBigInteger('branch_id');
+            $table->unsignedBigInteger('branch_id')->nullable();
             $table->foreign('branch_id')
                 ->references('id')
                 ->on('branches')
                 ->onDelete('cascade');
-            $table->integer('dash_type');
-            $table->string('gender');
-            $table->string('staff_id');
-            $table->string('region');
-            $table->string('phone');
-            $table->string('profile_picture');
-            $table->string('status');
-            $table->string('alternative_email');
-            $table->string('created_by');
-            $table->string('date_approved');
-            $table->string('approved_by');
-            $table->string('security_key');
-            $table->string('date_modified');
-            $table->text('modified_by');
-            $table->text('office_position');
-            $table->text('position');
-            $table->text('about_me');
-            $table->string('total_received_email');
-            $table->string('total_sent_email');
-            $table->string('total_draft_email');
-            $table->string('total_event');
-            $table->text('my_groups');
+            $table->integer('dash_type')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('staff_id')->nullable();
+            $table->string('region')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('profile_picture')->nullable();
+            $table->integer('status')->nullable();
+            $table->string('alternative_email')->nullable();
+            $table->string('created_by')->nullable();
+            $table->string('date_approved')->nullable();
+            $table->string('approved_by')->nullable();
+            $table->string('security_key')->nullable();
+            $table->string('date_modified')->nullable();
+            $table->text('modified_by')->nullable();
+            $table->text('office_position')->nullable();
+            $table->text('position')->nullable();
+            $table->text('about_me')->nullable();
+            $table->string('total_received_email')->nullable();
+            $table->string('total_sent_email')->nullable();
+            $table->string('total_draft_email')->nullable();
+            $table->string('total_event')->nullable();
+            $table->text('my_groups')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -5,14 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\UserRepository;
+use App\Repositories\StaffRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\RoleRepository;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use App\Repositories\BranchRepository;
+use App\Repositories\DepartmentRepository;
 use Flash;
 use Response;
 use Hash;
 use DB;
+use Illuminate\Support\Collection;
+
+
 
 class UserController extends AppBaseController
 {
@@ -22,10 +28,22 @@ class UserController extends AppBaseController
     /** @var $userRepository UserRepository */
     private $roleRepository;
 
-    public function __construct(UserRepository $userRepo, RoleRepository $roleRepo)
+    /** @var $branchRepository BranchRepository */
+    private $branchRepository;
+
+    /** @var $departmentRepository DepartmentRepository */
+    private $departmentRepository;
+
+    /** @var $staffRepository StaffRepository */
+    private $staffRepository;
+
+    public function __construct(UserRepository $userRepo, RoleRepository $roleRepo, BranchRepository $branchRepo, DepartmentRepository $departmentRepo, StaffRepository $staffRepo)
     {
         $this->userRepository = $userRepo;
         $this->roleRepository = $roleRepo;
+        $this->branchRepository = $branchRepo;
+        $this->departmentRepository = $departmentRepo;
+        $this->staffRepository = $staffRepo;
     }
 
     /**
@@ -50,10 +68,11 @@ class UserController extends AppBaseController
     public function create()
     {
         $roles = Role::pluck('name','id')->all();
-        return view('users.create',compact('roles'));
         $roles = $this->roleRepository->all()->pluck('name', 'id');
         $roles->prepend('Select role', '');
-        return view('users.create')->with('roles', $roles);
+        $branch = $this->branchRepository->all()->pluck('branch_name', 'id');
+        $department = $this->departmentRepository->all()->pluck('dep_unit', 'id');
+        return view('users.create', compact('roles', 'branch', 'department'));
     }
 
     /**
@@ -68,9 +87,29 @@ class UserController extends AppBaseController
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
+        //Create a new user
         $user = $this->userRepository->create($input);
 
-        $role = $this->roleRepository->find($input['role_id']);
+        // Retrieve the value of the checkbox
+        $checkboxValue = $request->input('checkbox');
+
+        // Check if the checkbox is checked
+        if ($checkboxValue == 1) {
+        // Checkbox is checked
+        //Get user id from newly created user and assign it to user_id post input
+        $input['user_id'] = $user->id;
+        //Check for file upload and upload to public  directory
+        if ($request->hasFile('profile_picture')) {
+            $file = $request->file('profile_picture');
+            $path = $file->store('public');
+            $filename = $file->getClientOriginalName();
+             $input['profile_picture'] = $filename;
+        }
+        //Create a new staff
+        $this->staffRepository->create($input);
+        } 
+
+        $role = $this->roleRepository->find($input['roles']);
 
         if (empty($role)) {
             Flash::error('Role not found');
@@ -95,15 +134,16 @@ class UserController extends AppBaseController
      */
     public function show($id)
     {
-        $user = $this->userRepository->find($id);
+        $mergedResults = DB::table('users')
+        ->join('staff', 'users.id', '=', 'staff.user_id')
+        ->join('roles', 'users.roles', '=', 'roles.id')
+        ->join('departments', 'staff.department_id', '=', 'departments.id')
+        ->join('branches', 'staff.branch_id', '=', 'branches.id')
+        ->where('user_id', $id)
+        ->first();
 
-        if (empty($user)) {
-            Flash::error('User not found');
-
-            return redirect(route('users.index'));
-        }
-
-        return view('users.show')->with('user', $user);
+        return view('users.show')->with('user', $mergedResults);
+        //dd($mergedResults);
     }
 
     /**
@@ -115,24 +155,28 @@ class UserController extends AppBaseController
      */
     public function edit($id)
     {
-        $user = $this->userRepository->find($id);
-        $roles = Role::pluck('name','id')->all();
-        //$userRole = $user->roles->pluck('name','id')->all();
-
+        
+        $user = $this->userRepository->getByUserId($id);
+        
+        $branch = $this->branchRepository->all()->pluck('branch_name', 'id');
+        $department = $this->departmentRepository->all()->pluck('dep_unit', 'id');
+        
         if (empty($user)) {
             Flash::error('User not found');
 
             return redirect(route('users.index'));
         }
 
-        return view('users.edit',compact('user','roles'));
-        $user['role_id'] = $user->roles()->first()->id;
+        
+        //$user['role_id'] = $user1->roles()->first()->id;
 
         $roles = $this->roleRepository->all()->pluck('name', 'id');
 
         $roles->prepend('Select role', '');
-
-        return view('users.edit')->with(['user' => $user, 'roles' => $roles]);
+        
+        return view('users.edit',compact('user','roles','branch','department','id'));
+        
+        
     }
 
     /**
@@ -146,7 +190,7 @@ class UserController extends AppBaseController
     public function update($id, UpdateUserRequest $request)
     {
 
-        $user = $this->userRepository->find($id);
+        $user = $this->userRepository->getByUserId($id);
 
         if (empty($user)) {
             Flash::error('User not found');
@@ -155,8 +199,32 @@ class UserController extends AppBaseController
         }
 
         $input =  $request->all();
+        
+         // Retrieve the value of the checkbox
+         $checkboxValue = $request->input('checkbox');
 
-        $role = $this->roleRepository->find($input['role_id']);
+         // Check if the checkbox is checked
+         if ($checkboxValue == 1) {
+         // Checkbox is checked
+         //Get user id from newly created user and assign it to user_id post input
+         $input['user_id'] = $user->userId;
+         //Check for file upload and upload to public  directory
+         if ($request->hasFile('profile_picture')) {
+             $file = $request->file('profile_picture');
+             $path = $file->store('public');
+             $filename = $file->getClientOriginalName();
+             $input['profile_picture'] = $filename;
+         }else{
+            // prevent picture from updating db since there is no upload
+             unset($input['profile_picture']);
+         }
+         // prevent email from updating since email is unique
+         unset($input['email']);
+         //Create a new staff
+         $this->staffRepository->update($input, $user->staff_id);
+         } 
+
+        $role = $this->roleRepository->find($input['roles']);
 
         if (empty($role)) {
             Flash::error('Role not found');
