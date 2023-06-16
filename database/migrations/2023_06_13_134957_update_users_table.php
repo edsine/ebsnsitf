@@ -15,9 +15,9 @@ return new class extends Migration
     {
         //
         Schema::table('users', function($table) {
-            $table->string('first_name')->after('name');
-            $table->string('middle_name')->after('name')->nullable();
-            $table->string('last_name')->after('name');
+            $table->string('first_name');
+            $table->string('middle_name')->nullable();
+            $table->string('last_name');
         });
     
     }
@@ -31,9 +31,9 @@ return new class extends Migration
     {
         //
         Schema::table('users', function($table) {
-            $table->string('first_name');
-            $table->string('middle_name');
-            $table->string('last_name');
+            $table->dropColumn('first_name');
+            $table->dropColumn('middle_name');
+            $table->dropColumn('last_name');
         });
     }
 };

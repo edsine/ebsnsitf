@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use OwenIt\Auditing\Auditable as AuditingAuditable;
 use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\Permission\Traits\HasRoles;
+use Modules\WorkflowEngine\Models\Staff;
 
 class User extends Authenticatable implements Auditable
 {
@@ -24,6 +25,7 @@ class User extends Authenticatable implements Auditable
         'name',
         'email',
         'password',
+        'first_name',
         'middle_name',
         'last_name',
     ];
@@ -46,4 +48,5 @@ class User extends Authenticatable implements Auditable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }

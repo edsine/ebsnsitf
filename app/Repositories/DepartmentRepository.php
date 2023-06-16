@@ -16,7 +16,7 @@ class DepartmentRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'dep_unit',
+        'department_unit',
         'status',
     ];
 

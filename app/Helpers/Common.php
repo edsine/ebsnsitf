@@ -38,7 +38,7 @@ function getBranchRegions()
     return $regions;
 }
 
-
+    
 function getRanks()
 {
     $regions = [
