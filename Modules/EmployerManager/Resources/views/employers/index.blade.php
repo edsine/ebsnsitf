@@ -12,11 +12,6 @@
                        href="{{ route('employers.create') }}">
                         Add New
                     </a>
-
-                    <a class="btn btn-primary float-right"
-                       href="{{ route('employers.create') }}">
-                        Bulk Import
-                    </a>
                 </div>
             </div>
         </div>
