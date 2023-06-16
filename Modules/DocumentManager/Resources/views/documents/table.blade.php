@@ -6,7 +6,7 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Document Url</th>
-                <th>Folder Id</th>
+                <th>Folder</th>
                 <th>Created By</th>
                 <th colspan="3">Action</th>
             </tr>
@@ -16,9 +16,9 @@
                 <tr>
                     <td>{{ $document->title }}</td>
                     <td>{{ $document->description }}</td>
-                    <td>{{ $document->document_url }}</td>
-                    <td>{{ $document->folder_id }}</td>
-                    <td>{{ $document->created_by }}</td>
+                    <td><a target="_blank" href="{{ asset($document->document_url) }}">View</a></td>
+                    <td>{{ $document->folder ? $document->folder->name : '' }}</td>
+                    <td>{{ $document->createdBy ? $document->createdBy->name : '' }}</td>
                     <td  style="width: 120px">
                         {!! Form::open(['route' => ['documents.destroy', $document->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
@@ -26,6 +26,10 @@
                                class='btn btn-default btn-xs'>
                                 <i class="far fa-eye"></i>
                             </a>
+                            <a href="{{ route('documents.documentVersions.index', [$document->id]) }}"
+                                class='btn btn-default btn-xs'>
+                                 <i class="far fa-eye"></i>
+                             </a>
                             <a href="{{ route('documents.edit', [$document->id]) }}"
                                class='btn btn-default btn-xs'>
                                 <i class="far fa-edit"></i>

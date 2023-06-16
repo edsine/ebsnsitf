@@ -84,4 +84,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
         'document_url' => 'required',
         'created_by' => 'required'
     ];
+
+    public function createdBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(\App\Models\User::class, 'created_by', 'id');
+    }
 }

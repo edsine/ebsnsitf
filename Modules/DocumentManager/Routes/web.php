@@ -19,6 +19,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('documentmanager')->group(function () {
         Route::resource('folders', Modules\DocumentManager\Http\Controllers\FolderController::class);
         Route::resource('documents', Modules\DocumentManager\Http\Controllers\DocumentController::class);
+        Route::get('documents/documentVersions/{id}', [Modules\DocumentManager\Http\Controllers\DocumentController::class, 'documentVersions'])->name('documents.documentVersions.index');
         Route::resource('documentVersions', Modules\DocumentManager\Http\Controllers\DocumentVersionController::class);
     });
 });
