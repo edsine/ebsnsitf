@@ -42,6 +42,10 @@
                                class='btn btn-default btn-xs'>
                                 <i class="far fa-edit"></i>
                             </a>
+                            <a href="{{ route('employer.employees', [$employer->id]) }}"
+                                class='btn btn-default btn-xs'>
+                                 <i class="far fa-user"></i>
+                             </a>
                             {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                         </div>
                         {!! Form::close() !!}

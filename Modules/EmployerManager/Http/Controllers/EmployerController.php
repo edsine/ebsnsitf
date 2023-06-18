@@ -9,6 +9,7 @@ use App\Models\User;
 use Modules\EmployerManager\Repositories\EmployerRepository;
 use Illuminate\Http\Request;
 use Flash;
+use Modules\EmployerManager\Models\Employee;
 use Modules\EmployerManager\Models\Employer;
 
 class EmployerController extends AppBaseController
@@ -141,6 +142,15 @@ class EmployerController extends AppBaseController
         Flash::success('Employer deleted successfully.');
 
         return redirect(route('employers.index'));
+    }
+
+    public function employees(Request $request, $id)
+    {
+
+        $employer = $this->employerRepository->find($id);
+        $employees = Employee::where('employer_id', '=', $employer->id)->paginate(10);
+       
+        return view('employermanager::employers.employee', compact('employer', 'employees'));
     }
     
 }

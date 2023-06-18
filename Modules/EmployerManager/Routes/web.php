@@ -17,3 +17,5 @@ Route::prefix('employermanager')->group(function() {
 
 Route::resource('employers', Modules\EmployerManager\Http\Controllers\EmployerController::class);
 
+Route::get('employer/employees/{id}', 'EmployerController@employees')->name('employer.employees');
+Route::resource('employees', Modules\EmployerManager\Http\Controllers\EmployeeController::class);
