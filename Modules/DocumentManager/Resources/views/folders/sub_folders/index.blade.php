@@ -21,7 +21,7 @@
             <tbody>
                 @foreach ($sub_folders as $sub_folder)
                     <tr>
-                        <td>{{ $sub_folder->name }}</td>
+                        <td><i class="fa fa-folder"></i> {{ $sub_folder->name }}</td>
                         <td>{{ $sub_folder->description }}</td>
                         <td style="width: 120px">
                             {!! Form::open(['route' => ['folders.destroy', $sub_folder->id], 'method' => 'delete']) !!}
