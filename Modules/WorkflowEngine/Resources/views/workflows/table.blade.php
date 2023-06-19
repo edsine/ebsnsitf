@@ -1,4 +1,4 @@
-<div class="card-body p-0">
+<div class="card-body p-5">
     <div class="table-responsive">
         <table class="table" id="workflows-table">
             <thead>

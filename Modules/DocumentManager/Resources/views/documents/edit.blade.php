@@ -23,7 +23,7 @@
 
             <div class="card-body">
                 <div class="row">
-                    @include('documentmanager::documents.fields')
+                    @include('documentmanager::documents.edit_fields')
                 </div>
             </div>
 

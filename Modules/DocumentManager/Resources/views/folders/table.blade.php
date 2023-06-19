@@ -1,22 +1,20 @@
-<div class="card-body p-0">
+<div class="card-body p-5">
     <div class="table-responsive">
-        <table class="table" id="folders-table">
+        <table class="table align-middle table-row-dashed fs-6 gy-5" id="folders-table">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Parent Folder</th>
                     <th>Branch</th>
                     <th>Department</th>
                     <th colspan="3">Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="fw-semibold text-gray-600">
                 @foreach ($folders as $folder)
                     <tr>
                         <td>{{ $folder->name }}</td>
                         <td>{{ $folder->description }}</td>
-                        <td>{{ $folder->parentFolder ? $folder->parentFolder->name : '' }}</td>
                         <td>{{ $folder->branch ? $folder->branch->branch_name : '' }}</td>
                         <td>{{ $folder->department ? $folder->department->name : '' }}</td>
                         <td style="width: 120px">

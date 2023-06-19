@@ -17,17 +17,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
     public $table = 'departments';
 
     public $fillable = [
-        'dep_unit',
+        'department_unit',
         'status',
     ];
 
     protected $casts = [
-        'dep_unit' => 'string',
+        'department_unit' => 'string',
         'status' => 'integer',
     ];
 
     public static array $rules = [
-        'dep_unit' => 'required|unique:departments,dep_unit',
+        'department_unit' => 'required|unique:departments,department_unit',
         'status' => 'required',
     ];
 

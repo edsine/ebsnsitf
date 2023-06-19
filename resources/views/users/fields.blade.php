@@ -72,10 +72,10 @@
 </div>
 
 <!-- Dash Field -->
-<div class="form-group col-sm-4">
+{{-- <div class="form-group col-sm-4">
     {!! Form::label('dash_type', 'Dash Type') !!}
     {!! Form::number('dash_type', null, ['class' => 'form-control']) !!}
-</div>
+</div> --}}
 </div>
 
 <div  style="display: flex;">
@@ -200,7 +200,7 @@
         {!! Form::textarea('about_me', null, ['class' => 'form-control']) !!}
     </div>
     
-    <!-- Total Received Email Field -->
+   {{--  <!-- Total Received Email Field -->
     <div class="form-group col-sm-4">
         {!! Form::label('total_received_email', 'Total Received Email') !!}
         {!! Form::number('total_received_email', null, ['class' => 'form-control']) !!}
@@ -210,11 +210,11 @@
     <div class="form-group col-sm-4">
         {!! Form::label('total_sent_email', 'Total Sent Email') !!}
         {!! Form::number('total_sent_email', null, ['class' => 'form-control']) !!}
-    </div>
+    </div> --}}
     
 </div>
 
-<div  style="display: flex;">
+{{-- <div  style="display: flex;">
     
     <!-- Total Draft Email Field -->
     <div class="form-group col-sm-4">
@@ -234,7 +234,7 @@
         {!! Form::textarea('my_groups', null, ['class' => 'form-control']) !!}
     </div>
 
-</div>
+</div> --}}
 
 </div>
 

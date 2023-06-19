@@ -20,7 +20,8 @@ class UsersTableSeeder extends Seeder
         if (User::count() === 0) {
             // Add default User
             $user = new User();
-            $user->name = 'Admin';
+            $user->first_name = 'Admin';
+            $user->last_name = 'Admin';
             $user->email = 'admin@admin.com';
             $user->password = bcrypt('12345678');
             $user->email_verified_at = now();

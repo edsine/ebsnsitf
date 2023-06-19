@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         //
-        Schema::create('departments', function($table) {
-            $table->bigIncrements('id');
-            $table->string('dep_unit')->nullable();
-            $table->integer('status')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
-           
-        });
+        // Schema::create('departments', function($table) {
+        //     $table->bigIncrements('id');
+        //     $table->string('department_unit')->nullable();
+        //     $table->integer('status')->nullable();
+        //     $table->timestamps();
+        //     $table->softDeletes();
+
+        // });
 
         /* Schema::create('branches', function($table) {
             $table->bigIncrements('id');
@@ -37,7 +37,7 @@ return new class extends Migration
             $table->text('branch_address');
             $table->string('branch_manager');
             $table->timestamps();
-           
+
         }); */
 
         Schema::create('staff', function($table) {

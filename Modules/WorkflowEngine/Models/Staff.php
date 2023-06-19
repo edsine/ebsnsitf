@@ -45,12 +45,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
     ];
 
     protected $casts = [
-        'dep_unit' => 'string',
+        'department_unit' => 'string',
         'status' => 'integer',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     /* public static array $rules = [
-        'dep_unit' => 'required|unique:departments,dep_unit',
+        'department_unit' => 'required|unique:departments,department_unit',
         'status' => 'required',
     ]; */
 
