@@ -65,12 +65,23 @@ class FolderController extends AppBaseController
     {
         $input = $request->all();
 
-        if (empty($input['branch_id']) && empty($input['department_id']) && empty($input['parent_folder_id'])) {
-            Flash::error('Parent folder and (branch and department) fields cannot be empty');
-            return redirect()->back();
+
+        if (empty($input['parent_folder_id'])) {
+
+            $folder_count_by_name = $this->folderRepository->findByName($input['name'])->count();
+            if ($folder_count_by_name > 0) {
+                Flash::error('Name has been taken already');
+                return redirect()->back();
+            }
+
+            if (empty($input['branch_id']) || empty($input['department_id'])) {
+                Flash::error('Branch and department fields cannot be empty');
+                return redirect()->back();
+            }
         }
 
-        if (empty($input['branch_id']) && empty($input['department_id']) && !empty($input['parent_folder_id'])) {
+        if (!empty($input['parent_folder_id'])) {
+
             $parent_folder = $this->folderRepository->find($input['parent_folder_id']);
             if (empty($parent_folder)) {
                 Flash::error('Parent Folder not found');
@@ -78,15 +89,27 @@ class FolderController extends AppBaseController
                 return redirect()->back();
             }
 
-            $input['branch_id'] = $parent_folder->branch->id;
-            $input['department_id'] = $parent_folder->department->id;
+            $folder_count_by_name_and_parent_id = $this->folderRepository->findByNameAndParentId($input['name'], $input['parent_folder_id'])->count();
+            if ($folder_count_by_name_and_parent_id > 0) {
+                Flash::error('Name has been taken already');
+                return redirect()->back();
+            }
+
+
+            if (empty($input['branch_id']) || empty($input['department_id'])) {
+                $input['branch_id'] = $parent_folder->branch->id;
+                $input['department_id'] = $parent_folder->department->id;
+            }
         }
 
         $folder = $this->folderRepository->create($input);
 
         Flash::success('Folder saved successfully.');
 
-        return redirect()->back();
+        if (isset($parent_folder)) {
+            return redirect(route('folders.show', $parent_folder->id));
+        }
+        return redirect(route('folders.index'));
     }
 
     /**
@@ -197,7 +220,7 @@ class FolderController extends AppBaseController
 
         Flash::success('Folder updated successfully.');
 
-        if($parent_folder) {
+        if (isset($parent_folder)) {
             return redirect(route('folders.show', $parent_folder->id));
         }
         return redirect(route('folders.index'));

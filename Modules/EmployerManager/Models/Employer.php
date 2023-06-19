@@ -3,12 +3,17 @@
 namespace Modules\EmployerManager\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes; 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
 
- class Employer extends Model
+class Employer extends Model implements Auditable
 {
-     use SoftDeletes;    use HasFactory;    public $table = 'employers';
+    use SoftDeletes;
+    use HasFactory;
+    use AuditingAuditable;
+    public $table = 'employers';
 
     public $fillable = [
         'user_id',
@@ -45,9 +50,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
         'deleted_by' => 'integer'
     ];
 
-    public static array $rules = [
-        
-    ];
+    public static array $rules = [];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\HasOne
     {

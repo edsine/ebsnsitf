@@ -27,19 +27,15 @@
     <script type="text/javascript">
         const departmentId = "{{ !empty($folder) ? $folder->department_id : '' }}";
         const branchId = $("#branch_id").val() || "{{ old('branch_id') }}";
-        const parentFolderId = $("#parent_folder_id").val();
 
-        if (parentFolderId) {
-            $('#branch_id_div').css('display', 'none');
-            $('#department_id_div').css('display', 'none');
+        if (branchId) {
+            getDepartments(branchId);
         }
-
-        getDepartments(branchId);
 
         function getDepartments(selectedValue) {
             // Make an ajax call to the branches.departments.get route
             $.ajax({
-                url: `/shared/branches/departments/get/${selectedValue}`,
+                url: `{{ url('/shared/branches/departments/get') }}/${selectedValue}`,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
@@ -62,17 +58,6 @@
         $('#branch_id').on('change', function() {
             const selectedValue = $(this).val();
             getDepartments(selectedValue);
-        });
-
-        $('#parent_folder_id').on('change', function() {
-            const selectedValue = $(this).val();
-            if (selectedValue) {
-                $('#branch_id_div').css('display', 'none');
-                $('#department_id_div').css('display', 'none');
-                return;
-            }
-            $('#branch_id_div').css('display', 'block');
-            $('#department_id_div').css('display', 'block');
         });
     </script>
 @endpush
