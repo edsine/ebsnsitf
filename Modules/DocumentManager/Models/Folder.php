@@ -5,6 +5,8 @@ namespace Modules\DocumentManager\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * @OA\Schema(
@@ -49,10 +51,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          format="date-time"
  *      )
  * )
- */ class Folder extends Model
+ */ class Folder extends Model implements Auditable
 {
     use SoftDeletes;
     use HasFactory;
+    use AuditingAuditable;
     public $table = 'folders';
 
     public $fillable = [
@@ -67,8 +70,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
         'name' => 'string',
         'description' => 'string',
         'parent_folder_id' => 'integer',
-        // 'branch_id' => 'integer',
-        // 'department_id' => 'integer',
+        'branch_id' => 'integer',
+        'department_id' => 'integer',
     ];
 
     public static array $rules = [

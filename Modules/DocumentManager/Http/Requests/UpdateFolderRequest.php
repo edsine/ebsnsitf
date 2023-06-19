@@ -25,7 +25,7 @@ class UpdateFolderRequest extends FormRequest
     public function rules()
     {
         $rules = Folder::$rules;
-        
+
         return $rules;
     }
 }
