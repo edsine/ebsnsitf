@@ -35,7 +35,7 @@ class FolderController extends AppBaseController
     public function index(Request $request)
     {
         // Gets folders without a parent folder
-        $folders = $this->folderRepository->rootFolders()->paginate(1);
+        $folders = $this->folderRepository->rootFolders()->paginate(10);
 
         return view('documentmanager::folders.index')
             ->with('folders', $folders);
