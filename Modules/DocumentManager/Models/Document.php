@@ -92,9 +92,8 @@ use OwenIt\Auditing\Contracts\Auditable;
     public static array $rules = [
         'title' => 'required',
         'description' => 'required',
-        'file' => 'required',
-        'folder_id' => 'required',
-        // 'created_by' => 'required'
+        'file' => 'required|file|max:2048',
+        'folder_id' => 'required|integer|unique:documents,folder_id,title',
     ];
 
     public function createdBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo

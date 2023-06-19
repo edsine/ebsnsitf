@@ -24,10 +24,7 @@ class DocumentVersionController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $documentVersions = $this->documentVersionRepository->paginate(10);
 
-        return view('documentmanager::document_versions.index')
-            ->with('documentVersions', $documentVersions);
     }
 
     /**
@@ -35,7 +32,7 @@ class DocumentVersionController extends AppBaseController
      */
     public function create()
     {
-        return view('documentmanager::document_versions.create');
+
     }
 
     /**
@@ -43,13 +40,7 @@ class DocumentVersionController extends AppBaseController
      */
     public function store(CreateDocumentVersionRequest $request)
     {
-        $input = $request->all();
 
-        $documentVersion = $this->documentVersionRepository->create($input);
-
-        Flash::success('Document Version saved successfully.');
-
-        return redirect(route('documentVersions.index'));
     }
 
     /**
@@ -57,15 +48,7 @@ class DocumentVersionController extends AppBaseController
      */
     public function show($id)
     {
-        $documentVersion = $this->documentVersionRepository->find($id);
 
-        if (empty($documentVersion)) {
-            Flash::error('Document Version not found');
-
-            return redirect(route('documentVersions.index'));
-        }
-
-        return view('documentmanager::document_versions.show')->with('documentVersion', $documentVersion);
     }
 
     /**
@@ -73,15 +56,7 @@ class DocumentVersionController extends AppBaseController
      */
     public function edit($id)
     {
-        $documentVersion = $this->documentVersionRepository->find($id);
 
-        if (empty($documentVersion)) {
-            Flash::error('Document Version not found');
-
-            return redirect(route('documentVersions.index'));
-        }
-
-        return view('documentmanager::document_versions.edit')->with('documentVersion', $documentVersion);
     }
 
     /**
@@ -89,19 +64,7 @@ class DocumentVersionController extends AppBaseController
      */
     public function update($id, UpdateDocumentVersionRequest $request)
     {
-        $documentVersion = $this->documentVersionRepository->find($id);
 
-        if (empty($documentVersion)) {
-            Flash::error('Document Version not found');
-
-            return redirect(route('documentVersions.index'));
-        }
-
-        $documentVersion = $this->documentVersionRepository->update($request->all(), $id);
-
-        Flash::success('Document Version updated successfully.');
-
-        return redirect(route('documentVersions.index'));
     }
 
     /**
@@ -111,18 +74,6 @@ class DocumentVersionController extends AppBaseController
      */
     public function destroy($id)
     {
-        $documentVersion = $this->documentVersionRepository->find($id);
 
-        if (empty($documentVersion)) {
-            Flash::error('Document Version not found');
-
-            return redirect(route('documentVersions.index'));
-        }
-
-        $this->documentVersionRepository->delete($id);
-
-        Flash::success('Document Version deleted successfully.');
-
-        return redirect(route('documentVersions.index'));
     }
 }

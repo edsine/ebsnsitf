@@ -36,10 +36,7 @@ class DocumentController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $documents = $this->documentRepository->paginate(10);
 
-        return view('documentmanager::documents.index')
-            ->with('documents', $documents);
     }
 
     /**
@@ -47,18 +44,7 @@ class DocumentController extends AppBaseController
      */
     public function documentVersions(Request $request, $id)
     {
-        $document = $this->documentRepository->find($id);
 
-        if (empty($document)) {
-            Flash::error('Document not found');
-
-            return redirect(route('documents.index'));
-        }
-
-        $documentVersions = $document->documentVersions()->paginate(10);
-
-        return view('documentmanager::documents.document_versions.index')
-            ->with(['document' => $document, 'documentVersions' => $documentVersions]);
     }
 
         /**
@@ -84,9 +70,7 @@ class DocumentController extends AppBaseController
      */
     public function create()
     {
-        $folders = $this->folderRepository->all()->pluck('name', 'id');
-        $folders->prepend('Select folder', '');
-        return view('documentmanager::documents.create')->with(['folders' => $folders]);
+
     }
 
     /**
@@ -143,15 +127,7 @@ class DocumentController extends AppBaseController
      */
     public function show($id)
     {
-        $document = $this->documentRepository->find($id);
 
-        if (empty($document)) {
-            Flash::error('Document not found');
-
-            return redirect(route('documents.index'));
-        }
-
-        return view('documentmanager::documents.show')->with('document', $document);
     }
 
     /**
@@ -159,17 +135,7 @@ class DocumentController extends AppBaseController
      */
     public function edit($id)
     {
-        $document = $this->documentRepository->find($id);
 
-        if (empty($document)) {
-            Flash::error('Document not found');
-
-            return redirect(route('documents.index'));
-        }
-
-        $folders = $this->folderRepository->all()->pluck('name', 'id');
-        $folders->prepend('Select folder', '');
-        return view('documentmanager::documents.edit')->with(['document' => $document, 'folders' => $folders]);
     }
 
         /**
