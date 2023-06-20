@@ -49,4 +49,15 @@ class User extends Authenticatable implements Auditable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getFullName()
+    {
+        $user = $this;
+
+        $full_name = "$user->first_name $user->last_name";
+        if ($user->middle_name) {
+            $full_name = "$user->first_name $user->middle_name $user->last_name";
+            return $full_name;
+        }
+        return $full_name;
+    }
 }

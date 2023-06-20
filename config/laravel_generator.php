@@ -58,49 +58,49 @@ return [
 
     'path' => [
 
-        'migration'         => base_path('Modules/DocumentManager/Database/Migrations/'),
+        'migration'         => base_path('Modules/EmployerManager/Database/Migrations/'),
 
-        'model'             => base_path('Modules/DocumentManager/Models/'),
+        'model'             => base_path('Modules/EmployerManager/Models/'),
 
-        'datatables'        => base_path('Modules/DocumentManager/DataTables/'),
+        'datatables'        => base_path('Modules/EmployerManager/DataTables/'),
 
-        'livewire_tables'   => base_path('Modules/DocumentManager/Http/Livewire/'),
+        'livewire_tables'   => base_path('Modules/EmployerManager/Http/Livewire/'),
 
-        'repository'        => base_path('Modules/DocumentManager/Repositories/'),
+        'repository'        => base_path('Modules/EmployerManager/Repositories/'),
 
-        'routes'            => base_path('Modules/DocumentManager/Routes/web.php'),
+        'routes'            => base_path('Modules/EmployerManager/Routes/web.php'),
 
-        'api_routes'        => base_path('Modules/DocumentManager/Routes/api.php'),
+        'api_routes'        => base_path('Modules/EmployerManager/Routes/api.php'),
 
-        'request'           => base_path('Modules/DocumentManager/Http/Requests/'),
+        'request'           => base_path('Modules/EmployerManager/Http/Requests/'),
 
-        'api_request'       => base_path('Modules/DocumentManager/Http/Requests/API/'),
+        'api_request'       => base_path('Modules/EmployerManager/Http/Requests/API/'),
 
-        'controller'        => base_path('Modules/DocumentManager/Http/Controllers/'),
+        'controller'        => base_path('Modules/EmployerManager/Http/Controllers/'),
 
-        'api_controller'    => base_path('Modules/DocumentManager/Http/Controllers/API/'),
+        'api_controller'    => base_path('Modules/EmployerManager/Http/Controllers/API/'),
 
-        'api_resource'      => base_path('Modules/DocumentManager/Http/Resources/'),
+        'api_resource'      => base_path('Modules/EmployerManager/Http/Resources/'),
 
-        'schema_files'      => base_path('Modules/DocumentManager/model_schemas/'),
+        'schema_files'      => base_path('Modules/EmployerManager/model_schemas/'),
 
-        'seeder'            => base_path('Modules/DocumentManager/Database/Seeders/'),
+        'seeder'            => base_path('Modules/EmployerManager/Database/Seeders/'),
 
-        'database_seeder'   => base_path('Modules/DocumentManager/Database/Seeders/DatabaseSeeder.php'),
+        'database_seeder'   => base_path('Modules/EmployerManager/Database/Seeders/DatabaseSeeder.php'),
 
-        'factory'           => base_path('Modules/DocumentManager/Database/factories/'),
+        'factory'           => base_path('Modules/EmployerManager/Database/factories/'),
 
-        'view_provider'     => base_path('Modules/DocumentManager/Providers/ViewServiceProvider.php'),
+        'view_provider'     => base_path('Modules/EmployerManager/Providers/ViewServiceProvider.php'),
 
-        'tests'             => base_path('Modules/DocumentManager/Tests/'),
+        'tests'             => base_path('Modules/EmployerManager/Tests/'),
 
-        'repository_test'   => base_path('Modules/DocumentManager/Tests/Repositories/'),
+        'repository_test'   => base_path('Modules/EmployerManager/Tests/Repositories/'),
 
-        'api_test'          => base_path('Modules/DocumentManager/Tests/APIs/'),
+        'api_test'          => base_path('Modules/EmployerManager/Tests/APIs/'),
 
-        'views'             => base_path('Modules/DocumentManager/Resources/views/'),
+        'views'             => base_path('Modules/EmployerManager/Resources/views/'),
 
-        'menu_file'         => base_path('Modules/DocumentManager/Resources/views/layouts/menu.blade.php'),
+        'menu_file'         => base_path('Modules/EmployerManager/Resources/views/layouts/menu.blade.php'),
     ],
     /*
     |--------------------------------------------------------------------------
@@ -142,33 +142,33 @@ return [
 
     'namespace' => [
 
-        'model'             => 'Modules\DocumentManager\Models',
+        'model'             => 'Modules\EmployerManager\Models',
 
-        'datatables'        => 'Modules\DocumentManager\DataTables',
+        'datatables'        => 'Modules\EmployerManager\DataTables',
 
-        'livewire_tables'   => 'Modules\DocumentManager\Http\Livewire',
+        'livewire_tables'   => 'Modules\EmployerManager\Http\Livewire',
 
-        'repository'        => 'Modules\DocumentManager\Repositories',
+        'repository'        => 'Modules\EmployerManager\Repositories',
 
-        'controller'        => 'Modules\DocumentManager\Http\Controllers',
+        'controller'        => 'Modules\EmployerManager\Http\Controllers',
 
-        'api_controller'    => 'Modules\DocumentManager\Http\Controllers\API',
+        'api_controller'    => 'Modules\EmployerManager\Http\Controllers\API',
 
-        'api_resource'      => 'Modules\DocumentManager\Http\Resources',
+        'api_resource'      => 'Modules\EmployerManager\Http\Resources',
 
-        'request'           => 'Modules\DocumentManager\Http\Requests',
+        'request'           => 'Modules\EmployerManager\Http\Requests',
 
-        'api_request'       => 'Modules\DocumentManager\Http\Requests\API',
+        'api_request'       => 'Modules\EmployerManager\Http\Requests\API',
 
-        'seeder'            => 'Modules\DocumentManager\Database\Seeders',
+        'seeder'            => 'Modules\EmployerManager\Database\Seeders',
 
-        'factory'           => 'Modules\DocumentManager\Database\Factories',
+        'factory'           => 'Modules\EmployerManager\Database\Factories',
 
-        'tests'             => 'Modules\DocumentManager\Tests',
+        'tests'             => 'Modules\EmployerManager\Tests',
 
-        'repository_test'   => 'Modules\DocumentManager\Tests\Repositories',
+        'repository_test'   => 'Modules\EmployerManager\Tests\Repositories',
 
-        'api_test'          => 'Modules\DocumentManager\Tests\APIs',
+        'api_test'          => 'Modules\EmployerManager\Tests\APIs',
     ],
 
     /*

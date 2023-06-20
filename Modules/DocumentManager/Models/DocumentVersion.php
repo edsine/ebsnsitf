@@ -5,6 +5,8 @@ namespace Modules\DocumentManager\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * @OA\Schema(
@@ -58,10 +60,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          format="date-time"
  *      )
  * )
- */ class DocumentVersion extends Model
+ */ class DocumentVersion extends Model implements Auditable
 {
     use SoftDeletes;
     use HasFactory;
+    use AuditingAuditable;
     public $table = 'document_versions';
 
     public $fillable = [
@@ -79,9 +82,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
     ];
 
     public static array $rules = [
-        'version_number' => 'required',
-        'document_id' => 'required',
-        'document_url' => 'required',
-        'created_by' => 'required'
+        'file' => 'required'
     ];
+
+    public function createdBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(\App\Models\User::class, 'created_by', 'id');
+    }
 }

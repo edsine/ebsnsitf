@@ -20,7 +20,7 @@ return new class extends Migration
         //     $table->integer('status')->nullable();
         //     $table->timestamps();
         //     $table->softDeletes();
-           
+
         // });
 
         /* Schema::create('branches', function($table) {
@@ -37,7 +37,7 @@ return new class extends Migration
             $table->text('branch_address');
             $table->string('branch_manager');
             $table->timestamps();
-           
+
         }); */
 
         Schema::create('staff', function($table) {
