@@ -177,12 +177,6 @@ class FormController extends AppBaseController
             return redirect(route('forms.index'));
         }
 
-        if ($form->is_deletable == 0) {
-            Flash::error('Form is not editable');
-
-            return redirect(route('forms.index'));
-        }
-
         $field_types = $this->fieldTypeRepository->all()->pluck('field_type', 'id');
         $field_types->prepend('Select field type', '');
 
@@ -261,7 +255,7 @@ class FormController extends AppBaseController
         }
 
         if ($form->is_deletable == 0) {
-            Flash::error('Form is not editable');
+            Flash::error("Form's table exists already");
 
             return redirect(route('forms.index'));
         }
@@ -282,7 +276,7 @@ class FormController extends AppBaseController
         });
 
         // Update form to prevent deletion
-        $form->is_deletable == 0;
+        $form->is_deletable = 0;
         $form->save();
 
         Flash::success('Table created successfully.');
