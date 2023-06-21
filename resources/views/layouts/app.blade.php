@@ -6,8 +6,10 @@
     <title>{{ config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
-    <link href="{{ asset('oldasset/css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
     <!-- Custom Asset Start -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
@@ -25,7 +27,10 @@
     @stack('page_css')
 </head>
 
-<body id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
+<body id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true"
+    data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true"
+    data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true"
+    data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
     <!--begin::Theme mode setup on page load-->
     <script>
         var defaultThemeMode = "light";
@@ -79,13 +84,6 @@
 
 
 
-    <script src="{{ asset('js/app.js') }}"></script>
-
-    @stack('third_party_scripts')
-
-    @stack('page_scripts')
-
-
     <script>
         var hostUrl = "asset/";
     </script>
@@ -118,6 +116,12 @@
     <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
+    <script src="{{ asset('js/app.js') }}"></script>
+
+    @stack('third_party_scripts')
+
+    @stack('page_scripts')
+
 </body>
 
 </html>
