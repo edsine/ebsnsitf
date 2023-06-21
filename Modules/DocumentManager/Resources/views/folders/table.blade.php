@@ -13,7 +13,7 @@
             <tbody class="fw-semibold text-gray-600">
                 @foreach ($folders as $folder)
                     <tr>
-                        <td>{{ $folder->name }}</td>
+                        <td><i class="fa fa-folder"></i> {{ $folder->name }}</td>
                         <td>{{ $folder->description }}</td>
                         <td>{{ $folder->branch ? $folder->branch->branch_name : '' }}</td>
                         <td>{{ $folder->department ? $folder->department->name : '' }}</td>

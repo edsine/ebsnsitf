@@ -25,7 +25,9 @@ class UpdateDocumentRequest extends FormRequest
     public function rules()
     {
         $rules = Document::$rules;
-        
+        $id = $this->route('document');
+        $rules['folder_id'] = 'required|unique:documents,folder_id,' . $id . 'title';
+
         return $rules;
     }
 }

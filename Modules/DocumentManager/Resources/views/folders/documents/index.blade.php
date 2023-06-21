@@ -24,7 +24,7 @@
             <tbody>
                 @foreach ($documents as $document)
                     <tr>
-                        <td>{{ $document->title }}</td>
+                        <td><i class="fa fa-file"></i> {{ $document->title }}</td>
                         <td>{{ $document->description }}</td>
                         <td><a target="_blank" href="{{ asset($document->document_url) }}">View</a></td>
                         <td>{{ $document->folder ? $document->folder->name : '' }}</td>
