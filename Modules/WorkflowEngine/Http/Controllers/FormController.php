@@ -266,20 +266,24 @@ class FormController extends AppBaseController
 
         $table_name = $form->form_name;
 
-        Schema::create($table_name, function (Blueprint $table) use ($form_fields) {
-            $table->id();
-            foreach ($form_fields as $form_field) {
-                $this->getFormFieldColumnStructure($form_field, $table);
-            }
-            $table->integer('created_by');
-            $table->timestamps();
-        });
+        try {
+            Schema::create($table_name, function (Blueprint $table) use ($form_fields) {
+                $table->id();
+                foreach ($form_fields as $form_field) {
+                    $this->getFormFieldColumnStructure($form_field, $table);
+                }
+                $table->integer('created_by');
+                $table->timestamps();
+            });
 
-        // Update form to prevent deletion
-        $form->is_deletable = 0;
-        $form->save();
+            // Update form to prevent deletion
+            $form->is_deletable = 0;
+            $form->save();
 
-        Flash::success('Table created successfully.');
+            Flash::success('Table created successfully.');
+        } catch (\Throwable $th) {
+            Flash::error("An error occured while creating the form's table.");
+        }
 
         return redirect(route('forms.index'));
     }
