@@ -26,7 +26,7 @@
                     <tr>
                         <td><i class="fa fa-file"></i> {{ $document->title }}</td>
                         <td>{{ $document->description }}</td>
-                        <td><a target="_blank" href="{{ asset($document->document_url) }}">View</a></td>
+                        <td><a target="_blank" href="{{ asset($document->documentVersions()->latest()->first()->document_url) }}">View</a></td>
                         <td>{{ $document->folder ? $document->folder->name : '' }}</td>
                         <td>{{ $document->createdBy ? $document->createdBy->email : '' }}</td>
                         <td style="width: 120px">
