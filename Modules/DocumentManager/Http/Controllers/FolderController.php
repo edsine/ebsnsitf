@@ -38,7 +38,7 @@ class FolderController extends AppBaseController
         $folders = $this->folderRepository->rootFolders()->paginate(10);
 
         return view('documentmanager::folders.index')
-            ->with('folders', $folders);
+            ->with(['folders'=> $folders]);
     }
 
     /**

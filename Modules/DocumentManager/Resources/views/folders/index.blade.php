@@ -31,8 +31,6 @@
                             <a href="#">NSITFEBS</a>
                             <span class="mx-3">|</span>
                             <a href="#">Documents Manager</a>
-                            <span class="mx-3">|</span>2.6 GB
-                            <span class="mx-3">|</span>758 items
                         </div>
                     </div>
                     <!--end::Title-->
@@ -71,7 +69,7 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <input type="text" data-kt-filemanager-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search Documentss & Folders" />
+                        <input type="text" data-kt-filemanager-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search Folders" />
                     </div>
                     <!--end::Search-->
                 </div>
@@ -133,9 +131,7 @@
                     </div>
                     <!--end::Folder path-->
                     <!--begin::Folder Stats-->
-                    <div class="badge badge-lg badge-primary">
-                        <span id="kt_file_manager_items_counter">-- items</span>
-                    </div>
+
                     <!--end::Folder Stats-->
                 </div>
                 <!--end::Table header-->
