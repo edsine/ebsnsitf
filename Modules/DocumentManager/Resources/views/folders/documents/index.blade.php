@@ -23,10 +23,23 @@
             </thead>
             <tbody>
                 @foreach ($documents as $document)
+                    @php
+                        $latestDocumentUrl = $document
+                            ->documentVersions()
+                            ->latest()
+                            ->first()
+                            ? $document
+                                ->documentVersions()
+                                ->latest()
+                                ->first()->document_url
+                            : '#';
+                    @endphp
                     <tr>
                         <td><i class="fa fa-file"></i> {{ $document->title }}</td>
                         <td>{{ $document->description }}</td>
-                        <td><a target="_blank" href="{{ asset($document->documentVersions()->latest()->first()->document_url) }}">View</a></td>
+                        <td><a target="_blank"
+                                href="{{ asset($latestDocumentUrl) }}">View</a>
+                        </td>
                         <td>{{ $document->folder ? $document->folder->name : '' }}</td>
                         <td>{{ $document->createdBy ? $document->createdBy->email : '' }}</td>
                         <td style="width: 120px">
@@ -36,7 +49,8 @@
                                     class='btn btn-default btn-xs'>
                                     <i class="far fa-eye"></i>
                                 </a>
-                                <a href="{{ route('folders.documents.edit', [$document->id, $folder->id]) }}" class='btn btn-default btn-xs'>
+                                <a href="{{ route('folders.documents.edit', [$document->id, $folder->id]) }}"
+                                    class='btn btn-default btn-xs'>
                                     <i class="far fa-edit"></i>
                                 </a>
                                 {!! Form::button('<i class="far fa-trash-alt"></i>', [
