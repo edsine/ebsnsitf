@@ -23,13 +23,25 @@
 
             <div class="card-body">
                 <div class="row">
-                    @include('documentmanager::documents.fields')
+                    <!-- Folder Id Field -->
+                    {!! Form::hidden('folder_id', $folder->id) !!}
+
+
+                    <!-- Document Url Field -->
+                    <div class="form-group col-sm-12">
+                        {!! Form::label('file', 'Upload file:') !!}
+                        <div class="input-group">
+                            <div class="custom-file">
+                                {!! Form::file('file', ['class' => 'custom-file-input']) !!}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('documents.index') }}" class="btn btn-default"> Cancel </a>
+                <a href="{{ url()->previous() }}" class="btn btn-default"> Cancel </a>
             </div>
 
             {!! Form::close() !!}

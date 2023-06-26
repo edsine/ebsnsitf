@@ -5,6 +5,8 @@ namespace Modules\DocumentManager\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * @OA\Schema(
@@ -64,10 +66,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          format="date-time"
  *      )
  * )
- */ class Document extends Model
+ */ class Document extends Model implements Auditable
 {
     use SoftDeletes;
     use HasFactory;
+    use AuditingAuditable;
     public $table = 'documents';
 
     public $fillable = [
@@ -89,10 +92,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
     public static array $rules = [
         'title' => 'required',
         'description' => 'required',
-        'file' => 'required',
-        'folder_id' => 'required',
-        // 'created_by' => 'required'
+        'file' => 'required|file|max:2048',
+        'folder_id' => 'required|integer|unique:documents,folder_id,title',
     ];
+
+    public function createdBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(\App\Models\User::class, 'created_by', 'id');
+    }
 
     public function folder(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

@@ -31,30 +31,6 @@
             <!--end:Menu link-->
         </div>
         <!--end:Menu item-->
-        <!--begin:Menu item-->
-        <div class="menu-item">
-            <!--begin:Menu link-->
-            <a href="{{ route('documents.index') }}" class="menu-link {{ Request::is('documents*') ? 'active' : '' }}">
-                <span class="menu-bullet">
-                    <span class="bullet bullet-dot"></span>
-                </span>
-                <span class="menu-title">Documents</span>
-            </a>
-            <!--end:Menu link-->
-        </div>
-        <!--end:Menu item-->
-        <!--begin:Menu item-->
-        <div class="menu-item">
-            <!--begin:Menu link-->
-            <a href="{{ route('documentVersions.index') }}" class="menu-link {{ Request::is('documentVersions*') ? 'active' : '' }}">
-                <span class="menu-bullet">
-                    <span class="bullet bullet-dot"></span>
-                </span>
-                <span class="menu-title">Document Versions</span>
-            </a>
-            <!--end:Menu link-->
-        </div>
-        <!--end:Menu item-->
     </div>
     <!--end:Menu sub-->
 </div>
