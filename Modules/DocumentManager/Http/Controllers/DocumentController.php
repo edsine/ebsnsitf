@@ -36,7 +36,6 @@ class DocumentController extends AppBaseController
      */
     public function index(Request $request)
     {
-
     }
 
     /**
@@ -44,10 +43,9 @@ class DocumentController extends AppBaseController
      */
     public function documentVersions(Request $request, $id)
     {
-
     }
 
-        /**
+    /**
      * Display a listing of the Document in a folder Versions.
      */
     public function folderDocumentVersions(Request $request, $id)
@@ -70,7 +68,6 @@ class DocumentController extends AppBaseController
      */
     public function create()
     {
-
     }
 
     /**
@@ -114,6 +111,15 @@ class DocumentController extends AppBaseController
 
         $document = $this->documentRepository->create($input);
 
+        // Save document version
+
+        $version_input['document_id'] = $document->id;
+        $version_input['created_by'] = Auth::user()->id;
+        $version_input['version_number'] = 1;
+        $version_input['document_url'] = $document_url;
+
+        $documentVersion = $this->documentVersionRepository->create($version_input);
+
         Flash::success('Document saved successfully.');
 
 
@@ -127,7 +133,6 @@ class DocumentController extends AppBaseController
      */
     public function show($id)
     {
-
     }
 
     /**
@@ -135,10 +140,9 @@ class DocumentController extends AppBaseController
      */
     public function edit($id)
     {
-
     }
 
-        /**
+    /**
      * Show the form for editing the specified document in a folder.
      */
     public function folderEditDocument($id, $folder_id)
@@ -158,7 +162,7 @@ class DocumentController extends AppBaseController
             return redirect(route('folders.show', $folder_id));
         }
 
-        return view('documentmanager::folders.documents.edit')->with(['document' => $document,'folder' => $folder]);
+        return view('documentmanager::folders.documents.edit')->with(['document' => $document, 'folder' => $folder]);
     }
 
     /**
@@ -188,7 +192,7 @@ class DocumentController extends AppBaseController
 
         // Get new version count
         $document_versions_count = $document->documentVersions()->withTrashed()->count();
-        $new_count = $document_versions_count + 2;
+        $new_count = $document_versions_count + 1;
         // Save file
 
         $file = $request->file('file');
