@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+     
     <link rel="shortcut icon" href="{{ asset('assets/media/logos/NSITF-Logo-login.png') }}" />
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
@@ -31,7 +31,7 @@
             background-image: url('assets/media/auth/bg4-dark.jpg');
         }
     </style>
-    <!--end::Page bg image-->
+    <!--end::Page bg image-->  
 </head>
 
 <body id="kt_body" class="app-blank bgi-size-cover bgi-position-center bgi-no-repeat">
