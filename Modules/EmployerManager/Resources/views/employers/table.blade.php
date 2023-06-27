@@ -25,7 +25,7 @@
                     <td>{{ $employer->company_email }}</td>
                     <td>{{ $employer->company_address }}</td>
                     <td>{{ $employer->company_rcnumber }}</td>
-                    <td>{{ $employer->company_phone }}</td>
+                    <td>{{ $employer->contact_person }}</td>
                     <td>{{ $employer->company_localgovt }}</td>
                     <td>{{ $employer->company_state }}</td>
                     <td>{{ $employer->business_area }}</td>
