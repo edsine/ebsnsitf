@@ -31,7 +31,7 @@
             background-image: url('assets/media/auth/bg4-dark.jpg');
         }
     </style>
-    <!--end::Page bg image-->
+    <!--end::Page bg image-->  
 </head>
 
 <body id="kt_body" class="app-blank bgi-size-cover bgi-position-center bgi-no-repeat">
