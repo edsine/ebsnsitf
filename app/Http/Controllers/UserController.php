@@ -110,7 +110,7 @@ class UserController extends AppBaseController
         $this->staffRepository->create($input);
         } 
 
-        $role = $this->roleRepository->find($input['roles']);
+        $role = $this->roleRepository->getByUserRoles($input['roles']);
 
         if (empty($role)) {
             Flash::error('Role not found');
@@ -119,7 +119,7 @@ class UserController extends AppBaseController
         }
 
 
-        $user->assignRole($role->name);
+        $user->assignRole($role);
 
         Flash::success('User saved successfully.');
 
@@ -218,7 +218,7 @@ class UserController extends AppBaseController
          $this->staffRepository->update($input, $user->staff_id);
          } 
 
-        $role = $this->roleRepository->find($input['roles']);
+        $role = $this->roleRepository->getByUserRoles($input['roles']);
 
         if (empty($role)) {
             Flash::error('Role not found');
@@ -235,10 +235,10 @@ class UserController extends AppBaseController
         $user = $this->userRepository->update($input, $id);
         DB::table('model_has_roles')->where('model_id',$id)->delete();
     
-        $user->assignRole($request->input('roles'));
+        //$user->assignRole($request->input('roles'));
 
         $user->roles()->detach();
-        $user->assignRole($role->name);
+        $user->assignRole($role);
 
 
         Flash::success('User updated successfully.');

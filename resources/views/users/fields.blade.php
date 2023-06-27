@@ -26,7 +26,8 @@
 <div class="col-sm-6">
     {!! Form::label('roles', 'Roles') !!}
     <div class="form-group">
-    {!! Form::select('roles',$roles,null, ['class' => 'form-control']) !!}
+    {!! Form::select('roles[]',$roles,null, ['multiple' => true,'class' => 'form-control']) !!}
+
     </div>
 </div>
 
