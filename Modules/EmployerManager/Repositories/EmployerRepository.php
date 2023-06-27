@@ -14,11 +14,16 @@ class EmployerRepository extends BaseRepository
         'company_email',
         'company_address',
         'company_rcnumber',
-        'company_phone',
+        'contact_person',
         'company_localgovt',
         'company_state',
         'business_area',
         'inspection_status',
+        'contact_number',
+        'cac_reg_year',
+        'number_of_employees',
+        'status',
+        'registered_date',
         'created_by',
         'updated_by'
     ];

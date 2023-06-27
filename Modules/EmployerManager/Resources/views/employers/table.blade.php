@@ -25,7 +25,7 @@
                     <td>{{ $employer->company_email }}</td>
                     <td>{{ $employer->company_address }}</td>
                     <td>{{ $employer->company_rcnumber }}</td>
-                    <td>{{ $employer->company_phone }}</td>
+                    <td>{{ $employer->contact_person }}</td>
                     <td>{{ $employer->company_localgovt }}</td>
                     <td>{{ $employer->company_state }}</td>
                     <td>{{ $employer->business_area }}</td>
@@ -42,6 +42,10 @@
                                class='btn btn-default btn-xs'>
                                 <i class="far fa-edit"></i>
                             </a>
+                            <a href="{{ route('employer.employees', [$employer->id]) }}"
+                                class='btn btn-default btn-xs'>
+                                 <i class="far fa-user"></i>
+                             </a>
                             {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                         </div>
                         {!! Form::close() !!}

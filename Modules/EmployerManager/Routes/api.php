@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/employermanager', function (Request $reques
 
 Route::resource('employers', Modules\EmployerManager\Http\Controllers\API\EmployerAPIController::class)
     ->except(['create', 'edit']);
+
+Route::resource('employees', Modules\EmployerManager\Http\Controllers\API\EmployeeAPIController::class)
+    ->except(['create', 'edit']);

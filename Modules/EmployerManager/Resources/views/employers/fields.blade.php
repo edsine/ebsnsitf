@@ -40,10 +40,34 @@
     {!! Form::text('company_rcnumber', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Company Phone Field -->
+<!-- Company Contact person Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('company_phone', 'Company Phone:') !!}
-    {!! Form::number('company_phone', null, ['class' => 'form-control']) !!}
+    {!! Form::label('contact_person', 'Company Contact Person:') !!}
+    {!! Form::text('contact_person', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Company Contact Number Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('contact_number', 'Company Contact Person Number:') !!}
+    {!! Form::text('contact_number', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Company CAC Reg year Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('cac_reg_year', 'Company CAC Reg Year:') !!}
+    {!! Form::number('cac_reg_year', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Company Number of Employees Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('number_of_employees', 'Company Number of Employees') !!}
+    {!! Form::number('number_of_employees', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Company Registered date Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('registered_date', 'Company Registered Date') !!}
+    {!! Form::text('registered_date', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Company Localgovt Field -->
@@ -68,4 +92,10 @@
 <div class="form-group col-sm-6">
     {!! Form::label('inspection_status', 'Inspection Status:') !!}
     {!! Form::text('inspection_status', null, ['class' => 'form-control']) !!}
+</div>
+
+<!--  Status Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('status', 'Status:') !!}
+    {!! Form::text('status', null, ['class' => 'form-control']) !!}
 </div>

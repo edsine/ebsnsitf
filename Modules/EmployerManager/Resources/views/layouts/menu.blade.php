@@ -29,6 +29,12 @@
                 </span>
                 <span class="menu-title">Employers</span>
             </a>
+            <a href="{{ route('employees.index') }}" class="menu-link {{ Request::is('employees*') ? 'active' : '' }}">
+                <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">Employees</span>
+            </a>
             <!--end:Menu link-->
         </div>
         <!--end:Menu item-->
@@ -36,3 +42,9 @@
     <!--end:Menu sub-->
 </div>
 <!--end:Menu item-->
+<li class="nav-item">
+    <a href="{{ route('employees.index') }}" class="nav-link {{ Request::is('employees*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>Employees</p>
+    </a>
+</li>
