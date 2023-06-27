@@ -55,7 +55,7 @@
 <!-- Company CAC Reg year Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('cac_reg_year', 'Company CAC Reg Year:') !!}
-    {!! Form::text('cac_reg_year', null, ['class' => 'form-control']) !!}
+    {!! Form::number('cac_reg_year', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Company Number of Employees Field -->
