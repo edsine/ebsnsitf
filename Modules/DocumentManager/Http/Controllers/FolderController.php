@@ -34,11 +34,18 @@ class FolderController extends AppBaseController
      */
     public function index(Request $request)
     {
+
+        if (!checkPermission('read folder')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+
         // Gets folders without a parent folder
         $folders = $this->folderRepository->rootFolders()->paginate(10);
 
         return view('documentmanager::folders.index')
-            ->with(['folders'=> $folders]);
+            ->with(['folders' => $folders]);
     }
 
     /**
@@ -46,6 +53,12 @@ class FolderController extends AppBaseController
      */
     public function create()
     {
+        if (!checkPermission('create folder')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+
         $folders = $this->folderRepository->all()->pluck('name', 'id');
         $folders->prepend('Select parent folder', '');
 
@@ -63,6 +76,12 @@ class FolderController extends AppBaseController
      */
     public function store(CreateFolderRequest $request)
     {
+        if (!checkPermission('create folder')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+
         $input = $request->all();
 
 
@@ -117,6 +136,12 @@ class FolderController extends AppBaseController
      */
     public function show($id)
     {
+        if (!checkPermission('read folder')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+
         $folder = $this->folderRepository->find($id);
 
         if (empty($folder)) {
@@ -142,6 +167,12 @@ class FolderController extends AppBaseController
      */
     public function edit($id)
     {
+        if (!checkPermission('edit folder')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+
         $folder = $this->folderRepository->find($id);
 
         if (empty($folder)) {
@@ -167,6 +198,12 @@ class FolderController extends AppBaseController
      */
     public function editSubFolder($id, $parent_folder_id)
     {
+        if (!checkPermission('edit folder')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+
         $sub_folder = $this->folderRepository->find($id);
         $parent_folder = $this->folderRepository->find($parent_folder_id);
 
@@ -190,6 +227,12 @@ class FolderController extends AppBaseController
      */
     public function update($id, UpdateFolderRequest $request)
     {
+        if (!checkPermission('edit folder')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+
         $folder = $this->folderRepository->find($id);
         $input = $request->all();
 
@@ -233,6 +276,12 @@ class FolderController extends AppBaseController
      */
     public function destroy($id)
     {
+        if (!checkPermission('delete folder')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+
         $folder = $this->folderRepository->find($id);
 
         if (empty($folder)) {

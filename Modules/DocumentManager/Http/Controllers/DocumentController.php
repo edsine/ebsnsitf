@@ -50,6 +50,12 @@ class DocumentController extends AppBaseController
      */
     public function folderDocumentVersions(Request $request, $id)
     {
+        if (!checkPermission('read document')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+
         $document = $this->documentRepository->find($id);
 
         if (empty($document)) {
@@ -75,6 +81,11 @@ class DocumentController extends AppBaseController
      */
     public function store(CreateDocumentRequest $request)
     {
+        if (!checkPermission('create document')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
         $input = $request->all();
         $input['created_by'] = Auth::user()->id;
 
@@ -147,6 +158,11 @@ class DocumentController extends AppBaseController
      */
     public function folderEditDocument($id, $folder_id)
     {
+        if (!checkPermission('edit document')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
         $document = $this->documentRepository->find($id);
         $folder = $this->folderRepository->find($folder_id);
 
@@ -170,6 +186,11 @@ class DocumentController extends AppBaseController
      */
     public function update($id, CreateDocumentVersionRequest $request)
     {
+        if (!checkPermission('edit document')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
         $input = $request->all();
         $document = $this->documentRepository->find($id);
 
@@ -233,6 +254,11 @@ class DocumentController extends AppBaseController
      */
     public function destroy($id)
     {
+        if (!checkPermission('delete document')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
         $document = $this->documentRepository->find($id);
 
         if (empty($document)) {
