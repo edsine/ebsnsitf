@@ -5,7 +5,7 @@
         <a href="{{ route('home') }}">
             <img alt="Logo" src="{{asset('assets/media/logos/NSITF-logo.png')}}" class="h-70px app-sidebar-logo-default" />
             <img alt="Logo" src="{{asset('assets/media/logos/NSITF-logo.png')}}" class="h-50px app-sidebar-logo-minimize" />
-            <span class="brand-text font-weight-light app-sidebar-logo-default" style="font-size: 30px; color: #fff">{{ config('app.name') }}</span>
+            <span class="brand-text font-weight-light app-sidebar-logo-default" style="font-size: 30px; color: #000">{{ config('app.name') }}</span>
         </a>
         <!--end::Logo image-->
         <!--begin::Sidebar toggle-->
