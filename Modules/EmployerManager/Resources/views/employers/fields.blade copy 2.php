@@ -44,7 +44,7 @@
 <!-- Company Contact person Field -->
 <div class="d-flex flex-column col-md-6 mb-8 fv-row">
     {!! Form::label('contact_person', 'Company Contact Person:', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
-    {!! Form::text('contact_person', null, ['class' => 'form-control form-control-solid border', 'placeholder' => 'Enter Company Contact Person']) !!}
+    {!! Form::text('contact_person', null, ['class' => 'form-control form-control-solid border', 'placeholder' => 'Enter Company Contact Person Full Name']) !!}
 </div>
 
 <!-- Company Contact Number Field -->
