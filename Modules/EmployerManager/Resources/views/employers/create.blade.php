@@ -1,41 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-12">
-                    <h1>
-                        Create Employers
-                    </h1>
-                </div>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1>
+                    Create Employers
+                </h1>
             </div>
-        </div>
-    </section>
-
-    <div class="content px-3">
-
-        @include('adminlte-templates::common.errors')
-
-        <div class="card">
-
-            {!! Form::open(['route' => 'employers.store']) !!}
-
-            <div class="card-body">
-
-                <div class="row">
-                    @include('employermanager::employers.fields')
-                </div>
-
-            </div>
-
-            <div class="card-footer">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('employers.index') }}" class="btn btn-default"> Cancel </a>
-            </div>
-
-            {!! Form::close() !!}
-
         </div>
     </div>
+</section>
+
+
+@include('adminlte-templates::common.errors')
+<!--begin::Content-->
+<div id="kt_app_content" class="app-content flex-column-fluid">
+    <!--begin::Content container-->
+    <div id="kt_app_content_container" class="app-container container-xxl">
+        <!--begin::Stepper-->
+        <div class="stepper stepper-pills stepper-column d-flex flex-column flex-xl-row flex-row-fluid gap-10" id="kt_create_account_stepper">
+
+            @include('employermanager::employers.fields')
+        </div>
+        <!--end::Stepper-->
+    </div>
+    <!--end::Content container-->
+</div>
+<!--end::Content-->
 @endsection
