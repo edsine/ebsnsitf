@@ -19,5 +19,6 @@ class DocumentManagerDatabaseSeeder extends Seeder
         $this->call(FoldersPermissionsSeeder::class);
         $this->call(DocumentsPermissionsSeeder::class);
         $this->call(AdminFoldersAndDocumentsPermissionsSeeder::class);
+        $this->call(MemosPermissionsSeeder::class);
     }
 }

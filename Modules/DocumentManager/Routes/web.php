@@ -27,8 +27,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('documents', Modules\DocumentManager\Http\Controllers\DocumentController::class);
 
-        Route::get('documents/documentVersions/{id}', [Modules\DocumentManager\Http\Controllers\DocumentController::class, 'documentVersions'])->name('documents.documentVersions.index');
+        Route::resource('memos', Modules\DocumentManager\Http\Controllers\MemoController::class);
 
-        Route::resource('documentVersions', Modules\DocumentManager\Http\Controllers\DocumentVersionController::class);
+        Route::get('memos/memoVersions/{id}', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'memoVersions'])->name('memos.memoVersions.index');
+
     });
 });
+
