@@ -2,14 +2,15 @@
 
 namespace Modules\DocumentManager\Http\Controllers;
 
-use Modules\DocumentManager\Http\Requests\CreateFolderRequest;
-use Modules\DocumentManager\Http\Requests\UpdateFolderRequest;
-use App\Http\Controllers\AppBaseController;
-use Modules\DocumentManager\Repositories\FolderRepository;
-use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AppBaseController;
 use Modules\Shared\Repositories\BranchRepository;
 use Modules\Shared\Repositories\DepartmentRepository;
+use Modules\DocumentManager\Repositories\FolderRepository;
+use Modules\DocumentManager\Http\Requests\CreateFolderRequest;
+use Modules\DocumentManager\Http\Requests\UpdateFolderRequest;
 
 class FolderController extends AppBaseController
 {
@@ -34,6 +35,7 @@ class FolderController extends AppBaseController
      */
     public function index(Request $request)
     {
+        $user = Auth::user();
 
         if (!checkPermission('read folder')) {
             Flash::error('Permission denied');
@@ -41,8 +43,27 @@ class FolderController extends AppBaseController
             return redirect()->back();
         }
 
-        // Gets folders without a parent folder
-        $folders = $this->folderRepository->rootFolders()->paginate(10);
+        // Return all folders
+        if (checkPermission('read any folder')) {
+            $folders = $this->folderRepository->rootFolders()->paginate(10);
+        }
+
+        // Return folders in user's branch
+        else if (checkPermission('read branch folder')) {
+            $folders = $this->folderRepository->rootFolders()->where('branch_id', $user->staff->branch_id)->paginate(10);
+        }
+
+        // Return folders in user's department
+        else if (checkPermission('read department folder')) {
+            $folders = $this->folderRepository->rootFolders()->where('department_id', $user->staff->department_id)->paginate(10);
+        }
+
+        // Return folders created by user
+        else {
+            $folders = $this->folderRepository->rootFolders()->where('created_by', Auth::user()->id)->paginate(10);
+        }
+
+
 
         return view('documentmanager::folders.index')
             ->with(['folders' => $folders]);
@@ -83,6 +104,7 @@ class FolderController extends AppBaseController
         }
 
         $input = $request->all();
+        $input['created_by'] = Auth::user()->id;
 
 
         if (empty($input['parent_folder_id'])) {
@@ -136,6 +158,7 @@ class FolderController extends AppBaseController
      */
     public function show($id)
     {
+        $user = Auth::user();
         if (!checkPermission('read folder')) {
             Flash::error('Permission denied');
 
@@ -143,6 +166,8 @@ class FolderController extends AppBaseController
         }
 
         $folder = $this->folderRepository->find($id);
+        $this->checkFolderPermissions($folder, 'read');
+
 
         if (empty($folder)) {
             Flash::error('Folder not found');
@@ -167,13 +192,16 @@ class FolderController extends AppBaseController
      */
     public function edit($id)
     {
-        if (!checkPermission('edit folder')) {
+        $user = Auth::user();
+        if (!checkPermission('update folder')) {
             Flash::error('Permission denied');
 
-            return redirect()->back();
+            return redirect(route('folders.index'));
         }
 
         $folder = $this->folderRepository->find($id);
+
+        $this->checkFolderPermissions($folder, 'update');
 
         if (empty($folder)) {
             Flash::error('Folder not found');
@@ -198,6 +226,7 @@ class FolderController extends AppBaseController
      */
     public function editSubFolder($id, $parent_folder_id)
     {
+        $user = Auth::user();
         if (!checkPermission('edit folder')) {
             Flash::error('Permission denied');
 
@@ -206,6 +235,9 @@ class FolderController extends AppBaseController
 
         $sub_folder = $this->folderRepository->find($id);
         $parent_folder = $this->folderRepository->find($parent_folder_id);
+
+        $this->checkFolderPermissions($sub_folder, 'update');
+
 
         if (empty($parent_folder)) {
             Flash::error('Parent Folder not found');
@@ -227,13 +259,16 @@ class FolderController extends AppBaseController
      */
     public function update($id, UpdateFolderRequest $request)
     {
-        if (!checkPermission('edit folder')) {
+        $user = Auth::user();
+        if (!checkPermission('update folder')) {
             Flash::error('Permission denied');
 
             return redirect()->back();
         }
 
         $folder = $this->folderRepository->find($id);
+
+        $this->checkFolderPermissions($folder, 'update');
         $input = $request->all();
 
         if (empty($folder)) {
@@ -276,6 +311,7 @@ class FolderController extends AppBaseController
      */
     public function destroy($id)
     {
+        $user = Auth::user();
         if (!checkPermission('delete folder')) {
             Flash::error('Permission denied');
 
@@ -283,6 +319,8 @@ class FolderController extends AppBaseController
         }
 
         $folder = $this->folderRepository->find($id);
+
+        $this->checkFolderPermissions($folder, 'delete');
 
         if (empty($folder)) {
             Flash::error('Folder not found');
@@ -295,5 +333,35 @@ class FolderController extends AppBaseController
         Flash::success('Folder deleted successfully.');
 
         return redirect()->back();
+    }
+
+    public function checkFolderPermissions($folder, $permission_type)
+    {
+        $user = Auth::user();
+        // Check if user is the creator
+        if ($folder->created_by == $user->id) {
+            // Do nothing
+        }
+
+        // Check if user can view any folder
+        else if (checkPermission("$permission_type any folder")) {
+            // Do nothing
+        }
+
+        // Check if user can view any folder in branch it belongs to
+        else if (checkPermission("$permission_type branch folder")) {
+            // Check if folder belongs to branch
+            if ($folder->branch_id != $user->staff->branch_id) {
+                // Check if user can view any folder in department it belongs to
+                if (checkPermission("$permission_type department folder")) {
+                    // Check if folder belongs to department
+                    if ($folder->department_id !=  $user->staff->department_id) {
+                        Flash::error('Permission denied');
+
+                        return redirect()->back();
+                    }
+                }
+            }
+        }
     }
 }

@@ -36,6 +36,7 @@ class DocumentController extends AppBaseController
      */
     public function index(Request $request)
     {
+
     }
 
     /**
@@ -158,7 +159,7 @@ class DocumentController extends AppBaseController
      */
     public function folderEditDocument($id, $folder_id)
     {
-        if (!checkPermission('edit document')) {
+        if (!checkPermission('update document')) {
             Flash::error('Permission denied');
 
             return redirect()->back();
@@ -186,7 +187,7 @@ class DocumentController extends AppBaseController
      */
     public function update($id, CreateDocumentVersionRequest $request)
     {
-        if (!checkPermission('edit document')) {
+        if (!checkPermission('update document')) {
             Flash::error('Permission denied');
 
             return redirect()->back();

@@ -63,7 +63,8 @@ use OwenIt\Auditing\Contracts\Auditable;
         'description',
         'parent_folder_id',
         'branch_id',
-        'department_id'
+        'department_id',
+        'created_by'
     ];
 
     protected $casts = [
@@ -72,6 +73,7 @@ use OwenIt\Auditing\Contracts\Auditable;
         'parent_folder_id' => 'integer',
         'branch_id' => 'integer',
         'department_id' => 'integer',
+        'created_by' => 'integer',
     ];
 
     public static array $rules = [
@@ -102,6 +104,11 @@ use OwenIt\Auditing\Contracts\Auditable;
     public function department(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(\Modules\Shared\Models\Department::class, 'department_id', 'id');
+    }
+
+    public function createdBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(App\Models\User::class, 'created_by', 'id');
     }
 
     public function getAllAncestors()
