@@ -227,7 +227,7 @@ class FolderController extends AppBaseController
     public function editSubFolder($id, $parent_folder_id)
     {
         $user = Auth::user();
-        if (!checkPermission('edit folder')) {
+        if (!checkPermission('update folder')) {
             Flash::error('Permission denied');
 
             return redirect()->back();
@@ -260,6 +260,7 @@ class FolderController extends AppBaseController
     public function update($id, UpdateFolderRequest $request)
     {
         $user = Auth::user();
+        $input = $request->all();
         if (!checkPermission('update folder')) {
             Flash::error('Permission denied');
 
@@ -268,8 +269,46 @@ class FolderController extends AppBaseController
 
         $folder = $this->folderRepository->find($id);
 
+        if ($folder->name != $input['name']) {
+
+            if (empty($input['parent_folder_id'])) {
+
+                $folder_count_by_name = $this->folderRepository->findByName($input['name'])->count();
+                if ($folder_count_by_name > 0) {
+                    Flash::error('Name has been taken already');
+                    return redirect()->back();
+                }
+
+                if (empty($input['branch_id']) || empty($input['department_id'])) {
+                    Flash::error('Branch and department fields cannot be empty');
+                    return redirect()->back();
+                }
+            }
+
+            if (!empty($input['parent_folder_id'])) {
+
+                $parent_folder = $this->folderRepository->find($input['parent_folder_id']);
+                if (empty($parent_folder)) {
+                    Flash::error('Parent Folder not found');
+
+                    return redirect()->back();
+                }
+
+                $folder_count_by_name_and_parent_id = $this->folderRepository->findByNameAndParentId($input['name'], $input['parent_folder_id'])->count();
+                if ($folder_count_by_name_and_parent_id > 0) {
+                    Flash::error('Name has been taken already');
+                    return redirect()->back();
+                }
+
+
+                if (empty($input['branch_id']) || empty($input['department_id'])) {
+                    $input['branch_id'] = $parent_folder->branch->id;
+                    $input['department_id'] = $parent_folder->department->id;
+                }
+            }
+        }
+
         $this->checkFolderPermissions($folder, 'update');
-        $input = $request->all();
 
         if (empty($folder)) {
             Flash::error('Folder not found');
