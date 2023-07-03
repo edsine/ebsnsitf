@@ -6,15 +6,15 @@
         <div class="row mb-2">
             <div class="col-sm-12">
                 <h1>
-                    Create Employers
+                    Edit Employer
                 </h1>
             </div>
         </div>
     </div>
 </section>
 
-
 @include('adminlte-templates::common.errors')
+
 <!--begin::Content-->
 <div id="kt_app_content" class="app-content flex-column-fluid">
     <!--begin::Content container-->
@@ -177,9 +177,13 @@
             <!--begin::Content-->
             <div class="card d-flex flex-row-fluid flex-center">
                 <!--begin::Form-->
-                <form class="card-body py-20 w-100 mw-xl-700px px-9" novalidate="novalidate" id="kt_create_account_form" method="post" action="{{route('employers.store')}}">
-                    @include('employermanager::employers.fields')
-                </form>
+                {!! Form::model($employer, ['route' => ['employers.update', $employer->id], 'method' => 'patch', 'class'=>'card-body py-20 w-100 mw-xl-700px px-9', 'id'=>'kt_create_account_form', 'ovalidate' => 'novalidate']) !!}
+                
+                <!--begin::fields from 'employermanager::employers.fields' -->
+                @include('employermanager::employers.fields')
+                <!--end::fields from 'employermanager::employers.fields' -->
+
+                {!! Form::close() !!}
                 <!--end::Form-->
             </div>
             <!--end::Content-->

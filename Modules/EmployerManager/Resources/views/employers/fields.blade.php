@@ -1,186 +1,7 @@
-<!--begin::Aside-->
-<div class="card d-flex justify-content-center justify-content-xl-start flex-row-auto w-100 w-xl-300px w-xxl-400px">
-    <!--begin::Wrapper-->
-    <div class="card-body px-6 px-lg-10 px-xxl-15 py-20">
-        <!--begin::Nav-->
-        <div class="stepper-nav">
-            <!--begin::Step 1-->
-            <div class="stepper-item current" data-kt-stepper-element="nav">
-                <!--begin::Wrapper-->
-                <div class="stepper-wrapper">
-                    <!--begin::Icon-->
-                    <div class="stepper-icon w-40px h-40px">
-                        <i class="stepper-check fas fa-check"></i>
-                        <span class="stepper-number">1</span>
-                    </div>
-                    <!--end::Icon-->
-                    <!--begin::Label-->
-                    <div class="stepper-label">
-                        <h3 class="stepper-title">First Step</h3>
-                        <div class="stepper-desc fw-semibold">Setup Account Details</div>
-                    </div>
-                    <!--end::Label-->
-                </div>
-                <!--end::Wrapper-->
-                <!--begin::Line-->
-                <div class="stepper-line h-40px"></div>
-                <!--end::Line-->
-            </div>
-            <!--end::Step 1-->
 
-            <!--begin::Step 2-->
-            <div class="stepper-item" data-kt-stepper-element="nav">
-                <!--begin::Wrapper-->
-                <div class="stepper-wrapper">
-                    <!--begin::Icon-->
-                    <div class="stepper-icon w-40px h-40px">
-                        <i class="stepper-check fas fa-check"></i>
-                        <span class="stepper-number">2</span>
-                    </div>
-                    <!--end::Icon-->
-                    <!--begin::Label-->
-                    <div class="stepper-label">
-                        <h3 class="stepper-title">Second Step</h3>
-                        <div class="stepper-desc fw-semibold">Setup Account Details</div>
-                    </div>
-                    <!--end::Label-->
-                </div>
-                <!--end::Wrapper-->
-                <!--begin::Line-->
-                <div class="stepper-line h-40px"></div>
-                <!--end::Line-->
-            </div>
-            <!--end::Step 2-->
-
-            <!--begin::Step 3-->
-            <div class="stepper-item" data-kt-stepper-element="nav">
-                <!--begin::Wrapper-->
-                <div class="stepper-wrapper">
-                    <!--begin::Icon-->
-                    <div class="stepper-icon w-40px h-40px">
-                        <i class="stepper-check fas fa-check"></i>
-                        <span class="stepper-number">3</span>
-                    </div>
-                    <!--end::Icon-->
-                    <!--begin::Label-->
-                    <div class="stepper-label">
-                        <h3 class="stepper-title">Third Step</h3>
-                        <div class="stepper-desc fw-semibold">Setup Account Details</div>
-                    </div>
-                    <!--end::Label-->
-                </div>
-                <!--end::Wrapper-->
-                <!--begin::Line-->
-                <div class="stepper-line h-40px"></div>
-                <!--end::Line-->
-            </div>
-            <!--end::Step 3-->
-
-            <!--begin::Step 4-->
-            <div class="stepper-item" data-kt-stepper-element="nav">
-                <!--begin::Wrapper-->
-                <div class="stepper-wrapper">
-                    <!--begin::Icon-->
-                    <div class="stepper-icon w-40px h-40px">
-                        <i class="stepper-check fas fa-check"></i>
-                        <span class="stepper-number">4</span>
-                    </div>
-                    <!--end::Icon-->
-                    <!--begin::Label-->
-                    <div class="stepper-label">
-                        <h3 class="stepper-title">Fourth Step</h3>
-                        <div class="stepper-desc fw-semibold">Business Related Info</div>
-                    </div>
-                    <!--end::Label-->
-                </div>
-                <!--end::Wrapper-->
-                <!--begin::Line-->
-                <div class="stepper-line h-40px"></div>
-                <!--end::Line-->
-            </div>
-            <!--end::Step 4-->
-
-            <!--begin::Step 5-->
-            <div class="stepper-item" data-kt-stepper-element="nav">
-                <!--begin::Wrapper-->
-                <div class="stepper-wrapper">
-                    <!--begin::Icon-->
-                    <div class="stepper-icon w-40px h-40px">
-                        <i class="stepper-check fas fa-check"></i>
-                        <span class="stepper-number">5</span>
-                    </div>
-                    <!--end::Icon-->
-                    <!--begin::Label-->
-                    <div class="stepper-label">
-                        <h3 class="stepper-title">Fifth Step</h3>
-                        <div class="stepper-desc fw-semibold">Business Related Info</div>
-                    </div>
-                    <!--end::Label-->
-                </div>
-                <!--end::Wrapper-->
-                <!--begin::Line-->
-                <div class="stepper-line h-40px"></div>
-                <!--end::Line-->
-            </div>
-            <!--end::Step 5-->
-
-            <!--begin::Step 6-->
-            <div class="stepper-item" data-kt-stepper-element="nav">
-                <!--begin::Wrapper-->
-                <div class="stepper-wrapper">
-                    <!--begin::Icon-->
-                    <div class="stepper-icon w-40px h-40px">
-                        <i class="stepper-check fas fa-check"></i>
-                        <span class="stepper-number">6</span>
-                    </div>
-                    <!--end::Icon-->
-                    <!--begin::Label-->
-                    <div class="stepper-label">
-                        <h3 class="stepper-title">Sixth Step</h3>
-                        <div class="stepper-desc fw-semibold">Setup Account Details</div>
-                    </div>
-                    <!--end::Label-->
-                </div>
-                <!--end::Wrapper-->
-                <!--begin::Line-->
-                <div class="stepper-line h-40px"></div>
-                <!--end::Line-->
-            </div>
-            <!--end::Step 6-->
-
-
-            <!--begin::Step 7-->
-            <div class="stepper-item mark-completed" data-kt-stepper-element="nav">
-                <!--begin::Wrapper-->
-                <div class="stepper-wrapper">
-                    <!--begin::Icon-->
-                    <div class="stepper-icon w-40px h-40px">
-                        <i class="stepper-check fas fa-check"></i>
-                        <span class="stepper-number">7</span>
-                    </div>
-                    <!--end::Icon-->
-                    <!--begin::Label-->
-                    <div class="stepper-label">
-                        <h3 class="stepper-title">Completed</h3>
-                        <div class="stepper-desc fw-semibold">Woah, we are here</div>
-                    </div>
-                    <!--end::Label-->
-                </div>
-                <!--end::Wrapper-->
-            </div>
-            <!--end::Step 7-->
-        </div>
-        <!--end::Nav-->
-    </div>
-    <!--end::Wrapper-->
-</div>
-<!--begin::Aside-->
-<!--begin::Content-->
-<div class="card d-flex flex-row-fluid flex-center">
-    <!--begin::Form-->
-    <form class="card-body py-20 w-100 mw-xl-700px px-9" novalidate="novalidate" id="kt_create_account_form">
         <!--begin::Step 1-->
         <div class="current" data-kt-stepper-element="content">
+            @csrf
             <!--begin::Wrapper-->
             <div class="w-100">
                 <!--begin::Heading-->
@@ -360,46 +181,6 @@
 
         <!--begin::Step 5-->
         <div data-kt-stepper-element="content">
-            <!--begin::Wrapper-->
-            <div class="w-100">
-                <!--begin::Heading-->
-                <div class="pb-10 pb-lg-15">
-                    <!--begin::Title-->
-                    <h2 class="fw-bold text-dark">Business Details</h2>
-                    <!--end::Title-->
-                    <!--begin::Notice-->
-                    <div class="text-muted fw-semibold fs-6">If you need more info, please check out
-                        <a href="#" class="text-primary fw-bold">Help Page</a>.
-                    </div>
-                    <!--end::Notice-->
-                </div>
-                <!--end::Heading-->
-                <!--begin::Input group-->
-                <!-- Company Registered date Field -->
-                <div class="d-flex flex-column col-md-12 mb-8 fv-row">
-                    {!! Form::label('registered_date', 'Company Registered Date ', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
-                    {!! Form::text('registered_date', null, ['class' => 'form-control form-control-solid border', 'placeholder' => 'Enter Company Registered Date']) !!}
-                </div>
-
-                <!-- Company Localgovt Field -->
-                <div class="d-flex flex-column col-md-12 mb-8 fv-row">
-                    {!! Form::label('company_localgovt', 'Company Localgovt: ', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
-                    {!! Form::text('company_localgovt', null, ['class' => 'form-control form-control-solid border', 'placeholder' => 'Enter Company Local Government']) !!}
-                </div>
-
-                <!-- Company State Field -->
-                <div class="d-flex flex-column col-md-12 mb-8 fv-row">
-                    {!! Form::label('company_state', 'Company State: ', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
-                    {!! Form::text('company_state', null, ['class' => 'form-control form-control-solid border', 'placeholder' => 'Enter Company State']) !!}
-                </div>
-                <!--end::Input group-->
-            </div>
-            <!--end::Wrapper-->
-        </div>
-        <!--end::Step 5-->
-
-        <!--begin::Step 6-->
-        <div data-kt-stepper-element="content">
             <!--begin::Wrapper -->
             <div class="w-100">
                 <!--begin::Heading-->
@@ -411,47 +192,45 @@
                 <!--end::Heading-->
 
                 <!-- Business Area Field -->
-                <div class="d-flex flex-column col-md-6 mb-8 fv-row">
+                <div class="d-flex flex-column col-md-12 mb-8 fv-row">
                     {!! Form::label('business_area', 'Business Area: ', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
                     {!! Form::text('business_area', null, ['class' => 'form-control form-control-solid border', 'placeholder' => 'Enter Business Area']) !!}
                 </div>
 
                 <!-- Inspection Status Field -->
-                <div class="d-flex flex-column col-md-6 mb-8 fv-row">
+                <div class="d-flex flex-column col-md-12 mb-8 fv-row">
                     {!! Form::label('inspection_status', 'Inspection Status: ', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
                     {!! Form::text('inspection_status', null, ['class' => 'form-control form-control-solid border', 'placeholder' => 'Enter Inspection Status']) !!}
                 </div>
 
                 <!--  Status Field -->
-                <div class="d-flex flex-column col-md-6 mb-8 fv-row">
+                <div class="d-flex flex-column col-md-12 mb-8 fv-row">
                     {!! Form::label('status', 'Status: ', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
                     {!! Form::text('status', null, ['class' => 'form-control form-control-solid border', 'placeholder' => 'Enter Status']) !!}
                 </div>
             </div>
             <!--end::Wrapper-->
         </div>
-        <!--end::Step 6-->
+        <!--end::Step 5-->
 
-        <!--begin::Step 7-->
+        <!--begin::Step 6-->
         <div data-kt-stepper-element="content">
             <!--begin::Wrapper-->
             <div class="w-100">
                 <!--begin::Heading-->
                 <div class="pb-8 pb-lg-10">
                     <!--begin::Title-->
-                    <h2 class="fw-bold text-dark">Your Are Done!</h2>
+                    <h2 class="fw-bold text-dark">Congratulations, you've reached the final step!</h2>
                     <!--end::Title-->
                     <!--begin::Notice-->
-                    <div class="text-muted fw-semibold fs-6">If you need more info, please
-                        <a href="../../demo1/dist/authentication/layouts/corporate/sign-in.html" class="link-primary fw-bold">Sign In</a>.
-                    </div>
+
                     <!--end::Notice-->
                 </div>
                 <!--end::Heading-->
                 <!--begin::Body-->
                 <div class="mb-0">
                     <!--begin::Text-->
-                    <div class="fs-6 text-gray-600 mb-5">Writing headlines for blog posts is as much an art as it is a science and probably warrants its own post, but for all advise is with what works for your great & amazing audience.</div>
+                    <div class="fs-6 text-gray-600 mb-5">Thank you for completing the form! Your Employer has been successfully Created</div>
                     <!--end::Text-->
                     <!--begin::Alert-->
                     <!--begin::Notice-->
@@ -471,9 +250,13 @@
                         <div class="d-flex flex-stack flex-grow-1">
                             <!--begin::Content-->
                             <div class="fw-semibold">
-                                <h4 class="text-gray-900 fw-bold">We need your attention!</h4>
-                                <div class="fs-6 text-gray-700">To start using great tools, please,
-                                    <a href="../../demo1/dist/utilities/wizards/vertical.html" class="fw-bold">Create Team Platform</a>
+                                <h4 class="text-gray-900 fw-bold">🎉 Hooray! You've conquered the form wizard! 🎉</h4>
+                                <div class="fs-6 text-gray-700">
+                                    <p>Thank you for completing our form in style.</p>
+                                    <p>If all information submitted is correct, kindly click the submit button below!</p>
+                                    <div class="float-end">
+                                        {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
+                                    </div>
                                 </div>
                             </div>
                             <!--end::Content-->
@@ -487,7 +270,7 @@
             </div>
             <!--end::Wrapper-->
         </div>
-        <!--end::Step 7-->
+        <!--end::Step 6-->
 
         <!--begin::Actions-->
         <div class="d-flex flex-stack pt-10">
@@ -506,21 +289,6 @@
             <!--end::Wrapper-->
             <!--begin::Wrapper-->
             <div>
-                <button type="Submit" class="btn btn-lg btn-primary me-3" data-kt-stepper-action="submit">
-                    <span class="indicator-label">Submit
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
-                        <span class="svg-icon svg-icon-3 ms-2 me-0">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor" />
-                                <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor" />
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                    </span>
-                    <span class="indicator-progress">Please wait...
-                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                    </span>
-                </button>
                 <button type="button" class="btn btn-lg btn-primary" data-kt-stepper-action="next">Continue
                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                     <span class="svg-icon svg-icon-4 ms-1 me-0">
@@ -530,6 +298,9 @@
                         </svg>
                     </span>
                     <!--end::Svg Icon-->
+                    <span class="indicator-progress">Please wait...
+                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                    </span>
                 </button>
             </div>
             <!--end::Wrapper-->
@@ -539,7 +310,4 @@
             <!-- {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!} -->
             <a href="{{ route('employers.index') }}" class="btn btn-default"> Cancel </a>
         </div>
-    </form>
-    <!--end::Form-->
-</div>
-<!--end::Content-->
+   
