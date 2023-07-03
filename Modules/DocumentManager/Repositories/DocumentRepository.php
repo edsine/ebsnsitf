@@ -25,4 +25,10 @@ class DocumentRepository extends BaseRepository
         return Document::class;
     }
 
+    public function findByTitleAndFolderId($title, $folder_id)
+    {
+        $query = $this->model->newQuery();
+
+        return $query->where('title', '=', $title)->where('folder_id', '=', $folder_id);
+    }
 }
