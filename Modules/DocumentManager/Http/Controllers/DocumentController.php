@@ -50,6 +50,12 @@ class DocumentController extends AppBaseController
      */
     public function folderDocumentVersions(Request $request, $id)
     {
+        if (!checkPermission('read document')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+
         $document = $this->documentRepository->find($id);
 
         if (empty($document)) {
@@ -75,8 +81,14 @@ class DocumentController extends AppBaseController
      */
     public function store(CreateDocumentRequest $request)
     {
+        if (!checkPermission('create document')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
         $input = $request->all();
         $input['created_by'] = Auth::user()->id;
+
 
         // Check if folder exist
         $folder = $this->folderRepository->find($input['folder_id']);
@@ -84,6 +96,13 @@ class DocumentController extends AppBaseController
             Flash::error('Folder not found');
 
             return redirect(route('documents.index'));
+        }
+
+        // Check if document with title exist in the folder
+        $document_count_by_title_and_folder_id = $this->documentRepository->findByTitleAndFolderId($input['title'], $folder->id)->count();
+        if ($document_count_by_title_and_folder_id > 0) {
+            Flash::error('Title has been taken already');
+            return redirect()->back();
         }
 
         // Get folder and its parents. Create if path does not exist
@@ -147,8 +166,14 @@ class DocumentController extends AppBaseController
      */
     public function folderEditDocument($id, $folder_id)
     {
+        if (!checkPermission('update document')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
         $document = $this->documentRepository->find($id);
         $folder = $this->folderRepository->find($folder_id);
+
 
         if (empty($folder)) {
             Flash::error('Folder not found');
@@ -162,6 +187,8 @@ class DocumentController extends AppBaseController
             return redirect(route('folders.show', $folder_id));
         }
 
+        $this->checkDocumentPermissions($document, 'update');
+
         return view('documentmanager::folders.documents.edit')->with(['document' => $document, 'folder' => $folder]);
     }
 
@@ -170,8 +197,15 @@ class DocumentController extends AppBaseController
      */
     public function update($id, CreateDocumentVersionRequest $request)
     {
+        if (!checkPermission('update document')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
         $input = $request->all();
         $document = $this->documentRepository->find($id);
+
+        $this->checkDocumentPermissions($document, 'update');
 
         if (empty($document)) {
             Flash::error('Document not found');
@@ -180,6 +214,16 @@ class DocumentController extends AppBaseController
         }
 
         $documents_folder = $document->folder;
+
+        // Check if document with title exist in the folder
+        if ($document->title != $input['title']) {
+            $document_count_by_title_and_folder_id = $this->documentRepository->findByTitleAndFolderId($input['title'], $documents_folder->id)->count();
+            if ($document_count_by_title_and_folder_id > 0) {
+                Flash::error('Title has been taken already');
+                return redirect()->back();
+            }
+        }
+
         // Get folder and its parents. Create if path does not exist
         $path = "documents/";
 
@@ -233,7 +277,14 @@ class DocumentController extends AppBaseController
      */
     public function destroy($id)
     {
+        if (!checkPermission('delete document')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
         $document = $this->documentRepository->find($id);
+
+        $this->checkDocumentPermissions($document, 'delete');
 
         if (empty($document)) {
             Flash::error('Document not found');
@@ -246,5 +297,35 @@ class DocumentController extends AppBaseController
         Flash::success('Document deleted successfully.');
 
         return redirect()->back();
+    }
+
+    public function checkDocumentPermissions($document, $permission_type)
+    {
+        $user = Auth::user();
+        // Check if user is the creator
+        if ($document->created_by == $user->id) {
+            // Do nothing
+        }
+
+        // Check if user can view any document
+        else if (checkPermission("$permission_type any document")) {
+            // Do nothing
+        }
+
+        // Check if user can view any document in branch it belongs to
+        else if (checkPermission("$permission_type branch document")) {
+            // Check if document belongs to branch
+            if ($document->folder->branch_id != $user->staff->branch_id) {
+                // Check if user can view any document in department it belongs to
+                if (checkPermission("$permission_type department document")) {
+                    // Check if document belongs to department
+                    if ($document->folder->department_id !=  $user->staff->department_id) {
+                        Flash::error('Permission denied');
+
+                        return redirect()->back();
+                    }
+                }
+            }
+        }
     }
 }

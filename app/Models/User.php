@@ -60,4 +60,9 @@ class User extends Authenticatable implements Auditable
         }
         return $full_name;
     }
+
+    public function staff(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Staff::class);
+    }
 }
