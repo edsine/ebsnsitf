@@ -89,19 +89,20 @@ a:hover {
             <!-- <table id="tabulka_kariet1" class="table "> REMOVE DATA TABLE-->
             <table id="" class="table ">
                 <thead>
-                    <tr>
-                        <th>Employer</th>
-                        <th>ECS Number</th>
-                        <th>RC Number</th>
-                        <th>Bussiness Type</th>
-                        <th>Date Registered</th>
+                    <tr class="fw-bold text-muted bg-light">
+                        <th class="min-w-200px">Employer</th>
+                        <th class="min-w-200px">ECS Number</th>
+                        <th class="min-w-200px">RC Number</th>
+                        <th class="min-w-200px">Bussiness Type</th>
+                        <th class="min-w-200px">Date Registered</th>
 
 
-                        <th>Tag</th>
-                        <th>Status</th>
-                        <th>Manage</th>
+                        <th class="min-w-200px">Tag</th>
+                        <th class="min-w-200px">Status</th>
+                        <th class="min-w-200px">Manage</th>
 
-                    </tr>
+                    															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
                 </thead>
                 <tbody>
 
@@ -149,7 +150,8 @@ a:hover {
                                 </div>
                             </div>
                         </td>
-                    </tr>
+                    															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
 
                     <?php } ?>
                     
@@ -241,22 +243,23 @@ $currentPageRecords = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <h5 class="card-header" style="font-size: 30px;">Unapprove Employers</h5>
     <div class="card-body">
         <div class="table-responsive text-nowrap">
-            <table class="table">
+            <table class="table align-middle gs-0 gy-4">
                 <thead>
-                    <tr>
-                        <th>Employer</th>
-                        <th>ECS Number</th>
-                        <th>RC Number</th>
-                        <th>Bussiness Type</th>
-                        <th>Date Registered</th>
-                        <th>Tag</th>
-                        <th>Status</th>
-                        <th>Manage</th>
-                    </tr>
+                    <tr class="fw-bold text-muted bg-light">
+                        <th class="min-w-200px">Employer</th>
+                        <th class="min-w-200px">ECS Number</th>
+                        <th class="min-w-200px">RC Number</th>
+                        <th class="min-w-200px">Bussiness Type</th>
+                        <th class="min-w-200px">Date Registered</th>
+                        <th class="min-w-200px">Tag</th>
+                        <th class="min-w-200px">Status</th>
+                        <th class="min-w-200px">Manage</th>
+                    															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
                 </thead>
                 <tbody>
                     <?php foreach ($currentPageRecords as $row) { ?>
-                        <tr>
+                        <tr class="fw-bold text-muted bg-light">
                             <td>
                                 <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $row['company_name'] ?></strong>
                             </td>
@@ -289,7 +292,8 @@ $currentPageRecords = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     </div>
                                 </div>
                             </td>
-                        </tr>
+                        															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
                     <?php } ?>
                 </tbody>
             </table>

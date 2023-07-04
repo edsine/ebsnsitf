@@ -1,20 +1,20 @@
 <div class="card-body p-5">
     <div class="table-responsive">
-        <table class="table" id="employers-table">
+        <table class="table align-middle gs-0 gy-4" id="employers-table">
             <thead>
-            <tr>
-                <th>ECS Number</th>
-                <th>Company Name</th>
-                <th>Company Email</th>
-                <th>Address</th>
-                <th>Rc Number</th>
-                <th>Phone</th>
-                <th>Local Govt</th>
-                <th>State</th>
-                <th>Business Area</th>
-                <th>Inspection Status</th>
+            <tr class="fw-bold text-muted bg-light">
+                <th class="min-w-200px">ECS Number</th>
+                <th class="min-w-200px">Company Name</th>
+                <th class="min-w-200px">Company Email</th>
+                <th class="min-w-200px">Address</th>
+                <th class="min-w-200px">Rc Number</th>
+                <th class="min-w-200px">Phone</th>
+                <th class="min-w-200px">Local Govt</th>
+                <th class="min-w-200px">State</th>
+                <th class="min-w-200px">Business Area</th>
+                <th class="min-w-200px">Inspection Status</th>
 
-                <th colspan="3">Action</th>
+                <th class="min-w-120px" colspan="1">Action</th>
             </tr>
             </thead>
             <tbody>

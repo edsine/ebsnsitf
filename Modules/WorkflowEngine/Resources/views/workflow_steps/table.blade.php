@@ -1,20 +1,21 @@
 <div class="card-body p-5">
     <div class="table-responsive">
-        <table class="table" id="workflow-steps-table">
+        <table class="table align-middle gs-0 gy-4" id="workflow-steps-table">
             <thead>
-                <tr>
-                    <th>Workflow</th>
-                    <th>Step Order</th>
-                    <th>Parent Step</th>
-                    <th>Next Approved</th>
-                    <th>Next Rejected</th>
-                    <th>Actor Type</th>
-                    <th>Actor Role</th>
-                    <th>Step Activity</th>
-                    <th>Step Type</th>
-                    <th>Step Name</th>
-                    <th colspan="3">Action</th>
-                </tr>
+                <tr class="fw-bold text-muted bg-light">
+                    <th class="min-w-200px">Workflow</th>
+                    <th class="min-w-200px">Step Order</th>
+                    <th class="min-w-200px">Parent Step</th>
+                    <th class="min-w-200px">Next Approved</th>
+                    <th class="min-w-200px">Next Rejected</th>
+                    <th class="min-w-200px">Actor Type</th>
+                    <th class="min-w-200px">Actor Role</th>
+                    <th class="min-w-200px">Step Activity</th>
+                    <th class="min-w-200px">Step Type</th>
+                    <th class="min-w-200px">Step Name</th>
+                    <th class="min-w-120px" colspan="1">Action</th>
+                															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
             </thead>
             <tbody>
                 @foreach ($workflowSteps as $workflowStep)
@@ -48,7 +49,8 @@
                             </div>
                             {!! Form::close() !!}
                         </td>
-                    </tr>
+                    															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
                 @endforeach
             </tbody>
         </table>

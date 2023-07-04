@@ -223,7 +223,8 @@
                                         <th class="min-w-200px">REGISTERED EMPLOYEES</th>
                                         <th class="min-w-200px">INCOMPLETE EMPLOYEES</th>
                                         <th class="min-w-200px text-end rounded-end">ACTIONS</th>
-                                    </tr>
+                                    															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
                                 </thead>
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
@@ -249,7 +250,8 @@
                                             <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
                                             <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
                                         </td>
-                                    </tr>
+                                    															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
                                 </tbody>
                                 <!--end::Table body-->
                             </table>
@@ -270,12 +272,13 @@
                                         <th class="min-w-200px">REGISTERED EMPLOYEES</th>
                                         <th class="min-w-200px">INCOMPLETE EMPLOYEES</th>
                                         <th class="min-w-200px text-end rounded-end">ACTIONS</th>
-                                    </tr>
+                                    															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
                                 </thead>
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody>
-                                    <tr>
+                                    <tr class="fw-bold text-muted bg-light">
                                         <td>
                                             <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
                                             <span class="text-muted fw-semibold text-muted d-block fs-7">Pending</span>
@@ -296,7 +299,8 @@
                                             <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
                                             <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
                                         </td>
-                                    </tr>
+                                    															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
                                 </tbody>
                                 <!--end::Table body-->
                             </table>
@@ -317,12 +321,13 @@
                                         <th class="min-w-200px">REGISTERED EMPLOYEES</th>
                                         <th class="min-w-200px">INCOMPLETE EMPLOYEES</th>
                                         <th class="min-w-200px text-end rounded-end">ACTIONS</th>
-                                    </tr>
+                                    															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
                                 </thead>
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody>
-                                    <tr>
+                                    <tr class="fw-bold text-muted bg-light">
                                         <td>
                                             <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
                                             <span class="text-muted fw-semibold text-muted d-block fs-7">Pending</span>
@@ -343,7 +348,8 @@
                                             <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
                                             <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
                                         </td>
-                                    </tr>
+                                    															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
                                 </tbody>
                                 <!--end::Table body-->
                             </table>
@@ -364,12 +370,13 @@
                                         <th class="min-w-200px">REGISTERED EMPLOYEES</th>
                                         <th class="min-w-200px">INCOMPLETE EMPLOYEES</th>
                                         <th class="min-w-200px text-end rounded-end">ACTIONS</th>
-                                    </tr>
+                                    															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
                                 </thead>
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody>
-                                    <tr>
+                                    <tr class="fw-bold text-muted bg-light">
                                         <td>
                                             <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
                                             <span class="text-muted fw-semibold text-muted d-block fs-7">Pending</span>
@@ -390,7 +397,8 @@
                                             <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
                                             <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
                                         </td>
-                                    </tr>
+                                    															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
                                 </tbody>
                                 <!--end::Table body-->
                             </table>

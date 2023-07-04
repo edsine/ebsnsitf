@@ -99,7 +99,7 @@
   --bs-link-color: #009ef7;
   --bs-link-color-rgb: 0, 158, 247;
   --bs-link-decoration: none;
-  --bs-link-hover-color: #0095e8;
+  --bs-link-hover-color: #6eb27a;
   --bs-link-hover-color-rgb: 0, 149, 232;
   --bs-link-hover-decoration: none;
   --bs-code-color: #b93993;
@@ -28033,7 +28033,7 @@ textarea.form-control-lg {
   --bs-warning: #ffc700;
   --bs-danger: #f1416c;
   --bs-dark: #181C32;
-  --bs-primary-active: #0095e8;
+  --bs-primary-active: #6eb27a;
   --bs-secondary-active: #B5B5C3;
   --bs-light-active: #F4F4F4;
   --bs-success-active: #47be7d;
@@ -28180,7 +28180,7 @@ textarea.form-control-lg {
   --bs-danger: #f1416c;
   --bs-dark: #FFFFFF;
   --bs-secondary: #323248;
-  --bs-primary-active: #0095e8;
+  --bs-primary-active: #6eb27a;
   --bs-secondary-active: #474761;
   --bs-light-active: #323248;
   --bs-success-active: #47be7d;

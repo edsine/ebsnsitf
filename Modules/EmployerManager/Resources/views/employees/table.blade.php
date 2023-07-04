@@ -1,31 +1,32 @@
 <div class="card-body p-0">
     <div class="table-responsive">
-        <table class="table" id="employees-table">
+        <table class="table align-middle gs-0 gy-4" id="employees-table">
             <thead>
-            <tr>
-                <th>Employer Id</th>
-                <th>Last Name</th>
-                <th>First Name</th>
-                <th>Middle Name</th>
-                <th>Date Of Birth</th>
-                <th>Gender</th>
-                <th>Marital Status</th>
-                <th>Email</th>
-                <th>Employment Date</th>
-                <th>Address</th>
-                <th>Local Govt Area</th>
-                <th>State Of Origin</th>
-                <th>Phone Number</th>
-                <th>Means Of Identification</th>
-                <th>Identity Number</th>
-                <th>Identity Issue Date</th>
-                <th>Identity Expiry Date</th>
-                <th>Next Of Kin</th>
-                <th>Next Of Kin Phone</th>
-                <th>Monthly Renumeration</th>
-                <th>Status</th>
-                <th colspan="3">Action</th>
-            </tr>
+            <tr class="fw-bold text-muted bg-light">
+                <th class="min-w-200px">Employer Id</th>
+                <th class="min-w-200px">Last Name</th>
+                <th class="min-w-200px">First Name</th>
+                <th class="min-w-200px">Middle Name</th>
+                <th class="min-w-200px">Date Of Birth</th>
+                <th class="min-w-200px">Gender</th>
+                <th class="min-w-200px">Marital Status</th>
+                <th class="min-w-200px">Email</th>
+                <th class="min-w-200px">Employment Date</th>
+                <th class="min-w-200px">Address</th>
+                <th class="min-w-200px">Local Govt Area</th>
+                <th class="min-w-200px">State Of Origin</th>
+                <th class="min-w-200px">Phone Number</th>
+                <th class="min-w-200px">Means Of Identification</th>
+                <th class="min-w-200px">Identity Number</th>
+                <th class="min-w-200px">Identity Issue Date</th>
+                <th class="min-w-200px">Identity Expiry Date</th>
+                <th class="min-w-200px">Next Of Kin</th>
+                <th class="min-w-200px">Next Of Kin Phone</th>
+                <th class="min-w-200px">Monthly Renumeration</th>
+                <th class="min-w-200px">Status</th>
+                <th class="min-w-120px" colspan="1">Action</th>
+            															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
             </thead>
             <tbody>
             @foreach($employees as $employee)
@@ -66,7 +67,8 @@
                         </div>
                         {!! Form::close() !!}
                     </td>
-                </tr>
+                															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
             @endforeach
             </tbody>
         </table>
