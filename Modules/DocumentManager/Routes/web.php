@@ -31,6 +31,16 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('memos/memoVersions/{id}', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'memoVersions'])->name('memos.memoVersions.index');
 
+        Route::post('memos/assignToUsers', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'assignToUsers'])->name('memos.assignToUsers');
+
+        Route::post('memos/assignToDepartments', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'assignToDepartments'])->name('memos.assignToDepartments');
+
+        Route::get('memos/assignedUsers/{id}', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'assignedUsers'])->name('memos.assignedUsers');
+
+        Route::get('memos/assignedDepartments/{id}', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'assignedDepartments'])->name('memos.assignedDepartments');
+
+        Route::delete('memos/assignedUsers/delete/{user_id}/{memo_id}', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'deleteAssignedUser'])->name('memos.assignedUsers.destroy');
+
+        Route::delete('memos/assignedDepartments/delete/{department_id}/{memo_id}', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'deleteAssignedDepartment'])->name('memos.assignedDepartments.destroy');
     });
 });
-

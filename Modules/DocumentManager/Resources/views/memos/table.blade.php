@@ -7,6 +7,8 @@
                     <th>Description</th>
                     <th>Created By</th>
                     <th>Document URL</th>
+                    <th>Assign</th>
+                    <th>View Assignment</th>
                     <th colspan="3">Action</th>
                 </tr>
             </thead>
@@ -28,6 +30,16 @@
                         <td>{{ $memo->description }}</td>
                         <td>{{ $memo->createdBy ? $memo->createdBy->email : '' }}</td>
                         <td><a target="_blank" href="{{ asset($latestDocumentUrl) }}">View</a>
+                        </td>
+                        <td style="width: 120px;">
+                            <a class="open-modal-departments" href="#" data-toggle="modal"
+                                data-target="#assignToDepartmentsModal" data-memo={{ $memo->id }}>Departments</a>
+                            <a class="open-modal-users" href="#" data-toggle="modal"
+                                data-target="#assignToUsersModal" data-memo={{ $memo->id }}>Users</a>
+                        </td>
+                        <td style="width: 120px;">
+                            <a href="{{ route('memos.assignedDepartments', [$memo->id]) }}">Departments</a>
+                            <a href="{{ route('memos.assignedUsers', [$memo->id]) }}">Users</a>
                         </td>
                         <td style="width: 120px">
                             {!! Form::open(['route' => ['memos.destroy', $memo->id], 'method' => 'delete']) !!}
@@ -59,3 +71,28 @@
         </div>
     </div>
 </div>
+
+
+@include('documentmanager::memos.assign_to_departments_modal')
+@include('documentmanager::memos.assign_to_users_modal')
+
+
+@push('page_scripts')
+    {{-- @if ($errors->has('subject') || $errors->has('answer_1') || $errors->has('answer_2') || $errors->has('answer_3'))
+        <script>
+            $('#feedbackModal').modal();
+        </script>
+    @endif --}}
+
+    <script>
+        $(document).on("click", ".open-modal-users", function() {
+            let memoId = $(this).data('memo');
+            $(".modal-body #user_memo_id").val(memoId);
+        });
+
+        $(document).on("click", ".open-modal-departments", function() {
+            let memoId = $(this).data('memo');
+            $(".modal-body #department_memo_id").val(memoId);
+        });
+    </script>
+@endpush

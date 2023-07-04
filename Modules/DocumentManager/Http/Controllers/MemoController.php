@@ -4,19 +4,29 @@ namespace Modules\DocumentManager\Http\Controllers;
 
 use Flash;
 use Illuminate\Http\Request;
+use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AppBaseController;
+use Modules\Shared\Repositories\DepartmentRepository;
 use Modules\DocumentManager\Repositories\MemoRepository;
 use Modules\DocumentManager\Repositories\FolderRepository;
 use Modules\DocumentManager\Http\Requests\CreateMemoRequest;
 use Modules\DocumentManager\Http\Requests\UpdateMemoRequest;
 use Modules\DocumentManager\Repositories\DocumentRepository;
+use Modules\DocumentManager\Repositories\MemoHasUserRepository;
 use Modules\DocumentManager\Repositories\DocumentVersionRepository;
+use Modules\DocumentManager\Repositories\MemoHasDepartmentRepository;
 
 class MemoController extends AppBaseController
 {
     /** @var MemoRepository $memoRepository*/
     private $memoRepository;
+
+    /** @var MemoHasDepartmentRepository $memoHasDepartmentRepository*/
+    private $memoHasDepartmentRepository;
+
+    /** @var MemoHasUserRepository $memoHasUserRepository*/
+    private $memoHasUserRepository;
 
     /** @var DocumentRepository $documentRepository*/
     private $documentRepository;
@@ -27,13 +37,23 @@ class MemoController extends AppBaseController
     /** @var FolderRepository $folderRepository*/
     private $folderRepository;
 
+    /** @var $userRepository UserRepository */
+    private $userRepository;
 
-    public function __construct(MemoRepository $memoRepo, DocumentRepository $documentRepo, FolderRepository $folderRepo, DocumentVersionRepository $documentVersionRepo)
+    /** @var DepartmentRepository $departmentRepository*/
+    private $departmentRepository;
+
+
+    public function __construct(MemoRepository $memoRepo, MemoHasDepartmentRepository $memoHasDepartmentRepo, MemoHasUserRepository $memoHasUserRepo,  DocumentRepository $documentRepo, FolderRepository $folderRepo, DocumentVersionRepository $documentVersionRepo, UserRepository $userRepo, DepartmentRepository $departmentRepo)
     {
         $this->memoRepository = $memoRepo;
+        $this->memoHasDepartmentRepository = $memoHasDepartmentRepo;
+        $this->memoHasUserRepository = $memoHasUserRepo;
         $this->documentRepository = $documentRepo;
         $this->documentVersionRepository = $documentVersionRepo;
         $this->folderRepository = $folderRepo;
+        $this->userRepository = $userRepo;
+        $this->departmentRepository = $departmentRepo;
     }
 
     /**
@@ -145,6 +165,206 @@ class MemoController extends AppBaseController
         Flash::success('Memo saved successfully.');
 
         return redirect(route('memos.index'));
+    }
+
+    /**
+     * Assign memo to users
+     */
+
+    public function assignToUsers(Request $request)
+    {
+        $logged_in_user = Auth::user();
+        $input = $request->all();
+        $memo_id = $input['memo_id'];
+        $users = $input['users'];
+
+        if (!checkPermission('assign memo to user')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+        $memo = $this->memoRepository->find($memo_id);
+
+        if (empty($memo)) {
+            Flash::error('Memo not found');
+
+            return redirect(route('memos.index'));
+        }
+        // dd($input);
+        foreach ($users as $key => $user_id) {
+            $input_fields['user_id'] = $user_id;
+            $input_fields['memo_id'] = $memo_id;
+            $input_fields['assigned_by'] = $logged_in_user->id;
+
+            // Check if user exists
+            $user = $this->userRepository->find($user_id);
+            if (empty($user)) {
+                continue;
+            }
+
+            // Check if entry with user_id and memo_id exists
+            $memo_has_user = $this->memoHasUserRepository->findByUserAndMemo($user_id, $memo_id);
+            if (!empty($memo_has_user)) {
+                continue;
+            }
+
+            $this->memoHasUserRepository->create($input_fields);
+        }
+
+        Flash::success('Memo assigned successfully to user(s).');
+
+        return redirect(route('memos.index'));
+    }
+
+    /**
+     * Assign memo to departments
+     */
+
+    public function assignToDepartments(Request $request)
+    {
+        $logged_in_user = Auth::user();
+        $input = $request->all();
+        $memo_id = $input['memo_id'];
+        $departments = $input['departments'];
+
+        if (!checkPermission('assign memo to department')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+        $memo = $this->memoRepository->find($memo_id);
+
+        if (empty($memo)) {
+            Flash::error('Memo not found');
+
+            return redirect(route('memos.index'));
+        }
+
+        foreach ($departments as $key => $department_id) {
+            $input_fields['department_id'] = $department_id;
+            $input_fields['memo_id'] = $memo_id;
+            $input_fields['assigned_by'] = $logged_in_user->id;
+
+            // Check if department exists
+            $department = $this->departmentRepository->find($department_id);
+            if (empty($department)) {
+                continue;
+            }
+
+            // Check if entry with user_id and memo_id exists
+            $memo_has_department = $this->memoHasDepartmentRepository->findByDepartmentAndMemo($department_id, $memo_id);
+            if (!empty($memo_has_department)) {
+                continue;
+            }
+
+            $this->memoHasDepartmentRepository->create($input_fields);
+        }
+
+        Flash::success('Memo assigned successfully to department(s).');
+
+        return redirect(route('memos.index'));
+    }
+
+    /**
+     * Display a listing of the assigned users to a Memo.
+     */
+    public function assignedUsers(Request $request, $id)
+    {
+        if (!checkPermission('read user-memo assignment')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+        $memo = $this->memoRepository->find($id);
+
+        if (empty($memo)) {
+            Flash::error('Memo not found');
+
+            return redirect(route('memos.index'));
+        }
+
+        $assigned_users = $memo->assignedUsers()->paginate();
+
+        return view('documentmanager::memos.assigned_users')
+            ->with(['memo' => $memo, 'assigned_users' => $assigned_users]);
+    }
+
+    /**
+     * Display a listing of the assigned departments to a Memo.
+     */
+    public function assignedDepartments(Request $request, $id)
+    {
+        if (!checkPermission('read department-memo assignment')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+        $memo = $this->memoRepository->find($id);
+
+        if (empty($memo)) {
+            Flash::error('Memo not found');
+
+            return redirect(route('memos.index'));
+        }
+
+        $assigned_departments = $memo->assignedDepartments()->paginate();
+
+        return view('documentmanager::memos.assigned_departments')
+            ->with(['memo' => $memo, 'assigned_departments' => $assigned_departments]);
+    }
+
+    /**
+     * Remove the specified department assignment from storage.
+     *
+     * @throws \Exception
+     */
+    public function deleteAssignedUser($user_id, $memo_id)
+    {
+        if (!checkPermission('delete user-memo assignment')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+        $memo_has_user = $this->memoHasUserRepository->findByUserAndMemo($user_id, $memo_id);
+
+        if (empty($memo_has_user)) {
+            Flash::error('Assignment not found');
+
+            return redirect(route('memos.assignedUsers', $memo_id));
+        }
+
+        $this->memoHasUserRepository->delete($memo_has_user->id);
+
+        Flash::success('Assignment deleted successfully.');
+
+        return redirect(route('memos.assignedUsers', $memo_id));
+    }
+
+    /**
+     * Remove the specified department assignment from storage.
+     *
+     * @throws \Exception
+     */
+    public function deleteAssignedDepartment($department_id, $memo_id)
+    {
+        if (!checkPermission('delete department-memo assignment')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+        $memo_has_department = $this->memoHasDepartmentRepository->findByDepartmentAndMemo($department_id, $memo_id);
+
+        if (empty($memo_has_department)) {
+            Flash::error('Assignment not found');
+
+            return redirect(route('memos.assignedDepartments', $memo_id));
+        }
+
+        $this->memoHasDepartmentRepository->delete($memo_has_department->id);
+
+        Flash::success('Assignment deleted successfully.');
+
+        return redirect(route('memos.assignedDepartments', $memo_id));
     }
 
     /**

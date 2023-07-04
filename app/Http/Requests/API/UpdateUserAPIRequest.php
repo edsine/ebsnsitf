@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\API\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use InfyOm\Generator\Request\APIRequest;
 
-class CreateUserRequest extends FormRequest
+class UpdateUserAPIRequest extends APIRequest
 {
 
     /**
@@ -24,11 +24,12 @@ class CreateUserRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route('user');
         $rules = [
-            'first_name'                  => 'required',
-            'email'                 => 'required|email|unique:users,email',
-            'password'              => 'required|confirmed',
-            'roles'               => 'required'
+            'first_name'     => 'required',
+            //'email'    => 'required|email|unique:users,email,'.$id,
+            'password' => 'confirmed',
+            'roles'  => 'required'
         ];
 
         return $rules;

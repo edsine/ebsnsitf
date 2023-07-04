@@ -95,4 +95,14 @@ use OwenIt\Auditing\Contracts\Auditable;
     {
         return $this->belongsTo(\Modules\DocumentManager\Models\Document::class, 'document_id', 'id');
     }
+
+    public function assignedUsers(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(\Modules\DocumentManager\Models\MemoHasUser::class);
+    }
+
+    public function assignedDepartments(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(\Modules\DocumentManager\Models\MemoHasDepartment::class);
+    }
 }
