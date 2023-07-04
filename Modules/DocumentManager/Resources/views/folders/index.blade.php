@@ -201,7 +201,8 @@
                 <td></td>
                 <td></td>
                 <td></td>
-            </tr>
+            															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
         </table>
         <!--end::Upload template-->
         <!--begin::Rename template-->

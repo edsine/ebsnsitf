@@ -129,19 +129,20 @@
                     <div class="table-responsive col-md-12">
                         <table class="table table-striped table-bordered" id="table">
                             <thead class="no-border">
-                            <tr>
-                                <th>Field Name</th>
-                                <th>DB Type</th>
-                                <th>Validations</th>
-                                <th>Html Type</th>
+                            <tr class="fw-bold text-muted bg-light">
+                                <th class="min-w-200px">Field Name</th>
+                                <th class="min-w-200px">DB Type</th>
+                                <th class="min-w-200px">Validations</th>
+                                <th class="min-w-200px">Html Type</th>
                                 <th style="width: 68px">Primary</th>
                                 <th style="width: 80px">Is Foreign</th>
                                 <th style="width: 87px">Searchable</th>
                                 <th style="width: 63px">Fillable</th>
                                 <th style="width: 65px">In Form</th>
                                 <th style="width: 67px">In Index</th>
-                                <th></th>
-                            </tr>
+                                <th class="min-w-200px"></th>
+                            															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
                             </thead>
                             <tbody id="container" class="no-border-x no-border-y ui-sortable">
 
@@ -169,13 +170,14 @@
                     <div class="table-responsive col-md-12" id="relationShip" style="margin-top:35px;display: none">
                         <table class="table table-striped table-bordered" id="table">
                             <thead class="no-border">
-                            <tr>
-                                <th>Relation Type</th>
-                                <th>Foreign Model<span class="required">*</span></th>
-                                <th>Foreign Key</th>
-                                <th>Local Key</th>
-                                <th></th>
-                            </tr>
+                            <tr class="fw-bold text-muted bg-light">
+                                <th class="min-w-200px">Relation Type</th>
+                                <th class="min-w-200px">Foreign Model<span class="required">*</span></th>
+                                <th class="min-w-200px">Foreign Key</th>
+                                <th class="min-w-200px">Local Key</th>
+                                <th class="min-w-200px"></th>
+                            															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
                             </thead>
                             <tbody id="rsContainer" class="no-border-x no-border-y ui-sortable">
 
@@ -348,9 +350,11 @@
         });
 
         $(document).ready(function () {
-            var htmlStr = '<tr class="item" style="display: table-row;"></tr>';
+            var htmlStr = '<tr class="item" style="display: table-row;">															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>';
             var commonComponent = $(htmlStr).filter("tr").load('{{ route('io_field_template') }}');
-            var relationStr = '<tr class="relationItem" style="display: table-row;"></tr>';
+            var relationStr = '<tr class="relationItem" style="display: table-row;">															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>';
             var relationComponent = $(relationStr).filter("tr").load('{{ route('io_relation_field_template') }}');
 
             $("#btnAdd").on("click", function () {

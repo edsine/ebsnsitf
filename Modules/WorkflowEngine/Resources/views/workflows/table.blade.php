@@ -1,12 +1,13 @@
 <div class="card-body p-5">
     <div class="table-responsive">
-        <table class="table" id="workflows-table">
+        <table class="table align-middle gs-0 gy-4" id="workflows-table">
             <thead>
-            <tr>
-                <th>Workflow Name</th>
-                <th>Workflow Type</th>
-                <th colspan="3">Action</th>
-            </tr>
+            <tr class="fw-bold text-muted bg-light">
+                <th class="min-w-200px">Workflow Name</th>
+                <th class="min-w-200px">Workflow Type</th>
+                <th class="min-w-120px" colspan="1">Action</th>
+            															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
             </thead>
             <tbody>
             @foreach($workflows as $workflow)
@@ -28,7 +29,8 @@
                         </div>
                         {!! Form::close() !!}
                     </td>
-                </tr>
+                															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
             @endforeach
             </tbody>
         </table>

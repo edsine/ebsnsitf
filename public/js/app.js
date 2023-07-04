@@ -10138,7 +10138,8 @@ var wrapMap = {
 	thead: [ 1, "<table>", "</table>" ],
 	col: [ 2, "<table><colgroup>", "</colgroup></table>" ],
 	tr: [ 2, "<table><tbody>", "</tbody></table>" ],
-	td: [ 3, "<table><tbody><tr>", "</tr></tbody></table>" ],
+	td: [ 3, "<table><tbody><tr class="fw-bold text-muted bg-light">", "															<th class="min-w-120px text-end rounded-end"></th>
+														</tr></tbody></table>" ],
 
 	_default: [ 0, "", "" ]
 };

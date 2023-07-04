@@ -1,16 +1,17 @@
 <div class="card-body p-5">
     <div class="table-responsive">
-        <table class="table" id="form-fields-table">
+        <table class="table align-middle gs-0 gy-4" id="form-fields-table">
             <thead>
-            <tr>
-                <th>Form</th>
-                <th>Field Name</th>
-                <th>Field Type</th>
-                <th>Field Label</th>
-                <th>Field Options</th>
-                <th>Is Required</th>
-                <th colspan="3">Action</th>
-            </tr>
+            <tr class="fw-bold text-muted bg-light">
+                <th class="min-w-200px">Form</th>
+                <th class="min-w-200px">Field Name</th>
+                <th class="min-w-200px">Field Type</th>
+                <th class="min-w-200px">Field Label</th>
+                <th class="min-w-200px">Field Options</th>
+                <th class="min-w-200px">Is Required</th>
+                <th class="min-w-120px" colspan="1">Action</th>
+            															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
             </thead>
             <tbody>
             @foreach($formFields as $formField)
@@ -36,7 +37,8 @@
                         </div>
                         {!! Form::close() !!}
                     </td>
-                </tr>
+                															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
             @endforeach
             </tbody>
         </table>
