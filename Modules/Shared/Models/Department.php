@@ -79,4 +79,9 @@ use OwenIt\Auditing\Contracts\Auditable;
     {
         return $this->belongsTo(\Modules\Shared\Models\Branch::class, 'branch_id', 'id');
     }
+
+    public function staff(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(staff::class);
+    }
 }

@@ -12,6 +12,8 @@ use Modules\DocumentManager\Repositories\MemoRepository;
 use Modules\DocumentManager\Repositories\FolderRepository;
 use Modules\DocumentManager\Http\Requests\CreateMemoRequest;
 use Modules\DocumentManager\Http\Requests\UpdateMemoRequest;
+use Modules\DocumentManager\Notifications\MemoAssignedToDepartment;
+use Modules\DocumentManager\Notifications\MemoAssignedToUser;
 use Modules\DocumentManager\Repositories\DocumentRepository;
 use Modules\DocumentManager\Repositories\MemoHasUserRepository;
 use Modules\DocumentManager\Repositories\DocumentVersionRepository;
@@ -209,6 +211,11 @@ class MemoController extends AppBaseController
             }
 
             $this->memoHasUserRepository->create($input_fields);
+
+            try {
+                $user->notify(new MemoAssignedToUser($memo));
+            } catch (\Throwable $th) {
+            }
         }
 
         Flash::success('Memo assigned successfully to user(s).');
@@ -258,6 +265,7 @@ class MemoController extends AppBaseController
             }
 
             $this->memoHasDepartmentRepository->create($input_fields);
+
         }
 
         Flash::success('Memo assigned successfully to department(s).');
