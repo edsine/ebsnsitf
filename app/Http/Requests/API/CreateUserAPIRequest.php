@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\API\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use InfyOm\Generator\Request\APIRequest;
 
-class CreateUserRequest extends FormRequest
+class CreateUserAPIRequest extends APIRequest
 {
 
     /**
