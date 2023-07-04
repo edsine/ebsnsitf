@@ -23,6 +23,13 @@ class MemoHasUserRepository extends BaseRepository
         return MemoHasUser::class;
     }
 
+    public function findByUser($user_id)
+    {
+        $query = $this->model->newQuery();
+
+        return $query->where('user_id', '=', $user_id);
+    }
+
     public function findByUserAndMemo($user_id, $memo_id)
     {
         $query = $this->model->newQuery();

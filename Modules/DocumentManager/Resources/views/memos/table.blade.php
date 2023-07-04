@@ -9,6 +9,7 @@
                     <th>Document URL</th>
                     <th>Assign</th>
                     <th>View Assignment</th>
+                    <th>Created At</th>
                     <th colspan="3">Action</th>
                 </tr>
             </thead>
@@ -41,6 +42,7 @@
                             <a href="{{ route('memos.assignedDepartments', [$memo->id]) }}">Departments</a>
                             <a href="{{ route('memos.assignedUsers', [$memo->id]) }}">Users</a>
                         </td>
+                        <td>{{$memo->created_at}}</td>
                         <td style="width: 120px">
                             {!! Form::open(['route' => ['memos.destroy', $memo->id], 'method' => 'delete']) !!}
                             <div class='btn-group'>

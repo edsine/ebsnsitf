@@ -31,6 +31,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('memos/memoVersions/{id}', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'memoVersions'])->name('memos.memoVersions.index');
 
+        Route::get('memos/assignedToUser/index', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'viewMemosAssignedToUser'])->name('memos.assignedToUser');
+
         Route::post('memos/assignToUsers', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'assignToUsers'])->name('memos.assignToUsers');
 
         Route::post('memos/assignToDepartments', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'assignToDepartments'])->name('memos.assignToDepartments');

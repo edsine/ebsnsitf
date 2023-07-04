@@ -76,6 +76,18 @@ class MemoController extends AppBaseController
     }
 
     /**
+     * Display a listing of the Memos assigned to a specific user.
+     */
+    public function viewMemosAssignedToUser()
+    {
+        $user = Auth::user();
+        $memos_has_user = $this->memoHasUserRepository->findByUser($user->id)->paginate(10);
+
+        return view('documentmanager::memos.memos_assigned_to_user')
+            ->with(['user' => $user, 'memos_has_user' => $memos_has_user]);
+    }
+
+    /**
      * Show the form for creating a new Memo.
      */
     public function create()
@@ -265,7 +277,6 @@ class MemoController extends AppBaseController
             }
 
             $this->memoHasDepartmentRepository->create($input_fields);
-
         }
 
         Flash::success('Memo assigned successfully to department(s).');
