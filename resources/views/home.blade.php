@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container-fluid">
     <!--begin::Row-->
     <div class="row g-5 g-xl-8 pt-5">

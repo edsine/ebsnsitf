@@ -27,8 +27,22 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('documents', Modules\DocumentManager\Http\Controllers\DocumentController::class);
 
-        Route::get('documents/documentVersions/{id}', [Modules\DocumentManager\Http\Controllers\DocumentController::class, 'documentVersions'])->name('documents.documentVersions.index');
+        Route::resource('memos', Modules\DocumentManager\Http\Controllers\MemoController::class);
 
-        Route::resource('documentVersions', Modules\DocumentManager\Http\Controllers\DocumentVersionController::class);
+        Route::get('memos/memoVersions/{id}', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'memoVersions'])->name('memos.memoVersions.index');
+
+        Route::get('memos/assignedToUser/index', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'viewMemosAssignedToUser'])->name('memos.assignedToUser');
+
+        Route::post('memos/assignToUsers', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'assignToUsers'])->name('memos.assignToUsers');
+
+        Route::post('memos/assignToDepartments', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'assignToDepartments'])->name('memos.assignToDepartments');
+
+        Route::get('memos/assignedUsers/{id}', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'assignedUsers'])->name('memos.assignedUsers');
+
+        Route::get('memos/assignedDepartments/{id}', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'assignedDepartments'])->name('memos.assignedDepartments');
+
+        Route::delete('memos/assignedUsers/delete/{user_id}/{memo_id}', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'deleteAssignedUser'])->name('memos.assignedUsers.destroy');
+
+        Route::delete('memos/assignedDepartments/delete/{department_id}/{memo_id}', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'deleteAssignedDepartment'])->name('memos.assignedDepartments.destroy');
     });
 });
