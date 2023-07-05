@@ -1,19 +1,20 @@
 <div class="card-body p-5">
     <div class="table-responsive">
-        <table class="table" id="{{ $config->modelNames->dashedPlural }}-table">
+        <table class="table align-middle gs-0 gy-4" id="{{ $config->modelNames->dashedPlural }}-table">
             <thead>
-            <tr>
+            <tr class="fw-bold text-muted bg-light">
                 {!! $fieldHeaders !!}
 @if($config->options->localized)
                 <th colspan="3">@lang('crud.action')</th>
 @else
-                <th colspan="3">Action</th>
+                <th class="min-w-120px" colspan="1">Action</th>
 @endif
-            </tr>
+            															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
             </thead>
             <tbody>
             @@foreach(${{ $config->modelNames->camelPlural }} as ${{ $config->modelNames->camel }})
-                <tr>
+                <tr class="fw-bold text-muted bg-light">
                     {!! $fieldBody !!}
                     <td  style="width: 120px">
                         @{!! Form::open(['route' => ['{{ $config->prefixes->getRoutePrefixWith('.') }}{{ $config->modelNames->camelPlural }}.destroy', ${{ $config->modelNames->camel }}->{{ $config->primaryName }}], 'method' => 'delete']) !!}
@@ -30,7 +31,8 @@
                         </div>
                         @{!! Form::close() !!}
                     </td>
-                </tr>
+                															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
             @@endforeach
             </tbody>
         </table>

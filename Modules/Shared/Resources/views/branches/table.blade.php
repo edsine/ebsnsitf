@@ -1,20 +1,21 @@
 <div class="card-body p-5">
     <div class="table-responsive">
-        <table class="table" id="branches-table">
+        <table class="table align-middle gs-0 gy-4" id="branches-table">
             <thead>
-                <tr>
-                    <th>Branch Name</th>
-                    <th>Branch Region</th>
-                    <th>Branch Code</th>
-                    <th>Last Ecsnumber</th>
-                    <th>Highest Rank</th>
-                    <th>Staff Strength</th>
-                    <th>Managing Id</th>
-                    <th>Branch Email</th>
-                    <th>Branch Phone</th>
-                    <th>Branch Address</th>
-                    <th colspan="3">Action</th>
-                </tr>
+                <tr class="fw-bold text-muted bg-light">
+                    <th class="min-w-200px">Branch Name</th>
+                    <th class="min-w-200px">Branch Region</th>
+                    <th class="min-w-200px">Branch Code</th>
+                    <th class="min-w-200px">Last Ecsnumber</th>
+                    <th class="min-w-200px">Highest Rank</th>
+                    <th class="min-w-200px">Staff Strength</th>
+                    <th class="min-w-200px">Managing Id</th>
+                    <th class="min-w-200px">Branch Email</th>
+                    <th class="min-w-200px">Branch Phone</th>
+                    <th class="min-w-200px">Branch Address</th>
+                    <th class="min-w-120px" colspan="1">Action</th>
+                															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
             </thead>
             <tbody>
                 @foreach ($branches as $branch)
@@ -46,7 +47,8 @@
                             </div>
                             {!! Form::close() !!}
                         </td>
-                    </tr>
+                    															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
                 @endforeach
             </tbody>
         </table>

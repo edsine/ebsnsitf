@@ -1,13 +1,14 @@
 <div class="card-body p-5">
     <div class="table-responsive">
-        <table class="table" id="departments-table">
+        <table class="table align-middle gs-0 gy-4" id="departments-table">
             <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Branch</th>
-                <th colspan="3">Action</th>
-            </tr>
+            <tr class="fw-bold text-muted bg-light">
+                <th class="min-w-200px">Name</th>
+                <th class="min-w-200px">Description</th>
+                <th class="min-w-200px">Branch</th>
+                <th class="min-w-120px" colspan="1">Action</th>
+            															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
             </thead>
             <tbody>
             @foreach($departments as $department)
@@ -30,7 +31,8 @@
                         </div>
                         {!! Form::close() !!}
                     </td>
-                </tr>
+                															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
             @endforeach
             </tbody>
         </table>

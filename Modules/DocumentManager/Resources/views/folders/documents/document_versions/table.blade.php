@@ -1,13 +1,14 @@
 <div class="card-body p-5">
     <div class="table-responsive">
-        <table class="table" id="document-versions-table">
+        <table class="table align-middle gs-0 gy-4" id="document-versions-table">
             <thead>
-            <tr>
-                <th>Version Number</th>
-                <th>Document Url</th>
-                <th>Created By</th>
-                <th colspan="3">Action</th>
-            </tr>
+            <tr class="fw-bold text-muted bg-light">
+                <th class="min-w-200px">Version Number</th>
+                <th class="min-w-200px">Document Url</th>
+                <th class="min-w-200px">Created By</th>
+                <th class="min-w-120px" colspan="1">Action</th>
+            															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
             </thead>
             <tbody>
             @foreach($documentVersions as $documentVersion)
@@ -23,7 +24,8 @@
                             </a>
                         </div>
                     </td>
-                </tr>
+                															<th class="min-w-120px text-end rounded-end"></th>
+														</tr>
             @endforeach
             </tbody>
         </table>

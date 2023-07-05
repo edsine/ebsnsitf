@@ -66433,7 +66433,7 @@ tinymce.IconManager.add('default', {
       var html = '<table data-mce-id="mce" style="width: 100%">';
       html += '<tbody>';
       for (var y = 0; y < rows; y++) {
-        html += '<tr>';
+        html += '<tr class="fw-bold text-muted bg-light">';
         for (var x = 0; x < cols; x++) {
           html += '<td><br></td>';
         }
