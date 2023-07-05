@@ -5,7 +5,7 @@
             <tr class="fw-bold text-muted bg-light">
                 <th class="min-w-200px">Actor Type</th>
                 <th class="min-w-120px" colspan="1">Action</th>
-            															<th class="min-w-120px text-end rounded-end"></th>
+            															<th class="min-w-200px text-end rounded-end"></th>
 														</tr>
             </thead>
             <tbody>
@@ -27,7 +27,7 @@
                         </div>
                         {!! Form::close() !!}
                     </td>
-                															<th class="min-w-120px text-end rounded-end"></th>
+                															<th class="min-w-200px text-end rounded-end"></th>
 														</tr>
             @endforeach
             </tbody>

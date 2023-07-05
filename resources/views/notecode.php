@@ -101,7 +101,7 @@ a:hover {
                         <th class="min-w-200px">Status</th>
                         <th class="min-w-200px">Manage</th>
 
-                    															<th class="min-w-120px text-end rounded-end"></th>
+                    															<th class="min-w-200px text-end rounded-end"></th>
 														</tr>
                 </thead>
                 <tbody>
@@ -150,7 +150,7 @@ a:hover {
                                 </div>
                             </div>
                         </td>
-                    															<th class="min-w-120px text-end rounded-end"></th>
+                    															<th class="min-w-200px text-end rounded-end"></th>
 														</tr>
 
                     <?php } ?>
@@ -254,7 +254,7 @@ $currentPageRecords = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <th class="min-w-200px">Tag</th>
                         <th class="min-w-200px">Status</th>
                         <th class="min-w-200px">Manage</th>
-                    															<th class="min-w-120px text-end rounded-end"></th>
+                    															<th class="min-w-200px text-end rounded-end"></th>
 														</tr>
                 </thead>
                 <tbody>
@@ -292,7 +292,7 @@ $currentPageRecords = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     </div>
                                 </div>
                             </td>
-                        															<th class="min-w-120px text-end rounded-end"></th>
+                        															<th class="min-w-200px text-end rounded-end"></th>
 														</tr>
                     <?php } ?>
                 </tbody>

@@ -141,7 +141,7 @@
                                 <th style="width: 65px">In Form</th>
                                 <th style="width: 67px">In Index</th>
                                 <th class="min-w-200px"></th>
-                            															<th class="min-w-120px text-end rounded-end"></th>
+                            															<th class="min-w-200px text-end rounded-end"></th>
 														</tr>
                             </thead>
                             <tbody id="container" class="no-border-x no-border-y ui-sortable">
@@ -176,7 +176,7 @@
                                 <th class="min-w-200px">Foreign Key</th>
                                 <th class="min-w-200px">Local Key</th>
                                 <th class="min-w-200px"></th>
-                            															<th class="min-w-120px text-end rounded-end"></th>
+                            															<th class="min-w-200px text-end rounded-end"></th>
 														</tr>
                             </thead>
                             <tbody id="rsContainer" class="no-border-x no-border-y ui-sortable">
@@ -350,10 +350,10 @@
         });
 
         $(document).ready(function () {
-            var htmlStr = '<tr class="item" style="display: table-row;">															<th class="min-w-120px text-end rounded-end"></th>
+            var htmlStr = '<tr class="item" style="display: table-row;">															<th class="min-w-200px text-end rounded-end"></th>
 														</tr>';
             var commonComponent = $(htmlStr).filter("tr").load('{{ route('io_field_template') }}');
-            var relationStr = '<tr class="relationItem" style="display: table-row;">															<th class="min-w-120px text-end rounded-end"></th>
+            var relationStr = '<tr class="relationItem" style="display: table-row;">															<th class="min-w-200px text-end rounded-end"></th>
 														</tr>';
             var relationComponent = $(relationStr).filter("tr").load('{{ route('io_relation_field_template') }}');
 
