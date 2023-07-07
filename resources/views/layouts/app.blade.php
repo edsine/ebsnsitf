@@ -111,10 +111,7 @@
     <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
-<<<<<<< HEAD
-=======
     <script src="{{ asset('assets/js/custom/utilities/modals/create-account.js') }}"></script>
->>>>>>> origin/main
 
     @stack('third_party_scripts')
 
