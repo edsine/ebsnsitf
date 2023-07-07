@@ -179,7 +179,7 @@
 </div>
 <div id="kt_app_content" class="app-content flex-column-fluid">
     <!--begin::Content container-->
-    <div id="kt_app_content_container" class="app-container">
+    <div id="kt_app_content_container" class="app-container container-xxl">
         <!--begin::Tables Widget 12-->
         <div class="card mb-5 mb-xl-8">
             <!--begin::Header-->

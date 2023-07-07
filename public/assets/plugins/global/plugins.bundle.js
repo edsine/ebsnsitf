@@ -4948,7 +4948,7 @@ var wrapMap = {
 	thead: [ 1, "<table>", "</table>" ],
 	col: [ 2, "<table><colgroup>", "</colgroup></table>" ],
 	tr: [ 2, "<table><tbody>", "</tbody></table>" ],
-	td: [ 3, "<table><tbody><tr class="fw-bold text-muted bg-light">", "</tr></tbody></table>" ],
+	td: [ 3, "<table><tbody><tr>", "</tr></tbody></table>" ],
 
 	_default: [ 0, "", "" ]
 };
@@ -28121,16 +28121,16 @@ var index = (_, tdClasses) => {
 
             var html = '<table class="table-condensed">';
             html += '<thead>';
-            html += '<tr class="fw-bold text-muted bg-light">';
+            html += '<tr>';
 
             // add empty cell for week number
             if (this.showWeekNumbers || this.showISOWeekNumbers)
-                html += '<th class="min-w-200px"></th>';
+                html += '<th></th>';
 
             if ((!minDate || minDate.isBefore(calendar.firstDay)) && (!this.linkedCalendars || side == 'left')) {
                 html += '<th class="prev available"><span></span></th>';
             } else {
-                html += '<th class="min-w-200px"></th>';
+                html += '<th></th>';
             }
 
             var dateHtml = this.locale.monthNames[calendar[1][1].month()] + calendar[1][1].format(" YYYY");
@@ -28172,18 +28172,18 @@ var index = (_, tdClasses) => {
             if ((!maxDate || maxDate.isAfter(calendar.lastDay)) && (!this.linkedCalendars || side == 'right' || this.singleDatePicker)) {
                 html += '<th class="next available"><span></span></th>';
             } else {
-                html += '<th class="min-w-200px"></th>';
+                html += '<th></th>';
             }
 
             html += '</tr>';
-            html += '<tr class="fw-bold text-muted bg-light">';
+            html += '<tr>';
 
             // add week number label
             if (this.showWeekNumbers || this.showISOWeekNumbers)
                 html += '<th class="week">' + this.locale.weekLabel + '</th>';
 
             $.each(this.locale.daysOfWeek, function(index, dayOfWeek) {
-                html += '<th class="min-w-200px">' + dayOfWeek + '</th>';
+                html += '<th>' + dayOfWeek + '</th>';
             });
 
             html += '</tr>';
@@ -28200,7 +28200,7 @@ var index = (_, tdClasses) => {
             }
 
             for (var row = 0; row < 6; row++) {
-                html += '<tr class="fw-bold text-muted bg-light">';
+                html += '<tr>';
 
                 // add week number
                 if (this.showWeekNumbers)
