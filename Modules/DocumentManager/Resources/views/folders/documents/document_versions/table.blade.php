@@ -7,7 +7,7 @@
                 <th class="min-w-200px">Document Url</th>
                 <th class="min-w-200px">Created By</th>
                 <th class="min-w-120px" colspan="1">Action</th>
-            															<th class="min-w-120px text-end rounded-end"></th>
+            															<th class="min-w-200px text-end rounded-end"></th>
 														</tr>
             </thead>
             <tbody>
@@ -24,7 +24,7 @@
                             </a>
                         </div>
                     </td>
-                															<th class="min-w-120px text-end rounded-end"></th>
+                															<th class="min-w-200px text-end rounded-end"></th>
 														</tr>
             @endforeach
             </tbody>

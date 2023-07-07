@@ -9152,7 +9152,7 @@ var FullCalendar = (function (exports) {
         var colNodes = [];
         /*
         for ColProps with spans, it would have been great to make a single <col span="">
-        HOWEVER, Chrome was getting messing up distributing the width to <td>/<th class="min-w-200px"> elements with colspans.
+        HOWEVER, Chrome was getting messing up distributing the width to <td>/<th> elements with colspans.
         SOLUTION: making individual <col> elements makes Chrome behave.
         */
         for (var _i = 0, cols_1 = cols; _i < cols_1.length; _i++) {
@@ -13181,7 +13181,7 @@ var FullCalendar = (function (exports) {
                 sections.push({
                     type: 'body',
                     key: 'all-day-divider',
-                    outerContent: ( // TODO: rename to cellContent so don't need to define <tr class="fw-bold text-muted bg-light">?
+                    outerContent: ( // TODO: rename to cellContent so don't need to define <tr>?
                     createElement("tr", { role: "presentation", className: "fc-scrollgrid-section" },
                         createElement("td", { className: 'fc-timegrid-divider ' + context.theme.getClass('tableCellShaded') }))),
                 });
@@ -13248,7 +13248,7 @@ var FullCalendar = (function (exports) {
                 sections.push({
                     key: 'all-day-divider',
                     type: 'body',
-                    outerContent: ( // TODO: rename to cellContent so don't need to define <tr class="fw-bold text-muted bg-light">?
+                    outerContent: ( // TODO: rename to cellContent so don't need to define <tr>?
                     createElement("tr", { role: "presentation", className: "fc-scrollgrid-section" },
                         createElement("td", { colSpan: 2, className: 'fc-timegrid-divider ' + context.theme.getClass('tableCellShaded') }))),
                 });
