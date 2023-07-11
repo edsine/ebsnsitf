@@ -3,5 +3,6 @@
     "Shared": true,
     "DocumentManager": true,
     "EmployerManager": true,
-    "ClaimsCompensation": true
+    "ClaimsCompensation": true,
+    "DTARequests": true
 }
