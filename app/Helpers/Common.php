@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 function getBranchRegions()
 {
     $regions = [
@@ -38,7 +40,7 @@ function getBranchRegions()
     return $regions;
 }
 
-    
+
 function getRanks()
 {
     $regions = [
@@ -57,4 +59,14 @@ function getRanks()
         12 => 'Junior Officers',
     ];
     return $regions;
+}
+
+function checkPermission($permission)
+{
+    $user = Auth::user();
+    if($user->can($permission))
+    {
+        return true;
+    }
+    return false;
 }

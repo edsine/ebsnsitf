@@ -22,6 +22,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('forms', Modules\WorkflowEngine\Http\Controllers\FormController::class);
         Route::get('forms/create/formFields/{id}', [Modules\WorkflowEngine\Http\Controllers\FormController::class, 'createFormFields'])->name('forms.formFields.create');
         Route::post('forms/storeFormFields', [Modules\WorkflowEngine\Http\Controllers\FormController::class, 'storeFormFields'])->name('forms.formFields.store');
+        Route::post('forms/createTable/{id}', [Modules\WorkflowEngine\Http\Controllers\FormController::class, 'createTable'])->name('forms.table.store');
         Route::resource('workflows', Modules\WorkflowEngine\Http\Controllers\WorkflowController::class);
         Route::resource('workflowInstances', Modules\WorkflowEngine\Http\Controllers\WorkflowInstanceController::class);
         Route::resource('formFields', Modules\WorkflowEngine\Http\Controllers\FormFieldController::class);

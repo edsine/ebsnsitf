@@ -29,10 +29,30 @@
     <p>{{ $employer->company_rcnumber }}</p>
 </div>
 
-<!-- Company Phone Field -->
+<!-- Company Contact person Field -->
 <div class="col-sm-12">
-    {!! Form::label('company_phone', 'Company Phone:') !!}
-    <p>{{ $employer->company_phone }}</p>
+    {!! Form::label('contact_person', 'Company Contact Person:') !!}
+    <p>{{ $employer->contact_person }}</p>
+</div>
+
+<div class="col-sm-12">
+    {!! Form::label('contact_number', 'Company Contact Person Number:') !!}
+    <p>{{ $employer->contact_number }}</p>
+</div>
+
+<div class="col-sm-12">
+    {!! Form::label('cac_reg_year', 'Company CAC Reg Year:') !!}
+    <p>{{ $employer->cac_reg_year }}</p>
+</div>
+
+<div class="col-sm-12">
+    {!! Form::label('number_of_employees', 'Company Number of Employees:') !!}
+    <p>{{ $employer->number_of_employees }}</p>
+</div>
+
+<div class="col-sm-12">
+    {!! Form::label('registered_date', 'Company Registered Date:') !!}
+    <p>{{ $employer->registered_date }}</p>
 </div>
 
 <!-- Company Localgovt Field -->
@@ -59,4 +79,9 @@
     <p>{{ $employer->inspection_status }}</p>
 </div>
 
+<!--  Status Field -->
+<div class="col-sm-12">
+    {!! Form::label('status', 'Status:') !!}
+    <p>{{ $employer->status }}</p>
+</div>
 

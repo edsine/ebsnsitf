@@ -21,11 +21,16 @@ return new class extends Migration
             $table->string('company_email');
             $table->string('company_address');
             $table->string('company_rcnumber');
-            $table->string('company_phone');
+            $table->integer('cac_reg_year');
+            $table->string('contact_person');
+            $table->string('contact_number');
             $table->string('company_localgovt');
             $table->string('company_state');
+            $table->integer('number_of_employees');
             $table->string('business_area');
             $table->string('inspection_status');
+            $table->string('status');
+            $table->string('registered_date');
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();

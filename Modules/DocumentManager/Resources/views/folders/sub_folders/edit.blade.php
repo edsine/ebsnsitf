@@ -16,6 +16,7 @@
     <div class="content px-3">
 
         @include('adminlte-templates::common.errors')
+        @include('flash::message')
 
         <div class="card">
 
@@ -40,7 +41,7 @@
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ url()->previous() }}" class="btn btn-default"> Cancel </a>
+                <a href="{{ route('folders.show', $parent_folder->id) }}" class="btn btn-default"> Cancel </a>
             </div>
 
             {!! Form::close() !!}

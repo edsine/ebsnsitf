@@ -4,8 +4,11 @@ namespace Modules\WorkflowEngine\Http\Controllers;
 
 use Flash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\AppBaseController;
+use Modules\WorkflowEngine\Models\FormField;
 use Modules\WorkflowEngine\Repositories\FormRepository;
 use Modules\WorkflowEngine\Http\Requests\CreateFormRequest;
 use Modules\WorkflowEngine\Http\Requests\UpdateFormRequest;
@@ -118,6 +121,12 @@ class FormController extends AppBaseController
             return redirect(route('forms.index'));
         }
 
+        if ($form->is_deletable == 0) {
+            Flash::error('Form is not editable');
+
+            return redirect(route('forms.index'));
+        }
+
         $form = $this->formRepository->update($request->all(), $id);
 
         Flash::success('Form updated successfully.');
@@ -136,6 +145,12 @@ class FormController extends AppBaseController
 
         if (empty($form)) {
             Flash::error('Form not found');
+
+            return redirect(route('forms.index'));
+        }
+
+        if ($form->is_deletable == 0) {
+            Flash::error('Form is not deletable');
 
             return redirect(route('forms.index'));
         }
@@ -212,6 +227,12 @@ class FormController extends AppBaseController
             return redirect(route('forms.index'));
         }
 
+        if ($form->is_deletable == 0) {
+            Flash::error('Form is not editable');
+
+            return redirect(route('forms.index'));
+        }
+
         $form->formFields()->delete();
 
         foreach ($form_fields as $key => $form_field) {
@@ -221,5 +242,82 @@ class FormController extends AppBaseController
         Flash::success('Some or all form fields were saved successfully.');
 
         return redirect(route('forms.index'));
+    }
+
+    public function createTable($id)
+    {
+        $form = $this->formRepository->find($id);
+
+        if (empty($form)) {
+            Flash::error('Form not found');
+
+            return redirect(route('forms.index'));
+        }
+
+        if ($form->is_deletable == 0) {
+            Flash::error("Form's table exists already");
+
+            return redirect(route('forms.index'));
+        }
+
+        $form_fields = $form->formFields;
+
+        // Schema Create
+
+        $table_name = $form->form_name;
+
+        try {
+            Schema::create($table_name, function (Blueprint $table) use ($form_fields) {
+                $table->id();
+                foreach ($form_fields as $form_field) {
+                    $this->getFormFieldColumnStructure($form_field, $table);
+                }
+                $table->integer('created_by');
+                $table->timestamps();
+            });
+
+            // Update form to prevent deletion
+            $form->is_deletable = 0;
+            $form->save();
+
+            Flash::success('Table created successfully.');
+        } catch (\Throwable $th) {
+            Flash::error("An error occured while creating the form's table.");
+        }
+
+        return redirect(route('forms.index'));
+    }
+
+    public function getFormFieldColumnStructure(FormField $form_field, Blueprint $table)
+    {
+        $column_name = $form_field->field_name;
+        $html_type = $form_field->fieldType->field_type;
+        $is_required = $form_field->is_required;
+
+        switch ($html_type) {
+            case 'checkbox':
+            case 'number':
+            case 'select':
+            case 'range':
+            case 'radio':
+            case 'month':
+            case 'week':
+                return $is_required ? $table->integer($column_name) : $table->integer($column_name)->nullable();
+            case 'date':
+                return $is_required ? $table->date($column_name) : $table->integer($column_name)->nullable();
+            case 'time':
+                return $is_required ? $table->time($column_name) : $table->integer($column_name)->nullable();
+            case 'datetime-local':
+                return $is_required ? $table->dateTime($column_name) : $table->integer($column_name)->nullable();
+            case 'email':
+            case 'password':
+            case 'text':
+            case 'url':
+            case 'tel':
+            case 'password':
+            case 'image':
+            case 'file':
+                return $is_required ? $table->string($column_name) : $table->integer($column_name)->nullable();
+        }
     }
 }

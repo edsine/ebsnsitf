@@ -58,7 +58,6 @@ class UserController extends AppBaseController
         $users = $this->userRepository->paginate(10);
 
         return view('users.index')->with('users', $users);
-        
     }
 
     /**
@@ -68,7 +67,7 @@ class UserController extends AppBaseController
      */
     public function create()
     {
-        $roles = Role::pluck('name','id')->all();
+        $roles = Role::pluck('name', 'id')->all();
         $roles = $this->roleRepository->all()->pluck('name', 'id');
         $roles->prepend('Select role', '');
         $branch = $this->branchRepository->all()->pluck('branch_name', 'id');
@@ -96,21 +95,21 @@ class UserController extends AppBaseController
 
         // Check if the checkbox is checked
         if ($checkboxValue == 1) {
-        // Checkbox is checked
-        //Get user id from newly created user and assign it to user_id post input
-        $input['user_id'] = $user->id;
-        //Check for file upload and upload to public  directory
-        if ($request->hasFile('profile_picture')) {
-            $file = $request->file('profile_picture');
-            $fileName = $file->hashName();
-            $path = $file->store('public');
-            $input['profile_picture'] = $fileName;
+            // Checkbox is checked
+            //Get user id from newly created user and assign it to user_id post input
+            $input['user_id'] = $user->id;
+            //Check for file upload and upload to public  directory
+            if ($request->hasFile('profile_picture')) {
+                $file = $request->file('profile_picture');
+                $fileName = $file->hashName();
+                $path = $file->store('public');
+                $input['profile_picture'] = $fileName;
+            }
+            //Create a new staff
+            $this->staffRepository->create($input);
         }
-        //Create a new staff
-        $this->staffRepository->create($input);
-        } 
 
-        $role = $this->roleRepository->find($input['roles']);
+        $role = $this->roleRepository->getByUserRoles($input['roles']);
 
         if (empty($role)) {
             Flash::error('Role not found');
@@ -119,7 +118,7 @@ class UserController extends AppBaseController
         }
 
 
-        $user->assignRole($role->name);
+        $user->assignRole($role);
 
         Flash::success('User saved successfully.');
 
@@ -149,28 +148,26 @@ class UserController extends AppBaseController
      */
     public function edit($id)
     {
-        
+
         $user = $this->userRepository->getByUserId($id);
-        
+
         $branch = $this->branchRepository->all()->pluck('branch_name', 'id');
         $department = $this->departmentRepository->all()->pluck('department_unit', 'id');
-        
+
         if (empty($user)) {
             Flash::error('User not a staff so it can not be edited');
 
             return redirect(route('users.index'));
         }
 
-        
+
         //$user['role_id'] = $user1->roles()->first()->id;
 
         $roles = $this->roleRepository->all()->pluck('name', 'id');
 
         $roles->prepend('Select role', '');
-        
-        return view('users.edit',compact('user','roles','branch','department','id'));
-        
-        
+
+        return view('users.edit', compact('user', 'roles', 'branch', 'department', 'id'));
     }
 
     /**
@@ -193,32 +190,32 @@ class UserController extends AppBaseController
         }
 
         $input =  $request->all();
-        
-         // Retrieve the value of the checkbox
-         $checkboxValue = $request->input('checkbox');
 
-         // Check if the checkbox is checked
-         if ($checkboxValue == 1) {
-         // Checkbox is checked
-         //Get user id from newly created user and assign it to user_id post input
-         $input['user_id'] = $user->userId;
-         //Check for file upload and upload to public  directory
-         if ($request->hasFile('profile_picture')) {
-             $file = $request->file('profile_picture');
-             $fileName = $file->hashName();
-             $path = $file->store('public');
-             $input['profile_picture'] = $fileName;
-         }else{
-            // prevent picture from updating db since there is no upload
-             unset($input['profile_picture']);
-         }
-         // prevent email from updating since email is unique
-         unset($input['email']);
-         //Create a new staff
-         $this->staffRepository->update($input, $user->staff_id);
-         } 
+        // Retrieve the value of the checkbox
+        $checkboxValue = $request->input('checkbox');
 
-        $role = $this->roleRepository->find($input['roles']);
+        // Check if the checkbox is checked
+        if ($checkboxValue == 1) {
+            // Checkbox is checked
+            //Get user id from newly created user and assign it to user_id post input
+            $input['user_id'] = $user->userId;
+            //Check for file upload and upload to public  directory
+            if ($request->hasFile('profile_picture')) {
+                $file = $request->file('profile_picture');
+                $fileName = $file->hashName();
+                $path = $file->store('public');
+                $input['profile_picture'] = $fileName;
+            } else {
+                // prevent picture from updating db since there is no upload
+                unset($input['profile_picture']);
+            }
+            // prevent email from updating since email is unique
+            unset($input['email']);
+            //Create a new staff
+            $this->staffRepository->update($input, $user->staff_id);
+        }
+
+        $role = $this->roleRepository->getByUserRoles($input['roles']);
 
         if (empty($role)) {
             Flash::error('Role not found');
@@ -234,11 +231,11 @@ class UserController extends AppBaseController
 
         $user = $this->userRepository->update($input, $id);
         DB::table('model_has_roles')->where('model_id',$id)->delete();
-    
-        $user->assignRole($request->input('roles'));
+
+        //$user->assignRole($request->input('roles'));
 
         $user->roles()->detach();
-        $user->assignRole($role->name);
+        $user->assignRole($role);
 
 
         Flash::success('User updated successfully.');

@@ -84,7 +84,7 @@
         "inView": true
     },
     {
-        "name": "company_phone",
+        "name": "contact_person",
         "dbType": "string",
         "htmlType": "number",
         "validations": "",

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable as AuditingAuditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
- class Staff extends Model implements Auditable
+class Staff extends Model implements Auditable
 {
     use SoftDeletes;
     use HasFactory;
