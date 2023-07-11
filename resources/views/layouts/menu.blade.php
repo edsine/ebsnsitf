@@ -149,6 +149,8 @@
             <!--end:Menu item-->
 
             @include('documentmanager::layouts.menu')
+
+            @include('claimscompensation::layouts.menu')
             
             @include('employermanager::layouts.menu')
 

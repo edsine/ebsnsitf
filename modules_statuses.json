@@ -2,5 +2,6 @@
     "WorkflowEngine": true,
     "Shared": true,
     "DocumentManager": true,
-    "EmployerManager": true
+    "EmployerManager": true,
+    "ClaimsCompensation": true
 }
