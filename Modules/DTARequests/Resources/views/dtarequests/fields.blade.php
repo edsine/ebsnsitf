@@ -1,28 +1,59 @@
 <!-- Name Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('name', 'Name:') !!}
-    {!! Form::text('name', null, ['class' => 'form-control', 'required']) !!}
-</div>
 
-<!-- Description Field -->
+
+<!-- Destination Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('description', 'Description:') !!}
-    {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+    {!! Form::label('destination', 'Destination:') !!}
+    {!! Form::text('destination', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Branch Id Field -->
+<!-- NUMBER OF DAYS -->
 <div class="form-group col-sm-6">
-    {!! Form::label('branch_id', 'Branch:') !!}
-    {!! Form::select('branch_id', $branches, null, ['class' => 'form-control custom-select']) !!}
+    {!! Form::label('number_days', 'NUMBER OF DAYS:') !!}
+    {!! Form::number('number_days',null, ['class' => 'form-control ']) !!}
+</div>
+{{-- Travel date --}}
+<div class="form-group col-sm-6 my-4">
+    {!! Form::label('travel_date', 'TRAVEL DATE:') !!}
+    {!! Form::date('travel_date',null, ['class' => 'form-control ']) !!}
+</div>
+{{-- Arrival date --}}
+<div class="form-group col-sm-6 my-4">
+    {!! Form::label('arrival_date', 'ARRIVAL DATE:') !!}
+    {!! Form::date('arrival_date',null, ['class' => 'form-control ']) !!}
+</div>
+{{--  estimated expenses --}}
+<div class="form-group col-sm-6 my-4">
+    {!! Form::label('estimated_expenses', 'ESTIMATED EXPENSES:') !!}
+    {!! Form::text('estimated_expenses',null, ['class' => 'form-control']) !!}
+</div>
+{{-- purpose of travel --}}
+<div class="form-group col-sm-6 my-4">
+    {!! Form::label('purpose_travel ', 'PURPOSE OF TRAVEL:') !!}
+    {!! Form::textarea('purpose_travel',null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Image Field -->
-<div class="col-sm-4">
-    {!! Form::label('images', 'Image Document') !!}
+
+<!-- document fields -->
+<div class="col-sm-4 my-5">
+    <span class="text-danger">UPLOAD ALL NECESSARY SUPPORTING DOCUMENT INCLUDING RECIEPT AND INVOICE(SCAN ALL AS SINGLE DOC IN PDF FORMAT)</span>
     <div class="form-group">
-    {!! Form::file('images',null, ['class' => 'form-control','accept' => 'image/*']) !!}
+        {!! Form::file('uploaded_doc',null, ['class' =>'form-control','accept' => 'image/*']) !!}
     </div>
+    {!! Form::label('uploaded_doc', ' PDF FILE') !!}
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 @can(['approve as regional manager', 'approve as medical team', 'approve as head office'])
 <!-- Regional Manager Status Field -->
