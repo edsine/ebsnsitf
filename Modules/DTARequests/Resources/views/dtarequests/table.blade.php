@@ -1,27 +1,40 @@
 <div class="card-body p-5">
     <div class="table-responsive">
-        <table class="table" id="departments-table">
+        <table class="table" id="departments-table ">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Branch</th>
-                <th>Documents</th>
-                <th>Regional Manager Status</th>
-                <th>Head Office Status</th>
-                <th>Medical Team Status</th>
+                {{-- <th> TRAVEL PURPOSE</th> --}}
+                <th>DESTINATION</th>
+                <th>NUMBER OF DAYS</th>
+                <th>TRAVEL DATE</th>
+                <th>ARRIVAL DATE</th>
+                <th>ESTIMATED EXPENSES</th>
+                <th>SUPERVISOR STATUS</th>
+                <th>HOD STATUS</th>
+                <th>MD STATUS</th>
+                <th>ACCOUNT STATUS</th>
+                <th>APPROVAL STATUS</th>
+                <th>STATUS</th>
+                {{-- <th>UPLOADED DOC</th> --}}
+                <th>ACCOUNT STATUS</th>
                 <th colspan="3">Action</th>
             </tr>
             </thead>
             <tbody>
             @foreach($dtarequests as $dtarequests)
                 <tr>
-                    <td>{{ $dtarequests->name }}</td>
-                    <td>{{ $dtarequests->description }}</td>
-                    <td>{{ $dtarequests->branch ? $dtarequests->branch->branch_name : '' }}</td>
-                    <td>
-                        <img style="width: 50px;height: 50px" src="{{ url('storage/') }}{!! '/'.$dtarequests->images !!}" alt="Image">
-                    </td>
+                    <td>{{ $dtarequests->destination }}</td>
+                    <td>{{ $dtarequests->number_days }}</td>
+                    <td>{{ $dtarequests->travel_date}}</td>
+                    <td>{{ $dtarequests->arrival_date}}</td>
+                    <td>{{ $dtarequests->estimated_expenses}}</td>
+                    <td>{{ $dtarequests->supervisor_status}}</td>
+                    <td>{{ $dtarequests->hod_status}}</td>
+                    <td>{{ $dtarequests->md_status}}</td>
+                    <td>{{ $dtarequests->account_status}}</td>
+                    <td>{{ $dtarequests->approval_status}}</td>
+                    <td>{{ $dtarequests->status}}</td>
+                    
                     <td>
                         <p> @if (isset($dtarequests->regional_manager_status) && $dtarequests->regional_manager_status == 1)
                             <span class="btn btn-sm btn-success">Approved</span>

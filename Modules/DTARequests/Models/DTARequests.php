@@ -16,27 +16,40 @@ use OwenIt\Auditing\Contracts\Auditable;
     public $table = 'dta_requests';
 
     public $fillable = [
-        'name',
-        'description',
+        'id',
+        'dta_id',
+        'staff_id',
         'branch_id',
-        'user_id',
-        'images',
-        'regional_manager_status',
-        'head_office_status',
-        'medical_team_status'
+        'department_id',
+        'purpose_travel',
+        'destination',
+        'number_days',
+        'travel_date',
+        'arrival_date',
+        'estimated_expenses',
+        'supervisor_status',
+        'hod_status',
+        'md_status',
+        'account_status',
+        'approval_status',
+        'status',
+        'uploaded_doc',
     ];
 
-    protected $casts = [
-        'name' => 'string',
-        'description' => 'string',
-        'branch_id' => 'integer',
-        'user_id' => 'integer'
-    ];
+    // protected $casts = [
+    //     'name' => 'string',
+    //     'description' => 'string',
+    //     'branch_id' => 'integer',
+    //     'user_id' => 'integer'
+    // ];
 
     public static array $rules = [
-        'name' => 'required',
-        'description' => 'required',
-        'branch_id' => 'required'
+        'purpose_travel' => 'required',
+        'travel_date' => 'required',
+        'destination' => 'required',
+        'arrival_date' => 'required',
+        'uploaded_doc' => 'required',
+
     ];
 
     public function branch(): \Illuminate\Database\Eloquent\Relations\BelongsTo
