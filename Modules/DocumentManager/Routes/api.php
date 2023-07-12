@@ -25,3 +25,6 @@ Route::resource('documents', Modules\DocumentManager\Http\Controllers\API\Docume
 
 Route::resource('document-versions', Modules\DocumentManager\Http\Controllers\API\DocumentVersionAPIController::class)
     ->except(['create', 'edit']);
+
+Route::resource('memos', Modules\DocumentManager\Http\Controllers\API\MemoAPIController::class)
+    ->except(['create', 'edit']);

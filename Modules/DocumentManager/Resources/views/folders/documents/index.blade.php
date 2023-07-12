@@ -12,14 +12,15 @@
     <div class="table-responsive">
         <table class="table align-middle table-row-dashed fs-6 gy-5" id="documents-table">
             <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Document Url</th>
-                    <th>Folder</th>
-                    <th>Created By</th>
-                    <th colspan="3">Action</th>
-                </tr>
+                <tr class="fw-bold text-muted bg-light">
+                    <th class="min-w-200px">Title</th>
+                    <th class="min-w-200px">Description</th>
+                    <th class="min-w-200px">Document Url</th>
+                    <th class="min-w-200px">Folder</th>
+                    <th class="min-w-200px">Created By</th>
+                    <th class="min-w-120px" colspan="1">Action</th>
+                															<th class="min-w-200px text-end rounded-end"></th>
+														</tr>
             </thead>
             <tbody>
                 @foreach ($documents as $document)
@@ -61,7 +62,8 @@
                             </div>
                             {!! Form::close() !!}
                         </td>
-                    </tr>
+                    															<th class="min-w-200px text-end rounded-end"></th>
+														</tr>
                 @endforeach
             </tbody>
         </table>

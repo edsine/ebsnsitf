@@ -1,21 +1,22 @@
 <div class="card-body p-0">
     <div class="table-responsive">
-        <table class="table" id="employees-table">
+        <table class="table align-middle gs-0 gy-4" id="employees-table">
             <thead>
-            <tr>
+            <tr class="fw-bold text-muted bg-light">
 
-                <th>Last Name</th>
-                <th>First Name</th>
-                <th>Middle Name</th>
-                <th>Date Of Birth</th>
-                <th>Gender</th>
-                <th>Marital Status</th>
-                <th>Email</th>
-                <th>Employment Date</th>
-                <th>Monthly Renumeration</th>
-                <th>Status</th>
-                <th colspan="3">Action</th>
-            </tr>
+                <th class="min-w-200px">Last Name</th>
+                <th class="min-w-200px">First Name</th>
+                <th class="min-w-200px">Middle Name</th>
+                <th class="min-w-200px">Date Of Birth</th>
+                <th class="min-w-200px">Gender</th>
+                <th class="min-w-200px">Marital Status</th>
+                <th class="min-w-200px">Email</th>
+                <th class="min-w-200px">Employment Date</th>
+                <th class="min-w-200px">Monthly Renumeration</th>
+                <th class="min-w-200px">Status</th>
+                <th class="min-w-120px" colspan="1">Action</th>
+            															<th class="min-w-200px text-end rounded-end"></th>
+														</tr>
             </thead>
             <tbody>
             @foreach($employees as $employee)
@@ -45,7 +46,8 @@
                         </div>
                         {!! Form::close() !!}
                     </td>
-                </tr>
+                															<th class="min-w-200px text-end rounded-end"></th>
+														</tr>
             @endforeach
             </tbody>
         </table>

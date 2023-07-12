@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\UserAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+Route::resource('users', UserAPIController::class)
+    ->except(['create', 'edit']);

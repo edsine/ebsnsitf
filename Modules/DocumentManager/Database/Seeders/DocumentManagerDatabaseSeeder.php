@@ -16,6 +16,11 @@ class DocumentManagerDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call(FoldersPermissionsSeeder::class);
+        $this->call(DocumentsPermissionsSeeder::class);
+        $this->call(AdminFoldersAndDocumentsPermissionsSeeder::class);
+        $this->call(MemosPermissionsSeeder::class);
+        $this->call(MemoHasDepartmentsTableSeeder::class);
+        $this->call(MemoHasUsersTableSeeder::class);
     }
 }

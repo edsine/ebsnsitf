@@ -93,7 +93,7 @@ use OwenIt\Auditing\Contracts\Auditable;
         'title' => 'required',
         'description' => 'required',
         'file' => 'required|file|max:2048',
-        'folder_id' => 'required|integer|unique:documents,folder_id,title',
+        'folder_id' => 'required|integer',
     ];
 
     public function createdBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo

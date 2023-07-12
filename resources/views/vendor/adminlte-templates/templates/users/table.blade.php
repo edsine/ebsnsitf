@@ -1,11 +1,12 @@
 <div class="table-responsive">
-    <table class="table" id="users-table">
+    <table class="table align-middle gs-0 gy-4" id="users-table">
         <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th colspan="3">Action</th>
-        </tr>
+        <tr class="fw-bold text-muted bg-light">
+            <th class="min-w-200px">Name</th>
+            <th class="min-w-200px">Email</th>
+            <th class="min-w-120px" colspan="1">Action</th>
+        															<th class="min-w-200px text-end rounded-end"></th>
+														</tr>
         </thead>
         <tbody>
         @foreach($users as $user)
@@ -25,7 +26,8 @@
                     </div>
                     {!! Form::close() !!}
                 </td>
-            </tr>
+            															<th class="min-w-200px text-end rounded-end"></th>
+														</tr>
         @endforeach
         </tbody>
     </table>

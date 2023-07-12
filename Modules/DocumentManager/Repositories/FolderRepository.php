@@ -34,7 +34,7 @@ class FolderRepository extends BaseRepository
     {
         $query = $this->model->newQuery();
 
-        return $query->where('name', '=', $name);
+        return $query->where('name', '=', $name)->where('parent_folder_id', null);
     }
 
     public function findByNameAndParentId($name, $parent_folder_id)
