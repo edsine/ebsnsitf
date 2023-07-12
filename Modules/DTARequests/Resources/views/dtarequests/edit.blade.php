@@ -23,7 +23,7 @@
 
             <div class="card-body">
                 <div class="row">
-                    @include('dtarequests::dtarequests.fields')
+                    @include('dtarequests::dtarequests.edit_fields')
                 </div>
             </div>
 
