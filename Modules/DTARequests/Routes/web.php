@@ -14,3 +14,9 @@
 Route::prefix('dtarequests')->group(function() {
     Route::get('/', 'DTARequestsController@index');
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('dtarequests')->group(function () {
+        Route::resource('dtarequests', Modules\DTARequests\Http\Controllers\DTARequestsController::class);
+    });
+});
