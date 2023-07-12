@@ -15,8 +15,9 @@ use OwenIt\Auditing\Contracts\Auditable;
     use AuditingAuditable;
     public $table = 'dta_requests';
 
+    public $primarykey='id';
     public $fillable = [
-        'id',
+        
         'dta_id',
         'staff_id',
         'branch_id',
