@@ -20,3 +20,4 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('dtarequests', Modules\DTARequests\Http\Controllers\DTARequestsController::class);
     });
 });
+
