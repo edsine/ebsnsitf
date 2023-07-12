@@ -15,18 +15,18 @@ class CreateDtaReviewTable extends Migration
     {
         Schema::create('dta_reviews', function (Blueprint $table) {
             $table->id('id');
-            $table->integer('dta_reviewid');
+            $table->string('dta_reviewid');
             
             $table->foreignId('dta_id')->nullable()->constrained('dta_requests')->onDelete('cascade');
             $table->foreignId('officer_id')->nullable()->constrained('departments')->onDelete('cascade');
         
 
             $table->string('comments')->nullable();
-            $table->integer('review_status')->nullable();
+            $table->string('review_status')->nullable();
             
             $table->timestamps();
             $table->softDeletes();
-            $table->integer('status')->nullable();
+            $table->string('status')->nullable();
             
         });
     }

@@ -14,8 +14,8 @@ class CreateDtaRequestsTable extends Migration
     public function up()
     {
         Schema::create('dta_requests', function (Blueprint $table) {
-            $table->id('id');
-            $table->integer('dta_id');
+           $table->id('id');
+            $table->string('dta_id');
             $table->integer('staff_id');
             
             $table->foreignId('branch_id')->nullable()->constrained('branches')->onDelete('cascade');
@@ -27,13 +27,13 @@ class CreateDtaRequestsTable extends Migration
             $table->dateTime('travel_date')->nullable();
             $table->date('arrival_date')->nullable();
             $table->string('estimated_expenses')->nullable();
-            $table->integer('supervisor_status')->nullable();
-            $table->integer('hod_status')->nullable();
-            $table->integer('md_status')->nullable();
-            $table->integer('account_status')->nullable();
-            $table->integer('approval_status')->nullable();
-            $table->integer('status')->nullable();
-            $table->integer('uploaded_doc')->nullable();
+            $table->string('supervisor_status')->nullable();
+            $table->string('hod_status')->nullable();
+            $table->string('md_status')->nullable();
+            $table->string('account_status')->nullable();
+            $table->string('approval_status')->nullable();
+            $table->string('status')->nullable();
+            $table->string('uploaded_doc')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
