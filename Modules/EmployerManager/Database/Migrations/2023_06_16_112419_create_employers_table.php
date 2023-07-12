@@ -26,9 +26,9 @@ return new class extends Migration
             $table->string('contact_number');
             $table->string('company_localgovt');
             $table->string('company_state');
-            $table->integer('number_of_employees');
+            $table->integer('number_of_employees')->nullable();
             $table->string('business_area');
-            $table->string('inspection_status');
+            $table->string('inspection_status')->nullable();
             $table->string('status');
             $table->string('registered_date');
             $table->integer('created_by')->unsigned()->nullable();
