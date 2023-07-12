@@ -60,13 +60,17 @@ class DTARequestsController extends AppBaseController
     public function store(CreateDTARequests $request)
     {
         $input = $request->all();
-        $input['user_id'] = Auth::id();
+        $input['staff_id'] = Auth::id();
+        $input['hod_status'] = 0;
+        $input['supervisor_status'] = 0;
+        $input['md_status'] = 0;
+        $input['approval_status'] = 0;
 
-        if ($request->hasFile('images')) {
-            $file = $request->file('images');
+        if ($request->hasFile('uploaded_doc')) {
+            $file = $request->file('uploaded_doc');
             $fileName = $file->hashName();
             $path = $file->store('public');
-            $input['images'] = $fileName;
+            $input['uploaded_doc'] = $fileName;
         }
 
         $dtarequests = $this->dtaRequestsRepository->create($input);
@@ -132,16 +136,16 @@ class DTARequestsController extends AppBaseController
 
         $input = $request->all();
 
-        $input['user_id'] = Auth::id();
+        $input['staff_id'] = Auth::id();
 
-        if ($request->hasFile('images')) {
-            $file = $request->file('images');
+        if ($request->hasFile('uploaded_doc')) {
+            $file = $request->file('uploaded_doc');
             $fileName = $file->hashName();
             $path = $file->store('public');
-            $input['images'] = $fileName;
+            $input['uploaded_doc'] = $fileName;
         } else {
             // prevent images from updating db since there is no upload
-            unset($input['images']);
+            unset($input['uploaded_doc']);
         }
 
         $dtarequests = $this->dtaRequestsRepository->update($input, $id);
