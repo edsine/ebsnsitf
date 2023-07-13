@@ -129,6 +129,13 @@
       'Module' => 'Nwidart\\Modules\\Facades\\Module',
     ),
   ),
+  'orangehill/iseed' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Orangehill\\Iseed\\IseedServiceProvider',
+    ),
+  ),
   'owen-it/laravel-auditing' => 
   array (
     'providers' => 
