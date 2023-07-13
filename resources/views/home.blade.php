@@ -14,7 +14,7 @@
                     <div class="d-flex flex-stack flex-grow-1 card-p">
                         <div class="d-flex flex-column me-2">
                             <a href="#" class="text-dark text-hover-primary fw-bold fs-3">REGISTERED EMPLOYERS</a>
-                            <span class="text-muted fw-semibold mt-1">Analytics as at 10:32:38A toady</span>
+                            <span class="text-muted fw-semibold mt-1">Analytics as at <?php echo date("l jS \of F Y")?> </span>
                         </div>
                         <span class="symbol symbol-50px">
                             <span class="symbol-label fs-5 fw-bold bg-light-success text-success">47</span>
@@ -34,7 +34,7 @@
                     <div class="d-flex flex-stack flex-grow-1 card-p">
                         <div class="d-flex flex-column me-2">
                             <a href="#" class="text-dark text-hover-primary fw-bold fs-3">PENDING EMPLOYERS</a>
-                            <span class="text-muted fw-semibold mt-1">Analytics as at 10:32:38A toady</span>
+                            <span class="text-muted fw-semibold mt-1">Analytics as at <?php echo date("l jS \of F Y")?></span>
                         </div>
                         <span class="symbol symbol-50px">
                             <span class="symbol-label fs-5 fw-bold bg-light-success text-success">0</span>
@@ -54,7 +54,7 @@
                     <div class="d-flex flex-stack flex-grow-1 card-p">
                         <div class="d-flex flex-column me-2">
                             <a href="#" class="text-dark text-hover-primary fw-bold fs-3">REGISTERED EMPLOYEES</a>
-                            <span class="text-muted fw-semibold mt-1">Analytics as at 10:32:38A toady</span>
+                            <span class="text-muted fw-semibold mt-1">Analytics as at <?php echo date("l jS \of F Y")?></span>
                         </div>
                         <span class="symbol symbol-50px">
                             <span class="symbol-label fs-5 fw-bold bg-light-success text-success">256</span>
@@ -74,7 +74,7 @@
                     <div class="d-flex flex-stack flex-grow-1 card-p">
                         <div class="d-flex flex-column me-2">
                             <a href="#" class="text-dark text-hover-primary fw-bold fs-3">INCOMPLETE EMPLOYEES</a>
-                            <span class="text-muted fw-semibold mt-1">Analytics as at 10:32:38A toady</span>
+                            <span class="text-muted fw-semibold mt-1">Analytics as at <?php echo date("l jS \of F Y")?></span>
                         </div>
                         <span class="symbol symbol-50px">
                             <span class="symbol-label fs-5 fw-bold bg-light-success text-success">+100</span>
@@ -90,7 +90,7 @@
     <!--end::Row-->
     <!--begin::Row-->
     <div class="row g-5 g-xl-8 pt-5">
-        <h1 class="text-black-50 pt-5">Performance Analytics for <b style="color: #000">Andrew Azeez</b></h1>
+        <h1 class="text-black-50 pt-5">Performance Analytics for <b style="color: #000"><?php echo date("l jS \of F Y")?></b></h1>
         <div class="col-xl-3">
             <!--begin::Statistics Widget 5-->
             <a href="#" class="card bg-body hoverable card-xl-stretch mb-xl-8">

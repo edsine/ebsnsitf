@@ -41,7 +41,7 @@
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Default</span>
+                            <span class="menu-title">Registration</span>
                         </a>
                         <!--end:Menu link-->
                     </div>
