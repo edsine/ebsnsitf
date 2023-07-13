@@ -65,7 +65,7 @@
 @endpush
 
 <!-- Address Field -->
-<div class="form-group col-sm-6 col-lg-6">
+<div class="form-group d-flex flex-column col-md-6 mb-8 fv-row col-lg-6">
     {!! Form::label('address', 'Address:', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
     {!! Form::textarea('address', null, ['class' => 'form-control form-control-solid border', 'rows' =>'3']) !!}
 </div>
