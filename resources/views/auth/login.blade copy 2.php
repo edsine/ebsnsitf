@@ -23,8 +23,7 @@
     <!--begin::Page bg image-->
     <style>
         body {
-            /* background-image: url('assets/media/auth/Optimized-nsitf-login-img2.jpg'); */
-            background-color: #f2f2f2;
+            background-image: url('assets/media/auth/Optimized-nsitf-login-img2.jpg');
         }
 
         [data-bs-theme="dark"] body {
@@ -49,37 +48,6 @@
 
         .rmbrme-and-fgtpwd {
             font-size: 18px;
-        }
-
-        .card {
-            margin: auto;
-            max-width: 100%;
-            height: fit-content;
-        }
-
-        .dots-top-left,
-        .dots-bottom-right {
-            position: absolute;
-            z-index: 1;
-        }
-
-        .dots-top-left {
-            top: 0;
-            left: 0;
-        }
-
-        .dots-bottom-right {
-            bottom: 0;
-            right: 0;
-        }
-
-        .dots-img {
-            position: relative;
-            width: 30px;
-            height: 30px;
-            background-image: url('path/to/dots-image.png');
-            background-repeat: no-repeat;
-            background-size: contain;
         }
     </style>
     <!--end::Page bg image-->
@@ -110,9 +78,22 @@
     <!--begin::Root-->
     <div class="d-flex flex-column flex-root" id="kt_app_root">
         <!--begin::Authentication - Sign-in -->
-        <div class="d-flex flex-column flex-column-fluid flex-lg-row justify-content-center align-items-center h-100">
+        <div class="d-flex flex-column flex-column-fluid flex-lg-row">
+            <!--begin::Aside-->
+            <div class="d-flex flex-center w-lg-50 pt-15 pt-lg-0 px-10">
+                <!--begin::Aside-->
+                <div class="d-flex flex-center flex-lg-start flex-column">
+                    <!--begin::Logo-->
+                    <a href="{{ route('home') }}" class="mb-7">
+                        <img alt="Logo" class="img-fluid" style="max-height: 20vw;" src="{{ asset('assets/media/logos/NSITF-Logo-login.png') }}" />
+                    </a>
+                    <!--end::Logo-->
+                </div>
+                <!--begin::Aside-->
+            </div>
+            <!--begin::Aside-->
             <!--begin::Body-->
-            <div>
+            <div class="flex-center w-lg-50 p-10">
                 <div class="my-5 py-5">
                     <span style="color: #02a14d; font-size: 40px" class="text-center"> Welcome to The NSITF EBS</span>
                 </div>
@@ -188,14 +169,6 @@
                         <!--end::Wrapper-->
                     </div>
                     <!--end::Card body-->
-                    <!-- Dots Images -->
-                    <div class="dots-top-left">
-                        <div class="dots-img"></div>
-                    </div>
-                    <div class="dots-bottom-right">
-                        <div class="dots-img"></div>
-                    </div>
-                    <!-- End Dots Images -->
                 </div>
                 <!--end::Card-->
             </div>

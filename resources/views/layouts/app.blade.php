@@ -16,6 +16,10 @@
     <link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet">
 
+    <!-- Start::bootstrap-sweet-alert -->
+    <link href="{{ asset('css/sweetalert2.min.css') }}" rel="stylesheet">
+    <!-- end::bootstrap-sweet-alert -->
+
 
 
     <!-- Custom Asset end -->
@@ -82,6 +86,14 @@
     <script>
         var hostUrl = "asset/";
     </script>
+
+    <!-- Start::bootstrap-sweet-alert -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+    <!-- end::bootstrap-sweet-alert -->
+
+
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
     <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
@@ -111,14 +123,13 @@
     <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
-<<<<<<< HEAD
-=======
-    <script src="{{ asset('assets/js/custom/utilities/modals/create-account.js') }}"></script>
->>>>>>> origin/main
+    <<<<<<< HEAD=======<script src="{{ asset('assets/js/custom/utilities/modals/create-account.js') }}">
+        </script>
+        >>>>>>> origin/main
 
-    @stack('third_party_scripts')
+        @stack('third_party_scripts')
 
-    @stack('page_scripts')
+        @stack('page_scripts')
 
 </body>
 
