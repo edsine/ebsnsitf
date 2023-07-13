@@ -5,8 +5,8 @@
             <th class="min-w-200px">Name</th>
             <th class="min-w-200px">Email</th>
             <th class="min-w-120px" colspan="1">Action</th>
-        															<th class="min-w-200px text-end rounded-end"></th>
-														</tr>
+        	<th class="min-w-200px text-end rounded-end"></th>
+		</tr>
         </thead>
         <tbody>
         @foreach($users as $user)
@@ -26,8 +26,8 @@
                     </div>
                     {!! Form::close() !!}
                 </td>
-            															<th class="min-w-200px text-end rounded-end"></th>
-														</tr>
+            	<th class="min-w-200px text-end rounded-end"></th>
+			</tr>
         @endforeach
         </tbody>
     </table>
