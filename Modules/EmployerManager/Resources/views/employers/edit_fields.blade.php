@@ -98,5 +98,5 @@
 <!--  Status Field -->
 <div class="d-flex flex-column col-md-6 mb-8 fv-row">
     {!! Form::label('status', 'Status: ', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
-    {!! Form::text('status', null, ['class' => 'form-control form-control-solid border', 'placeholder' => 'Enter Status']) !!}
+    {!! Form::select('status', enum_employer_status(), null, ['class' => 'form-control form-control-solid border', 'placeholder' => 'Enter Status']) !!}
 </div>

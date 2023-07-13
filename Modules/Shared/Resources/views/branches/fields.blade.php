@@ -29,10 +29,10 @@
 </div>
 
 <!-- Staff Strength Field -->
-<div class="form-group col-sm-6">
+{{-- <div class="form-group col-sm-6">
     {!! Form::label('staff_strength', 'Staff Strength:') !!}
     {!! Form::number('staff_strength', null, ['class' => 'form-control', 'required']) !!}
-</div>
+</div> --}}
 
 <!-- Managing Id Field -->
 <div class="form-group col-sm-6">
