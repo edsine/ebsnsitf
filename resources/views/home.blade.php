@@ -17,7 +17,7 @@
                             <span class="text-muted fw-semibold mt-1">Analytics as at <?php echo date("l jS \of F Y")?> </span>
                         </div>
                         <span class="symbol symbol-50px">
-                            <span class="symbol-label fs-5 fw-bold bg-light-success text-success">47</span>
+                            <span class="symbol-label fs-5 fw-bold bg-light-success text-success">{{ $registered_employers}}</span>
                         </span>
                     </div>
                     <div class="statistics-widget-3-chart card-rounded-bottom" data-kt-chart-color="success" style="height: 50px"></div>
@@ -37,7 +37,7 @@
                             <span class="text-muted fw-semibold mt-1">Analytics as at <?php echo date("l jS \of F Y")?></span>
                         </div>
                         <span class="symbol symbol-50px">
-                            <span class="symbol-label fs-5 fw-bold bg-light-success text-success">0</span>
+                            <span class="symbol-label fs-5 fw-bold bg-light-success text-success">{{$pending_employers}}</span>
                         </span>
                     </div>
                     <div class="statistics-widget-3-chart card-rounded-bottom" data-kt-chart-color="success" style="height: 50px"></div>
@@ -57,7 +57,7 @@
                             <span class="text-muted fw-semibold mt-1">Analytics as at <?php echo date("l jS \of F Y")?></span>
                         </div>
                         <span class="symbol symbol-50px">
-                            <span class="symbol-label fs-5 fw-bold bg-light-success text-success">256</span>
+                            <span class="symbol-label fs-5 fw-bold bg-light-success text-success">{{$registered_employees}}</span>
                         </span>
                     </div>
                     <div class="statistics-widget-3-chart card-rounded-bottom" data-kt-chart-color="success" style="height: 50px"></div>
@@ -77,7 +77,7 @@
                             <span class="text-muted fw-semibold mt-1">Analytics as at <?php echo date("l jS \of F Y")?></span>
                         </div>
                         <span class="symbol symbol-50px">
-                            <span class="symbol-label fs-5 fw-bold bg-light-success text-success">+100</span>
+                            <span class="symbol-label fs-5 fw-bold bg-light-success text-success">{{ $pending_employees}}</span>
                         </span>
                     </div>
                     <div class="statistics-widget-3-chart card-rounded-bottom" data-kt-chart-color="success" style="height: 50px"></div>
@@ -106,7 +106,7 @@
                         </svg>
                     </span>
                     <!--end::Svg Icon-->
-                    <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">50</div>
+                    <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">{{ $registered_employers}}</div>
                     <div class="fw-semibold text-gray-400">REGISTERED EMPLOYERS</div>
                 </div>
                 <!--end::Body-->
@@ -127,7 +127,7 @@
                         </svg>
                     </span>
                     <!--end::Svg Icon-->
-                    <div class="text-gray-100 fw-bold fs-2 mb-2 mt-5">0</div>
+                    <div class="text-gray-100 fw-bold fs-2 mb-2 mt-5">{{$pending_employers}}</div>
                     <div class="fw-semibold text-gray-100">PENDING EMPLOYERS</div>
                 </div>
                 <!--end::Body-->
@@ -147,7 +147,7 @@
                         </svg>
                     </span>
                     <!--end::Svg Icon-->
-                    <div class="text-white fw-bold fs-2 mb-2 mt-5">0</div>
+                    <div class="text-white fw-bold fs-2 mb-2 mt-5">{{$registered_employees}}</div>
                     <div class="fw-semibold text-white">REGISTERED EMPLOYEES</div>
                 </div>
                 <!--end::Body-->
@@ -167,7 +167,7 @@
                         </svg>
                     </span>
                     <!--end::Svg Icon-->
-                    <div class="text-white fw-bold fs-2 mb-2 mt-5">0</div>
+                    <div class="text-white fw-bold fs-2 mb-2 mt-5">{{$pending_employees}}</div>
                     <div class="fw-semibold text-white">INCOMPLETE EMPLOYEES</div>
                 </div>
                 <!--end::Body-->

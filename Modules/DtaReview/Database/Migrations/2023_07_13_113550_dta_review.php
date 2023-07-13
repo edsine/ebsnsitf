@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDtaReviewTable extends Migration
+class DtaReview extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,25 @@ class CreateDtaReviewTable extends Migration
      */
     public function up()
     {
+        //
+        
         Schema::create('dta_reviews', function (Blueprint $table) {
             $table->id('id');
-            $table->string('dta_reviewid');
-            
-            $table->foreignId('dta_id')->nullable()->constrained('dta_requests')->onDelete('cascade');
-            $table->foreignId('officer_id')->nullable()->constrained('departments')->onDelete('cascade');
-        
+            $table->foreignId('dtarequest_id')->nullable()->constrained('dta_requests')->onDelete('cascade');
+              $table->foreignId('staff_id')->nullable()->constrained('staff')->onDelete('cascade');
+
 
             $table->string('comments')->nullable();
             $table->string('review_status')->nullable();
-            
+            $table->integer('status')->default(1);
             $table->timestamps();
             $table->softDeletes();
-            $table->string('status')->nullable();
-            
+
+
+
+
         });
+        //
     }
 
     /**

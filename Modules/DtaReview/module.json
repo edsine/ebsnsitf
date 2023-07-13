@@ -1,0 +1,13 @@
+{
+    "name": "DtaReview",
+    "alias": "dtareview",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\DtaReview\\Providers\\DtaReviewServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
