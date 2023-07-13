@@ -14,13 +14,14 @@
                     <div class="d-flex flex-stack flex-grow-1 card-p">
                         <div class="d-flex flex-column me-2">
                             <a href="#" class="text-dark text-hover-primary fw-bold fs-3">REGISTERED EMPLOYERS</a>
-                            <span class="text-muted fw-semibold mt-1">Analytics as at <?php echo date("l jS \of F Y")?> </span>
+                            <span class="text-muted fw-semibold mt-1">Analytics as at 10:32:38A toady</span>
                         </div>
                         <span class="symbol symbol-50px">
                             <span class="symbol-label fs-5 fw-bold bg-light-success text-success">{{ $registered_employers}}</span>
                         </span>
+
                     </div>
-                    <div class="statistics-widget-3-chart card-rounded-bottom" data-kt-chart-color="success" style="height: 50px"></div>
+                    <!--end::Body-->
                 </div>
                 <!--end::Body-->
             </div>
@@ -34,13 +35,14 @@
                     <div class="d-flex flex-stack flex-grow-1 card-p">
                         <div class="d-flex flex-column me-2">
                             <a href="#" class="text-dark text-hover-primary fw-bold fs-3">PENDING EMPLOYERS</a>
-                            <span class="text-muted fw-semibold mt-1">Analytics as at <?php echo date("l jS \of F Y")?></span>
+                            <span class="text-muted fw-semibold mt-1">Analytics as at 10:32:38A toady</span>
                         </div>
                         <span class="symbol symbol-50px">
                             <span class="symbol-label fs-5 fw-bold bg-light-success text-success">{{$pending_employers}}</span>
                         </span>
+
                     </div>
-                    <div class="statistics-widget-3-chart card-rounded-bottom" data-kt-chart-color="success" style="height: 50px"></div>
+                    <!--end::Body-->
                 </div>
                 <!--end::Body-->
             </div>
@@ -54,13 +56,14 @@
                     <div class="d-flex flex-stack flex-grow-1 card-p">
                         <div class="d-flex flex-column me-2">
                             <a href="#" class="text-dark text-hover-primary fw-bold fs-3">REGISTERED EMPLOYEES</a>
-                            <span class="text-muted fw-semibold mt-1">Analytics as at <?php echo date("l jS \of F Y")?></span>
+                            <span class="text-muted fw-semibold mt-1">Analytics as at 10:32:38A toady</span>
                         </div>
                         <span class="symbol symbol-50px">
                             <span class="symbol-label fs-5 fw-bold bg-light-success text-success">{{$registered_employees}}</span>
                         </span>
+
                     </div>
-                    <div class="statistics-widget-3-chart card-rounded-bottom" data-kt-chart-color="success" style="height: 50px"></div>
+                    <!--end::Body-->
                 </div>
                 <!--end::Body-->
             </div>
@@ -74,16 +77,18 @@
                     <div class="d-flex flex-stack flex-grow-1 card-p">
                         <div class="d-flex flex-column me-2">
                             <a href="#" class="text-dark text-hover-primary fw-bold fs-3">INCOMPLETE EMPLOYEES</a>
-                            <span class="text-muted fw-semibold mt-1">Analytics as at <?php echo date("l jS \of F Y")?></span>
+                            <span class="text-muted fw-semibold mt-1">Analytics as at 10:32:38A toady</span>
                         </div>
                         <span class="symbol symbol-50px">
                             <span class="symbol-label fs-5 fw-bold bg-light-success text-success">{{ $pending_employees}}</span>
                         </span>
+
                     </div>
-                    <div class="statistics-widget-3-chart card-rounded-bottom" data-kt-chart-color="success" style="height: 50px"></div>
+                    <!--end::Body-->
                 </div>
-                <!--end::Body-->
+                <!--end::Statistics Widget 3-->
             </div>
+
             <!--end::Statistics Widget 3-->
         </div>
     </div>
@@ -149,15 +154,11 @@
                     <!--end::Svg Icon-->
                     <div class="text-white fw-bold fs-2 mb-2 mt-5">{{$registered_employees}}</div>
                     <div class="fw-semibold text-white">REGISTERED EMPLOYEES</div>
+
                 </div>
-                <!--end::Body-->
-            </a>
-            <!--end::Statistics Widget 5-->
-        </div>
-        <div class="col-xl-3">
-            <!--begin::Statistics Widget 5-->
-            <a href="#" class="card bg-info hoverable card-xl-stretch mb-5 mb-xl-8">
+                <!--end::Header-->
                 <!--begin::Body-->
+
                 <div class="card-body">
                     <!--begin::Svg Icon | path: icons/duotune/graphs/gra007.svg-->
                     <span class="svg-icon svg-icon-white svg-icon-3x ms-n1">
@@ -209,202 +210,236 @@
                 </ul>
                 <!-- Tabs navs -->
 
-                <!-- Tabs content -->
-                <div class="tab-content" id="ex2-content">
-                    <div class="tab-pane fade show active" id="ex2-tabs-1" role="tabpanel" aria-labelledby="ex2-tab-1">
-                        <!--begin::Table container-->
-                        <div class="table-responsive">
-                            <!--begin::Table-->
-                            <table class="table align-middle gs-0 gy-4">
-                                <!--begin::Table head-->
-                                <thead>
-                                    <tr class="fw-bold text-muted bg-light">
-                                        <th class="ps-4 min-w-200px rounded-start">REGISTERED EMPLOYERS</th>
-                                        <th class="min-w-200px">PENDING EMPLOYERS</th>
-                                        <th class="min-w-200px">REGISTERED EMPLOYEES</th>
-                                        <th class="min-w-200px">INCOMPLETE EMPLOYEES</th>
-                                        <th class="min-w-200px text-end rounded-end">ACTIONS</th>
-                                    </tr>
-                                </thead>
-                                <!--end::Table head-->
-                                <!--begin::Table body-->
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Pending</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$5,400</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Paid</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX Design</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX Design</span>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
-                                            <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <!--end::Table body-->
-                            </table>
-                            <!--end::Table-->
+
+                    <!-- Tabs content -->
+                    <div class="tab-content" id="ex2-content">
+                        <div class="tab-pane fade show active" id="ex2-tabs-1" role="tabpanel"
+                            aria-labelledby="ex2-tab-1">
+                            <!--begin::Table container-->
+                            <div class="table-responsive">
+                                <!--begin::Table-->
+                                <table class="table align-middle gs-0 gy-4">
+                                    <!--begin::Table head-->
+                                    <thead>
+                                        <tr class="fw-bold text-muted bg-light">
+                                            <th class="ps-4 min-w-200px rounded-start">REGISTERED EMPLOYERS</th>
+                                            <th class="min-w-200px">PENDING EMPLOYERS</th>
+                                            <th class="min-w-200px">REGISTERED EMPLOYEES</th>
+                                            <th class="min-w-200px">INCOMPLETE EMPLOYEES</th>
+                                            <th class="min-w-200px text-end rounded-end">ACTIONS</th>
+                                        </tr>
+                                    </thead>
+                                    <!--end::Table head-->
+                                    <!--begin::Table body-->
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="#"
+                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
+                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Pending</span>
+                                            </td>
+                                            <td>
+                                                <a href="#"
+                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$5,400</a>
+                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Paid</span>
+                                            </td>
+                                            <td>
+                                                <a href="#"
+                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
+                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX
+                                                    Design</span>
+                                            </td>
+                                            <td>
+                                                <a href="#"
+                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
+                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX
+                                                    Design</span>
+                                            </td>
+                                            <td class="text-end">
+                                                <a href="#"
+                                                    class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
+                                                <a href="#"
+                                                    class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <!--end::Table body-->
+                                </table>
+                                <!--end::Table-->
+                            </div>
+                            <!--end::Table container-->
                         </div>
-                        <!--end::Table container-->
-                    </div>
-                    <div class="tab-pane fade" id="ex2-tabs-2" role="tabpanel" aria-labelledby="ex2-tab-2">
-                        <!--begin::Table container-->
-                        <div class="table-responsive">
-                            <!--begin::Table-->
-                            <table class="table align-middle gs-0 gy-4">
-                                <!--begin::Table head-->
-                                <thead>
-                                    <tr class="fw-bold text-muted bg-light">
-                                        <th class="ps-4 min-w-200px rounded-start">REGISTERED EMPLOYERS</th>
-                                        <th class="min-w-200px">PENDING EMPLOYERS</th>
-                                        <th class="min-w-200px">REGISTERED EMPLOYEES</th>
-                                        <th class="min-w-200px">INCOMPLETE EMPLOYEES</th>
-                                        <th class="min-w-200px text-end rounded-end">ACTIONS</th>
-                                    </tr>
-                                </thead>
-                                <!--end::Table head-->
-                                <!--begin::Table body-->
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Pending</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$5,400</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Paid</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX Design</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX Design</span>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
-                                            <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <!--end::Table body-->
-                            </table>
-                            <!--end::Table-->
+                        <div class="tab-pane fade" id="ex2-tabs-2" role="tabpanel" aria-labelledby="ex2-tab-2">
+                            <!--begin::Table container-->
+                            <div class="table-responsive">
+                                <!--begin::Table-->
+                                <table class="table align-middle gs-0 gy-4">
+                                    <!--begin::Table head-->
+                                    <thead>
+                                        <tr class="fw-bold text-muted bg-light">
+                                            <th class="ps-4 min-w-200px rounded-start">REGISTERED EMPLOYERS</th>
+                                            <th class="min-w-200px">PENDING EMPLOYERS</th>
+                                            <th class="min-w-200px">REGISTERED EMPLOYEES</th>
+                                            <th class="min-w-200px">INCOMPLETE EMPLOYEES</th>
+                                            <th class="min-w-200px text-end rounded-end">ACTIONS</th>
+                                        </tr>
+                                    </thead>
+                                    <!--end::Table head-->
+                                    <!--begin::Table body-->
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="#"
+                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
+                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Pending</span>
+                                            </td>
+                                            <td>
+                                                <a href="#"
+                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$5,400</a>
+                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Paid</span>
+                                            </td>
+                                            <td>
+                                                <a href="#"
+                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
+                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX
+                                                    Design</span>
+                                            </td>
+                                            <td>
+                                                <a href="#"
+                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
+                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX
+                                                    Design</span>
+                                            </td>
+                                            <td class="text-end">
+                                                <a href="#"
+                                                    class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
+                                                <a href="#"
+                                                    class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <!--end::Table body-->
+                                </table>
+                                <!--end::Table-->
+                            </div>
+                            <!--end::Table container-->
                         </div>
-                        <!--end::Table container-->
-                    </div>
-                    <div class="tab-pane fade" id="ex2-tabs-3" role="tabpanel" aria-labelledby="ex2-tab-3">
-                        <!--begin::Table container-->
-                        <div class="table-responsive">
-                            <!--begin::Table-->
-                            <table class="table align-middle gs-0 gy-4">
-                                <!--begin::Table head-->
-                                <thead>
-                                    <tr class="fw-bold text-muted bg-light">
-                                        <th class="ps-4 min-w-200px rounded-start">REGISTERED EMPLOYERS</th>
-                                        <th class="min-w-200px">PENDING EMPLOYERS</th>
-                                        <th class="min-w-200px">REGISTERED EMPLOYEES</th>
-                                        <th class="min-w-200px">INCOMPLETE EMPLOYEES</th>
-                                        <th class="min-w-200px text-end rounded-end">ACTIONS</th>
-                                    </tr>
-                                </thead>
-                                <!--end::Table head-->
-                                <!--begin::Table body-->
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Pending</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$5,400</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Paid</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX Design</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX Design</span>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
-                                            <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <!--end::Table body-->
-                            </table>
-                            <!--end::Table-->
+                        <div class="tab-pane fade" id="ex2-tabs-3" role="tabpanel" aria-labelledby="ex2-tab-3">
+                            <!--begin::Table container-->
+                            <div class="table-responsive">
+                                <!--begin::Table-->
+                                <table class="table align-middle gs-0 gy-4">
+                                    <!--begin::Table head-->
+                                    <thead>
+                                        <tr class="fw-bold text-muted bg-light">
+                                            <th class="ps-4 min-w-200px rounded-start">REGISTERED EMPLOYERS</th>
+                                            <th class="min-w-200px">PENDING EMPLOYERS</th>
+                                            <th class="min-w-200px">REGISTERED EMPLOYEES</th>
+                                            <th class="min-w-200px">INCOMPLETE EMPLOYEES</th>
+                                            <th class="min-w-200px text-end rounded-end">ACTIONS</th>
+                                        </tr>
+                                    </thead>
+                                    <!--end::Table head-->
+                                    <!--begin::Table body-->
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="#"
+                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
+                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Pending</span>
+                                            </td>
+                                            <td>
+                                                <a href="#"
+                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$5,400</a>
+                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Paid</span>
+                                            </td>
+                                            <td>
+                                                <a href="#"
+                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
+                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX
+                                                    Design</span>
+                                            </td>
+                                            <td>
+                                                <a href="#"
+                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
+                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX
+                                                    Design</span>
+                                            </td>
+                                            <td class="text-end">
+                                                <a href="#"
+                                                    class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
+                                                <a href="#"
+                                                    class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <!--end::Table body-->
+                                </table>
+                                <!--end::Table-->
+                            </div>
+                            <!--end::Table container-->
                         </div>
-                        <!--end::Table container-->
-                    </div>
-                    <div class="tab-pane fade" id="ex2-tabs-4" role="tabpanel" aria-labelledby="ex2-tab-4">
-                        <!--begin::Table container-->
-                        <div class="table-responsive">
-                            <!--begin::Table-->
-                            <table class="table align-middle gs-0 gy-4">
-                                <!--begin::Table head-->
-                                <thead>
-                                    <tr class="fw-bold text-muted bg-light">
-                                        <th class="ps-4 min-w-200px rounded-start">REGISTERED EMPLOYERS</th>
-                                        <th class="min-w-200px">PENDING EMPLOYERS</th>
-                                        <th class="min-w-200px">REGISTERED EMPLOYEES</th>
-                                        <th class="min-w-200px">INCOMPLETE EMPLOYEES</th>
-                                        <th class="min-w-200px text-end rounded-end">ACTIONS</th>
-                                    </tr>
-                                </thead>
-                                <!--end::Table head-->
-                                <!--begin::Table body-->
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Pending</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$5,400</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Paid</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX Design</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX Design</span>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
-                                            <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <!--end::Table body-->
-                            </table>
-                            <!--end::Table-->
+                        <div class="tab-pane fade" id="ex2-tabs-4" role="tabpanel" aria-labelledby="ex2-tab-4">
+                            <!--begin::Table container-->
+                            <div class="table-responsive">
+                                <!--begin::Table-->
+                                <table class="table align-middle gs-0 gy-4">
+                                    <!--begin::Table head-->
+                                    <thead>
+                                        <tr class="fw-bold text-muted bg-light">
+                                            <th class="ps-4 min-w-200px rounded-start">REGISTERED EMPLOYERS</th>
+                                            <th class="min-w-200px">PENDING EMPLOYERS</th>
+                                            <th class="min-w-200px">REGISTERED EMPLOYEES</th>
+                                            <th class="min-w-200px">INCOMPLETE EMPLOYEES</th>
+                                            <th class="min-w-200px text-end rounded-end">ACTIONS</th>
+                                        </tr>
+                                    </thead>
+                                    <!--end::Table head-->
+                                    <!--begin::Table body-->
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="#"
+                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
+                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Pending</span>
+                                            </td>
+                                            <td>
+                                                <a href="#"
+                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$5,400</a>
+                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Paid</span>
+                                            </td>
+                                            <td>
+                                                <a href="#"
+                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
+                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX
+                                                    Design</span>
+                                            </td>
+                                            <td>
+                                                <a href="#"
+                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
+                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX
+                                                    Design</span>
+                                            </td>
+                                            <td class="text-end">
+                                                <a href="#"
+                                                    class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
+                                                <a href="#"
+                                                    class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <!--end::Table body-->
+                                </table>
+                                <!--end::Table-->
+                            </div>
+                            <!--end::Table container-->
                         </div>
-                        <!--end::Table container-->
                     </div>
+                    <!-- Tabs content -->
                 </div>
-                <!-- Tabs content -->
+                <!--begin::Body-->
             </div>
-            <!--begin::Body-->
+            <!--end::Tables Widget 12-->
         </div>
-        <!--end::Tables Widget 12-->
     </div>
-</div>
 @endsection
