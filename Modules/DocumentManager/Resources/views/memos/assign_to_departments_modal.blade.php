@@ -19,7 +19,7 @@
                 </div>
 
                 <!-- Memo Id Field -->
-                {!! Form::hidden('memo_id', $memo->id, ['id' => 'department_memo_id']) !!}
+                {!! Form::hidden('memo_id', null, ['id' => 'department_memo_id']) !!}
 
             </div>
             <div class="modal-footer">

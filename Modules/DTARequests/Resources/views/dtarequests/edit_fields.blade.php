@@ -43,12 +43,13 @@
     {!! Form::label('uploaded_doc', ' PDF FILE') !!}
 </div>
 
-
-@can('approve as hod')
+@can(['approve as hod','approve as md','approve as account'])
 <div class="form-group col-sm-6 my-4">
-    {!! Form::label('hod_comments ', 'HOD Comments:') !!}
-    {!! Form::textarea('hod_comments',null, ['class' => 'form-control']) !!}
+    {!! Form::label('comments ', 'Comments:') !!}
+    {!! Form::textarea('comments',null, ['class' => 'form-control']) !!}
 </div>
+@endcan
+@can('approve as hod')
 <!-- HOD Status Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('hod_status', 'HOD Status') !!}
@@ -59,10 +60,6 @@
 </div>
 @endcan
 @can('approve as md')
-<div class="form-group col-sm-6 my-4">
-    {!! Form::label('md_comments ', 'MD Comments:') !!}
-    {!! Form::textarea('md_comments',null, ['class' => 'form-control']) !!}
-</div>
 <!-- MD Status Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('md_status', 'MD Status') !!}
@@ -73,10 +70,6 @@
 </div>
 @endcan
 @can('approve as account')
-<div class="form-group col-sm-6 my-4">
-    {!! Form::label('account_comments ', 'Account Comments:') !!}
-    {!! Form::textarea('account_comments',null, ['class' => 'form-control']) !!}
-</div>
 <!-- Account Status Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('account_status', 'Account Status') !!}
@@ -86,7 +79,7 @@
     </div>
 </div>
 @endcan
-@can('approve as account')
+@can(['approve as hod','approve as md','approve as account'])
 <!-- Approval Status Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('approval_status', 'Approval Status') !!}

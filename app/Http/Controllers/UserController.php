@@ -274,4 +274,10 @@ class UserController extends AppBaseController
 
         return redirect(route('users.index'));
     }
+
+    //function for profile
+    public function manage_account($id){
+        echo "I am here! ".$id;
+
+    }
 }
