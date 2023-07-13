@@ -2,17 +2,17 @@
     <div class="table-responsive">
         <table class="table align-middle gs-0 gy-4" id="employers-table">
             <thead>
-                <tr class="fw-bold text-muted bg-light">
-                    <th class="min-w-200px">ECS Number</th>
-                    <th class="min-w-200px">Company Name</th>
-                    <th class="min-w-200px">Company Email</th>
-                    <th class="min-w-200px">Address</th>
-                    <th class="min-w-200px">Rc Number</th>
-                    <th class="min-w-200px">Phone</th>
-                    <th class="min-w-200px">Local Govt</th>
-                    <th class="min-w-200px">State</th>
-                    <th class="min-w-200px">Business Area</th>
-                    <th class="min-w-200px">Inspection Status</th>
+            <tr class="fw-bold text-muted bg-light">
+                <th class="min-w-200px">ECS Number</th>
+                <th class="min-w-200px">Company Name</th>
+                <th class="min-w-200px">Company Email</th>
+                <th class="min-w-200px">Address</th>
+                <th class="min-w-200px">Rc Number</th>
+                <th class="min-w-200px">Company Phone</th>
+                <th class="min-w-200px">Local Govt</th>
+                <th class="min-w-200px">State</th>
+                <th class="min-w-200px">Business Area</th>
+                <th class="min-w-200px">Status</th>
 
                     <th class="min-w-120px" colspan="1">Action</th>
                 </tr>
@@ -25,11 +25,17 @@
                     <td>{{ $employer->company_email }}</td>
                     <td>{{ $employer->company_address }}</td>
                     <td>{{ $employer->company_rcnumber }}</td>
-                    <td>{{ $employer->contact_person }}</td>
+                    <td>{{ $employer->company_phone }}</td>
                     <td>{{ $employer->company_localgovt }}</td>
                     <td>{{ $employer->company_state }}</td>
                     <td>{{ $employer->business_area }}</td>
-                    <td>{{ $employer->inspection_status }}</td>
+                    <td>
+                        @if($employer->status == 1)
+                        Registered
+                        @else
+                        Pending
+                        @endif
+                    </td>
 
                     <td style="width: 120px">
                         {!! Form::open(['route' => ['employers.destroy', $employer->id], 'method' => 'delete']) !!}

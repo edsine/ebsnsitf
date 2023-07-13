@@ -140,35 +140,65 @@ return [
     //     'api_test'          => 'Tests\APIs',
     // ],
 
+    // 'namespace' => [
+
+    //     'model'             => 'Modules\DocumentManager\Models',
+
+    //     'datatables'        => 'Modules\DocumentManager\DataTables',
+
+    //     'livewire_tables'   => 'Modules\DocumentManager\Http\Livewire',
+
+    //     'repository'        => 'Modules\DocumentManager\Repositories',
+
+    //     'controller'        => 'Modules\DocumentManager\Http\Controllers',
+
+    //     'api_controller'    => 'Modules\DocumentManager\Http\Controllers\API',
+
+    //     'api_resource'      => 'Modules\DocumentManager\Http\Resources',
+
+    //     'request'           => 'Modules\DocumentManager\Http\Requests',
+
+    //     'api_request'       => 'Modules\DocumentManager\Http\Requests\API',
+
+    //     'seeder'            => 'Modules\DocumentManager\Database\Seeders',
+
+    //     'factory'           => 'Modules\DocumentManager\Database\Factories',
+
+    //     'tests'             => 'Modules\DocumentManager\Tests',
+
+    //     'repository_test'   => 'Modules\DocumentManager\Tests\Repositories',
+
+    //     'api_test'          => 'Modules\DocumentManager\Tests\APIs',
+    // ],
     'namespace' => [
 
-        'model'             => 'Modules\DocumentManager\Models',
+        'model'             => 'Modules\DtaReview\Models',
 
-        'datatables'        => 'Modules\DocumentManager\DataTables',
+        'datatables'        => 'Modules\DtaReview\DataTables',
 
-        'livewire_tables'   => 'Modules\DocumentManager\Http\Livewire',
+        'livewire_tables'   => 'Modules\DtaReview\Http\Livewire',
 
-        'repository'        => 'Modules\DocumentManager\Repositories',
+        'repository'        => 'Modules\DtaReview\Repositories',
 
-        'controller'        => 'Modules\DocumentManager\Http\Controllers',
+        'controller'        => 'Modules\DtaReview\Http\Controllers',
 
-        'api_controller'    => 'Modules\DocumentManager\Http\Controllers\API',
+        'api_controller'    => 'Modules\DtaReview\Http\Controllers\API',
 
-        'api_resource'      => 'Modules\DocumentManager\Http\Resources',
+        'api_resource'      => 'Modules\DtaReview\Http\Resources',
 
-        'request'           => 'Modules\DocumentManager\Http\Requests',
+        'request'           => 'Modules\DtaReview\Http\Requests',
 
-        'api_request'       => 'Modules\DocumentManager\Http\Requests\API',
+        'api_request'       => 'Modules\DtaReview\Http\Requests\API',
 
-        'seeder'            => 'Modules\DocumentManager\Database\Seeders',
+        'seeder'            => 'Modules\DtaReview\Database\Seeders',
 
-        'factory'           => 'Modules\DocumentManager\Database\Factories',
+        'factory'           => 'Modules\DtaReview\Database\Factories',
 
-        'tests'             => 'Modules\DocumentManager\Tests',
+        'tests'             => 'Modules\DtaReview\Tests',
 
-        'repository_test'   => 'Modules\DocumentManager\Tests\Repositories',
+        'repository_test'   => 'Modules\DtaReview\Tests\Repositories',
 
-        'api_test'          => 'Modules\DocumentManager\Tests\APIs',
+        'api_test'          => 'Modules\DtaReview\Tests\APIs',
     ],
 
     /*
