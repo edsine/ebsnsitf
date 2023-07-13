@@ -155,6 +155,7 @@
             @include('employermanager::layouts.menu')
 
             @include('dtarequests::layouts.menu')
+            @include('humanresource::layouts.menu')
 
             <!--begin:Menu item-->
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
@@ -175,6 +176,7 @@
                         </span>
                         <!--end::Svg Icon-->
                     </span>
+
                     <span class="menu-title">User Management</span>
                     <span class="menu-arrow"></span>
                 </span>
@@ -223,6 +225,12 @@
                         </div>
                         <!--end:Menu sub-->
                     </div>
+
+
+
+
+
+
                     <!--end:Menu item-->
                     <!--begin:Menu item-->
                     <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
@@ -272,6 +280,24 @@
             <!--end:Menu item-->
             <!--end:Menu item-->
         </div>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      
         <!--end::Menu-->
     </div>
     <!--end::Menu wrapper-->

@@ -5,5 +5,6 @@
     "EmployerManager": true,
     "ClaimsCompensation": true,
     "DTARequests": true,
-    "DtaReview": true
+    "DtaReview": true,
+    "HumanResource": true
 }
