@@ -5,14 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ config('app.name') }}</title>
-
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-     
+
     <link rel="shortcut icon" href="{{ asset('assets/media/logos/NSITF-Logo-login.png') }}" />
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
@@ -24,14 +23,34 @@
     <!--begin::Page bg image-->
     <style>
         body {
-            background-image: url('assets/media/auth/bg4.jpg');
+            background-image: url('assets/media/auth/Optimized-nsitf-login-img2.jpg');
         }
 
         [data-bs-theme="dark"] body {
             background-image: url('assets/media/auth/bg4-dark.jpg');
         }
+
+        .text-center {
+            font-size: 40px;
+        }
+
+        .text-dark {
+            font-size: 30px;
+        }
+
+        .form-control {
+            font-size: 18px;
+        }
+
+        .btn {
+            font-size: 20px;
+        }
+
+        .rmbrme-and-fgtpwd {
+            font-size: 18px;
+        }
     </style>
-    <!--end::Page bg image-->  
+    <!--end::Page bg image-->
 </head>
 
 <body id="kt_body" class="app-blank bgi-size-cover bgi-position-center bgi-no-repeat">
@@ -66,7 +85,7 @@
                 <div class="d-flex flex-center flex-lg-start flex-column">
                     <!--begin::Logo-->
                     <a href="{{ route('home') }}" class="mb-7">
-                        <img alt="Logo" class="img-fluid" style="max-height: 30vw;" src="{{ asset('assets/media/logos/NSITF-Logo-login.png') }}" />
+                        <img alt="Logo" class="img-fluid" style="max-height: 20vw;" src="{{ asset('assets/media/logos/NSITF-Logo-login.png') }}" />
                     </a>
                     <!--end::Logo-->
                 </div>
@@ -74,7 +93,6 @@
             </div>
             <!--begin::Aside-->
             <!--begin::Body-->
-
             <div class="flex-center w-lg-50 p-10">
                 <div class="my-5 py-5">
                     <span style="color: #02a14d; font-size: 40px" class="text-center"> Welcome to The NSITF EBS</span>
@@ -96,8 +114,8 @@
                                 </div>
                                 <!--begin::Heading-->
                                 <!--begin::Input group=-->
-                                <div class="input-group mb-3">
-                                    <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" class="form-control @error('email') is-invalid @enderror">
+                                <div class="input-group mb-4">
+                                    <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" class="form-control form-control-lg @error('email') is-invalid @enderror">
                                     <div class="input-group-append">
                                         <div class="input-group-text"><span class="fas fa-envelope"></span></div>
                                     </div>
@@ -106,8 +124,8 @@
                                     @enderror
                                 </div>
                                 <!--end::Input group=-->
-                                <div class="input-group mb-3">
-                                    <input type="password" name="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror">
+                                <div class="input-group mb-4">
+                                    <input type="password" name="password" placeholder="Password" class="form-control form-control-lg @error('password') is-invalid @enderror">
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-lock"></span>
@@ -124,17 +142,17 @@
                                     <div class="col-6">
                                         <div class="text-success icheck-primary">
                                             <input type="checkbox" id="remember">
-                                            <label for="remember">Remember Me</label>
+                                            <label class="rmbrme-and-fgtpwd" for="remember">Remember Me</label>
                                         </div>
                                     </div>
                                     <!--begin::Link-->
-                                    <a href="{{ route('password.request') }}" class="text-success">Forgot Password ?</a>
+                                    <a href="{{ route('password.request') }}" class="text-success rmbrme-and-fgtpwd">Forgot Password ?</a>
                                     <!--end::Link-->
                                 </div>
                                 <!--end::Wrapper-->
                                 <!--begin::Submit button-->
-                                <div class="d-grid mb-10">
-                                    <button type="submit" id="kt_sign_in_submit" class="btn" style="background: #02a14d; color: #fff">
+                                <div class="d-grid mb-8">
+                                    <button type="submit" id="kt_sign_in_submit" class="btn btn-lg" style="background: #02a14d; color: #fff">
                                         <!--begin::Indicator label-->
                                         <span class="indicator-label">Sign In</span>
                                         <!--end::Indicator label-->

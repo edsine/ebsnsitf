@@ -15,7 +15,7 @@ class CreateDtaRequestsTable extends Migration
     {
         Schema::create('dta_requests', function (Blueprint $table) {
            $table->id('id');
-            $table->string('dta_id');
+            //$table->string('dta_id');
             $table->integer('staff_id');
             
             $table->foreignId('branch_id')->nullable()->constrained('branches')->onDelete('cascade');
