@@ -226,64 +226,61 @@
                 </ul>
                 <!-- Tabs navs -->
 
-
-                    <!-- Tabs content -->
-                    <div class="tab-content" id="ex2-content">
-                        <div class="tab-pane fade show active" id="ex2-tabs-1" role="tabpanel"
-                            aria-labelledby="ex2-tab-1">
-                            <!--begin::Table container-->
-                            <div class="table-responsive">
-                                <!--begin::Table-->
-                                <table class="table align-middle gs-0 gy-4">
-                                    <!--begin::Table head-->
-                                    <thead>
-                                        <tr class="fw-bold text-muted bg-light">
-                                            <th class="ps-4 min-w-200px rounded-start">REGISTERED EMPLOYERS</th>
-                                            <th class="min-w-200px">PENDING EMPLOYERS</th>
-                                            <th class="min-w-200px">REGISTERED EMPLOYEES</th>
-                                            <th class="min-w-200px">INCOMPLETE EMPLOYEES</th>
-                                            <th class="min-w-200px text-end rounded-end">ACTIONS</th>
-                                        </tr>
-                                    </thead>
-                                    <!--end::Table head-->
-                                    <!--begin::Table body-->
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <a href="#"
-                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
-                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Pending</span>
-                                            </td>
-                                            <td>
-                                                <a href="#"
-                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$5,400</a>
-                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Paid</span>
-                                            </td>
-                                            <td>
-                                                <a href="#"
-                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
-                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX
-                                                    Design</span>
-                                            </td>
-                                            <td>
-                                                <a href="#"
-                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
-                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX
-                                                    Design</span>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="#"
-                                                    class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
-                                                <a href="#"
-                                                    class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    <!--end::Table body-->
-                                </table>
-                                <!--end::Table-->
+                <!-- Tabs content -->
+                <div class="tab-content" id="ex2-content">
+                    <div class="tab-pane fade show active" id="ex2-tabs-1" role="tabpanel" aria-labelledby="ex2-tab-1">
+                        <!--begin::Table container-->
+                        <div class="table-responsive">
+                            <!--begin::Table-->
+                            <table class="table align-middle gs-0 gy-4">
+                                <!--begin::Table head-->
+                                <thead>
+                                    <tr class="fw-bold text-muted bg-light">
+                                        <th class="ps-4 min-w-200px rounded-start">ECS Number</th>
+                                        <th class="min-w-200px">Company Name</th>
+                                        <th class="min-w-200px">Company Email</th>
+                                        <th class="min-w-200px">Business Area</th>
+                                        <th class="min-w-200px text-end rounded-end">ACTIONS</th>
+                                    </tr>
+                                </thead>
+                                <!--end::Table head-->
+                                <!--begin::Table body-->
+                                <tbody>
+                                    @foreach ($data as $item)
+                                    <tr>
+                                        <td>
+                                            {{$item->ecs_number}}
+                                        </td>
+                                        <td>
+                                           {{$item->company_name}}
+                                        </td>
+                                        <td>
+                                            {{$item->company_email}}
+                                        </td>
+                                        <td>
+                                            {{$item->business_area}}
+                                        </td>
+                                        <td class="text-end">
+                                            <a href="{{ route('employers.show', [$item->id]) }}"
+                                                class='btn btn-default btn-xs'>
+                                                 <i class="far fa-eye"></i>
+                                             </a>
+                                             <a href="{{ route('employer.employees', [$item->id]) }}"
+                                                 class='btn btn-default btn-xs'>
+                                                  <i class="far fa-user"></i>
+                                              </a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                                <!--end::Table body-->
+                            </table>
+                            <div class="card-footer clearfix">
+                                <div class="float-right">
+                                    @include('adminlte-templates::common.paginate', ['records' => $data])
+                                </div>
                             </div>
-                            <!--end::Table container-->
+                            <!--end::Table-->
                         </div>
                         <div class="tab-pane fade" id="ex2-tabs-2" role="tabpanel" aria-labelledby="ex2-tab-2">
                             <!--begin::Table container-->
