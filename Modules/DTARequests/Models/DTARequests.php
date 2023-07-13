@@ -44,10 +44,10 @@ use OwenIt\Auditing\Contracts\Auditable;
 
     public static array $rules = [
         'purpose_travel' => 'required',
-        'travel_date' => 'required',
+       // 'travel_date' => 'required',
         'destination' => 'required',
         'arrival_date' => 'required',
-        'uploaded_doc' => 'required',
+        //'uploaded_doc' => 'required',
 
     ];
 
