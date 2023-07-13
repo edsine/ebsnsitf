@@ -219,41 +219,50 @@
                                 <!--begin::Table head-->
                                 <thead>
                                     <tr class="fw-bold text-muted bg-light">
-                                        <th class="ps-4 min-w-200px rounded-start">REGISTERED EMPLOYERS</th>
-                                        <th class="min-w-200px">PENDING EMPLOYERS</th>
-                                        <th class="min-w-200px">REGISTERED EMPLOYEES</th>
-                                        <th class="min-w-200px">INCOMPLETE EMPLOYEES</th>
+                                        <th class="ps-4 min-w-200px rounded-start">ECS Number</th>
+                                        <th class="min-w-200px">Company Name</th>
+                                        <th class="min-w-200px">Company Email</th>
+                                        <th class="min-w-200px">Business Area</th>
                                         <th class="min-w-200px text-end rounded-end">ACTIONS</th>
                                     </tr>
                                 </thead>
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody>
+                                    @foreach ($data as $item)
                                     <tr>
                                         <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Pending</span>
+                                            {{$item->ecs_number}}
                                         </td>
                                         <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$5,400</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Paid</span>
+                                           {{$item->company_name}}
                                         </td>
                                         <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX Design</span>
+                                            {{$item->company_email}}
                                         </td>
                                         <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">Intertico</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX Design</span>
+                                            {{$item->business_area}}
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
-                                            <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
+                                            <a href="{{ route('employers.show', [$item->id]) }}"
+                                                class='btn btn-default btn-xs'>
+                                                 <i class="far fa-eye"></i>
+                                             </a>
+                                             <a href="{{ route('employer.employees', [$item->id]) }}"
+                                                 class='btn btn-default btn-xs'>
+                                                  <i class="far fa-user"></i>
+                                              </a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                                 <!--end::Table body-->
                             </table>
+                            <div class="card-footer clearfix">
+                                <div class="float-right">
+                                    @include('adminlte-templates::common.paginate', ['records' => $data])
+                                </div>
+                            </div>
                             <!--end::Table-->
                         </div>
                         <!--end::Table container-->
