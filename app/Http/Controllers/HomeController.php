@@ -29,7 +29,8 @@ class HomeController extends Controller
         $pending_employers = Employer::where('status', 2)->count();
         $registered_employees = Employee::where('status', 1)->count();
         $pending_employees = Employee::where('status', 2)->count();
-
-        return view('home', compact('registered_employers', 'pending_employers', 'registered_employees', 'pending_employees'));
+        $data = Employer::where('status', 1);
+        $data = $data->paginate(10);
+        return view('home', compact('registered_employers', 'pending_employers', 'registered_employees', 'pending_employees', 'data'));
     }
 }
