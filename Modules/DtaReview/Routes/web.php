@@ -14,3 +14,10 @@
 Route::prefix('dtareview')->group(function() {
     Route::get('/', 'DtaReviewController@index');
 });
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('dtareview')->group(function () {
+        Route::resource('dtareview', Modules\DtaReview\Http\Controllers\DtaReviewController::class);
+    });
+});
