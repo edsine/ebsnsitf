@@ -4550,7 +4550,46 @@ var KTStepper = function(element, options) {
         } else {
             _init();
         }
+        // Add event listener to the "Next" button
+        KTUtil.addEvent(the.btnNext, 'click', function (e) {
+            e.preventDefault();
+
+            // Validate current step before proceeding
+            if (_validateCurrentStep()) {
+                KTEventHandler.trigger(the.element, 'kt.stepper.next', the);
+            }
+        });
     }
+
+    var _validateCurrentStep = function () {
+        var stepContent = _getStepContent(the.currentStepIndex);
+        var inputFields = KTUtil.findAll(stepContent, 'input, select, textarea');
+        var isStepValid = true;
+
+        // Check if all input fields are filled
+        for (var i = 0; i < inputFields.length; i++) {
+            var field = inputFields[i];
+            var promptMessage = field.nextElementSibling;
+            if (field.value.trim() === '') {
+                // Field is empty, display prompt message
+                if (!promptMessage || !promptMessage.classList.contains('prompt-message')) {
+                    promptMessage = document.createElement('div');
+                    promptMessage.className = 'prompt-message';
+                    field.parentNode.insertBefore(promptMessage, field.nextSibling);
+                }
+                promptMessage.innerHTML = 'Please fill in this field.';
+                isStepValid = false;
+            } else {
+                // Field is filled, remove prompt message
+                if (promptMessage && promptMessage.classList.contains('prompt-message')) {
+                    promptMessage.parentNode.removeChild(promptMessage);
+                }
+            }
+        }
+
+        return isStepValid;
+    };
+
 
     var _init = function() {
         the.options = KTUtil.deepExtend({}, defaultOptions, options);
@@ -4579,10 +4618,25 @@ var KTStepper = function(element, options) {
         }
 
         // Event listeners
-        the.nextListener = function(e) {
+        // the.nextListener = function(e) {
+        //     e.preventDefault();
+        //     KTEventHandler.trigger(the.element, 'kt.stepper.next', the);
+        // };
+
+        // Event listeners
+        the.nextListener = function (e) {
             e.preventDefault();
 
-            KTEventHandler.trigger(the.element, 'kt.stepper.next', the);
+            // Validate current step before proceeding
+            if (_validateCurrentStep()) {
+                if (the.currentStepIndex < the.totalStepsNumber) {
+                    KTEventHandler.trigger(the.element, 'kt.stepper.next', the);
+                } else {
+                    alert('You have reached the last step.');
+                }
+            } else {
+                _goTo(the.currentStepIndex);
+            }
         };
 
         the.previousListener = function(e) {
