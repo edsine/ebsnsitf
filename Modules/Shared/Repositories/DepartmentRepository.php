@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 class DepartmentRepository extends BaseRepository
 {
     protected $fieldSearchable = [
-        'name',
+        'department_unit',
         'description',
         'branch_id'
     ];
