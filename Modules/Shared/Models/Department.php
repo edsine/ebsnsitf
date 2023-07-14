@@ -59,19 +59,19 @@ use OwenIt\Auditing\Contracts\Auditable;
     public $table = 'departments';
 
     public $fillable = [
-        'name',
+        'department_unit',
         'description',
         'branch_id'
     ];
 
     protected $casts = [
-        'name' => 'string',
+        'department_unit' => 'string',
         'description' => 'string',
         'branch_id' => 'integer'
     ];
 
     public static array $rules = [
-        'name' => 'required',
+        'department_unit' => 'required',
         'branch_id' => 'required'
     ];
 

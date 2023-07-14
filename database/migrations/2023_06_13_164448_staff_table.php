@@ -63,7 +63,7 @@ return new class extends Migration
             $table->string('region')->nullable();
             $table->string('phone')->nullable();
             $table->string('profile_picture')->nullable();
-            $table->integer('status')->nullable();
+            $table->string('status')->nullable();
             $table->string('alternative_email')->nullable();
             $table->string('created_by')->nullable();
             $table->string('date_approved')->nullable();

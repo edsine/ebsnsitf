@@ -1,16 +1,18 @@
 <?php
 
-namespace Modules\Shared\Repositories;
+namespace Modules\DTAReview\Repositories;
 
-use Modules\Shared\Models\Department;
+use Modules\DTAReview\Models\DTAReview;
 use App\Repositories\BaseRepository;
 
-class DepartmentRepository extends BaseRepository
+class DTAReviewRepository extends BaseRepository
 {
     protected $fieldSearchable = [
-        'department_unit',
-        'description',
-        'branch_id'
+        'dtarequest_id',
+        'comments',
+        'staff_id',
+        'review_status',
+        'status'
     ];
 
     public function getFieldsSearchable(): array
@@ -20,7 +22,7 @@ class DepartmentRepository extends BaseRepository
 
     public function model(): string
     {
-        return Department::class;
+        return DTAReview::class;
     }
 
     public function findByBranch($branch_id)

@@ -1,3 +1,4 @@
+
 <!--begin:Menu item-->
 <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
     <!--begin:Menu link-->
@@ -14,7 +15,7 @@
             <!--end::Svg Icon-->
         </span>
         
-        <span class="menu-title">DTA Requests</span>
+        <span class="menu-title">DTA Review</span>
         <span class="menu-arrow"></span>
     </span>
     <!--end:Menu link-->
@@ -23,20 +24,15 @@
         <!--begin:Menu item-->
         <div class="menu-item">
             <!--begin:Menu link-->
-            <a href="{{ route('dtarequests.create') }}" class="menu-link {{ Request::is('dtarequests*') ? 'active' : '' }}">
+            <a href="{{ route('dtareview.index') }}" class="menu-link {{ Request::is('dtareview*') ? 'active' : '' }}">
                 <span class="menu-bullet">
                     <span class="bullet bullet-dot"></span>
                 </span>
-                <span class="menu-title">New DTA Requests</span>
+                <span class="menu-title">View Reviewed DTA </span>
             </a>
             <!--end:Menu link-->
 			<!--begin:Menu link-->
-            <a href="{{ route('dtarequests.index') }}" class="menu-link {{ Request::is('dtarequests*') ? 'active' : '' }}">
-                <span class="menu-bullet">
-                    <span class="bullet bullet-dot"></span>
-                </span>
-                <span class="menu-title">My DTA Applications</span>
-            </a>
+            
             <!--end:Menu link-->
         </div>
         <!--end:Menu item-->
@@ -44,6 +40,3 @@
     <!--end:Menu sub-->
 </div>
 <!--end:Menu item-->
-
-
-
