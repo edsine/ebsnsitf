@@ -91,8 +91,14 @@ class Employer extends Model implements Auditable
     {
         return $this->hasOne(\Modules\EmployerManager\Models\User::class, 'deleted_by', 'id');
     }
+
     public function state()
     {
         return $this->belongsTo('app\Models\State','company_state');
+    }
+
+    public function localGovernment()
+    {
+        return $this->belongsTo('app\Models\LocalGovt','company_localgovt');
     }
 }

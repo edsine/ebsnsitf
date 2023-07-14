@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DocumentManagerDatabaseSeeder::class);
         $this->call(EmployerManagerDatabaseSeeder::class);
         $this->call(StatesTableSeeder::class);
+        $this->call(LocalGovernmentsTableSeeder::class);
     }
 }

@@ -108,19 +108,10 @@
     ]) !!}
 </div>
 
-<!-- Company Localgovt Field -->
-<div class="d-flex flex-column col-md-6 mb-8 fv-row">
-    {!! Form::label('company_localgovt', 'Company Localgovt: ', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
-    {!! Form::text('company_localgovt', null, [
-        'class' => 'form-control form-control-solid border',
-        'placeholder' => 'Enter Company Local Government',
-    ]) !!}
-</div>
-
 <!-- Company State Field -->
 <div class="d-flex flex-column col-md-6 mb-8 fv-row">
     {!! Form::label('company_state', 'Company State: ', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
-    <select name="company_state" class="form-control" required="">
+    <select id="state" name="company_state" class="form-control" required="">
         <option>Select State</option>
         @foreach ($state as $item)
             <option value="{{ $item->id }}" {{ $employer->company_state == $item->id ? 'selected' : '' }}>
@@ -128,6 +119,22 @@
         @endforeach
     </select>
 </div>
+
+<!-- Company Localgovt Field -->
+<div class="d-flex flex-column col-md-6 mb-8 fv-row">
+    {!! Form::label('company_localgovt', 'Company Localgovt: ', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
+    <select id="local-dd" class="form-control">
+    </select>
+    {{-- <select id="local" name="company_localgovt" class="form-control" required="">
+        <option>Select Local Government</option>
+        @foreach ($local_govt as $item)
+            <option value="{{ $item->id }}" {{ $employer->company_localgovt == $item->id ? 'selected' : '' }}>
+                {{ $item->name }}</option>
+        @endforeach
+    </select> --}}
+</div>
+
+
 
 <!-- Business Area Field -->
 <div class="d-flex flex-column col-md-6 mb-8 fv-row">
@@ -155,3 +162,29 @@
         'placeholder' => 'Enter Status',
     ]) !!}
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#state').on('change', function () {
+            var idState = this.value;
+            $("#local-dd").html('');
+            $.ajax({
+                url: "{{url('api/fetch-locals')}}",
+                type: "POST",
+                data: {
+                    state_id: idState,
+                    _token: '{{csrf_token()}}'
+                },
+                dataType: 'json',
+                success: function (result) {
+                    $('#local-dd').html('<option value="">Select Local</option>');
+                    $.each(result.local_govts, function (key, value) {
+                        $("#local-dd").append('<option value="' + value
+                            .id + '">' + value.name + '</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>

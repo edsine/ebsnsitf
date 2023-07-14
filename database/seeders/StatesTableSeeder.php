@@ -22,7 +22,6 @@ class StatesTableSeeder extends Seeder
         $states = array(
 
             array('name' => "Abia", 'status' => 1),
-            array('name' => "FCT", 'status' => 1),
             array('name' => "Adamawa", 'status' => 1),
             array('name' => "Akwa-Ibom", 'status' => 1),
             array('name' => "Anambra", 'status' => 1),
@@ -36,6 +35,7 @@ class StatesTableSeeder extends Seeder
             array('name' => "Edo", 'status' => 1),
             array('name' => "Ekiti", 'status' => 1),
             array('name' => "Enugu", 'status' => 1),
+            array('name' => "FCT", 'status' => 1),
             array('name' => "Gombe", 'status' => 1),
             array('name' => "Imo", 'status' => 1),
             array('name' => "Jigawa", 'status' => 1),

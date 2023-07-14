@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('cac_reg_year')->nullable();
             $table->string('contact_position')->nullable();
             $table->string('contact_number');
-            $table->string('company_localgovt');
+            $table->string('company_localgovt')->nullable();
             $table->integer('company_state')->nullable();
             $table->integer('number_of_employees')->nullable();
             $table->string('business_area');

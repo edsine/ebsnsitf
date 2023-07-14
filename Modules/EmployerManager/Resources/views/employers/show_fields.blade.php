@@ -1,4 +1,3 @@
-
 <!-- Ecs Number Field -->
 <div class="col-sm-12">
     {!! Form::label('ecs_number', 'ECS Number:') !!}
@@ -58,7 +57,13 @@
 <!-- Company Localgovt Field -->
 <div class="col-sm-12">
     {!! Form::label('company_localgovt', 'Company Localgovt:') !!}
-    <p>{{ $employer->company_localgovt }}</p>
+    <p>
+        @if ($employer->company_localgovt)
+            {{ $employer->localGovernment->name }}
+        @else
+            Not Specified
+        @endif
+    </p>
 </div>
 
 <!-- Company State Field -->
@@ -82,10 +87,11 @@
 <!--  Status Field -->
 <div class="col-sm-12">
     {!! Form::label('status', 'Status:') !!}
-    <p>@if($employer->status == 1)
-        Registered
+    <p>
+        @if ($employer->status == 1)
+            Registered
         @else
-        Pending
-        @endif</p>
+            Pending
+        @endif
+    </p>
 </div>
-
