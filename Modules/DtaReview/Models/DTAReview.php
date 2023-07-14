@@ -5,17 +5,19 @@ namespace Modules\DtaReview\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Dta_reviews extends Model
+class DTAReview extends Model
 {
     use HasFactory;
     //
+    public $table = 'dta_reviews';
     public $primarykey='id';
     public $fillable = [
         'dtarequest_id',
         'comments',
         'staff_id',
         'review_status',
-        'status'
+        'status',
+        'dta_reviewid',
 
         
     ];

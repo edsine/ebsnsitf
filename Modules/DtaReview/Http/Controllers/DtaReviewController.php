@@ -5,16 +5,26 @@ namespace Modules\DtaReview\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\DTAReview\Repositories\DTAReviewRepository;
 
 class DtaReviewController extends Controller
 {
+    /** @var DTAReviewRepository $dtaReviewRepository*/
+    private $dtaReviewRepository;
+
+    public function __construct(DTAReviewRepository $dtaReviewRepo)
+    {
+        $this->dtaReviewRepository = $dtaReviewRepo;
+    }
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
     {
-        return view('dtareview::index');
+        $dtareview = $this->dtaReviewRepository->paginate(10);
+
+        return view('dtareview::dtareview.index')->with('dtareviews', $dtareview);
     }
 
     /**

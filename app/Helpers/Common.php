@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Auth;
 
+
 function getBranchRegions()
 {
     $regions = [
-        '' => 'Select Branch Region',
+        0 => 'Select Branch Region',
         1 => 'Abuja',
         2 => 'Bauchi',
         3 => 'Benue',
@@ -36,9 +37,13 @@ function getBranchRegions()
         28 => 'Sokoto',
         29 => 'Taraba',
         30 => 'Yobe',
+        31 => 'Adamawa',
+        32 => 'Bayelsa',
     ];
     return $regions;
 }
+
+
 
 
 function getRanks()

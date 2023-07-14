@@ -10,9 +10,11 @@ use Modules\DTARequests\Http\Requests\CreateDTARequests;
 use Modules\DTARequests\Http\Requests\UpdateDTARequests;
 use App\Http\Controllers\AppBaseController;
 use Modules\DTARequests\Repositories\DTARequestsRepository;
+use Modules\DTAReview\Repositories\DTAReviewRepository;
 use Flash;
 use Modules\Shared\Repositories\BranchRepository;
-use App\Http\Repositories\UserRepository;
+use App\Repositories\UserRepository;
+use App\Repositories\StaffRepository;
 use Illuminate\Support\Facades\Auth;
 
 class DTARequestsController extends AppBaseController
@@ -24,10 +26,18 @@ class DTARequestsController extends AppBaseController
     /** @var BranchRepository $branchRepository*/
     private $branchRepository;
 
-    public function __construct(DTARequestsRepository $dtaRequestsRepo, BranchRepository $branchRepo)
+    /** @var DTAReviewRepository $dtaReviewRepository*/
+    private $dtaReviewRepository;
+
+    /** @var StaffRepository $staffRepository*/
+    private $staffRepository;
+
+    public function __construct(DTARequestsRepository $dtaRequestsRepo, BranchRepository $branchRepo, DTAReviewRepository $dtaReviewRepo, StaffRepository $staffRepo)
     {
         $this->dtaRequestsRepository = $dtaRequestsRepo;
         $this->branchRepository = $branchRepo;
+        $this->dtaReviewRepository = $dtaReviewRepo;
+        $this->staffRepository = $staffRepo;
     }
 
     /**
@@ -39,6 +49,7 @@ class DTARequestsController extends AppBaseController
         $dtarequests = $this->dtaRequestsRepository->paginate(10);
 
         return view('dtarequests::dtarequests.index')->with('dtarequests', $dtarequests);
+         
     }
 
     /**
@@ -60,7 +71,9 @@ class DTARequestsController extends AppBaseController
     public function store(CreateDTARequests $request)
     {
         $input = $request->all();
-        $input['staff_id'] = Auth::id();
+        $uid = Auth::id();
+        $staff_id = $this->staffRepository.getByUserId($uid);
+        $input['staff_id'] = $staff_id->id;
         $input['hod_status'] = 0;
         $input['supervisor_status'] = 0;
         $input['md_status'] = 0;
@@ -74,6 +87,7 @@ class DTARequestsController extends AppBaseController
         }
 
         $dtarequests = $this->dtaRequestsRepository->create($input);
+        
 
         Flash::success('DTA Requests saved successfully.');
 
@@ -124,7 +138,7 @@ class DTARequestsController extends AppBaseController
      * @param int $id
      * @return Renderable
      */
-    public function update($id, UpdateClaimsCompensationRequest $request)
+    public function update($id, UpdateDTARequests $request)
     {
         $dtarequests = $this->dtaRequestsRepository->find($id);
 
@@ -136,6 +150,7 @@ class DTARequestsController extends AppBaseController
 
         $input = $request->all();
 
+        //$staff_id = $this->dtaRequestsRepository->find($id);
         $input['staff_id'] = Auth::id();
 
         if ($request->hasFile('uploaded_doc')) {
@@ -148,7 +163,17 @@ class DTARequestsController extends AppBaseController
             unset($input['uploaded_doc']);
         }
 
-        $dtarequests = $this->dtaRequestsRepository->update($input, $id);
+        $dtarequests1 = $this->dtaRequestsRepository->update($input, $id);
+
+        $input_r = null;
+        $input_r['officer_id'] = $dtarequests->staff_id;
+        $input_r['dta_reviewid'] = $id;
+        $input_r['dta_id'] = $id;
+        $input_r['comments'] = $request->input('comments');
+        $input_r['review_status'] = $request->input('approval_status');
+        $input_r['created_at'] = now();
+        $input_r['updated_at'] = now();
+        $this->dtaReviewRepository->create($input_r);
 
         Flash::success('DTA Requests updated successfully.');
 
