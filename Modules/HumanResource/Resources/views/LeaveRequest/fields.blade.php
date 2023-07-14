@@ -1,7 +1,7 @@
 <!-- Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('type', 'SELECT LEAVE TYPE:') !!}
-    {!! Form::select('type', $leave_type, null, ['class' => 'form-control custom-select', 'required']) !!}
+    {!! Form::select('type', leave_type(), null, ['class' => 'form-control form-select', 'required']) !!}
 </div>
 
 <!-- Description Field -->
@@ -44,7 +44,7 @@
 </div>
 <div class="form-group col-sm-6">
     {!! Form::label('state', 'STATE:') !!}
-    {!! Form::text('state',  null, ['class' => 'form-control ']) !!}
+    {!! Form::select('state', getBranchRegions(), null, ['class' => 'form-control form-select ']) !!}
 </div>
 <div class="form-group col-sm-6">
     {!! Form::label('phone_number', 'PHONE NUMBER:') !!}
@@ -54,40 +54,51 @@
     {!! Form::label('officer_relieve', 'NAME OF OFFICER TO RELIEVE:') !!}
     {!! Form::text('officer_relieve',  null, ['class' => 'form-control ']) !!}
 </div>
+<div class="form-group col-sm-6">
+    {!! Form::label('end_date', 'EXPECTED DATE TO RESUME:') !!}
+    {!! Form::date('end_date',  null, ['class' => 'form-control ']) !!}
+</div>
 
 <!-- Image Field -->
-<div class="col-sm-4">
-    {!! Form::label('signature_path', 'UPLOAD SIGNATURE') !!}
+<div class="col-sm-4 my-4">
+    {!! Form::label('signature_path', 'UPLOAD SIGNATURE PDF ONLY') !!}
     <div class="form-group">
     {!! Form::file('signature_path',null, ['class' => 'form-control','accept' => 'image/*']) !!}
     </div>
 </div>
 
-@can(['approve as regional manager', 'approve as medical team', 'approve as head office'])
+@can(['approve as md_hr', 'approve as leave_officer', 'approve as supervisor_office','approve as approve_status'])
 <!-- Regional Manager Status Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('regional_manager_status', 'Regional Manager Status') !!}
+    {!! Form::label('md_hr', 'MD HR') !!}
     <div class="">
-    {!! Form::radio('regional_manager_status', 1, false) !!}&nbsp;Approved&nbsp;&nbsp;
-    {!! Form::radio('regional_manager_status', 0, true) !!}&nbsp;Unapproved
+    {!! Form::radio('md_hr', 1, false) !!}&nbsp;Approved&nbsp;&nbsp;
+    {!! Form::radio('md_hr', 0, true) !!}&nbsp;Unapproved
     </div>
 </div>
 
 <!-- Head Office Status Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('head_office_status', 'Head Office Status') !!}
+    {!! Form::label('leave_officer', 'Head Office Status') !!}
     <div class="">
-    {!! Form::radio('head_office_status', 1, false) !!}&nbsp;Approved&nbsp;&nbsp;
-    {!! Form::radio('head_office_status', 0, true) !!}&nbsp;Unapproved
+    {!! Form::radio('leave_officer', 1, false) !!}&nbsp;Approved&nbsp;&nbsp;
+    {!! Form::radio('leave_officer', 0, true) !!}&nbsp;Unapproved
+    </div>
+</div>
+<div class="form-group col-sm-6">
+    {!! Form::label('supervisor_office', 'Supervisor OFFICER') !!}
+    <div class="">
+    {!! Form::radio('supervisor_office', 1, false) !!}&nbsp;Approved&nbsp;&nbsp;
+    {!! Form::radio('supervisor_office', 0, true) !!}&nbsp;Unapproved
     </div>
 </div>
 
-<!-- Medical Team Status Field -->
+<!-- APPROVE STATUS Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('medical_team_status', 'Medical Team Status') !!}
+    {!! Form::label('approve_status', 'Approved Status') !!}
     <div class="">
-    {!! Form::radio('medical_team_status', 1, false) !!}&nbsp;Approved&nbsp;&nbsp;
-    {!! Form::radio('medical_team_status', 0, true) !!}&nbsp;Unapproved
+    {!! Form::radio('approve_status', 1, false) !!}&nbsp;Approved&nbsp;&nbsp;
+    {!! Form::radio('approve_status', 0, true) !!}&nbsp;Unapproved
     </div>
 </div>
 @endcan

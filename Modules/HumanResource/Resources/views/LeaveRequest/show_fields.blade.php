@@ -1,35 +1,47 @@
 <!-- Name Field -->
 <div class="col-sm-12">
-    {!! Form::label('name', 'Name:') !!}
-    <p>{{ $claimscompensations->name }}</p>
+    {!! Form::label('statf_id', 'STAFF ID:') !!}
+    <p>{{ $leaverequest->id }}</p>
 </div>
 
-<!-- Description Field -->
+<!-- NUMBER OF DAYS Field -->
 <div class="col-sm-12">
-    {!! Form::label('description', 'Description:') !!}
-    <p>{{ $claimscompensations->description }}</p>
+    {!! Form::label('phone_number', 'PHONE NUMBER:') !!}
+    <p>{{ $leaverequest->phone_number}}</p>
+</div>
+
+<!--  TYPE OF  LEAVE  Field -->
+<div class="col-sm-12">
+    {!! Form::label('type', 'TYPE OF LEAVE:') !!}
+    <p>{{ $leaverequest->type }}</p>
+</div>
+
+<!--  END OF LEAVE Field -->
+<div class="col-sm-12">
+    {!! Form::label('end_date', 'END OF LEAVE:') !!}
+    <p>{{ $leaverequest->end_date}}</p>
 </div>
 
 <!-- Branch Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('branch_id', 'Branch:') !!}
-    <p>{{ $claimscompensations->branch ? $claimscompensations->branch->branch_name : '' }}</p>
+    {!! Form::label('staff', 'Branch:') !!}
+    <p>{{ $leaverequest->staff_id ? $leaverequest->staff_id->user_id : '' }}</p>
 </div>
 
-<!-- Images Field -->
+<!-- signature_path Field -->
 <div class="col-sm-4">
-    {!! Form::label('images', 'Image Document') !!}
+    {!! Form::label('signature_path', 'PDF SIGNATURE Document') !!}
     <div class="form-group">
         <p>
-            <img style="width: 50px;height: 50px" src="{{ url('storage/') }}{!! '/'.$claimscompensations->images !!}" alt="Image"></p>
+            <img style="width: 50px;height: 50px" src="{{ url('storage/') }}{!! '/'.$leaverequest->signature_path !!}" alt="SIGNATURE"></p>
     </div>
 </div>
 
-<!-- Regional Manager Status Field -->
+<!-- SUPERVISOR  STATUS Field -->
 <div class="col-sm-12">
-    {!! Form::label('regional_manager_status', 'Regional Manager Status:') !!}
+    {!! Form::label('supervisor_office', 'SUPERVISOR  STATUS:') !!}
     <div class="">
-        <p> @if (isset($claimscompensations->regional_manager_status) && $claimscompensations->regional_manager_status == 1)
+        <p> @if (isset($leaverequest->supervisor_office) && $leaverequest->supervisor_office == 1)
             <span class="btn btn-sm btn-success">Approved</span>
         @else
             <span class="btn btn-sm btn-danger">Unapproved</span>
@@ -38,11 +50,11 @@
     </div>
 </div>
 
-<!-- Head Office Status Field -->
+<!-- MD HR Field -->
 <div class="col-sm-12">
-    {!! Form::label('head_office_status', 'Head Office Status:') !!}
+    {!! Form::label('md_hr', 'MD HR:') !!}
     <div class="">
-        <p> @if (isset($claimscompensations->head_office_status) && $claimscompensations->head_office_status == 1)
+        <p> @if (isset($leaverequest->md_hr) && $leaverequest->md_hr == 1)
             <span class="btn btn-sm btn-success">Approved</span>
         @else
             <span class="btn btn-sm btn-danger">Unapproved</span>
@@ -51,11 +63,11 @@
     </div>
 </div>
 
-<!-- Medical Team Status Field -->
+<!-- LEAVE_OFFICE Field -->
 <div class="col-sm-12">
-    {!! Form::label('medical_team_status', 'Medical Team Status:') !!}
+    {!! Form::label('leaver_officer', 'LEAVE_OFFICE:') !!}
     <div class="">
-        <p> @if (isset($claimscompensations->medical_team_status) && $claimscompensations->medical_team_status == 1)
+        <p> @if (isset($leaverequest->leaver_officer) && $leaverequest->leaver_officer == 1)
             <span class="btn btn-sm btn-success">Approved</span>
         @else
             <span class="btn btn-sm btn-danger">Unapproved</span>
@@ -67,12 +79,12 @@
 <!-- Created At Field -->
 <div class="col-sm-12">
     {!! Form::label('created_at', 'Created At:') !!}
-    <p>{{ $claimscompensations->created_at }}</p>
+    <p>{{ $leaverequest->created_at }}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="col-sm-12">
     {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{{ $claimscompensations->updated_at }}</p>
+    <p>{{ $leaverequest->updated_at }}</p>
 </div>
 

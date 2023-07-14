@@ -3,57 +3,67 @@
         <table class="table" id="departments-table">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Branch</th>
-                <th>Documents</th>
-                <th>Regional Manager Status</th>
-                <th>Head Office Status</th>
-                <th>Medical Team Status</th>
+                <th> STATFF ID</th>
+                <th>DATE OF LAST LEAVE</th>
+                <th>TYPE OF LEAVE</th>
+                <th>NEW LEAVE DATE</th>
+                <th>NUMBER OF DAYS</th>
+                <th>OFFICER RELIEVER</th>
+                <th>LEAVE END DATE</th>
+                <th>SUPERVISOR APPROVAL</th>
+                <th>MD HR STATUS</th>
+                <th>LEAVER OFFICER STATUS</th>
                 <th colspan="3">Action</th>
             </tr>
             </thead>
+            
             <tbody>
-            @foreach($claimscompensations as $claimscompensation)
+            @foreach($leaverequest as $leaves)
                 <tr>
-                    <td>{{ $claimscompensation->name }}</td>
-                    <td>{{ $claimscompensation->description }}</td>
-                    <td>{{ $claimscompensation->branch ? $claimscompensation->branch->branch_name : '' }}</td>
+                    <td>{{ $leaves->id }}</td>
+                    <td>{{ $leaves->date_last_leave }}</td>
+                    <td>{{ $leaves->type }}</td>
+                    <td>{{ $leaves->date_start_new}}</td>
+                    <td>{{ $leaves->number_days }}</td>
+                    <td>{{ $leaves->officer_relieve }}</td>
+                    <td>{{ $leaves->end_date }}</td>
+                    
+                    {{-- <td>{{ $leaves->branch ? $leaves->branch->branch_name : '' }}</td> --}}
+                    {{-- <td>
+                        <img style="width: 50px;height: 50px" src="{{ url('storage/') }}{!! '/'.$leaves->signature !!}" alt="Image">
+                    </td> --}}
                     <td>
-                        <img style="width: 50px;height: 50px" src="{{ url('storage/') }}{!! '/'.$claimscompensation->images !!}" alt="Image">
-                    </td>
-                    <td>
-                        <p> @if (isset($claimscompensation->regional_manager_status) && $claimscompensation->regional_manager_status == 1)
+                        <p> @if (isset($leaves->regional_manager_status) && $leaves->regional_manager_status == 1)
                             <span class="btn btn-sm btn-success">Approved</span>
                         @else
-                            <span class="btn btn-sm btn-danger">Unapproved</span>
+                            <span class="btn btn-sm btn-secondary">Unapproved</span>
                         @endif
                             </p>
                         </td>
                     <td>
-                        <p> @if (isset($claimscompensation->head_office_status) && $claimscompensation->head_office_status == 1)
+                        <p> @if (isset($leaves->head_office_status) && $leaves->head_office_status == 1)
                             <span class="btn btn-sm btn-success">Approved</span>
                         @else
-                            <span class="btn btn-sm btn-danger">Unapproved</span>
+                            <span class="btn btn-sm btn-secondary">Unapproved</span>
                         @endif
                             </p>
                         </td>
                     <td>
-                        <p> @if (isset($claimscompensation->head_office_status) && $claimscompensation->head_office_status == 1)
+                        <p> @if (isset($leaves->head_office_status) && $leaves->head_office_status == 1)
                             <span class="btn btn-sm btn-success">Approved</span>
                         @else
-                            <span class="btn btn-sm btn-danger">Unapproved</span>
+                            <span class="btn btn-sm btn-secondary">Unapproved</span>
                         @endif
                             </p>
-                        {{ $claimscompensation->medical_team_status }}</td>
+                        {{ $leaves->medical_team_status }}</td>
                     <td  style="width: 120px">
-                        {!! Form::open(['route' => ['claimscompensation.destroy', $claimscompensation->id], 'method' => 'delete']) !!}
+                        {!! Form::open(['route' => ['leave_request.destroy', $leaves->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
-                            <a href="{{ route('claimscompensation.show', [$claimscompensation->id]) }}"
+                            <a href="{{ route('leave_request.show', [$leaves->id]) }}"
                                class='btn btn-default btn-xs'>
                                 <i class="far fa-eye"></i>
                             </a>
-                            <a href="{{ route('claimscompensation.edit', [$claimscompensation->id]) }}"
+                            <a href="{{ route('leave_request.edit', [$leaves->id]) }}"
                                class='btn btn-default btn-xs'>
                                 <i class="far fa-edit"></i>
                             </a>
@@ -69,7 +79,7 @@
 
     <div class="card-footer clearfix">
         <div class="float-right">
-            @include('adminlte-templates::common.paginate', ['records' => $claimscompensations])
+            @include('adminlte-templates::common.paginate', ['records' => $leaverequest]) 
         </div>
     </div>
 </div>

@@ -6,11 +6,11 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>
-                        Claims & Compensations Details
+                        Leave Request
                     </h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right" href="{{ route('claimscompensation.index') }}">
+                    <a class="btn btn-default float-right" href="{{ route('leave_request.index') }}">
                         Back
                     </a>
                 </div>
@@ -22,7 +22,8 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    @include('claimscompensation::claimscompensation.show_fields')
+                    
+                    @include('humanresource::leaverequest.show_fields')
                 </div>
             </div>
         </div>

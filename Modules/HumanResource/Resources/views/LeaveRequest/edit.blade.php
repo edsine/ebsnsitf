@@ -6,7 +6,7 @@
             <div class="row mb-2">
                 <div class="col-sm-12">
                     <h1>
-                        Edit Claims & Compensations
+                        LEAVE REQUEST
                     </h1>
                 </div>
             </div>
@@ -19,17 +19,17 @@
 
         <div class="card">
 
-            {!! Form::model($claimscompensations, ['route' => ['claimscompensation.update', $claimscompensations->id], 'method' => 'patch']) !!}
+            {!! Form::model($LeaveRequest, ['route' => ['leave_request.update', $LeaveRequest->id], 'method' => 'patch']) !!}
 
             <div class="card-body">
                 <div class="row">
-                    @include('claimscompensation::claimscompensation.fields')
+                    @include('humanresource::leaverequest.fields')
                 </div>
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('claimscompensation.index') }}" class="btn btn-default"> Cancel </a>
+                <a href="{{ route('leave_request.index') }}" class="btn btn-default"> Cancel </a>
             </div>
 
             {!! Form::close() !!}

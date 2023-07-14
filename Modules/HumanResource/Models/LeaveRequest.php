@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable as AuditingAuditable;
 use OwenIt\Auditing\Contracts\Auditable;
-class leave_request extends Model implements Auditable
+class LeaveRequest extends Model implements Auditable
 
 
 {
@@ -63,7 +63,7 @@ public $primarykey='id';
         'leave_officer'=>'string'
     ];
     public static array $rules=[
-        'reasons'=>'required',
+        // 'reasons'=>'required',
         'date_last_leave'=>'required',
         'date_start_new'=>'required',
         'number_days'=>'required',

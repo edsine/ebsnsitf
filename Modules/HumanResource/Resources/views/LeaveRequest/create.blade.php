@@ -19,7 +19,7 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'leaverequest.store','enctype' => 'multipart/form-data']) !!}
+            {!! Form::open(['route' => 'leave_request.store','enctype' => 'multipart/form-data']) !!}
 
             <div class="card-body">
 
@@ -31,7 +31,7 @@
 
             <div class="card-footer">
                 {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('leaverequest.index') }}" class="btn btn-default"> Cancel </a>
+                <a href="{{ route('leave_request.index') }}" class="btn btn-default"> Cancel </a>
             </div>
 
             {!! Form::close() !!}

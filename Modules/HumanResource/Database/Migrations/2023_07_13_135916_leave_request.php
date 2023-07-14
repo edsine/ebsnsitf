@@ -36,7 +36,7 @@ class LeaveRequest extends Migration
              $table->string('signature_path')->nullable();
              $table->dateTime('end_date')->nullable();
              $table->integer('approve_status')->nullable()->default(0);
-             $table->integer('supervisor_office')->nullable()->default(2);
+             $table->integer('supervisor_office')->nullable()->default(0);
              $table->integer('md_hr')->nullable()->default(0);
              $table->integer('leave_officer')->nullable()->default(0);
         

@@ -45,32 +45,30 @@ function getBranchRegions()
 
 
 
-<<<<<<< HEAD
 function leave_type()
 {
     $types = [
         '' => 'Select Leave with Pay',
-        1 => 'vacation',
-        2 => 'casual',
-        2 => 'Examination',
-        3=>'Sick leave',
-        4=>'Maternity',
-        5=>'Paternity',
-        6=>'Study Leave without Pay',
-        7=>'Study Leave with Pay',
-        8=> 'Leave to Attend Sporting Event',
-        9=>'Speacial Leave For pilgrimage',
-        10=>'Speacial Leave for Proffessional Activities',
-        11=>'Leave to Attend sporting Event',
-        12=>'Compassionate Leave',
-        13=> 'Leave of Abscence'
+        'vacation' => 'vacation',
+        'casual'=> 'casual',
+        'Examination' => 'Examination',
+        'Sick leave'=>'Sick leave',
+        'Maternity'=>'Maternity',
+        'Paternity'=>'Paternity',
+        'Study Leave without Pay'=>'Study Leave without Pay',
+        'Study Leave with Pay'=>'Study Leave with Pay',
+        'Leave to Attend Sporting Event'=> 'Leave to Attend Sporting Event',
+        'Speacial Leave For pilgrimage'=>'Speacial Leave For pilgrimage',
+        'Speacial Leave for Proffessional Activities'=>'Speacial Leave for Proffessional Activities',
+        
+        'Compassionate Leave'=>'Compassionate Leave',
+        'Leave of Abscence'=> 'Leave of Abscence',
+        'Annual Leave'=>'Annual Leave'
        
     ];
     return $types;
 }
 
-=======
->>>>>>> origin
 
 function getRanks()
 {

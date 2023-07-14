@@ -56,52 +56,52 @@ return [
     //     'menu_file'         => resource_path('views/layouts/menu.blade.php'),
     // ],
 
-    'path' => [
+    // 'path' => [
 
-        'migration'         => base_path('Modules/DocumentManager/Database/Migrations/'),
+    //     'migration'         => base_path('Modules/DocumentManager/Database/Migrations/'),
 
-        'model'             => base_path('Modules/DocumentManager/Models/'),
+    //     'model'             => base_path('Modules/DocumentManager/Models/'),
 
-        'datatables'        => base_path('Modules/DocumentManager/DataTables/'),
+    //     'datatables'        => base_path('Modules/DocumentManager/DataTables/'),
 
-        'livewire_tables'   => base_path('Modules/DocumentManager/Http/Livewire/'),
+    //     'livewire_tables'   => base_path('Modules/DocumentManager/Http/Livewire/'),
 
-        'repository'        => base_path('Modules/DocumentManager/Repositories/'),
+    //     'repository'        => base_path('Modules/DocumentManager/Repositories/'),
 
-        'routes'            => base_path('Modules/DocumentManager/Routes/web.php'),
+    //     'routes'            => base_path('Modules/DocumentManager/Routes/web.php'),
 
-        'api_routes'        => base_path('Modules/DocumentManager/Routes/api.php'),
+    //     'api_routes'        => base_path('Modules/DocumentManager/Routes/api.php'),
 
-        'request'           => base_path('Modules/DocumentManager/Http/Requests/'),
+    //     'request'           => base_path('Modules/DocumentManager/Http/Requests/'),
 
-        'api_request'       => base_path('Modules/DocumentManager/Http/Requests/API/'),
+    //     'api_request'       => base_path('Modules/DocumentManager/Http/Requests/API/'),
 
-        'controller'        => base_path('Modules/DocumentManager/Http/Controllers/'),
+    //     'controller'        => base_path('Modules/DocumentManager/Http/Controllers/'),
 
-        'api_controller'    => base_path('Modules/DocumentManager/Http/Controllers/API/'),
+    //     'api_controller'    => base_path('Modules/DocumentManager/Http/Controllers/API/'),
 
-        'api_resource'      => base_path('Modules/DocumentManager/Http/Resources/'),
+    //     'api_resource'      => base_path('Modules/DocumentManager/Http/Resources/'),
 
-        'schema_files'      => base_path('Modules/DocumentManager/model_schemas/'),
+    //     'schema_files'      => base_path('Modules/DocumentManager/model_schemas/'),
 
-        'seeder'            => base_path('Modules/DocumentManager/Database/Seeders/'),
+    //     'seeder'            => base_path('Modules/DocumentManager/Database/Seeders/'),
 
-        'database_seeder'   => base_path('Modules/DocumentManager/Database/Seeders/DatabaseSeeder.php'),
+    //     'database_seeder'   => base_path('Modules/DocumentManager/Database/Seeders/DatabaseSeeder.php'),
 
-        'factory'           => base_path('Modules/DocumentManager/Database/factories/'),
+    //     'factory'           => base_path('Modules/DocumentManager/Database/factories/'),
 
-        'view_provider'     => base_path('Modules/DocumentManager/Providers/ViewServiceProvider.php'),
+    //     'view_provider'     => base_path('Modules/DocumentManager/Providers/ViewServiceProvider.php'),
 
-        'tests'             => base_path('Modules/DocumentManager/Tests/'),
+    //     'tests'             => base_path('Modules/DocumentManager/Tests/'),
 
-        'repository_test'   => base_path('Modules/DocumentManager/Tests/Repositories/'),
+    //     'repository_test'   => base_path('Modules/DocumentManager/Tests/Repositories/'),
 
-        'api_test'          => base_path('Modules/DocumentManager/Tests/APIs/'),
+    //     'api_test'          => base_path('Modules/DocumentManager/Tests/APIs/'),
 
-        'views'             => base_path('Modules/DocumentManager/Resources/views/'),
+    //     'views'             => base_path('Modules/DocumentManager/Resources/views/'),
 
-        'menu_file'         => base_path('Modules/DocumentManager/Resources/views/layouts/menu.blade.php'),
-    ],
+    //     'menu_file'         => base_path('Modules/DocumentManager/Resources/views/layouts/menu.blade.php'),
+    // ],
     /*
     |--------------------------------------------------------------------------
     | Namespaces
@@ -172,33 +172,33 @@ return [
     // ],
     'namespace' => [
 
-        'model'             => 'Modules\DtaReview\Models',
+        'model'             => 'Modules\HumanResource\Models',
 
-        'datatables'        => 'Modules\DtaReview\DataTables',
+        'datatables'        => 'Modules\HumanResource\DataTables',
 
-        'livewire_tables'   => 'Modules\DtaReview\Http\Livewire',
+        'livewire_tables'   => 'Modules\HumanResource\Http\Livewire',
 
-        'repository'        => 'Modules\DtaReview\Repositories',
+        'repository'        => 'Modules\HumanResource\Repositories',
 
-        'controller'        => 'Modules\DtaReview\Http\Controllers',
+        'controller'        => 'Modules\HumanResource\Http\Controllers',
 
-        'api_controller'    => 'Modules\DtaReview\Http\Controllers\API',
+        'api_controller'    => 'Modules\HumanResource\Http\Controllers\API',
 
-        'api_resource'      => 'Modules\DtaReview\Http\Resources',
+        'api_resource'      => 'Modules\HumanResource\Http\Resources',
 
-        'request'           => 'Modules\DtaReview\Http\Requests',
+        'request'           => 'Modules\HumanResource\Http\Requests',
 
-        'api_request'       => 'Modules\DtaReview\Http\Requests\API',
+        'api_request'       => 'Modules\HumanResource\Http\Requests\API',
 
-        'seeder'            => 'Modules\DtaReview\Database\Seeders',
+        'seeder'            => 'Modules\HumanResource\Database\Seeders',
 
-        'factory'           => 'Modules\DtaReview\Database\Factories',
+        'factory'           => 'Modules\HumanResource\Database\Factories',
 
-        'tests'             => 'Modules\DtaReview\Tests',
+        'tests'             => 'Modules\HumanResource\Tests',
 
-        'repository_test'   => 'Modules\DtaReview\Tests\Repositories',
+        'repository_test'   => 'Modules\HumanResource\Tests\Repositories',
 
-        'api_test'          => 'Modules\DtaReview\Tests\APIs',
+        'api_test'          => 'Modules\HumanResource\Tests\APIs',
     ],
 
     /*
