@@ -5,6 +5,7 @@ namespace Modules\EmployerManager\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use OwenIt\Auditing\Auditable as AuditingAuditable;
 use OwenIt\Auditing\Contracts\Auditable;
 
@@ -60,7 +61,7 @@ class Employer extends Model implements Auditable
         'company_localgovt' => 'string',
         'number_of_employees' => 'integer',
         'status' => 'string',
-        'company_state' => 'string',
+        'company_state' => 'integer',
         'business_area' => 'string',
         'inspection_status' => 'string',
         'registered_date' => 'string',
@@ -89,5 +90,15 @@ class Employer extends Model implements Auditable
     public function deletedBy(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(\Modules\EmployerManager\Models\User::class, 'deleted_by', 'id');
+    }
+
+    public function state()
+    {
+        return $this->belongsTo('app\Models\State','company_state');
+    }
+
+    public function localGovernment()
+    {
+        return $this->belongsTo('app\Models\LocalGovt','company_localgovt');
     }
 }
