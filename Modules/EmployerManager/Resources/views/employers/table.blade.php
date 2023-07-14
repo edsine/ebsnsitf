@@ -14,11 +14,11 @@
                 <th class="min-w-200px">Business Area</th>
                 <th class="min-w-200px">Status</th>
 
-                <th class="min-w-120px" colspan="1">Action</th>
-            </tr>
+                    <th class="min-w-120px" colspan="1">Action</th>
+                </tr>
             </thead>
             <tbody>
-            @foreach($employers as $employer)
+                @foreach($employers as $employer)
                 <tr>
                     <td>{{ $employer->ecs_number }}</td>
                     <td>{{ $employer->company_name }}</td>
@@ -37,27 +37,26 @@
                         @endif
                     </td>
 
-                    <td  style="width: 120px">
+                    <td style="width: 120px">
                         {!! Form::open(['route' => ['employers.destroy', $employer->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
-                            <a href="{{ route('employers.show', [$employer->id]) }}"
+                            <!-- <a href="{{ route('employers.show', [$employer->id]) }}"
                                class='btn btn-default btn-xs'>
                                 <i class="far fa-eye"></i>
-                            </a>
-                            <a href="{{ route('employers.edit', [$employer->id]) }}"
-                               class='btn btn-default btn-xs'>
+                            </a> -->
+                            <a href="{{ route('employers.edit', [$employer->id]) }}" class='btn btn-default btn-xs' style="display: inline-flex; align-items: center;">
                                 <i class="far fa-edit"></i>
                             </a>
-                            <a href="{{ route('employer.employees', [$employer->id]) }}"
-                                class='btn btn-default btn-xs'>
-                                 <i class="far fa-user"></i>
-                             </a>
+                            <a href="{{ route('employer.employees', [$employer->id]) }}" class="btn btn-success btn-xs" style="display: inline-flex; align-items: center;">
+                                <!-- <i class="far fa-user" style="margin-right: 5px;"></i> -->
+                                <span>View Employee</span>
+                            </a>
                             {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                         </div>
                         {!! Form::close() !!}
                     </td>
                 </tr>
-            @endforeach
+                @endforeach
             </tbody>
         </table>
     </div>
