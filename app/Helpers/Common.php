@@ -71,12 +71,10 @@ function checkPermission($permission)
     return false;
 }
 
-function enum_employer_status($add_Select = TRUE)
+function enum_employer_status()
 {
     $option['1'] = 'Registered';
     $option['2'] = 'Pending';
-    if (!$add_Select) {
-        unset($option['-1']);
-    }
+    
     return $option;
 }

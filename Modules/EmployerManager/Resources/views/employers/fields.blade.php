@@ -171,7 +171,13 @@
                 <!-- Company State Field -->
                 <div class="d-flex flex-column col-md-12 mb-8 fv-row">
                     {!! Form::label('company_state', 'Company State: ', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
-                    {!! Form::text('company_state', null, ['class' => 'form-control form-control-solid border', 'placeholder' => 'Enter Company State']) !!}
+                    {{-- {!! Form::text('company_state', null, ['class' => 'form-control form-control-solid border', 'placeholder' => 'Enter Company State']) !!} --}}
+                    <select name="company_state" class="form-control" >
+                        <option>Select State</option>
+                        @foreach($state as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <!--end::Input group-->
             </div>

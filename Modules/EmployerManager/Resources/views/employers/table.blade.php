@@ -18,6 +18,7 @@
             </tr>
             </thead>
             <tbody>
+                
             @foreach($employers as $employer)
                 <tr>
                     <td>{{ $employer->ecs_number }}</td>
@@ -27,7 +28,7 @@
                     <td>{{ $employer->company_rcnumber }}</td>
                     <td>{{ $employer->company_phone }}</td>
                     <td>{{ $employer->company_localgovt }}</td>
-                    <td>{{ $employer->company_state }}</td>
+                    <td>{{ $employer->state->name }}</td>
                     <td>{{ $employer->business_area }}</td>
                     <td>
                         @if($employer->status == 1)
