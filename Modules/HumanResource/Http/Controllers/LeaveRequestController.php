@@ -6,20 +6,21 @@ use Flash;
 //use LeaveRequest;
 use Illuminate\Http\Request;
 
-use Modules\HumanResource\Http\Requests\CreateLeaveRequests;
-use Modules\HumanResource\Http\Requests\UpdateleaveRequests;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 // use Modules\HumanResource\Repositories\DTAReviewRepository;
 
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Repositories\StaffRepository;
 use App\Http\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Contracts\Support\Renderable;
-
 use Modules\Shared\Repositories\BranchRepository;
+use Modules\HumanResource\Http\Requests\UpdateLeaveRequests;
 
+use Modules\HumanResource\Http\Requests\CreateLeaveRequests;
+
+// use Modules\HumanResource\Http\Requests\UpdateleaveRequests;
 use Modules\HumanResource\Repositories\LeaveRequestRepository;
 //use Modules\Leaves\Http\Requests\UpdateleavesRequest;
 
@@ -154,7 +155,7 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
      * @param int $id
      * @return Renderable
      */
-    public function update($id, UpdateleavesRequest $request)
+    public function update($id, UpdateLeaveRequests $request)
     {
         $leaverequest = $this->leaverequestRepository->find($id);
 
