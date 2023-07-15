@@ -167,7 +167,7 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
 
         $input = $request->all();
 
-        $input['staff_id'] = Auth::id();
+        // $input['staff_id'] = Auth::id();
         
 
         if ($request->hasFile('uploaded_doc')) {
@@ -192,9 +192,9 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
         // $input_r['updated_at'] = now();
         // $this->dtaReviewRepository->create($input_r);
 
-        Flash::success('LEAVE REQUEST  successfully SENT.');
+        Flash::success('LEAVE REQUEST Updated successfully .');
 
-        return redirect(route('leaverequest.index'));
+        return redirect(route('leave_request.index'));
     }
 
     /**
