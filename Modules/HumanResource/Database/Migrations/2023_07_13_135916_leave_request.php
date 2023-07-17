@@ -14,14 +14,16 @@ class LeaveRequest extends Migration
     public function up()
     {
         Schema::create('leave_request', function (Blueprint $table) {
-            $table->id('id');
+            $table->id('id'); 
             
-             
-             
+
+            
+            //  $table->foreignId('type_id')->nullable()->constrained('leave_types')->onDelete('cascade');
+             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
              $table->foreignId('staff_id')->nullable()->constrained('staff')->onDelete('cascade');
               
              $table->string('reasons')->nullable();
-             $table->string('type')->nullable();
+             $table->integer('leave_type_id')->unsigned();
              $table->dateTime('date_last_leave')->nullable();
              $table->dateTime('date_start_new')->nullable();
              $table->integer('number_days')->nullable();
@@ -53,6 +55,6 @@ class LeaveRequest extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('leave_request');
     }
 }

@@ -1,7 +1,7 @@
 <!-- Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('type', 'SELECT LEAVE TYPE:') !!}
-    {!! Form::select('type', leave_type(), null, ['class' => 'form-control form-select', 'required']) !!}
+    {!! Form::select('type', $leavetype, null, ['class' => 'form-control form-select', 'required','onchange'=>'displayDuration(this)']) !!}
 </div>
 
 <!-- Description Field -->
@@ -18,7 +18,7 @@
 
 <div class="form-group col-sm-6">
     {!! Form::label('number_days', 'NUMBER OF DAYS:') !!}
-    {!! Form::number('number_days',  null, ['class' => 'form-control ']) !!}
+    {!! Form::number('number_days',   null, ['class' => 'form-control ','readonly'=>true,'id'=>'number_days']) !!}
 </div>
 
 <div class="form-group col-sm-6">
@@ -102,3 +102,23 @@
     </div>
 </div>
 @endcan
+
+<script>
+    function displayDuration(duration){
+        // alert(duration.value);
+        $.ajax({
+            url:"http://localhost:8000/leave_request/leave_request/leavetypeduration",
+            type:"GET",
+            data:{id:duration}
+            dataType:"html"
+            cache:false,
+            success:function(html){
+                $("#number_days").html(html)
+            },
+            error:function(error){
+                alert(error)
+            }
+        })
+       
+    }
+</script>

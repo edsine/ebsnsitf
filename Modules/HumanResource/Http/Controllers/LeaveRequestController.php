@@ -22,6 +22,8 @@ use Modules\HumanResource\Http\Requests\CreateLeaveRequests;
 
 // use Modules\HumanResource\Http\Requests\UpdateleaveRequests;
 use Modules\HumanResource\Repositories\LeaveRequestRepository;
+use Modules\HumanResource\Repositories\LeavetypeRepository;
+
 //use Modules\Leaves\Http\Requests\UpdateleavesRequest;
 
 // use Modules\HumanResource\Http\Requests\LeaveRequest;
@@ -36,6 +38,9 @@ class LeaveRequestController extends  AppBaseController
     /** @var BranchRepository $branchRepository*/
     private $branchRepository;
 
+    /** @var LeavetypeRepository $branchRepository*/
+    private $leavetypeRepository ;
+
 
     //   /** @var DTAReviewRepository $dtaReviewRepository*/
     //   private $dtaReviewRepository;
@@ -43,11 +48,12 @@ class LeaveRequestController extends  AppBaseController
 /** @var StaffRepository $staffRepository*/
 private $staffRepository;
 
-public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepository $branchRepo, StaffRepository $staffRepo)
+public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepository $branchRepo, StaffRepository $staffRepo ,LeavetypeRepository $leavetypeRepo)
     {
         $this->leaverequestRepository = $leaverequestRepo;
         $this->branchRepository = $branchRepo;
         $this->staffRepository = $staffRepo;
+        $this->leavetypeRepository = $leavetypeRepo;
     }
 
 
@@ -58,6 +64,7 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
     public function index()
 
     {
+        
         $leaverequest=$this->leaverequestRepository->paginate(10);
         return view('humanresource::leaverequest.index',compact('leaverequest'));
     }
@@ -66,10 +73,24 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function create()
+    public function create( )
     {
-        return view('humanresource::leaverequest.create');
+        $leavetype=$this->leavetypeRepository->all()->pluck('name','id','duration');
+        // $leave=$this->leavetypeRepository->all()->pluck('duration','id');
+
+        return view('humanresource::leaverequest.create',compact('leavetype'));
     }
+
+    public function leavetypeduration(Request $request)
+    {
+        $id=$request->get('id');
+        $leavetype=$this->leavetypeRepository->find($id)->pluck('duration');
+      
+
+        // return view('humanresource::leaverequest.create',compact('leavetype'));
+        return $leavetype;
+    }
+
 
     /**
      * Store a newly created resource in storage.

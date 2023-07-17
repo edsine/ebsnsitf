@@ -70,10 +70,17 @@ public $primarykey='id';
         'phone_number'=>'required',
     ];
     
+
+// public function leave_type(){
+//     return $this->belongsTo('App\Models\LeaveType'); 
+// }
+
     // protected static function newFactory()
     // {
     //     return \Modules\HumanResource\Database\factories\LeaveRequestFactory::new();
     // }
+
+
 
     public function staff(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

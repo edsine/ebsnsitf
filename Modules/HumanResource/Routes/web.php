@@ -1,5 +1,7 @@
 <?php
 
+use Modules\HumanResource\Http\Controllers\Leavetypescontroller;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,10 +21,16 @@
 
 Route::prefix('leave_request')->group(function() {
     Route::get('/', 'LeaveRequestController@index');
+    Route::get('/leave_types','LeaveTypesController@index');
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('leave_request')->group(function () {
         Route::resource('leave_request', Modules\HumanResource\Http\Controllers\LeaveRequestController::class);
+        Route::resource('/leave_type', Modules\HumanResource\Http\Controllers\Leavetypescontroller::class);
     });
-});
+    
+}
+
+);
+
