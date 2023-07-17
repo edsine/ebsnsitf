@@ -138,7 +138,7 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
         if (empty($leaverequest)) {
             Flash::error('Leave Request not found');
 
-            return redirect(route('leaverequest.index'));
+            return redirect(route('leave_request.index'));
         }
         
         $branches = $this->branchRepository->all()->pluck('branch_name', 'id');
@@ -162,7 +162,7 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
         if (empty($leaverequest)) {
             Flash::error('leave request not found');
 
-            return redirect(route('leaverequest.index'));
+            return redirect(route('leave_request.index'));
         }
 
         $input = $request->all();

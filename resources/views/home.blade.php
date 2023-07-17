@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container-fluid">
         {{-- Start::Sweet-alert --}}
         @include('flash::message')
@@ -24,11 +25,13 @@
                         </div>
                         <div class="statistics-widget-3-chart card-rounded-bottom" data-kt-chart-color="success"
                             style="height: 50px"></div>
+
                     </div>
                     <!--end::Body-->
                 </div>
-                <!--end::Statistics Widget 3-->
+                <!--end::Body-->
             </div>
+
             <div class="col-xl-3">
                 <!--begin::Statistics Widget 3-->
                 <div class="card mb-xl-8">
@@ -45,11 +48,13 @@
                         </div>
                         <div class="statistics-widget-3-chart card-rounded-bottom" data-kt-chart-color="success"
                             style="height: 50px"></div>
+
                     </div>
                     <!--end::Body-->
                 </div>
-                <!--end::Statistics Widget 3-->
+                <!--end::Body-->
             </div>
+
             <div class="col-xl-3">
                 <!--begin::Statistics Widget 3-->
                 <div class="card mb-xl-8">
@@ -66,11 +71,13 @@
                         </div>
                         <div class="statistics-widget-3-chart card-rounded-bottom" data-kt-chart-color="success"
                             style="height: 50px"></div>
+
                     </div>
                     <!--end::Body-->
                 </div>
-                <!--end::Statistics Widget 3-->
+                <!--end::Body-->
             </div>
+
             <div class="col-xl-3">
                 <!--begin::Statistics Widget 3-->
                 <div class="card mb-xl-8">
@@ -87,12 +94,14 @@
                         </div>
                         <div class="statistics-widget-3-chart card-rounded-bottom" data-kt-chart-color="success"
                             style="height: 50px"></div>
+
                     </div>
                     <!--end::Body-->
                 </div>
                 <!--end::Statistics Widget 3-->
             </div>
         </div>
+
         <!--end::Row-->
         <!--begin::Row-->
         <div class="row g-5 g-xl-8 pt-5">
@@ -202,6 +211,7 @@
                 </a>
                 <!--end::Statistics Widget 5-->
             </div>
+
         </div>
         <!--end::Row-->
     </div>

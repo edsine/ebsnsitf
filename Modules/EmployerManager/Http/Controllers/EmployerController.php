@@ -5,10 +5,13 @@ namespace Modules\EmployerManager\Http\Controllers;
 use Modules\EmployerManager\Http\Requests\CreateEmployerRequest;
 use Modules\EmployerManager\Http\Requests\UpdateEmployerRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Models\LocalGovt;
+use App\Models\State;
 use App\Models\User;
 use Modules\EmployerManager\Repositories\EmployerRepository;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Modules\EmployerManager\Models\Employee;
 use Modules\EmployerManager\Models\Employer;
 
@@ -27,10 +30,13 @@ class EmployerController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $employers = $this->employerRepository->paginate(10);
 
-        return view('employermanager::employers.index')
-            ->with('employers', $employers);
+        $state = State::where('status', 1)->get();
+        $local_govt = LocalGovt::where('status', 1)->get();
+
+        $employers = $this->employerRepository->paginate(10);
+        
+        return view('employermanager::employers.index', compact('employers', 'state', 'local_govt'));
     }
 
     /**
@@ -38,12 +44,15 @@ class EmployerController extends AppBaseController
      */
     public function create()
     {  
+        $state = State::where('status', 1)->get();
+        $local_govt = LocalGovt::where('status', 1)->get();
+
         $employers = User::whereHas(
             'roles', function ($q) {
                 $q->where('name', 'super-admin');
             }
         )->get();
-        return view('employermanager::employers.create', compact('employers'));
+        return view('employermanager::employers.create', compact('employers','state', 'local_govt'));
     }
 
     /**
@@ -67,6 +76,9 @@ class EmployerController extends AppBaseController
     public function show($id)
     {
         $employer = $this->employerRepository->find($id);
+        $state = State::where('status', 1)->get();
+        $local_govt = LocalGovt::where('status', 1)->get();
+
 
         if (empty($employer)) {
             Flash::error('Employer not found');
@@ -74,7 +86,7 @@ class EmployerController extends AppBaseController
             return redirect(route('employers.index'));
         }
 
-        return view('employermanager::employers.show')->with('employer', $employer);
+        return view('employermanager::employers.show', compact('employer', 'state', 'local_govt'));
     }
 
     /**
@@ -82,6 +94,9 @@ class EmployerController extends AppBaseController
      */
     public function edit($id)
     {
+        $state = State::where('status', 1)->get();
+        $local_govt = LocalGovt::where('status', 1)->get();
+
         $employer = $this->employerRepository->find($id);
         $employers = User::whereHas(
             'roles', function ($q) {
@@ -95,7 +110,7 @@ class EmployerController extends AppBaseController
             return redirect(route('employers.index'));
         }
 
-        return view('employermanager::employers.edit', compact('employers'))->with('employer', $employer);
+        return view('employermanager::employers.edit', compact('employer','employers','state', 'local_govt'));
     }
 
     /**
