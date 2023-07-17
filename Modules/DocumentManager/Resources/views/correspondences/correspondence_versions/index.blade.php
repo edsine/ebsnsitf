@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Dta Reviews</h1>
+                    <h1 class="mb-3">Correspondence Title: {{ $memo->title }}</h1>
+                    <h2>Versions</h2>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-primary float-end"
-                       href="{{ route('dtaReviews.create') }}">
-                        Add New
+                    <a class="btn btn-primary float-end" href="{{ url()->previous() }}">
+                        Back
                     </a>
                 </div>
             </div>
@@ -24,8 +24,7 @@
         <div class="clearfix"></div>
 
         <div class="card">
-            @include('dta_reviews.table')
+            @include('documentmanager::correspondences.correspondence_versions.table')
         </div>
     </div>
-
 @endsection

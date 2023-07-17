@@ -28,3 +28,13 @@ Route::resource('document-versions', Modules\DocumentManager\Http\Controllers\AP
 
 Route::resource('memos', Modules\DocumentManager\Http\Controllers\API\MemoAPIController::class)
     ->except(['create', 'edit']);
+
+
+Route::resource('correspondences', Modules\DocumentManager\Http\Controllers\API\CorrespondenceAPIController::class)
+    ->except(['create', 'edit']);
+
+Route::resource('correspondence-has-users', Modules\DocumentManager\Http\Controllers\API\CorrespondenceHasUserAPIController::class)
+    ->except(['create', 'edit']);
+
+Route::resource('correspondence-has-departments', Modules\DocumentManager\Http\Controllers\API\CorrespondenceHasDepartmentAPIController::class)
+    ->except(['create', 'edit']);

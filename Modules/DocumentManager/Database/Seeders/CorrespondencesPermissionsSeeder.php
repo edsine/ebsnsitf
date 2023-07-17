@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-class MemoHasDepartmentsTableSeeder extends Seeder
+class CorrespondencesPermissionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,9 +17,16 @@ class MemoHasDepartmentsTableSeeder extends Seeder
     {
         $arrayOfPermissionNames =
             [
-                'assign memo to department',
-                'read department-memo assignment',
-                'delete memo-department assignment',
+                'create correspondence',
+                'read correspondence',
+                'update correspondence',
+                'delete correspondence',
+                'assign correspondence to department',
+                'read department-correspondence assignment',
+                'delete correspondence-department assignment',
+                'assign correspondence to user',
+                'read user-correspondence assignment',
+                'delete correspondence-user assignment',
             ];
 
         $permissions = collect($arrayOfPermissionNames)->map(function ($permission) {
