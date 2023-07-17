@@ -17,7 +17,7 @@ class DTARequestsRepository extends BaseRepository
         'head_office_status',
         'medical_team_status'
     ];
-
+//DTARequestsRepository
     public function getFieldsSearchable(): array
     {
         return $this->fieldSearchable;

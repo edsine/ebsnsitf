@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DropdownController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\HomeController;
@@ -41,6 +42,7 @@ Route::get('/view-profile', [ProfileController::class, 'showProfile'])->name('vi
 Route::put('profile/{id}', [ProfileController::class, 'update'])->name('profile-update');
 //Route::resource('users', UserController::class)->middleware('auth');
 //Route::resource('roles', RoleController::class)->middleware('auth');
+Route::post('api/fetch-locals', [DropdownController::class, 'fetchLocal']);
 
 Auth::routes();
 

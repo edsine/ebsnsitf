@@ -45,6 +45,30 @@ function getBranchRegions()
 
 
 
+function leave_type()
+{
+    $types = [
+        '' => 'Select Leave with Pay',
+        'vacation' => 'vacation',
+        'casual'=> 'casual',
+        'Examination' => 'Examination',
+        'Sick leave'=>'Sick leave',
+        'Maternity'=>'Maternity',
+        'Paternity'=>'Paternity',
+        'Study Leave without Pay'=>'Study Leave without Pay',
+        'Study Leave with Pay'=>'Study Leave with Pay',
+        'Leave to Attend Sporting Event'=> 'Leave to Attend Sporting Event',
+        'Speacial Leave For pilgrimage'=>'Speacial Leave For pilgrimage',
+        'Speacial Leave for Proffessional Activities'=>'Speacial Leave for Proffessional Activities',
+        
+        'Compassionate Leave'=>'Compassionate Leave',
+        'Leave of Abscence'=> 'Leave of Abscence',
+        'Annual Leave'=>'Annual Leave'
+       
+    ];
+    return $types;
+}
+
 
 function getRanks()
 {
@@ -76,12 +100,10 @@ function checkPermission($permission)
     return false;
 }
 
-function enum_employer_status($add_Select = TRUE)
+function enum_employer_status()
 {
     $option['1'] = 'Registered';
     $option['2'] = 'Pending';
-    if (!$add_Select) {
-        unset($option['-1']);
-    }
+    
     return $option;
 }
