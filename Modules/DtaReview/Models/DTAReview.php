@@ -15,6 +15,7 @@ class DTAReview extends Model
         'dtarequest_id',
         'comments',
         'staff_id',
+        'user_id',
         'review_status',
         'status',
         'dta_reviewid',

@@ -6,7 +6,7 @@
             <div class="row mb-2">
                 <div class="col-sm-12">
                     <h1>
-                        Edit DTA Requests
+                        Review/Comment DTA Requests
                     </h1>
                 </div>
             </div>
@@ -28,8 +28,20 @@
             </div>
 
             <div class="card-footer">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('dtarequests.index') }}" class="btn btn-default"> Cancel </a>
+                @role('SUPERVISOR')
+                {!! Form::submit('Approve & Send To HOD', ['class' => 'btn btn-primary']) !!}
+                @endrole
+                @role('HOD')
+                {!! Form::submit('Approve & Send To MD', ['class' => 'btn btn-primary']) !!}
+                @endrole
+                @role('MD')
+                {!! Form::submit('Approve & Send To ED FINANCE & ACCOUNT', ['class' => 'btn btn-primary']) !!}
+                @endrole
+                @role('ED FINANCE & ACCOUNT')
+                {!! Form::submit('Approve', ['class' => 'btn btn-primary']) !!}
+                @endrole
+                {!! Form::submit('Reject', ['class' => 'btn btn-danger']) !!}
+                {{-- <a href="{{ route('dtarequests.index') }}" class="btn btn-default"> Reject </a> --}}
             </div>
 
             {!! Form::close() !!}

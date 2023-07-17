@@ -4,6 +4,7 @@ namespace Modules\DTAReview\Repositories;
 
 use Modules\DTAReview\Models\DTAReview;
 use App\Repositories\BaseRepository;
+use DB;
 
 class DTAReviewRepository extends BaseRepository
 {
@@ -30,5 +31,27 @@ class DTAReviewRepository extends BaseRepository
         $query = $this->model->newQuery();
 
         return $query->where('branch_id', $branch_id)->get();
+    }
+
+    public function getAllRequestsById($id)
+    {
+        //return DB::table('dta_reviews')->where('user_id', $id)->paginate(10);
+        $results = DB::table('dta_requests')
+    ->join('dta_reviews', 'dta_requests.id', '=', 'dta_reviews.dta_id')
+    ->select('dta_requests.*', 'dta_reviews.*')
+    ->where('dta_requests.user_id',$id)
+    ->distinct()
+    ->get();
+    return $results;
+    }
+    public function getAllRequests()
+    {
+        //return DB::table('dta_reviews')->where('user_id', $id)->paginate(10);
+        $results = DB::table('dta_requests')
+    ->join('dta_reviews', 'dta_requests.id', '=', 'dta_reviews.dta_id')
+    ->select('dta_requests.*', 'dta_reviews.*')
+    ->distinct()
+    ->get();
+    return $results;
     }
 }
