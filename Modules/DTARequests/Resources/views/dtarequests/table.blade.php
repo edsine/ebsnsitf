@@ -26,7 +26,7 @@
                     <td>{{ $dtarequests->number_days }}</td>
                     <td>{{ $dtarequests->travel_date}}</td>
                     <td>{{ $dtarequests->arrival_date}}</td>
-                    <td>{{ $dtarequests->estimated_expenses}}</td>
+                    <td>₦{{ $dtarequests->estimated_expenses}}</td>
                     <td><p> @if (isset($dtarequests->supervisor_status) && $dtarequests->supervisor_status == 1)
                         <span class="btn btn-sm btn-success">Approved</span>
                     @else
@@ -66,21 +66,21 @@
                     
                     
                     <td  style="width: 120px">
-                        @can(['approve as account','approve as md','approve as hod'])
+                        @hasanyrole('HOD|MD|ED FINANCE & ACCOUNT|SUPERVISOR|super-admin')
                         {!! Form::open(['route' => ['dtarequests.destroy', $dtarequests->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
                             <a href="{{ route('dtarequests.show', [$dtarequests->id]) }}"
                                class='btn btn-default btn-xs'>
                                 <i class="far fa-eye"></i>
                             </a>
-                            <a href="{{ route('dtarequests.edit', [$dtarequests->id]) }}"
+                            <a title="Approve this DTA request" href="{{ route('dtarequests.edit', [$dtarequests->id]) }}"
                                class='btn btn-default btn-xs'>
                                 <i class="far fa-edit"></i>
                             </a>
-                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                            {{-- {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!} --}}
                         </div>
                         {!! Form::close() !!}
-                        @endcan
+                        @endhasanyrole
                     </td>
                 </tr>
             @endforeach
