@@ -66,4 +66,6 @@ class StaffRepository extends BaseRepository
         return Staff::where('user_id', $id)->first();
     }
 
+    
+
 }

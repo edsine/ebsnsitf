@@ -18,10 +18,10 @@
 
 <!-- Images Field -->
 <div class="col-sm-4">
-    {!! Form::label('images', 'Image Document') !!}
+    {!! Form::label('images', 'PDF Document') !!}
     <div class="form-group">
         <p>
-            <img style="width: 50px;height: 50px" src="{{ url('storage/') }}{!! '/'.$dtarequests->images !!}" alt="Image"></p>
+            <a target="_blank" href="{{ url('storage/') }}{!! '/'.$dtarequests->images !!}" alt="PDF file">View PDF in browser</a></p>
     </div>
 </div>
 
