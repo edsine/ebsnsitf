@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AppBaseController;
-use Modules\DocumentManager\Models\Correspondence;
 use Modules\Shared\Repositories\DepartmentRepository;
 use Modules\DocumentManager\Repositories\FolderRepository;
 use Modules\DocumentManager\Repositories\DocumentRepository;
@@ -15,6 +14,8 @@ use Modules\DocumentManager\Repositories\CorrespondenceRepository;
 use Modules\DocumentManager\Repositories\DocumentVersionRepository;
 use Modules\DocumentManager\Http\Requests\CreateCorrespondenceRequest;
 use Modules\DocumentManager\Http\Requests\UpdateCorrespondenceRequest;
+use Modules\DocumentManager\Notifications\CorrespondenceAssignedToUser;
+use Modules\DocumentManager\Notifications\CorrespondenceCreated;
 use Modules\DocumentManager\Repositories\CorrespondenceHasUserRepository;
 use Modules\DocumentManager\Repositories\CorrespondenceHasDepartmentRepository;
 
@@ -125,16 +126,23 @@ class CorrespondenceController extends AppBaseController
         if (empty($correspondence_folder)) {
             $folder_input['name'] = 'Correspondence';
             $folder_input['description'] = "Correspondences";
-            $folder_input['branch_id'] = $user->staff ? $user->staff->branch_id : 1;
+            $folder_input['branch_id'] = $user->staff ? $user->staff->branch_id : 2;
             $folder_input['department_id'] = $user->staff ? $user->staff->department_id : 1;
             $folder_input['created_by'] = $user->id;
 
             $correspondence_folder = $this->folderRepository->create($folder_input);
         }
 
+        // Check if document with title exist in the folder
+        $document_count_by_title_and_folder_id = $this->documentRepository->findByTitleAndFolderId($input['subject'], $correspondence_folder->id)->count();
+        if ($document_count_by_title_and_folder_id > 0) {
+            Flash::error('Subject has been taken already');
+            return redirect()->back();
+        }
+
         // Prepare document input
         $document_input['folder_id'] = $correspondence_folder->id;
-        $document_input['title'] = $input['title'];
+        $document_input['title'] = $input['subject'];
         $document_input['description'] = $input['description'];
         $document_input['created_by'] = $user->id;
 
@@ -147,7 +155,7 @@ class CorrespondenceController extends AppBaseController
 
         $file = $request->file('file');
 
-        $title = str_replace(' ', '', $input['title']);
+        $title = str_replace(' ', '', $input['subject']);
 
         $file_name = $title . '_' . 'v1' . '_' . rand() . '.' . $file->getClientOriginalExtension();
         $file->move($path_folder, $file_name);
@@ -176,6 +184,11 @@ class CorrespondenceController extends AppBaseController
         $input['document_id'] = $document->id;
 
         $correspondence = $this->correspondenceRepository->create($input);
+
+        try {
+            // $user->notify(new CorrespondenceCreated($correspondence));
+        } catch (\Throwable $th) {
+        }
 
         Flash::success('Correspondence saved successfully.');
 
@@ -226,10 +239,10 @@ class CorrespondenceController extends AppBaseController
 
             $this->correspondenceHasUserRepository->create($input_fields);
 
-            //  try {
-            //      $user->notify(new MemoAssignedToUser($correspondence));
-            //  } catch (\Throwable $th) {
-            //  }
+             try {
+                 $user->notify(new CorrespondenceAssignedToUser($correspondence));
+             } catch (\Throwable $th) {
+             }
         }
 
         Flash::success('Correspondence assigned successfully to user(s).');
@@ -282,6 +295,37 @@ class CorrespondenceController extends AppBaseController
         }
 
         Flash::success('Correspondence assigned successfully to department(s).');
+
+        return redirect(route('correspondences.index'));
+    }
+
+    /**
+     * Assign correspondence to users
+     */
+
+    public function addComments(Request $request)
+    {
+        $logged_in_user = Auth::user();
+        $input = $request->all();
+        $correspondence_id = $input['correspondence_id'];
+        $comments = $input['comments'];
+
+        if (!checkPermission('add comment to correspondence')) {
+            Flash::error('Permission denied');
+
+            return redirect()->back();
+        }
+        $correspondence = $this->correspondenceRepository->find($correspondence_id);
+
+        if (empty($correspondence)) {
+            Flash::error('Correspondence not found');
+
+            return redirect(route('correspondences.index'));
+        }
+
+        $correspondence = $this->correspondenceRepository->update($input, $correspondence_id);
+
+        Flash::success('Comment added successfully.');
 
         return redirect(route('correspondences.index'));
     }
@@ -389,7 +433,7 @@ class CorrespondenceController extends AppBaseController
     }
 
 
-        /**
+    /**
      * Display a listing of the Correspondence Versions.
      */
     public function correspondenceVersions(Request $request, $id)
@@ -477,6 +521,7 @@ class CorrespondenceController extends AppBaseController
         }
 
         $input = $request->all();
+        $input['updated_by'] = Auth::user()->id;
         $correspondence = $this->correspondenceRepository->find($id);
 
         if (empty($correspondence)) {
@@ -487,6 +532,15 @@ class CorrespondenceController extends AppBaseController
 
         // Get folder and its parents. Create if path does not exist
         $correspondence_folder = $this->folderRepository->findByName('Correspondence')->first();
+
+        // Check if document with title exist in the folder
+        if ($correspondence->subject != $input['subject']) {
+            $document_count_by_title_and_folder_id = $this->documentRepository->findByTitleAndFolderId($input['subject'], $correspondence_folder->id)->count();
+            if ($document_count_by_title_and_folder_id > 0) {
+                Flash::error('Title has been taken already');
+                return redirect()->back();
+            }
+        }
 
         $path = "documents/";
 
@@ -520,7 +574,7 @@ class CorrespondenceController extends AppBaseController
 
         // Save document
 
-        $document_input['title'] = $input['title'];
+        $document_input['title'] = $input['subject'];
         $document_input['description'] = $input['description'];
 
         $document = $this->documentRepository->update($document_input, $document_id);

@@ -4,7 +4,7 @@
             <thead>
                 <tr>
                     <th>Title</th>
-                    <th>Description</th>
+                    {{-- <th>Description</th> --}}
                     <th>Created By</th>
                     <th>Document URL</th>
                     <th>Assign</th>
@@ -28,27 +28,36 @@
                     @endphp
                     <tr>
                         <td>{{ $memo->title }}</td>
-                        <td>{{ $memo->description }}</td>
+                        {{-- <td>{{ $memo->description }}</td> --}}
                         <td>{{ $memo->createdBy ? $memo->createdBy->email : '' }}</td>
                         <td><a target="_blank" href="{{ asset($latestDocumentUrl) }}">View</a>
                         </td>
                         <td style="width: 120px;">
-                            <a class="open-modal-departments" href="#" data-toggle="modal"
-                                data-target="#assignToDepartmentsModal" data-memo={{ $memo->id }}>Departments</a>
-                            <a class="open-modal-users" href="#" data-toggle="modal"
-                                data-target="#assignToUsersModal" data-memo={{ $memo->id }}>Users</a>
+                            <div class="btn-group" role="group">
+                                <a class="open-modal-departments btn btn-primary" href="#" data-toggle="modal"
+                                    data-target="#assignToDepartmentsModal"
+                                    data-memo={{ $memo->id }}>Departments</a>
+                                <a class="open-modal-users btn btn-secondary" href="#" data-toggle="modal"
+                                    data-target="#assignToUsersModal" data-memo={{ $memo->id }}>Users</a>
+                            </div>
                         </td>
                         <td style="width: 120px;">
-                            <a href="{{ route('memos.assignedDepartments', [$memo->id]) }}">Departments</a>
-                            <a href="{{ route('memos.assignedUsers', [$memo->id]) }}">Users</a>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-primary" href="{{ route('memos.assignedDepartments', [$memo->id]) }}">Departments</a>
+                                <a class="btn btn-secondary" href="{{ route('memos.assignedUsers', [$memo->id]) }}">Users</a>
+                            </div>
                         </td>
-                        <td>{{$memo->created_at}}</td>
+                        <td>{{ $memo->created_at }}</td>
                         <td style="width: 120px">
                             {!! Form::open(['route' => ['memos.destroy', $memo->id], 'method' => 'delete']) !!}
                             <div class='btn-group'>
-                                <a href="{{ route('memos.memoVersions.index', [$memo->id]) }}"
+                                <a href="{{ route('memos.show', [$memo->id]) }}"
                                     class='btn btn-default btn-xs'>
                                     <i class="far fa-eye"></i>
+                                </a>
+                                <a href="{{ route('memos.memoVersions.index', [$memo->id]) }}"
+                                    class='btn btn-default btn-xs'>
+                                    <i class="fa fa-code-fork"></i>
                                 </a>
                                 <a href="{{ route('memos.edit', [$memo->id]) }}" class='btn btn-default btn-xs'>
                                     <i class="far fa-edit"></i>

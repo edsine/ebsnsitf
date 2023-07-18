@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>correspondences Assigned to {{ $user->email }}</h1>
+                    <h1>Correspondences Assigned to {{ $user->email }}</h1>
                 </div>
             </div>
         </div>
@@ -23,11 +23,12 @@
                     <table class="table" id="correspondences-table">
                         <thead>
                             <tr>
-                                <th>Title</th>
+                                <th>Subject</th>
                                 <th>Description</th>
                                 <th>Created By</th>
                                 <th>Document URL</th>
                                 <th>Created At</th>
+                                {{-- <th>Action</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -45,12 +46,18 @@
                                         : '#';
                                 @endphp
                                 <tr>
-                                    <td>{{ $correspondence->title }}</td>
+                                    <td>{{ $correspondence->subject }}</td>
                                     <td>{{ $correspondence->description }}</td>
                                     <td>{{ $correspondence->createdBy ? $correspondence->createdBy->email : '' }}</td>
                                     <td><a target="_blank" href="{{ asset($latestDocumentUrl) }}">View</a>
                                     </td>
                                     <td>{{ $correspondence->created_at }}</td>
+                                    {{-- <td style="width: 120px">
+                                        <a href="{{ route('correspondences.show', [$correspondence->id]) }}"
+                                            class='btn btn-default btn-xs'>
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                    </td> --}}
                                 </tr>
                             @endforeach
                         </tbody>
@@ -59,7 +66,9 @@
 
                 <div class="card-footer clearfix">
                     <div class="float-right">
-                        @include('adminlte-templates::common.paginate', ['records' => $memos_has_user])
+                        @include('adminlte-templates::common.paginate', [
+                            'records' => $correspondences_has_user,
+                        ])
                     </div>
                 </div>
             </div>

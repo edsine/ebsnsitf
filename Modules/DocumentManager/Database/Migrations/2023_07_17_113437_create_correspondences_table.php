@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('sender');
             $table->string('reference_number');
             $table->text('description');
-            $table->text('comments');
+            $table->text('comments')->nullable();
             $table->foreignId('created_by')->constrained('users')->onDelete('no action');
-            $table->foreignId('updated_by')->constrained('users')->onDelete('no action');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('no action');
             $table->foreignId('document_id')->constrained('documents');
             $table->timestamps();
             $table->softDeletes();

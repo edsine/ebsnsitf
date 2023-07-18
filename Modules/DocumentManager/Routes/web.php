@@ -49,18 +49,23 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('correspondences', Modules\DocumentManager\Http\Controllers\CorrespondenceController::class);
 
-        Route::get('correspondences/assignedToUser/index', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'viewMemosAssignedToUser'])->name('correspondences.assignedToUser');
+        Route::get('correspondences/correspondenceVersions/{id}', [Modules\DocumentManager\Http\Controllers\CorrespondenceController::class, 'correspondenceVersions'])->name('correspondences.correspondenceVersions.index');
 
-        Route::post('correspondences/assignToUsers', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'assignToUsers'])->name('correspondences.assignToUsers');
+        Route::get('correspondences/assignedToUser/index', [Modules\DocumentManager\Http\Controllers\CorrespondenceController::class, 'viewCorrespondencesAssignedToUser'])->name('correspondences.assignedToUser');
 
-        Route::post('correspondences/assignToDepartments', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'assignToDepartments'])->name('correspondences.assignToDepartments');
+        Route::post('correspondences/assignToUsers', [Modules\DocumentManager\Http\Controllers\CorrespondenceController::class, 'assignToUsers'])->name('correspondences.assignToUsers');
 
-        Route::get('correspondences/assignedUsers/{id}', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'assignedUsers'])->name('correspondences.assignedUsers');
+        Route::post('correspondences/addComments', [Modules\DocumentManager\Http\Controllers\CorrespondenceController::class, 'addComments'])->name('correspondences.addComments');
 
-        Route::get('correspondences/assignedDepartments/{id}', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'assignedDepartments'])->name('correspondences.assignedDepartments');
 
-        Route::delete('correspondences/assignedUsers/delete/{user_id}/{memo_id}', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'deleteAssignedUser'])->name('correspondences.assignedUsers.destroy');
+        Route::post('correspondences/assignToDepartments', [Modules\DocumentManager\Http\Controllers\CorrespondenceController::class, 'assignToDepartments'])->name('correspondences.assignToDepartments');
 
-        Route::delete('correspondences/assignedDepartments/delete/{department_id}/{memo_id}', [Modules\DocumentManager\Http\Controllers\MemoController::class, 'deleteAssignedDepartment'])->name('correspondences.assignedDepartments.destroy');
+        Route::get('correspondences/assignedUsers/{id}', [Modules\DocumentManager\Http\Controllers\CorrespondenceController::class, 'assignedUsers'])->name('correspondences.assignedUsers');
+
+        Route::get('correspondences/assignedDepartments/{id}', [Modules\DocumentManager\Http\Controllers\CorrespondenceController::class, 'assignedDepartments'])->name('correspondences.assignedDepartments');
+
+        Route::delete('correspondences/assignedUsers/delete/{user_id}/{memo_id}', [Modules\DocumentManager\Http\Controllers\CorrespondenceController::class, 'deleteAssignedUser'])->name('correspondences.assignedUsers.destroy');
+
+        Route::delete('correspondences/assignedDepartments/delete/{department_id}/{memo_id}', [Modules\DocumentManager\Http\Controllers\CorrespondenceController::class, 'deleteAssignedDepartment'])->name('correspondences.assignedDepartments.destroy');
     });
 });

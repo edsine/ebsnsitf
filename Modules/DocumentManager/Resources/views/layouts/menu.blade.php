@@ -106,8 +106,20 @@
             <!--end:Menu link-->
         </div>
         <!--end:Menu item-->
+        <!--begin:Menu item-->
+        <div class="menu-item">
+            <!--begin:Menu link-->
+            <a href="{{ route('correspondences.assignedToUser') }}"
+                class="menu-link {{ Request::is('correspondences.assignedToUser') ? 'active' : '' }}">
+                <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">Correspondence Assigned to Me</span>
+            </a>
+            <!--end:Menu link-->
+        </div>
+        <!--end:Menu item-->
     </div>
     <!--end:Menu sub-->
 </div>
 <!--end:Menu item-->
-

@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Leaves\Database\Seeders;
+namespace Modules\DocumentManager\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class leavesTableSeeder extends Seeder
+class CorrespondenceHasDepartmentsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

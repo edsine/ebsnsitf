@@ -27,6 +27,7 @@ class CorrespondencesPermissionsSeeder extends Seeder
                 'assign correspondence to user',
                 'read user-correspondence assignment',
                 'delete correspondence-user assignment',
+                'add comment to correspondence'
             ];
 
         $permissions = collect($arrayOfPermissionNames)->map(function ($permission) {

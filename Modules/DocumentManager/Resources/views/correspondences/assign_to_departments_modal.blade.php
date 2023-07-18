@@ -14,11 +14,12 @@
 
                 <div class="form-group">
                     <label class="col-form-label text-right">Select Department(s)</label>
-                    <select class="form-control select2" id="department_select" name="departments[]" multiple="multiple">
+                    <select class="form-control select2" id="department_select" name="departments[]"
+                        multiple="multiple">
                     </select>
                 </div>
 
-                <!-- Memo Id Field -->
+                <!-- Correspondence Id Field -->
                 {!! Form::hidden('correspondence_id', null, ['id' => 'department_correspondence_id']) !!}
 
             </div>
@@ -45,9 +46,9 @@
                     delay: 250,
                     data: function(params) {
                         return {
-                            q: params.term,
-                            page: params.page || 1,
-                            // skip: (params.page - 1) * 10, // Assuming 10 departments per page
+                            search: {
+                                department_unit: params.term
+                            },
                             limit: 10 // Number of departments per page
                         };
                     },
@@ -56,7 +57,7 @@
                         $.each(data.data, function(index, department) {
                             options.push({
                                 id: department.id,
-                                text: department.name
+                                text: department.department_unit
                             });
                         });
 

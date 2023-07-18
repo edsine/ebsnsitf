@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="mb-3">Correspondence Title: {{ $memo->title }}</h1>
+                    <h1 class="mb-3">Correspondence Subject: {{ $correspondence->subject }}</h1>
                     <h2>Versions</h2>
                 </div>
                 <div class="col-sm-6">

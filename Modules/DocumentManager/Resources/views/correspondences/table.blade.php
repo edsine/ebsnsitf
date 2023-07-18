@@ -11,7 +11,6 @@
                     <th class="min-w-200px">View Assignment</th>
                     <th class="min-w-200px">Reference Number</th>
                     <th class="min-w-200px">Description</th>
-                    <th class="min-w-200px">Comments</th>
                     <th class="min-w-120px" colspan="1">Action</th>
                     <th class="min-w-200px text-end rounded-end"></th>
                 </tr>
@@ -36,18 +35,33 @@
                         <td><a target="_blank" href="{{ asset($latestDocumentUrl) }}">View</a>
                         </td>
                         <td style="width: 120px;">
-                            <a class="open-modal-departments" href="#" data-toggle="modal"
-                                data-target="#assignToDepartmentsModal" data-memo={{ $memo->id }}>Departments</a>
-                            <a class="open-modal-users" href="#" data-toggle="modal"
-                                data-target="#assignToUsersModal" data-memo={{ $memo->id }}>Users</a>
+                            <div class="btn-group" role="group">
+                                @can('assign correspondence to department')
+                                    <a class="open-modal-departments btn btn-primary" href="#" data-toggle="modal"
+                                        data-target="#assignToDepartmentsModal"
+                                        data-correspondence={{ $correspondence->id }}>Departments</a>
+                                @endcan
+                                @can('assign correspondence to user')
+                                    <a class="open-modal-users btn btn-secondary" href="#" data-toggle="modal"
+                                        data-target="#assignToUsersModal"
+                                        data-correspondence={{ $correspondence->id }}>Users</a>
+                                @endcan
+                            </div>
                         </td>
                         <td style="width: 120px;">
-                            <a href="{{ route('memos.assignedDepartments', [$memo->id]) }}">Departments</a>
-                            <a href="{{ route('memos.assignedUsers', [$memo->id]) }}">Users</a>
+                            <div class="btn-group" role="group">
+                                @can('read department-correspondence assignment')
+                                    <a class="btn btn-primary"
+                                        href="{{ route('correspondences.assignedDepartments', [$correspondence->id]) }}">Departments</a>
+                                @endcan
+                                @can('read user-correspondence assignment')
+                                    <a class="btn btn-secondary"
+                                        href="{{ route('correspondences.assignedUsers', [$correspondence->id]) }}">Users</a>
+                                @endcan
+                            </div>
                         </td>
                         <td>{{ $correspondence->reference_number }}</td>
                         <td>{{ $correspondence->description }}</td>
-                        <td>{{ $correspondence->comments }}</td>
                         <td style="width: 120px">
                             {!! Form::open(['route' => ['correspondences.destroy', $correspondence->id], 'method' => 'delete']) !!}
                             <div class='btn-group'>
@@ -55,6 +69,16 @@
                                     class='btn btn-default btn-xs'>
                                     <i class="far fa-eye"></i>
                                 </a>
+                                <a href="{{ route('correspondences.correspondenceVersions.index', [$correspondence->id]) }}"
+                                    class='btn btn-default btn-xs'>
+                                    <i class="fa fa-code-fork"></i>
+                                </a>
+                                @can('add comment to correspondence')
+                                    <a class="open-modal-comments btn btn-default btn-xs" href="#" data-toggle="modal"
+                                        data-target="#addCommentsModal" data-correspondence={{ $correspondence->id }}>
+                                        <i class="far fa-comments"></i>
+                                    </a>
+                                @endcan
                                 <a href="{{ route('correspondences.edit', [$correspondence->id]) }}"
                                     class='btn btn-default btn-xs'>
                                     <i class="far fa-edit"></i>
@@ -83,6 +107,7 @@
 
 @include('documentmanager::correspondences.assign_to_departments_modal')
 @include('documentmanager::correspondences.assign_to_users_modal')
+@include('documentmanager::correspondences.add_comments_modal')
 
 @push('page_scripts')
     {{-- @if ($errors->has('subject') || $errors->has('answer_1') || $errors->has('answer_2') || $errors->has('answer_3'))
@@ -100,6 +125,29 @@
         $(document).on("click", ".open-modal-departments", function() {
             let correspondenceId = $(this).data('correspondence');
             $(".modal-body #department_correspondence_id").val(correspondenceId);
+        });
+
+        $(document).on("click", ".open-modal-comments", function() {
+            let correspondenceId = $(this).data('correspondence');
+
+            if (correspondenceId) {
+                // Make the AJAX request
+                $.ajax({
+                    url: "{{ url('api/documentmanager/correspondences') }}" + '/' + correspondenceId,
+                    method: 'GET',
+                    success: function(response) {
+                        var comments = response.data.comments;
+
+                        // Fill the 'comments' input field with the response value
+                        $('#comments_field').val(comments);
+                    },
+                    error: function() {
+                        // Handle the error case
+                        console.error('Failed to retrieve correspondence data.');
+                    }
+                });
+            }
+            $(".modal-body #comment_correspondence_id").val(correspondenceId);
         });
     </script>
 @endpush

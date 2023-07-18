@@ -129,7 +129,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
         'subject' => 'required',
         'date' => 'required',
         'sender' => 'required',
-        'file' => 'required|file|max:2048',
+        'file' => 'required|max:2048',
         'reference_number' => 'required',
         'description' => 'required'
     ];

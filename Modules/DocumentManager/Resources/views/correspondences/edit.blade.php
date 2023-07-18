@@ -16,10 +16,11 @@
     <div class="content px-3">
 
         @include('adminlte-templates::common.errors')
+        @include('flash::message')
 
         <div class="card">
 
-            {!! Form::model($correspondence, ['route' => ['correspondences.update', $correspondence->id], 'method' => 'patch']) !!}
+            {!! Form::model($correspondence, ['route' => ['correspondences.update', $correspondence->id], 'method' => 'patch', 'enctype' => 'multipart/form-data']) !!}
 
             <div class="card-body">
                 <div class="row">
