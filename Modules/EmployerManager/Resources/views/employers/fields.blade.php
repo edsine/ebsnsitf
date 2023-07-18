@@ -24,13 +24,12 @@
             <div class="row">
                 <!--begin::Col for User Id Field -->
                 <div class="col-md-6 fv-row">
-                    <label class="required fs-6 fw-semibold mb-2">@lang('Employer') ( <small
-                            class="help-block text-success">@lang('Select an employer user')</small>) </label>
-                    <select name="user_id" class="form-select form-select-solid" data-hide-search="true"
+                    <label class="required fs-6 fw-semibold mb-2">@lang('NSITF Staff') ( <small
+                        class="help-block text-success">@lang('Select NSITF user')</small>) </label>
+                        <select name="user_id" class="form-select form-select-solid" data-hide-search="true"
                         data-placeholder="Select a Team Member">
-                        @foreach ($employers as $item)
-                            <option value="{{ $item->id }}">
-                                {{ $item->name . ' ' . $item->last_name . ' - ' . $item->email }}</option>
+                        @foreach ($staff as $item)
+                            <option value="{{ $item->id }}">{{ $item->first_name . ' ' . $item->last_name . ' - ' . $item->email }}</option>
                         @endforeach
                     </select>
                 </div>

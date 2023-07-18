@@ -6,11 +6,13 @@ use Modules\EmployerManager\Http\Requests\CreateEmployerRequest;
 use Modules\EmployerManager\Http\Requests\UpdateEmployerRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Models\LocalGovt;
+use App\Models\Role;
 use App\Models\State;
 use App\Models\User;
 use Modules\EmployerManager\Repositories\EmployerRepository;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Modules\EmployerManager\Models\Employee;
 use Modules\EmployerManager\Models\Employer;
@@ -48,12 +50,22 @@ class EmployerController extends AppBaseController
         $state = State::where('status', 1)->get();
         $local_govt = LocalGovt::where('status', 1)->get();
 
-        $employers = User::whereHas(
-            'roles', function ($q) {
-                $q->where('name', 'super-admin');
-            }
-        )->get();
-        return view('employermanager::employers.create', compact('employers','state', 'local_govt'));
+        // $employers = User::whereHas(
+        //     'roles', function ($q) {
+        //         $q->where('name', 'super-admin');
+        //     }
+        // )->get();
+        $role = Role::where('name', 'super-admin')->first();
+        if($role->name == 'super-admin')
+        {
+            $staff = User::get();
+        }
+        else
+        {
+            $staff = Auth::user();
+        }
+       
+        return view('employermanager::employers.create', compact('staff','state', 'local_govt'));
     }
 
     /**
