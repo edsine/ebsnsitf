@@ -15,7 +15,7 @@ use App\Repositories\DepartmentRepository;
 use Flash;
 use Response;
 use Hash;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use App\Models\User;
 
