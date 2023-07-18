@@ -6,15 +6,21 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\DTAReview\Repositories\DTAReviewRepository;
+use Illuminate\Support\Facades\Auth;
+use App\Repositories\StaffRepository;
 
 class DtaReviewController extends Controller
 {
     /** @var DTAReviewRepository $dtaReviewRepository*/
     private $dtaReviewRepository;
 
-    public function __construct(DTAReviewRepository $dtaReviewRepo)
+    /** @var StaffRepository $staffRepository*/
+    private $staffRepository;
+
+    public function __construct(DTAReviewRepository $dtaReviewRepo, StaffRepository $staffRepo)
     {
         $this->dtaReviewRepository = $dtaReviewRepo;
+        $this->staffRepository = $staffRepo;
     }
     /**
      * Display a listing of the resource.
@@ -22,9 +28,19 @@ class DtaReviewController extends Controller
      */
     public function index()
     {
-        $dtareview = $this->dtaReviewRepository->paginate(10);
+        $user_id = Auth::id();
+        if (!empty($user_id) && $user_id != 1) {
+            # code...
+            $dtareview = $this->dtaReviewRepository->getAllRequestsById($user_id);
+        } else {
+            # code...
+            $dtareview = $this->dtaReviewRepository->getAllRequests();
+        }
+        
+        
 
         return view('dtareview::dtareview.index')->with('dtareviews', $dtareview);
+        
     }
 
     /**

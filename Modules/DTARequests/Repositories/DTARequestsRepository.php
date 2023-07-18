@@ -4,6 +4,8 @@ namespace Modules\DTARequests\Repositories;
 
 use Modules\DTARequests\Models\DTARequests;
 use App\Repositories\BaseRepository;
+use DB;
+
 
 class DTARequestsRepository extends BaseRepository
 {
@@ -33,5 +35,10 @@ class DTARequestsRepository extends BaseRepository
         $query = $this->model->newQuery();
 
         return $query->where('branch_id', $branch_id)->get();
+    }
+
+    public function getByUserId($id)
+    {
+        return DB::table('dta_requests')->where('user_id', $id)->paginate(10);
     }
 }

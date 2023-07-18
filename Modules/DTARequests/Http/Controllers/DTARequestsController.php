@@ -16,6 +16,8 @@ use Modules\Shared\Repositories\BranchRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\StaffRepository;
 use Illuminate\Support\Facades\Auth;
+use DB;
+
 
 class DTARequestsController extends AppBaseController
 {
@@ -46,10 +48,18 @@ class DTARequestsController extends AppBaseController
      */
     public function index()
     {
-        $dtarequests = $this->dtaRequestsRepository->paginate(10);
+        $user_id = Auth::id();
+        if (!empty($user_id) && $user_id != 1) {
+            # code...
+            $dtarequests = $this->dtaRequestsRepository->getByUserId($user_id);
+        } else {
+            # code...
+            $dtarequests = $this->dtaRequestsRepository->paginate(10);
+        }
+        
 
         return view('dtarequests::dtarequests.index')->with('dtarequests', $dtarequests);
-         
+        
     }
 
     /**
@@ -72,8 +82,9 @@ class DTARequestsController extends AppBaseController
     {
         $input = $request->all();
         $uid = Auth::id();
-        $staff_id = $this->staffRepository.getByUserId($uid);
+        $staff_id = $this->staffRepository->getByUserId($uid);
         $input['staff_id'] = $staff_id->id;
+        $input['user_id'] = $uid;
         $input['hod_status'] = 0;
         $input['supervisor_status'] = 0;
         $input['md_status'] = 0;
@@ -151,7 +162,8 @@ class DTARequestsController extends AppBaseController
         $input = $request->all();
 
         //$staff_id = $this->dtaRequestsRepository->find($id);
-        $input['staff_id'] = Auth::id();
+        $user_id = Auth::id();
+        $input['staff_id'] = $user_id;
 
         if ($request->hasFile('uploaded_doc')) {
             $file = $request->file('uploaded_doc');
@@ -165,8 +177,11 @@ class DTARequestsController extends AppBaseController
 
         $dtarequests1 = $this->dtaRequestsRepository->update($input, $id);
 
+        $staff = $this->staffRepository->getByUserId($user_id);
+
         $input_r = null;
-        $input_r['officer_id'] = $dtarequests->staff_id;
+        $input_r['officer_id'] = $staff->id;
+        $input_r['user_id'] = $user_id;
         $input_r['dta_reviewid'] = $id;
         $input_r['dta_id'] = $id;
         $input_r['comments'] = $request->input('comments');

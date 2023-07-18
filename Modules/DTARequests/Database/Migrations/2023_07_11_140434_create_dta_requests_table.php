@@ -24,7 +24,7 @@ class CreateDtaRequestsTable extends Migration
             $table->string('purpose_travel')->nullable();
             $table->string('destination')->nullable();
             $table->bigInteger('number_days')->nullable();
-            $table->dateTime('travel_date')->nullable();
+            $table->date('travel_date')->nullable();
             $table->date('arrival_date')->nullable();
             $table->string('estimated_expenses')->nullable();
             $table->string('supervisor_status')->nullable();

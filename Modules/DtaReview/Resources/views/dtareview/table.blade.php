@@ -4,10 +4,15 @@
             <thead>
             <tr>
                  <th> #</th>
-                <th>STAFF ID</th>
+                <th>Purpose of Travel</th>
+                <th>Destination</th>
+                <th>No. of Days</th>
+                <th>Travel Date</th>
+                <th>Arrival Date</th>
+                <th>Estimated Expenses</th>
                 <th>Comments</th>
 				<th>Date Approved</th>
-                 <th>APPROVAL STATUS</th>
+                 <th>Approval Status</th>
                </tr>
             </thead>
             <tbody>
@@ -15,7 +20,12 @@
             @foreach($dtareviews as $dtareview)
                 <tr>
 				<th><?php echo $no++; ?></th>
-                    <td>{{ $dtareview->officer_id }}</td>
+                    <td>{{ $dtareview->purpose_travel }}</td>
+                    <td>{{ $dtareview->destination }}</td>
+                    <td>{{ $dtareview->number_days }}</td>
+                    <td>{{ $dtareview->travel_date }}</td>
+                    <td>{{ $dtareview->arrival_date }}</td>
+                    <td>₦{{ $dtareview->estimated_expenses }}</td>
                     <td>{{ $dtareview->comments }}</td>
                     <td>{{ $dtareview->created_at}}</td>
                     <td><p> @if (isset($dtareview->review_status) && $dtareview->review_status == 1)
