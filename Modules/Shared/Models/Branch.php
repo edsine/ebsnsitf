@@ -125,7 +125,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
     protected $casts = [
         'branch_name' => 'string',
-        'branch_region' => 'integer',
+        'branch_region' => 'string',
         'branch_code' => 'string',
         'last_ecsnumber' => 'string',
         'highest_rank' => 'integer',

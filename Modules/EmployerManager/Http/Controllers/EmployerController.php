@@ -14,6 +14,7 @@ use Flash;
 use Illuminate\Support\Facades\DB;
 use Modules\EmployerManager\Models\Employee;
 use Modules\EmployerManager\Models\Employer;
+use Modules\Shared\Models\Branch;
 
 class EmployerController extends AppBaseController
 {
@@ -95,6 +96,7 @@ class EmployerController extends AppBaseController
     public function edit($id)
     {
         $state = State::where('status', 1)->get();
+        $branch = Branch::get();
         $local_govt = LocalGovt::where('status', 1)->get();
 
         $employer = $this->employerRepository->find($id);
@@ -110,7 +112,7 @@ class EmployerController extends AppBaseController
             return redirect(route('employers.index'));
         }
 
-        return view('employermanager::employers.edit', compact('employer','employers','state', 'local_govt'));
+        return view('employermanager::employers.edit', compact('employer','employers','state', 'local_govt', 'branch'));
     }
 
     /**

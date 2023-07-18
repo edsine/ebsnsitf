@@ -108,6 +108,18 @@
     ]) !!}
 </div>
 
+<!-- Branch Field -->
+<div class="d-flex flex-column col-md-6 mb-8 fv-row">
+    {!! Form::label('branch_id', 'Branch: ', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
+    <select id="branch" name="branch_id" class="form-control" required="">
+        <option>Select Branch</option>
+        @foreach ($branch as $item)
+            <option value="{{ $item->id }}" {{ $employer->region_id == $item->id ? 'selected' : '' }}>
+                {{ $item->branch_name }}</option>
+        @endforeach
+    </select>
+</div>
+
 <!-- Company State Field -->
 <div class="d-flex flex-column col-md-6 mb-8 fv-row">
     {!! Form::label('company_state', 'Company State: ', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
@@ -162,29 +174,3 @@
         'placeholder' => 'Enter Status',
     ]) !!}
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#state').on('change', function () {
-            var idState = this.value;
-            $("#local-dd").html('');
-            $.ajax({
-                url: "{{url('api/fetch-locals')}}",
-                type: "POST",
-                data: {
-                    state_id: idState,
-                    _token: '{{csrf_token()}}'
-                },
-                dataType: 'json',
-                success: function (result) {
-                    $('#local-dd').html('<option value="">Select Local</option>');
-                    $.each(result.local_govts, function (key, value) {
-                        $("#local-dd").append('<option value="' + value
-                            .id + '">' + value.name + '</option>');
-                    });
-                }
-            });
-        });
-    });
-</script>
