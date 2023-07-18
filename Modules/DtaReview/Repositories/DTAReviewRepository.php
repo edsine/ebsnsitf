@@ -4,7 +4,7 @@ namespace Modules\DTAReview\Repositories;
 
 use Modules\DTAReview\Models\DTAReview;
 use App\Repositories\BaseRepository;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class DTAReviewRepository extends BaseRepository
 {
