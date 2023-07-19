@@ -19,8 +19,8 @@
                     <th class="min-w-200px">Folder</th>
                     <th class="min-w-200px">Created By</th>
                     <th class="min-w-120px" colspan="1">Action</th>
-                															<th class="min-w-200px text-end rounded-end"></th>
-														</tr>
+                    <th class="min-w-200px text-end rounded-end"></th>
+                </tr>
             </thead>
             <tbody>
                 @foreach ($documents as $document)
@@ -38,8 +38,7 @@
                     <tr>
                         <td><i class="fa fa-file"></i> {{ $document->title }}</td>
                         <td>{{ $document->description }}</td>
-                        <td><a target="_blank"
-                                href="{{ asset($latestDocumentUrl) }}">View</a>
+                        <td><a target="_blank" href="{{ asset($latestDocumentUrl) }}">View</a>
                         </td>
                         <td>{{ $document->folder ? $document->folder->name : '' }}</td>
                         <td>{{ $document->createdBy ? $document->createdBy->email : '' }}</td>
@@ -62,8 +61,8 @@
                             </div>
                             {!! Form::close() !!}
                         </td>
-                    															<th class="min-w-200px text-end rounded-end"></th>
-														</tr>
+                        <th class="min-w-200px text-end rounded-end"></th>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
