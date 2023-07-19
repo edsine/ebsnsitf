@@ -41,6 +41,7 @@ class LeaveRequest extends Migration
              $table->integer('supervisor_office')->nullable()->default(0);
              $table->integer('md_hr')->nullable()->default(0);
              $table->integer('leave_officer')->nullable()->default(0);
+             $table->integer('daystaken')->nullable();
         
              $table->timestamps();
              $table->softDeletes();

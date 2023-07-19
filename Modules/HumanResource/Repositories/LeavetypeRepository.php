@@ -28,4 +28,11 @@ class LeavetypeRepository extends BaseRepository
 
         return $query->where('branch_id', $branch_id)->get();
     }
+
+    public function getById($id)
+    {
+        $query = $this->model->newQuery();
+
+        return $query->where('id', $id)->first();
+    }
 }

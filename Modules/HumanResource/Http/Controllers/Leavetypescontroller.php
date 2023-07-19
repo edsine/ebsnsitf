@@ -9,12 +9,13 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
-// use Modules\HumanResource\Repositories\DTAReviewRepository;
 
+// use Modules\HumanResource\Models\LeaveType;
 use App\Repositories\StaffRepository;
 use App\Http\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Contracts\Support\Renderable;
+use LeaveType;
 use Modules\Shared\Repositories\BranchRepository;
 use Modules\HumanResource\Http\Requests\UpdateLeavetype;
 
@@ -22,6 +23,7 @@ use Modules\HumanResource\Http\Requests\CreateLeavetype;
 
 // use Modules\HumanResource\Http\Requests\Updateleavetypes;
 use Modules\HumanResource\Repositories\LeavetypeRepository;
+use Illuminate\Support\Facades\DB;
 //use Modules\Leaves\Http\Requests\UpdateleavesRequest;
 
 // use Modules\HumanResource\Http\Requests\leavetype;
@@ -37,8 +39,8 @@ class Leavetypescontroller extends  AppBaseController
     private $branchRepository;
 
 
-    //   /** @var DTAReviewRepository $dtaReviewRepository*/
-    //   
+   
+    
 
 /** @var StaffRepository $staffRepository*/
 private $staffRepository;
@@ -49,7 +51,21 @@ public function __construct(LeavetypeRepository $leavetypeRepo, BranchRepository
         $this->branchRepository = $branchRepo;
         $this->staffRepository = $staffRepo;
     }
+public function getDuration(){
 
+    // $duration = LeaveType::select('id','name','duration')->get();
+    // $duration= $this->leavetypesRepository->all()->pluck('name','id');
+    $duration= DB::table('leave_types') 
+                  ->select('id','name','duration')->get();
+                //   return $duration;
+                return response()->json($duration);
+
+    
+    // dd($duration);
+    
+
+    // return response()->json(['duration'=>$duration]);
+}
 
     /**
      * Display a listing of the resource.
@@ -68,7 +84,8 @@ public function __construct(LeavetypeRepository $leavetypeRepo, BranchRepository
      */
     public function create()
     {
-        return view('humanresource::LeaveTypes.create');
+        $duration= $this->leavetypesRepository->all()->pluck('id','name');
+        return view('humanresource::LeaveTypes.create')->with('duration');
     }
 
     /**

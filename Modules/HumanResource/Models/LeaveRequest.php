@@ -36,7 +36,8 @@ public $primarykey='id';
         'approve_status',
         'supervisor_office',
         'md_hr',
-        'leave_officer'
+        'leave_officer',
+        'daystaken'
 
     ];
 
@@ -81,7 +82,10 @@ public $primarykey='id';
     // }
 
 
-
+public function leavetype(){
+    return $this->belongsTo([LeaveType::class,'leave_type_id']);
+    
+}
     public function staff(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(\Modules\Shared\Models\staff::class, 'staff_id', 'id');
