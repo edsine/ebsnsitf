@@ -15,9 +15,9 @@
     
     <div class="form-group col-sm-6">
         {!! Form::label('date_start_new', 'DATE REQUESTED TO COMMENCE PRESENT LEAVE:') !!}
-        {!! Form::date('date_start_new',  null, ['class' => 'form-control ','id'=>'date_start']) !!}
+        {!! Form::date('date_start_new',    null, ['class' => 'form-control ','id'=>'date_start']) !!}
     </div>
-    
+   
     
     <div class="form-group col-sm-6">
         {!! Form::label('number_days', 'NUMBER OF DAYS:') !!}
