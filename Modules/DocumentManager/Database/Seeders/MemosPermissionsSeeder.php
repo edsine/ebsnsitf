@@ -22,6 +22,12 @@ class MemosPermissionsSeeder extends Seeder
                 'read memo',
                 'update memo',
                 'delete memo',
+                'assign memo to department',
+                'read department-memo assignment',
+                'delete memo-department assignment',
+                'assign memo to user',
+                'read user-memo assignment',
+                'delete memo-user assignment',
             ];
 
         $permissions = collect($arrayOfPermissionNames)->map(function ($permission) {

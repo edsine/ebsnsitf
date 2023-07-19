@@ -14,7 +14,8 @@
 
                 <div class="form-group">
                     <label class="col-form-label text-right">Select Department(s)</label>
-                    <select class="form-control select2" id="department_select" name="departments[]" multiple="multiple">
+                    <select class="form-control select2" id="department_select" name="departments[]"
+                        multiple="multiple">
                     </select>
                 </div>
 
@@ -35,6 +36,7 @@
 @push('page_scripts')
     <script>
         $(document).ready(function() {
+
             $("#department_select").select2({
                 placeholder: "Search for department",
                 minimumInputLength: 2,
@@ -45,29 +47,24 @@
                     delay: 250,
                     data: function(params) {
                         return {
-                            q: params.term,
-                            page: params.page || 1,
-                            // skip: (params.page - 1) * 10, // Assuming 10 departments per page
+                            search: {
+                                department_unit: params.term
+                            },
                             limit: 10 // Number of departments per page
                         };
                     },
                     processResults: function(data, params) {
+
                         var options = [];
                         $.each(data.data, function(index, department) {
                             options.push({
                                 id: department.id,
-                                text: department.name
+                                text: department.department_unit
                             });
                         });
 
-                        var currentPage = params.page || 1;
-                        var totalPages = Math.ceil(data.data.length / 10);
-
                         return {
                             results: options,
-                            pagination: {
-                                more: currentPage < totalPages
-                            }
                         };
                     },
                     cache: true
