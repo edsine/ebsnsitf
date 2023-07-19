@@ -46,9 +46,9 @@
                     delay: 250,
                     data: function(params) {
                         return {
-                            q: params.term,
-                            page: params.page || 1,
-                            // skip: (params.page - 1) * 10, // Assuming 10 users per page
+                            search: {
+                                email: params.term
+                            },
                             limit: 10 // Number of users per page
                         };
                     },
@@ -61,14 +61,9 @@
                             });
                         });
 
-                        var currentPage = params.page || 1;
-                        var totalPages = Math.ceil(data.data.length / 10);
 
                         return {
                             results: options,
-                            pagination: {
-                                more: currentPage < totalPages
-                            }
                         };
                     },
                     cache: true
