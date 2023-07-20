@@ -24,10 +24,10 @@
                         <thead>
                             <tr>
                                 <th>Title</th>
-                                <th>Description</th>
                                 <th>Created By</th>
                                 <th>Document URL</th>
                                 <th>Created At</th>
+                                {{-- <th>Action</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -46,11 +46,15 @@
                                 @endphp
                                 <tr>
                                     <td>{{ $memo->title }}</td>
-                                    <td>{{ $memo->description }}</td>
                                     <td>{{ $memo->createdBy ? $memo->createdBy->email : '' }}</td>
                                     <td><a target="_blank" href="{{ asset($latestDocumentUrl) }}">View</a>
                                     </td>
                                     <td>{{ $memo->created_at }}</td>
+                                    {{-- <td style="width: 120px">
+                                        <a href="{{ route('memos.show', [$memo->id]) }}" class='btn btn-default btn-xs'>
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                    </td> --}}
                                 </tr>
                             @endforeach
                         </tbody>

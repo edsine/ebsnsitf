@@ -1,11 +1,11 @@
 <!--begin::Col for User Id Field -->
 <div class="col-md-6 fv-row">
-    <label class="required fs-6 fw-semibold mb-2">@lang('Employer') ( <small
-            class="help-block text-success">@lang('Select an employer user')</small>) </label>
+    <label class="required fs-6 fw-semibold mb-2">@lang('NSITF Staff') ( <small
+            class="help-block text-success">@lang('Select NSITF user')</small>) </label>
     <select name="user_id" class="form-select form-select-solid" data-hide-search="true"
         data-placeholder="Select a Team Member">
-        @foreach ($employers as $item)
-            <option value="{{ $item->id }}">{{ $item->name . ' ' . $item->last_name . ' - ' . $item->email }}</option>
+        @foreach ($staff as $item)
+            <option value="{{ $item->id }}">{{ $item->first_name . ' ' . $item->last_name . ' - ' . $item->email }}</option>
         @endforeach
     </select>
 </div>
@@ -52,10 +52,10 @@
 
 <!-- Company Rcnumber Field -->
 <div class="d-flex flex-column col-md-6 mb-8 fv-row">
-    {!! Form::label('company_rcnumber', 'Company Rcnumber:', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
+    {!! Form::label('company_rcnumber', 'Company RC Number:', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
     {!! Form::text('company_rcnumber', null, [
         'class' => 'form-control form-control-solid border',
-        'placeholder' => 'Enter Company Rc number',
+        'placeholder' => 'Enter Company RC Number',
     ]) !!}
 </div>
 
@@ -106,6 +106,18 @@
         'class' => 'form-control form-control-solid border',
         'placeholder' => 'Enter Company Registered Date',
     ]) !!}
+</div>
+
+<!-- Branch Field -->
+<div class="d-flex flex-column col-md-6 mb-8 fv-row">
+    {!! Form::label('branch_id', 'Branch: ', ['class' => 'required fs-6 fw-semibold mb-2']) !!}
+    <select id="branch" name="branch_id" class="form-control" required="">
+        <option>Select Branch</option>
+        @foreach ($branch as $item)
+            <option value="{{ $item->id }}" {{ $employer->region_id == $item->id ? 'selected' : '' }}>
+                {{ $item->branch_name }}</option>
+        @endforeach
+    </select>
 </div>
 
 <!-- Company State Field -->
@@ -162,29 +174,3 @@
         'placeholder' => 'Enter Status',
     ]) !!}
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#state').on('change', function () {
-            var idState = this.value;
-            $("#local-dd").html('');
-            $.ajax({
-                url: "{{url('api/fetch-locals')}}",
-                type: "POST",
-                data: {
-                    state_id: idState,
-                    _token: '{{csrf_token()}}'
-                },
-                dataType: 'json',
-                success: function (result) {
-                    $('#local-dd').html('<option value="">Select Local</option>');
-                    $.each(result.local_govts, function (key, value) {
-                        $("#local-dd").append('<option value="' + value
-                            .id + '">' + value.name + '</option>');
-                    });
-                }
-            });
-        });
-    });
-</script>

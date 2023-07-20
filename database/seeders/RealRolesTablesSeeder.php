@@ -16,30 +16,27 @@ class RealRolesTablesSeeder extends Seeder
      */
     public function run()
     {
-                    // create roles and assign created permissions
+        // create roles and assign created permissions
 
-                    $roleNames =
-                    [
-                        'MD',
-                        'INSPECTION',
-                        'HOD',
-                        'ED FINANCE & ACCOUNT',
-                        'HEALTH',
-                        'ADMINISTRATION',
-                        'USER',
-                        'SUPERVISOR',
-                        'LEAVE PROCESSING OFFICER',
-                        'REGISTRY OFFICER',
-                        'ED ADMIN',
-                    ];
-    
-                $roles = collect($roleNames)->map(function ($roles_arrays) {
-                    return ['name' => $roles_arrays, 'guard_name' => 'web', 'created_at' => now(), 'updated_at' => now()];
-                });
-    
-                Role::insert($roles->toArray());
-            
+        $roleNames =
+            [
+                'MD',
+                'INSPECTION',
+                'HOD',
+                'ED FINANCE & ACCOUNT',
+                'HEALTH',
+                'ADMINISTRATION',
+                'USER',
+                'SUPERVISOR',
+                'LEAVE PROCESSING OFFICER',
+                'REGISTRY OFFICER',
+                'ED ADMIN',
+            ];
 
+        $roles = collect($roleNames)->map(function ($roles_arrays) {
+            return ['name' => $roles_arrays, 'guard_name' => 'web', 'created_at' => now(), 'updated_at' => now()];
+        });
+
+        Role::insert($roles->toArray());
     }
-
 }

@@ -25,13 +25,13 @@ class DepartmentsAndBranchesTablesSeeder extends Seeder
                     Eloquent::unguard();
 
                     DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-                    
-                    DB::select('DROP table branches');
-                    DB::select('DROP table departments');
 
-                    DB::select('DROP table all_branch');
-                    DB::select('DROP table all_departments');
-                    DB::select('DROP table staff_tb');
+                    // DB::select('DROP table branches');
+                    // DB::select('DROP table departments');
+
+                    // DB::select('DROP table all_branch');
+                    // DB::select('DROP table all_departments');
+                    // DB::select('DROP table staff_tb');
 
                     $path1 = 'database/db/branches.sql';
                     DB::unprepared(file_get_contents($path1));
@@ -44,7 +44,7 @@ class DepartmentsAndBranchesTablesSeeder extends Seeder
                     DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
                     Eloquent::reguard();
-            
+
 
     }
 

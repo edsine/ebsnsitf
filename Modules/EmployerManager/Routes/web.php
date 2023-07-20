@@ -19,3 +19,5 @@ Route::resource('employers', Modules\EmployerManager\Http\Controllers\EmployerCo
 
 Route::get('employer/employees/{id}', 'EmployerController@employees')->name('employer.employees');
 Route::resource('employees', Modules\EmployerManager\Http\Controllers\EmployeeController::class);
+
+Route::get('employer/create-employees/{id}', 'EmployeeController@createEmployee')->name('employer.create-employees');

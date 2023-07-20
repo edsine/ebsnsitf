@@ -125,11 +125,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
     protected $casts = [
         'branch_name' => 'string',
-        'branch_region' => 'integer',
+        'branch_region' => 'string',
         'branch_code' => 'string',
         'last_ecsnumber' => 'string',
         'highest_rank' => 'integer',
+
         // 'staff_strength' => 'integer',
+
         'managing_id' => 'integer',
         'branch_email' => 'string',
         'branch_phone' => 'string',
@@ -141,7 +143,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
         'branch_region' => 'required',
         'branch_code' => 'required|unique:branches,branch_code',
         'highest_rank' => 'required',
+
         // 'staff_strength' => 'required',
+
         'managing_id' => 'required',
         'branch_email' => 'required|unique:branches,branch_email',
         'branch_phone' => 'required|unique:branches,branch_phone',

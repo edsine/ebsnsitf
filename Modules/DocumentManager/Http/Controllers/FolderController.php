@@ -166,6 +166,12 @@ class FolderController extends AppBaseController
         }
 
         $folder = $this->folderRepository->find($id);
+
+        if ($folder->name == 'Memo' || $folder->name == 'Correspondence') {
+            Flash::error('Not allowed from here');
+            return redirect()->back();
+        }
+
         $this->checkFolderPermissions($folder, 'read');
 
 
@@ -269,6 +275,11 @@ class FolderController extends AppBaseController
 
         $folder = $this->folderRepository->find($id);
 
+        if ($folder->name == 'Memo' || $folder->name == 'Correspondence') {
+            Flash::error('Cannot edit memo or correspondence folders');
+            return redirect()->back();
+        }
+
         if ($folder->name != $input['name']) {
 
             if (empty($input['parent_folder_id'])) {
@@ -358,6 +369,11 @@ class FolderController extends AppBaseController
         }
 
         $folder = $this->folderRepository->find($id);
+
+        if ($folder->name == 'Memo' || $folder->name == 'Correspondence') {
+            Flash::error('Cannot delete memo or correspondence folders');
+            return redirect()->back();
+        }
 
         $this->checkFolderPermissions($folder, 'delete');
 
