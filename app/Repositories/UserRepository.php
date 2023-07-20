@@ -53,8 +53,8 @@ class UserRepository extends BaseRepository
     {
         return DB::table('users')
         ->join('staff', 'users.id', '=', 'staff.user_id')
-        ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
-        ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
+       // ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+        //->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
         ->join('departments', 'staff.department_id', '=', 'departments.id')
         ->join('branches', 'staff.branch_id', '=', 'branches.id')
         ->where('user_id', $id)

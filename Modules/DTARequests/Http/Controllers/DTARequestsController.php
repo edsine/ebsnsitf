@@ -16,7 +16,11 @@ use Modules\Shared\Repositories\BranchRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\StaffRepository;
 use Illuminate\Support\Facades\Auth;
+<<<<<<< HEAD
 use DB;
+=======
+use Illuminate\Support\Facades\DB;
+>>>>>>> origin
 
 
 class DTARequestsController extends AppBaseController
@@ -57,7 +61,10 @@ class DTARequestsController extends AppBaseController
             $dtarequests = $this->dtaRequestsRepository->paginate(10);
         }
         
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin
         return view('dtarequests::dtarequests.index')->with('dtarequests', $dtarequests);
         
     }
@@ -69,6 +76,7 @@ class DTARequestsController extends AppBaseController
     public function create()
     {
         $branches = $this->branchRepository->all()->pluck('branch_name', 'id');
+
         $branches->prepend('Select branch', '');
         return view('dtarequests::dtarequests.create')->with('branches', $branches);
     }
@@ -78,6 +86,7 @@ class DTARequestsController extends AppBaseController
      * @param Request $request
      * @return Renderable
      */
+    
     public function store(CreateDTARequests $request)
     {
         $input = $request->all();

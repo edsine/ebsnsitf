@@ -17,14 +17,26 @@ Route::middleware('auth:api')->get('/documentmanager', function (Request $reques
     return $request->user();
 });
 
-Route::resource('folders', Modules\DocumentManager\Http\Controllers\API\FolderAPIController::class)
-    ->except(['create', 'edit']);
+Route::prefix('documentmanager')->group(function () {
+    Route::resource('folders', Modules\DocumentManager\Http\Controllers\API\FolderAPIController::class)
+        ->except(['create', 'edit']);
 
-Route::resource('documents', Modules\DocumentManager\Http\Controllers\API\DocumentAPIController::class)
-    ->except(['create', 'edit']);
+    Route::resource('documents', Modules\DocumentManager\Http\Controllers\API\DocumentAPIController::class)
+        ->except(['create', 'edit']);
 
-Route::resource('document-versions', Modules\DocumentManager\Http\Controllers\API\DocumentVersionAPIController::class)
-    ->except(['create', 'edit']);
+    Route::resource('document-versions', Modules\DocumentManager\Http\Controllers\API\DocumentVersionAPIController::class)
+        ->except(['create', 'edit']);
 
-Route::resource('memos', Modules\DocumentManager\Http\Controllers\API\MemoAPIController::class)
-    ->except(['create', 'edit']);
+    Route::resource('memos', Modules\DocumentManager\Http\Controllers\API\MemoAPIController::class)
+        ->except(['create', 'edit']);
+
+
+    Route::resource('correspondences', Modules\DocumentManager\Http\Controllers\API\CorrespondenceAPIController::class)
+        ->except(['create', 'edit']);
+
+    Route::resource('correspondence-has-users', Modules\DocumentManager\Http\Controllers\API\CorrespondenceHasUserAPIController::class)
+        ->except(['create', 'edit']);
+
+    Route::resource('correspondence-has-departments', Modules\DocumentManager\Http\Controllers\API\CorrespondenceHasDepartmentAPIController::class)
+        ->except(['create', 'edit']);
+});

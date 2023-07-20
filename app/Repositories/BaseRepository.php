@@ -68,10 +68,18 @@ abstract class BaseRepository
     {
         $query = $this->model->newQuery();
 
+        // if (count($search)) {
+        //     foreach($search as $key => $value) {
+        //         if (in_array($key, $this->getFieldsSearchable())) {
+        //             $query->where($key, $value);
+        //         }
+        //     }
+        // }
+
         if (count($search)) {
-            foreach($search as $key => $value) {
+            foreach ($search['search'] as $key => $value) {
                 if (in_array($key, $this->getFieldsSearchable())) {
-                    $query->where($key, $value);
+                    $query->where($key, 'LIKE', '%' . $value . '%');
                 }
             }
         }
