@@ -124,11 +124,18 @@ class MemoController extends AppBaseController
         if (empty($memo_folder)) {
             $folder_input['name'] = 'Memo';
             $folder_input['description'] = "MD's Memos";
-            $folder_input['branch_id'] = $user->staff ? $user->staff->branch_id : 1;
+            $folder_input['branch_id'] = $user->staff ? $user->staff->branch_id : 2;
             $folder_input['department_id'] = $user->staff ? $user->staff->department_id : 1;
             $folder_input['created_by'] = $user->id;
 
             $memo_folder = $this->folderRepository->create($folder_input);
+        }
+
+        // Check if document with title exist in the folder
+        $document_count_by_title_and_folder_id = $this->documentRepository->findByTitleAndFolderId($input['title'], $memo_folder->id)->count();
+        if ($document_count_by_title_and_folder_id > 0) {
+            Flash::error('Title has been taken already');
+            return redirect()->back();
         }
 
         // Prepare document input
@@ -482,6 +489,15 @@ class MemoController extends AppBaseController
 
         // Get folder and its parents. Create if path does not exist
         $memo_folder = $this->folderRepository->findByName('Memo')->first();
+
+        // Check if document with title exist in the folder
+        if ($memo->title != $input['title']) {
+            $document_count_by_title_and_folder_id = $this->documentRepository->findByTitleAndFolderId($input['title'], $memo_folder->id)->count();
+            if ($document_count_by_title_and_folder_id > 0) {
+                Flash::error('Title has been taken already');
+                return redirect()->back();
+            }
+        }
 
         $path = "documents/";
 
