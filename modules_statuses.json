@@ -7,5 +7,6 @@
     "DTARequests": true,
     "DtaReview": true,
     "HumanResource": true,
-    "Leaves": true
+    "Leaves": true,
+    "Emailselfservice": true
 }

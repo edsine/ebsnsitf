@@ -1,0 +1,13 @@
+{
+    "name": "Emailselfservice",
+    "alias": "emailselfservice",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Emailselfservice\\Providers\\EmailselfserviceServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
