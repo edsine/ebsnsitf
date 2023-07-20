@@ -65,16 +65,16 @@ public $primarykey='id';
     ];
     public static array $rules=[
         // 'reasons'=>'required',
-        'date_last_leave'=>'required',
+        // 'date_last_leave'=>'required',
         'date_start_new'=>'required',
         'number_days'=>'required',
         'phone_number'=>'required',
     ];
     
 
-// public function leave_type(){
-//     return $this->belongsTo('App\Models\LeaveType'); 
-// }
+public function leavetypes(){
+    return $this->belongsTo('Modules\HumanResource\Models\LeaveType'); 
+}
 
     // protected static function newFactory()
     // {
@@ -82,10 +82,10 @@ public $primarykey='id';
     // }
 
 
-public function leavetype(){
-    return $this->belongsTo([LeaveType::class,'leave_type_id']);
+// public function leavetype(){
+//     return $this->belongsTo([LeaveType::class,'leave_type_id']);
     
-}
+// }
     public function staff(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(\Modules\Shared\Models\staff::class, 'staff_id', 'id');

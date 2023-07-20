@@ -24,7 +24,7 @@ use Modules\HumanResource\Http\Controllers\LeaveRequestController;
 
 Route::prefix('leave_request_data')->group(function() {
     Route::get('/', 'LeaveRequestController@index');
-    Route::get('/leave_types','LeaveTypesController@index');
+    Route::get('/leave_types','LeaveTypesController@index')->name("atp");
     Route::get('/get-data/{id}','LeaveRequestController@getDuration');
 
 

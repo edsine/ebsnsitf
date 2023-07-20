@@ -1,4 +1,4 @@
-<div class="form-section" id="section-1">
+
 
     <div class="form-group col-sm-6">
         {!! Form::label('type', 'SELECT LEAVE TYPE:') !!}
@@ -8,10 +8,10 @@
 
 
 
-    <div class="form-group  col-sm-6">
+    {{-- <div class="form-group  col-sm-6">
         {!! Form::label('date_last_leave', 'DATE RESUME FROM LAST LEAVE:') !!}
         {!! Form::date('date_last_leave', null, ['class' => 'form-control']) !!}
-    </div>
+    </div> --}}
     
     <div class="form-group col-sm-6">
         {!! Form::label('date_start_new', 'DATE REQUESTED TO COMMENCE PRESENT LEAVE:') !!}
@@ -41,11 +41,11 @@
 
 
 
-</div>
 
 
 
-<div class="form-section" id="section-2">
+
+
 
     <div class="form-group col-sm-6">
         {!! Form::label('street_number', 'STREET NUMBER:') !!}
@@ -61,7 +61,7 @@
     </div>
     <div class="form-group col-sm-6">
         {!! Form::label('end_date', 'EXPECTED DATE TO RESUME:') !!}
-        {!! Form::text('end_date',  null, ['class' => 'form-control ','placeholder'=>'the date for you to resume','id'=>'end_date','readonly'=>true]) !!}
+        {!! Form::text('end_date',  null, ['class' => 'form-control ','placeholder'=>'the date for you to resume','id'=>'end_date']) !!}
     </div>
     <div class="form-group col-sm-6">
         {!! Form::label('state', 'STATE:') !!}
@@ -87,9 +87,11 @@
         {!! Form::file('signature_path',null, ['class' => 'form-control','accept' => 'image/*']) !!}
         </div>
     </div>
-</div>
 
 
+    <div class="form-group my-5 col-sm-6">
+        {!!Form::button('Update',['class'=>'btn btn-success','id'=>'u']) !!}
+        </div>
 
 
 
@@ -164,79 +166,78 @@
         });
     </script>
 
+
+
+
+
 <script>
-    let btn=document.getElementById('leave_type')
-    btn.addEventListener('click',()=>{
+    function convertdate(datestring,numberofdays){
+        const date = new Date(dateString);
+  date.setDate(date.getDate() + numberOfDays);
+  return date
+
+    }
+</script>
+
+<script>
+    let updatebtn = document.getElementById('u');
+    updatebtn.addEventListener('click',()=>{
+       
+        let datestart=document.getElementById('date_start')
+      
+         let numberofdays=document.getElementById('number_days')
         
+        let  daystaken =document.getElementById('days')
+        let daytoresume= document.getElementById('end_date')
+
+        let date = new Date(datestart.value)
+        let day = parseInt(daystaken.value);
+        let newdate= new Date(date.getTime() + (day *24 *60 *60 *1000));
+        // if (daystaken.value > numberofdays.value ){
+        //    alert(daystaken.value + " exceeds " + numberofdays.value + "please take something lesser")
+        // daystaken.value=0;
+        // }
+
+        while (newdate.getDay()==0 || newdate.getDay()==6){
+            day++
+            newdate = new Date(date.getTime() + (day * 24 *60*60*1000 ));
+        }
+        if (newdate.getDate()==0){
+            day +=2;
+            newdate = new Date(date.getTime() + (day * 24 *60*60*1000 ));
+            
+        }
+
+        daytoresume.value=newdate.toISOString().slice(0, 10);
+//
+
+// Enabling the submit button now
+let submitbtn=document.getElementById('submit')
+
+submitbtn.disabled = false;
+
+
         
-    
-        
-        //document.getElementById('end_date').value=new Date.now();
     })
-    let nextbtn= document.getElementById('next-button');
-nextbtn.addEventListener('change',()=>{
-    
-
-
-   })
-   
-</script> 
-
-<script>
-    let number_values=document.getElementById('number_days');
 </script>
 
 
 
 
-<script>
-    // Wait for the DOM to be ready
-    document.addEventListener('DOMContentLoaded', function() {
-      // Get all the form sections
-      const formSections = document.querySelectorAll('.form-section');
-  
-      // Get the "Next" button
-      const nextButton = document.getElementById('next-button');
-  
-      // Keep track of the current section index
-      let currentSectionIndex = 0;
-  
-      // Function to show the next section
-      function showNextSection() {
-        // Hide the current section
-        formSections[currentSectionIndex].style.display = 'none';
-  
-        // Increment the current section index
-        currentSectionIndex++;
-  
-        // Show the next section
-        if (currentSectionIndex < formSections.length) {
-          formSections[currentSectionIndex].style.display = 'block';
-        }
-  
-        // If we are at the last section, hide the "Next" button
-        if (currentSectionIndex === formSections.length - 1) {
-          nextButton.style.display = 'none';
-        }
-      }
-      // using the nextbtn to do the content here
-      nextButton.addEventListener('click',()=>{
-        let days= document.getElementById('number_days').value;
-    let date_to_resume =document.getElementById('end_date');
-    let date_start_new =document.getElementById('date_start').value;
-    let daystaken=document.getElementById('daystaken').value;
 
-    // getting all values of days and number
-    let datestart = new Date(date_start_new);
-datestart.setDate(datestart.getDate()+daystaken)
-const newdate=datestart.toISOString().slice(0,10);
 
-// alert('jsjjjjjjjjj')
-    
-        
-      })
-      // Add a click event listener to the "Next" button
-      nextButton.addEventListener('click', showNextSection);
-    });
-  </script>
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

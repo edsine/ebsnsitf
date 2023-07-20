@@ -4,7 +4,6 @@
             <thead>
             <tr>
                 <th> STATFF ID</th>
-                <th>DATE OF LAST LEAVE</th>
                 <th>TYPE OF LEAVE</th>
                 <th>NEW LEAVE DATE</th>
                 <th>NUMBER OF DAYS</th>

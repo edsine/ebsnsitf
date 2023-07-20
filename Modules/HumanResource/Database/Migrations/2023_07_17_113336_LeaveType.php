@@ -13,7 +13,7 @@ class LeaveType extends Migration
      */
     public function up()
     {
-        Schema::create('leave_types',function(Blueprint $table){
+        Schema::create('leavetype',function(Blueprint $table){
             $table->id();
             $table->string('name');
             $table->integer('duration');
@@ -28,6 +28,6 @@ class LeaveType extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leave_types');
+        Schema::dropIfExists('leavetypes');
     }
 }

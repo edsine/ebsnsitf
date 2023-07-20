@@ -27,16 +27,16 @@
                 <div class="row">
                     @include('humanresource::LeaveRequest.fields')
                     <div class="form-group my-5 col-sm-6">
-                    {!!Form::button('NEXT PAGE',['class'=>'btn btn-success','id'=>'next-button']) !!}
+                    {{-- {!!Form::button('Update',['class'=>'btn btn-success','id'=>'update']) !!} --}}
                     </div>
                 </div>
 
             </div>
 
-            {{-- <button type="button" class="btn btn-success" id="next-button">NEXT </button> --}}
+            {{-- <button type="button" class="btn btn-success" id="update">Update</button> --}}
 
-            <div class="card-footer">
-                {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
+            <div class="card-footer" >
+                {!! Form::submit('Submit', ['class' => 'btn btn-primary','id'=>'submit','disabled'=>true]) !!}
                 <a href="{{ route('leave_request.index') }}" class="btn btn-default"> Cancel </a>
             </div>
 
@@ -45,3 +45,6 @@
         </div>
     </div>
 @endsection
+<script>
+
+</script>

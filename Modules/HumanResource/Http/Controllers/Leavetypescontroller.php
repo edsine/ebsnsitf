@@ -55,7 +55,7 @@ public function getDuration(){
 
     // $duration = LeaveType::select('id','name','duration')->get();
     // $duration= $this->leavetypesRepository->all()->pluck('name','id');
-    $duration= DB::table('leave_types') 
+    $duration= DB::table('LeaveType') 
                   ->select('id','name','duration')->get();
                 //   return $duration;
                 return response()->json($duration);
