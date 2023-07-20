@@ -238,8 +238,8 @@ use Illuminate\Database\Eloquent\Model;
         
     ];
 
-    public function employer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function employer(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->belongsTo(\Modules\EmployerManager\Models\Employer::class, 'employer_id', 'id');
+        return $this->hasOne(\Modules\EmployerManager\Models\Employer::class, 'employer_id', 'id');
     }
 }
