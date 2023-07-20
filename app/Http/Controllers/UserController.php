@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateUserRequest;
-use App\Http\Requests\UpdateUserRequest;
-use App\Repositories\UserRepository;
-use App\Repositories\StaffRepository;
-use App\Http\Controllers\AppBaseController;
-use App\Repositories\RoleRepository;
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
-use App\Repositories\BranchRepository;
-use App\Repositories\DepartmentRepository;
+
+use Hash;
 use Flash;
 use Response;
-use Hash;
-use DB;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use App\Repositories\RoleRepository;
+use App\Repositories\UserRepository;
+use App\Repositories\StaffRepository;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
+use App\Http\Controllers\AppBaseController;
+use App\Repositories\BranchRepository;
+use App\Repositories\DepartmentRepository;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use App\Models\User;
+
 
 
 class UserController extends AppBaseController
