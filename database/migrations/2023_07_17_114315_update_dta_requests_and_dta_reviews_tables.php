@@ -2,12 +2,9 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
-<<<<<<< HEAD
-=======
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
->>>>>>> main
+
 
 return new class extends Migration
 {

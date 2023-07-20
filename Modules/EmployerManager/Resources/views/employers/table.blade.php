@@ -9,6 +9,8 @@
                     <th class="min-w-200px">Address</th>
                     <th class="min-w-200px">Rc Number</th>
                     <th class="min-w-200px">Company Phone</th>
+                    <th class="min-w-200px">Branch</th>
+                    <th class="min-w-200px">Region</th>
                     <th class="min-w-200px">Local Govt</th>
                     <th class="min-w-200px">State</th>
                     <th class="min-w-200px">Business Area</th>
@@ -27,6 +29,20 @@
                         <td>{{ $employer->company_address }}</td>
                         <td>{{ $employer->company_rcnumber }}</td>
                         <td>{{ $employer->company_phone }}</td>
+                        <td>
+                            @if($employer->branch_id)
+                            {{ $employer->branch->branch_name }}
+                            @else
+                            Not Specified
+                            @endif
+                        </td>
+                        <td>
+                            @if($employer->region_id)
+                            {{ $employer->region->branch_region }}
+                            @else
+                            Not Specified
+                            @endif
+                        </td>
                         <td>
                             @if($employer->company_localgovt)
                             {{$employer->localGovernment->name}}
