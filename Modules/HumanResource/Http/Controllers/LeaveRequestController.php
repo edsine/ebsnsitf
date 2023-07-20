@@ -142,7 +142,7 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
 
 
 
-
+        
         $input=$request->all();
         $uid=Auth::id();
 
@@ -152,8 +152,6 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
         $input['supervisor_office'] = 0;
         $input['md_hr'] = 0;
         $input['leave_officer'] = 0;
-        
-        
 
         if ($request->hasFile('signature_path')) {
             $file = $request->file('signature_path');
