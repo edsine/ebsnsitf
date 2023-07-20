@@ -54,6 +54,30 @@
     <p>{{ $employer->registered_date }}</p>
 </div>
 
+<!-- Company Branch Field -->
+<div class="col-sm-12">
+    {!! Form::label('branch_id', 'NSITF Branch:') !!}
+    <p>
+        @if ($employer->branch_id)
+            {{ $employer->branch->branch_name }}
+        @else
+            Not Specified
+        @endif
+    </p>
+</div>
+
+<!-- Company Region Field -->
+<div class="col-sm-12">
+    {!! Form::label('region_id', 'NSITF Region:') !!}
+    <p>
+        @if ($employer->region_id)
+            {{ $employer->region->branch_region }}
+        @else
+            Not Specified
+        @endif
+    </p>
+</div>
+
 <!-- Company Localgovt Field -->
 <div class="col-sm-12">
     {!! Form::label('company_localgovt', 'Company Localgovt:') !!}
