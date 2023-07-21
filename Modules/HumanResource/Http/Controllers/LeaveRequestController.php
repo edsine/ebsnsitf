@@ -6,21 +6,27 @@ use Flash;
 //use LeaveRequest;
 use Illuminate\Http\Request;
 
-use Modules\HumanResource\Http\Requests\CreateLeaveRequests;
-use Modules\HumanResource\Http\Requests\UpdateleaveRequests;
-
-// use Modules\HumanResource\Repositories\DTAReviewRepository;
-
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+
+
+
 use App\Repositories\StaffRepository;
 use App\Http\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Contracts\Support\Renderable;
-
+use Illuminate\Support\Facades\DB;
+use LeaveType;
 use Modules\Shared\Repositories\BranchRepository;
+use Modules\HumanResource\Http\Requests\UpdateLeaveRequests;
 
+use Modules\HumanResource\Http\Requests\CreateLeaveRequests;
+
+// use Modules\HumanResource\Http\Requests\UpdateleaveRequests;
 use Modules\HumanResource\Repositories\LeaveRequestRepository;
+use Modules\HumanResource\Repositories\LeavetypeRepository;
+
+
 //use Modules\Leaves\Http\Requests\UpdateleavesRequest;
 
 // use Modules\HumanResource\Http\Requests\LeaveRequest;
@@ -35,6 +41,9 @@ class LeaveRequestController extends  AppBaseController
     /** @var BranchRepository $branchRepository*/
     private $branchRepository;
 
+    /** @var LeavetypeRepository $branchRepository*/
+    private $leavetypeRepository ;
+
 
     //   /** @var DTAReviewRepository $dtaReviewRepository*/
     //   private $dtaReviewRepository;
@@ -42,11 +51,12 @@ class LeaveRequestController extends  AppBaseController
 /** @var StaffRepository $staffRepository*/
 private $staffRepository;
 
-public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepository $branchRepo, StaffRepository $staffRepo)
+public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepository $branchRepo, StaffRepository $staffRepo ,LeavetypeRepository $leavetypeRepo)
     {
         $this->leaverequestRepository = $leaverequestRepo;
         $this->branchRepository = $branchRepo;
         $this->staffRepository = $staffRepo;
+        $this->leavetypeRepository = $leavetypeRepo;
     }
 
 
@@ -54,9 +64,21 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
      * Display a listing of the resource.
      * @return Renderable
      */
+
+    //  public function getLeaveTypeDuration($id)
+    //  {
+    //     $leaveTypes=$this->leavetypeRepository->find($id);
+    //     //  $leaveType = LeaveType::findOrFail($id);
+    //     dd($leaveTypes);
+    //      return response()->json(['duration' => $leaveTypes->duration]);
+    //  }
+
+
     public function index()
 
     {
+
+        
         $leaverequest=$this->leaverequestRepository->paginate(10);
         return view('humanresource::leaverequest.index',compact('leaverequest'));
     }
@@ -66,9 +88,48 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
      * @return Renderable
      */
     public function create()
+
     {
-        return view('humanresource::leaverequest.create');
+        
+        
+
+        // $leavetype = $this->leavetypeRepository->all()->pluck('name','id');
+        $leavetype = $this->leavetypeRepository->all()->pluck('name','id');
+        // dd($duration);
+
+        // $leavetype = $leavetypes->pluck('name', 'id')->map(function ($name, $id) use ($leavetypes) {
+        //     $duration = $leavetypes->where('id', $id)->pluck('duration')->first();
+        //     return $name . ' (' . $duration . ' days)';
+        // });  
+
+        // $leavetype=$this->leavetypeRepository->all()->pluck('name','id');
+
+    
+
+        return view('humanresource::leaverequest.create',compact('leavetype'));
+
     }
+
+    public function getDuration($id)
+    {
+        /* $id = $request->input('id');
+        $duration = DB::table('leave_type')->where('id', $id)->value('duration'); */
+        $leavetype = $this->leavetypeRepository->getById($id);
+
+        return response()->json(['duration' => $leavetype->duration]);
+    }
+
+    public function leavetypeduration(Request $request)
+    {
+        $id=$request->get('id');
+        
+        $leavetype=$this->leavetypeRepository->find($id)->pluck('duration');
+      
+
+        // return view('humanresource::leaverequest.create',compact('leavetype'));
+        return $leavetype;
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -77,7 +138,11 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
      */
     public function store(CreateLeaveRequests $request)
     {
-//dd($request->all());
+
+
+
+
+        
         $input=$request->all();
         $uid=Auth::id();
 
@@ -137,7 +202,7 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
         if (empty($leaverequest)) {
             Flash::error('Leave Request not found');
 
-            return redirect(route('leaverequest.index'));
+            return redirect(route('leave_request.index'));
         }
         
         $branches = $this->branchRepository->all()->pluck('branch_name', 'id');
@@ -154,19 +219,19 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
      * @param int $id
      * @return Renderable
      */
-    public function update($id, UpdateleavesRequest $request)
+    public function update($id, UpdateLeaveRequests $request)
     {
         $leaverequest = $this->leaverequestRepository->find($id);
 
         if (empty($leaverequest)) {
             Flash::error('leave request not found');
 
-            return redirect(route('leaverequest.index'));
+            return redirect(route('leave_request.index'));
         }
 
         $input = $request->all();
 
-        $input['staff_id'] = Auth::id();
+        // $input['staff_id'] = Auth::id();
         
 
         if ($request->hasFile('uploaded_doc')) {
@@ -191,9 +256,9 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
         // $input_r['updated_at'] = now();
         // $this->dtaReviewRepository->create($input_r);
 
-        Flash::success('LEAVE REQUEST  successfully SENT.');
+        Flash::success('LEAVE REQUEST Updated successfully .');
 
-        return redirect(route('leaverequest.index'));
+        return redirect(route('leave_request.index'));
     }
 
     /**
