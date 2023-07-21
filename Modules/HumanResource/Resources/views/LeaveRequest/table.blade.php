@@ -25,7 +25,6 @@
                     <td>{{ $leaves->type}}</td>
                     <td>{{ $leaves->date_start_new}}</td>
                     <td>{{ $leaves->number_days }}</td>
-                    
                     <td>{{ $leaves->officer_relieve }}</td>
                     <td>{{ $leaves->end_date }}</td>
                     

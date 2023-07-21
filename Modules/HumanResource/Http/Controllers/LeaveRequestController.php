@@ -21,6 +21,14 @@ use Modules\Shared\Repositories\BranchRepository;
 use Modules\HumanResource\Http\Requests\UpdateLeaveRequests;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+use Modules\HumanResource\Http\Requests\CreateLeaveRequests;
+
+=======
+>>>>>>> origin
+>>>>>>> atp
 
 use Modules\HumanResource\Http\Requests\CreateLeaveRequests;
 
@@ -40,6 +48,7 @@ use Modules\HumanResource\Repositories\LeavetypeRepository;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 //use Modules\Leaves\Http\Requests\UpdateleavesRequest;
@@ -47,6 +56,11 @@ use Modules\HumanResource\Repositories\LeavetypeRepository;
 =======
 
 //use Modules\Leaves\Http\Requests\UpdateleavesRequest;
+=======
+=======
+
+//use Modules\Leaves\Http\Requests\UpdateleavesRequest;
+>>>>>>> atp
 >>>>>>> origin
 
 
@@ -64,12 +78,18 @@ class LeaveRequestController extends  AppBaseController
     private $leavetypeRepository ;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 
 >>>>>>> origin
 
 >>>>>>> e043d26 (Atp (#75))
+=======
+=======
+
+>>>>>>> origin
+>>>>>>> atp
 
 
  
@@ -93,10 +113,15 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
    
 =======
 =======
 >>>>>>> origin
+=======
+   
+=======
+>>>>>>> atp
     //  public function getLeaveTypeDuration($id)
     //  {
     //     $leaveTypes=$this->leavetypeRepository->find($id);
@@ -105,8 +130,11 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
     //      return response()->json(['duration' => $leaveTypes->duration]);
     //  }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e043d26 (Atp (#75))
 =======
+=======
+>>>>>>> atp
 >>>>>>> origin
 
 
@@ -131,11 +159,17 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $leavetype = $this->leavetypeRepository->all()->pluck('name','id');
         
 =======
 =======
 >>>>>>> origin
+=======
+        $leavetype = $this->leavetypeRepository->all()->pluck('name','id');
+        
+=======
+>>>>>>> atp
         // $leavetype = $this->leavetypeRepository->all()->pluck('name','id');
         $leavetype = $this->leavetypeRepository->all()->pluck('name','id');
         // dd($duration);
@@ -148,8 +182,11 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
         // $leavetype=$this->leavetypeRepository->all()->pluck('name','id');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e043d26 (Atp (#75))
 =======
+=======
+>>>>>>> atp
 >>>>>>> origin
     
 
@@ -161,14 +198,20 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
     {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> atp
       
 =======
         /* $id = $request->input('id');
         $duration = DB::table('leave_type')->where('id', $id)->value('duration'); */
+<<<<<<< HEAD
 >>>>>>> e043d26 (Atp (#75))
 =======
         /* $id = $request->input('id');
         $duration = DB::table('leave_type')->where('id', $id)->value('duration'); */
+=======
+>>>>>>> atp
 >>>>>>> origin
         $leavetype = $this->leavetypeRepository->getById($id);
 
@@ -184,11 +227,16 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         // return view('humanresource::leaverequest.create',compact('leavetype'));
 >>>>>>> e043d26 (Atp (#75))
 =======
         // return view('humanresource::leaverequest.create',compact('leavetype'));
+=======
+=======
+        // return view('humanresource::leaverequest.create',compact('leavetype'));
+>>>>>>> atp
 >>>>>>> origin
         return $leavetype;
     }
@@ -296,12 +344,18 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 =======
         // $input['staff_id'] = Auth::id();
 >>>>>>> e043d26 (Atp (#75))
 =======
         // $input['staff_id'] = Auth::id();
+=======
+        
+=======
+        // $input['staff_id'] = Auth::id();
+>>>>>>> atp
 >>>>>>> origin
         
 

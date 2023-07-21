@@ -31,7 +31,7 @@
             <div class="card-body">
                 <div class="row">
 
-                    
+
                     @include('humanresource::leavetypes.show_fields')
                 </div>
             </div>
