@@ -183,6 +183,17 @@ class MemoController extends AppBaseController
 
         $memo = $this->memoRepository->create($input);
 
+        // Assign to department(s)
+        $departments = $input['departments'];
+        if ($departments != null) {
+            $this->_assignToDepartments($departments, $memo);
+        }
+        // Assign to user(s)
+        $users = $input['users'];
+        if ($users != null) {
+            $this->_assignToUsers($users, $memo);
+        }
+
         Flash::success('Memo saved successfully.');
 
         return redirect(route('memos.index'));
@@ -194,7 +205,6 @@ class MemoController extends AppBaseController
 
     public function assignToUsers(Request $request)
     {
-        $logged_in_user = Auth::user();
         $input = $request->all();
         $memo_id = $input['memo_id'];
         $users = $input['users'];
@@ -211,31 +221,8 @@ class MemoController extends AppBaseController
 
             return redirect(route('memos.index'));
         }
-        // dd($input);
-        foreach ($users as $key => $user_id) {
-            $input_fields['user_id'] = $user_id;
-            $input_fields['memo_id'] = $memo_id;
-            $input_fields['assigned_by'] = $logged_in_user->id;
 
-            // Check if user exists
-            $user = $this->userRepository->find($user_id);
-            if (empty($user)) {
-                continue;
-            }
-
-            // Check if entry with user_id and memo_id exists
-            $memo_has_user = $this->memoHasUserRepository->findByUserAndMemo($user_id, $memo_id);
-            if (!empty($memo_has_user)) {
-                continue;
-            }
-
-            $this->memoHasUserRepository->create($input_fields);
-
-            try {
-                $user->notify(new MemoAssignedToUser($memo));
-            } catch (\Throwable $th) {
-            }
-        }
+        $this->_assignToUsers($users, $memo);
 
         Flash::success('Memo assigned successfully to user(s).');
 
@@ -248,7 +235,6 @@ class MemoController extends AppBaseController
 
     public function assignToDepartments(Request $request)
     {
-        $logged_in_user = Auth::user();
         $input = $request->all();
         $memo_id = $input['memo_id'];
         $departments = $input['departments'];
@@ -266,25 +252,7 @@ class MemoController extends AppBaseController
             return redirect(route('memos.index'));
         }
 
-        foreach ($departments as $key => $department_id) {
-            $input_fields['department_id'] = $department_id;
-            $input_fields['memo_id'] = $memo_id;
-            $input_fields['assigned_by'] = $logged_in_user->id;
-
-            // Check if department exists
-            $department = $this->departmentRepository->find($department_id);
-            if (empty($department)) {
-                continue;
-            }
-
-            // Check if entry with user_id and memo_id exists
-            $memo_has_department = $this->memoHasDepartmentRepository->findByDepartmentAndMemo($department_id, $memo_id);
-            if (!empty($memo_has_department)) {
-                continue;
-            }
-
-            $this->memoHasDepartmentRepository->create($input_fields);
-        }
+        $this->_assignToDepartments($departments, $memo);
 
         Flash::success('Memo assigned successfully to department(s).');
 
@@ -577,5 +545,59 @@ class MemoController extends AppBaseController
         Flash::success('Memo deleted successfully.');
 
         return redirect(route('memos.index'));
+    }
+
+
+    public function _assignToDepartments($departments, $memo)
+    {
+        $logged_in_user = Auth::user();
+        foreach ($departments as $key => $department_id) {
+            $input_fields['department_id'] = $department_id;
+            $input_fields['memo_id'] = $memo->id;
+            $input_fields['assigned_by'] = $logged_in_user->id;
+
+            // Check if department exists
+            $department = $this->departmentRepository->find($department_id);
+            if (empty($department)) {
+                continue;
+            }
+
+            // Check if entry with user_id and memo_id exists
+            $memo_has_department = $this->memoHasDepartmentRepository->findByDepartmentAndMemo($department_id, $memo->id);
+            if (!empty($memo_has_department)) {
+                continue;
+            }
+
+            $this->memoHasDepartmentRepository->create($input_fields);
+        }
+    }
+
+    public function _assignToUsers($users, $memo)
+    {
+        $logged_in_user = Auth::user();
+        foreach ($users as $key => $user_id) {
+            $input_fields['user_id'] = $user_id;
+            $input_fields['memo_id'] = $memo->id;
+            $input_fields['assigned_by'] = $logged_in_user->id;
+
+            // Check if user exists
+            $user = $this->userRepository->find($user_id);
+            if (empty($user)) {
+                continue;
+            }
+
+            // Check if entry with user_id and memo_id exists
+            $memo_has_user = $this->memoHasUserRepository->findByUserAndMemo($user_id, $memo->id);
+            if (!empty($memo_has_user)) {
+                continue;
+            }
+
+            $this->memoHasUserRepository->create($input_fields);
+
+            try {
+                $user->notify(new MemoAssignedToUser($memo));
+            } catch (\Throwable $th) {
+            }
+        }
     }
 }

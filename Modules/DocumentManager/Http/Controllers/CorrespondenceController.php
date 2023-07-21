@@ -3,6 +3,7 @@
 namespace Modules\DocumentManager\Http\Controllers;
 
 use Flash;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
@@ -10,12 +11,12 @@ use App\Http\Controllers\AppBaseController;
 use Modules\Shared\Repositories\DepartmentRepository;
 use Modules\DocumentManager\Repositories\FolderRepository;
 use Modules\DocumentManager\Repositories\DocumentRepository;
+use Modules\DocumentManager\Notifications\CorrespondenceCreated;
 use Modules\DocumentManager\Repositories\CorrespondenceRepository;
 use Modules\DocumentManager\Repositories\DocumentVersionRepository;
 use Modules\DocumentManager\Http\Requests\CreateCorrespondenceRequest;
 use Modules\DocumentManager\Http\Requests\UpdateCorrespondenceRequest;
 use Modules\DocumentManager\Notifications\CorrespondenceAssignedToUser;
-use Modules\DocumentManager\Notifications\CorrespondenceCreated;
 use Modules\DocumentManager\Repositories\CorrespondenceHasUserRepository;
 use Modules\DocumentManager\Repositories\CorrespondenceHasDepartmentRepository;
 
@@ -121,7 +122,7 @@ class CorrespondenceController extends AppBaseController
         $path = "documents/";
 
 
-        // Check if memo folder exists. Create if it does not exist
+        // Check if correspondence folder exists. Create if it does not exist
         $correspondence_folder = $this->folderRepository->findByName('Correspondence')->first();
         if (empty($correspondence_folder)) {
             $folder_input['name'] = 'Correspondence';
@@ -186,7 +187,14 @@ class CorrespondenceController extends AppBaseController
         $correspondence = $this->correspondenceRepository->create($input);
 
         try {
-            // $user->notify(new CorrespondenceCreated($correspondence));
+            // Get MD user
+            $user = User::whereHas('role', function ($q) {
+                $q->where('name', 'MD');
+            })->first();
+            // Send notification to MD user
+            if (!empty($user)) {
+                $user->notify(new CorrespondenceCreated($correspondence));
+            }
         } catch (\Throwable $th) {
         }
 
@@ -219,31 +227,9 @@ class CorrespondenceController extends AppBaseController
 
             return redirect(route('correspondences.index'));
         }
-        // dd($input);
-        foreach ($users as $key => $user_id) {
-            $input_fields['user_id'] = $user_id;
-            $input_fields['correspondence_id'] = $correspondence_id;
-            $input_fields['assigned_by'] = $logged_in_user->id;
 
-            // Check if user exists
-            $user = $this->userRepository->find($user_id);
-            if (empty($user)) {
-                continue;
-            }
-
-            // Check if entry with user_id and correspondence_id exists
-            $correspondence_has_user = $this->correspondenceHasUserRepository->findByUserAndCorrespondence($user_id, $correspondence_id);
-            if (!empty($correspondence_has_user)) {
-                continue;
-            }
-
-            $this->correspondenceHasUserRepository->create($input_fields);
-
-             try {
-                 $user->notify(new CorrespondenceAssignedToUser($correspondence));
-             } catch (\Throwable $th) {
-             }
-        }
+        // assign to users
+        $this->_assignToUsers($users, $correspondence);
 
         Flash::success('Correspondence assigned successfully to user(s).');
 
@@ -274,25 +260,8 @@ class CorrespondenceController extends AppBaseController
             return redirect(route('correspondences.index'));
         }
 
-        foreach ($departments as $key => $department_id) {
-            $input_fields['department_id'] = $department_id;
-            $input_fields['correspondence_id'] = $correspondence_id;
-            $input_fields['assigned_by'] = $logged_in_user->id;
-
-            // Check if department exists
-            $department = $this->departmentRepository->find($department_id);
-            if (empty($department)) {
-                continue;
-            }
-
-            // Check if entry with user_id and correspondence_id exists
-            $correspondence_has_department = $this->correspondenceHasDepartmentRepository->findByDepartmentAndCorrespondence($department_id, $correspondence_id);
-            if (!empty($correspondence_has_department)) {
-                continue;
-            }
-
-            $this->correspondenceHasDepartmentRepository->create($input_fields);
-        }
+        // assign to departments
+        $this->_assignToDepartments($departments, $correspondence);
 
         Flash::success('Correspondence assigned successfully to department(s).');
 
@@ -620,5 +589,58 @@ class CorrespondenceController extends AppBaseController
         Flash::success('Correspondence deleted successfully.');
 
         return redirect(route('correspondences.index'));
+    }
+
+    public function _assignToUsers($users, $correspondence)
+    {
+        $logged_in_user = Auth::user();
+        foreach ($users as $key => $user_id) {
+            $input_fields['user_id'] = $user_id;
+            $input_fields['correspondence_id'] = $correspondence->id;
+            $input_fields['assigned_by'] = $logged_in_user->id;
+
+            // Check if user exists
+            $user = $this->userRepository->find($user_id);
+            if (empty($user)) {
+                continue;
+            }
+
+            // Check if entry with user_id and correspondence_id exists
+            $correspondence_has_user = $this->correspondenceHasUserRepository->findByUserAndCorrespondence($user_id, $correspondence->id);
+            if (!empty($correspondence_has_user)) {
+                continue;
+            }
+
+            $this->correspondenceHasUserRepository->create($input_fields);
+
+            try {
+                $user->notify(new CorrespondenceAssignedToUser($correspondence));
+            } catch (\Throwable $th) {
+            }
+        }
+    }
+
+    public function _assignToDepartments($departments, $correspondence)
+    {
+        $logged_in_user = Auth::user();
+        foreach ($departments as $key => $department_id) {
+            $input_fields['department_id'] = $department_id;
+            $input_fields['correspondence_id'] = $correspondence->id;
+            $input_fields['assigned_by'] = $logged_in_user->id;
+
+            // Check if department exists
+            $department = $this->departmentRepository->find($department_id);
+            if (empty($department)) {
+                continue;
+            }
+
+            // Check if entry with user_id and correspondence_id exists
+            $correspondence_has_department = $this->correspondenceHasDepartmentRepository->findByDepartmentAndCorrespondence($department_id, $correspondence->id);
+            if (!empty($correspondence_has_department)) {
+                continue;
+            }
+
+            $this->correspondenceHasDepartmentRepository->create($input_fields);
+        }
     }
 }
