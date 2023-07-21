@@ -226,7 +226,7 @@ class UserController extends AppBaseController
             } else {
                 // prevent picture from updating db since there is no upload
                 unset($input['user_signature']);
-            }
+            } 
             // prevent email from updating since email is unique
             unset($input['email']);
             //Create a new staff
