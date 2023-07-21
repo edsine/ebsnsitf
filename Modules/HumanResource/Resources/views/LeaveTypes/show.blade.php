@@ -6,19 +6,19 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>
-<<<<<<< HEAD
+
                        THE VARIOUS LEAVE TYPE 
                     </h1>
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-default float-right" href="{{ route('leave_type.index') }}">
-=======
+
                        THE VARIOUS LEAVE TYPE
                     </h1>
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-secondary float-end" href="{{ route('leave_type.index') }}">
->>>>>>> origin
+
                         Back
                     </a>
                 </div>
@@ -30,11 +30,8 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-<<<<<<< HEAD
-                    
-=======
 
->>>>>>> origin
+                    
                     @include('humanresource::leavetypes.show_fields')
                 </div>
             </div>

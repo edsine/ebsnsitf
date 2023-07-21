@@ -12,7 +12,7 @@
 
 <!-- Created By Field -->
 <div class="col-sm-12">
-    {!! Form::label('created_by', 'Created By:') !!}
+    {!! Form::label('created_by', 'Created By:', ['class' => 'h4']) !!}
     <p>{{ $memo->createdBy ? $memo->createdBy->first_name : '' }}</p>
     {!! Form::label('created_by', 'Created By:', ['class' => 'h4']) !!}
     <p>{{ $memo->createdBy ? $memo->createdBy->first_name : '' }}</p>
@@ -20,7 +20,7 @@
 
 <!-- Document Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('document_id', 'Document URL:') !!}
+    {!! Form::label('document_id', 'Document URL:', ['class' => 'h4']) !!}
     @php
         $latestDocumentUrl = $memo->document
             ->documentVersions()

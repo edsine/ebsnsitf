@@ -37,7 +37,7 @@
 
 <!-- Document Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('document_id', 'Document URL:') !!}
+    {!! Form::label('document_id', 'Document URL:', ['class' => 'h4']) !!}
     @php
         $latestDocumentUrl = $correspondence->document
             ->documentVersions()

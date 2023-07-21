@@ -15,10 +15,8 @@ use App\Repositories\StaffRepository;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Controllers\AppBaseController;
-use App\Repositories\BranchRepository;
-use App\Repositories\DepartmentRepository;
-use Illuminate\Support\Facades\DB;
-
+use Modules\Shared\Repositories\BranchRepository;
+use Modules\Shared\Repositories\DepartmentRepository;
 
 
 class UserController extends AppBaseController
