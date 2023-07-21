@@ -7,15 +7,16 @@ use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Notification;
 use Modules\Shared\Repositories\DepartmentRepository;
 use Modules\DocumentManager\Repositories\MemoRepository;
 use Modules\DocumentManager\Repositories\FolderRepository;
 use Modules\DocumentManager\Http\Requests\CreateMemoRequest;
 use Modules\DocumentManager\Http\Requests\UpdateMemoRequest;
-use Modules\DocumentManager\Notifications\MemoAssignedToDepartment;
-use Modules\DocumentManager\Notifications\MemoAssignedToUser;
 use Modules\DocumentManager\Repositories\DocumentRepository;
+use Modules\DocumentManager\Notifications\MemoAssignedToUser;
 use Modules\DocumentManager\Repositories\MemoHasUserRepository;
+use Modules\DocumentManager\Notifications\MemoAssignedToDepartment;
 use Modules\DocumentManager\Repositories\DocumentVersionRepository;
 use Modules\DocumentManager\Repositories\MemoHasDepartmentRepository;
 
@@ -569,6 +570,12 @@ class MemoController extends AppBaseController
             }
 
             $this->memoHasDepartmentRepository->create($input_fields);
+
+
+            try {
+                Notification::send($department->users, new MemoAssignedToDepartment($department, $memo));
+            } catch (\Throwable $th) {
+            }
         }
     }
 

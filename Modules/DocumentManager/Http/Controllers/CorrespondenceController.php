@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Notification;
 use Modules\Shared\Repositories\DepartmentRepository;
 use Modules\DocumentManager\Repositories\FolderRepository;
 use Modules\DocumentManager\Repositories\DocumentRepository;
@@ -18,6 +19,7 @@ use Modules\DocumentManager\Http\Requests\CreateCorrespondenceRequest;
 use Modules\DocumentManager\Http\Requests\UpdateCorrespondenceRequest;
 use Modules\DocumentManager\Notifications\CorrespondenceAssignedToUser;
 use Modules\DocumentManager\Repositories\CorrespondenceHasUserRepository;
+use Modules\DocumentManager\Notifications\CorrespondenceAssignedToDepartment;
 use Modules\DocumentManager\Repositories\CorrespondenceHasDepartmentRepository;
 
 class CorrespondenceController extends AppBaseController
@@ -641,6 +643,11 @@ class CorrespondenceController extends AppBaseController
             }
 
             $this->correspondenceHasDepartmentRepository->create($input_fields);
+
+            try {
+                Notification::send($department->users, new CorrespondenceAssignedToDepartment($department, $correspondence));
+            } catch (\Throwable $th) {
+            }
         }
     }
 }

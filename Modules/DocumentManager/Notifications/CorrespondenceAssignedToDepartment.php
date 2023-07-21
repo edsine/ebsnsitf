@@ -7,10 +7,11 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class CorrespondenceAssignedToUser extends Notification implements ShouldQueue
+class CorrespondenceAssignedToDepartment extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    private $_department;
     private $_correspondence;
 
     /**
@@ -18,8 +19,9 @@ class CorrespondenceAssignedToUser extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($correspondence)
+    public function __construct($department, $correspondence)
     {
+        $this->_department = $department;
         $this->_correspondence = $correspondence;
     }
 
@@ -44,7 +46,7 @@ class CorrespondenceAssignedToUser extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->line('Hello ' . $notifiable->first_name . ' ' . $notifiable->last_name . ',')
-            ->line('A new internal correspondence has been assigned to you!')
+            ->line('A new correspondence has been assigned to your department!')
             ->line('Please login and check your dashboard.')
             ->line('Thank you.')
             ->line('E-NSITF');

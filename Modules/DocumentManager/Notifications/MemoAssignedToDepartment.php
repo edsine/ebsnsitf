@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class MemoAssignedToDepartment extends Notification
+class MemoAssignedToDepartment extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -45,9 +45,11 @@ class MemoAssignedToDepartment extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', 'https://laravel.com')
-            ->line('Thank you for using our application!');
+            ->line('Hello ' . $notifiable->first_name . ' ' . $notifiable->last_name . ',')
+            ->line('A new memo has been assigned to your department!')
+            ->line('Please login and check your dashboard.')
+            ->line('Thank you.')
+            ->line('E-NSITF');
     }
 
     /**

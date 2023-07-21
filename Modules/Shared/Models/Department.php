@@ -2,11 +2,13 @@
 
 namespace Modules\Shared\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use OwenIt\Auditing\Auditable as AuditingAuditable;
+use Modules\WorkflowEngine\Models\Staff;
 use OwenIt\Auditing\Contracts\Auditable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Auditable as AuditingAuditable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @OA\Schema(
@@ -82,6 +84,11 @@ use OwenIt\Auditing\Contracts\Auditable;
 
     public function staff(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(staff::class);
+        return $this->hasMany(Staff::class);
+    }
+
+    public function users(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    {
+        return $this->hasManyThrough(User::class, Staff::class);
     }
 }
