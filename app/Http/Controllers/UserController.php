@@ -19,7 +19,6 @@ use Modules\Shared\Repositories\BranchRepository;
 use Modules\Shared\Repositories\DepartmentRepository;
 
 
-
 class UserController extends AppBaseController
 {
     /** @var $userRepository UserRepository */
