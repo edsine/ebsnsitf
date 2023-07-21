@@ -42,6 +42,7 @@ class Staff extends Model implements Auditable
         'total_draft_email',
         'total_event',
         'my_groups',
+        'user_signature',
     ];
 
     protected $casts = [
