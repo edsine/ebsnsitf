@@ -1,4 +1,11 @@
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<div class="alert alert-danger d-none" id="notificationAlert" role="alert">
+    <!-- Notification message will be displayed here -->
+</div>
+=======
 
     <div class="form-group col-sm-6">
         {!! Form::label('type', 'SELECT LEAVE TYPE:') !!}
@@ -96,9 +103,85 @@
 
 
 
+>>>>>>> e043d26 (Atp (#75))
+
+=======
+>>>>>>> origin
+=======
+<div class="alert alert-danger d-none" id="notificationAlert" role="alert">
+    <!-- Notification message will be displayed here -->
+</div>
+
+>>>>>>> atp
+
+    <div class="form-group col-sm-6">
+        {!! Form::label('type', 'SELECT LEAVE TYPE:') !!}
+        {!! Form::select('type', $leavetype, null, ['class' => 'form-control form-select', 'required','id'=>'leave_type']) !!}
+    
+    </div>
 
 <!-- Description Field -->
+<div class="form-group col-sm-12 col-lg-12">
+    {!! Form::label('date_last_leave', 'DATE RESUME FROM LAST LEAVE:') !!}
+    {!! Form::date('date_last_leave', null, ['class' => 'form-control']) !!}
+</div>
 
+<!-- Branch Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('date_start_new', 'DATE REQUESTED TO COMMENCE PRESENT LEAVE:') !!}
+    {!! Form::date('date_start_new',  null, ['class' => 'form-control ']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('number_days', 'NUMBER OF DAYS:') !!}
+    {!! Form::number('number_days',  null, ['class' => 'form-control ']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('home_address', 'HOME ADDRESS:') !!}
+    {!! Form::text('home_address',  null, ['class' => 'form-control ']) !!}
+</div>
+<div class="form-group col-sm-6">
+    {!! Form::label('home_number', 'HOUSE NUMBER:') !!}
+    {!! Form::text('home_number',  null, ['class' => 'form-control ']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('street_number', 'STREET NUMBER:') !!}
+    {!! Form::text('street_number',  null, ['class' => 'form-control ']) !!}
+</div>
+<div class="form-group col-sm-6">
+    {!! Form::label('district', 'DISTRICT:') !!}
+    {!! Form::text('district',  null, ['class' => 'form-control ']) !!}
+</div>
+<div class="form-group col-sm-6">
+    {!! Form::label('local_council', 'LOCAL COUNCIL/AREA COUNCIL:') !!}
+    {!! Form::text('local_council',  null, ['class' => 'form-control ']) !!}
+</div>
+<div class="form-group col-sm-6">
+    {!! Form::label('state', 'STATE:') !!}
+    {!! Form::select('state', getBranchRegions(), null, ['class' => 'form-control form-select ']) !!}
+</div>
+<div class="form-group col-sm-6">
+    {!! Form::label('phone_number', 'PHONE NUMBER:') !!}
+    {!! Form::text('phone_number',  null, ['class' => 'form-control ']) !!}
+</div>
+<div class="form-group col-sm-6">
+    {!! Form::label('officer_relieve', 'NAME OF OFFICER TO RELIEVE:') !!}
+    {!! Form::text('officer_relieve',  null, ['class' => 'form-control ']) !!}
+</div>
+<div class="form-group col-sm-6">
+    {!! Form::label('end_date', 'EXPECTED DATE TO RESUME:') !!}
+    {!! Form::date('end_date',  null, ['class' => 'form-control ']) !!}
+</div>
+
+<!-- Image Field -->
+<div class="col-sm-4 my-4">
+    {!! Form::label('signature_path', 'UPLOAD SIGNATURE PDF ONLY') !!}
+    <div class="form-group">
+    {!! Form::file('signature_path',null, ['class' => 'form-control','accept' => 'image/*']) !!}
+    </div>
+</div>
 
 @can(['approve as md_hr', 'approve as leave_officer', 'approve as supervisor_office','approve as approve_status'])
 <!-- Regional Manager Status Field -->
@@ -134,6 +217,7 @@
     {!! Form::radio('approve_status', 0, true) !!}&nbsp;Unapproved
     </div>
 </div>
+<<<<<<< HEAD
 @endcan
 
  
@@ -168,6 +252,20 @@
 
 
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<script>
+      document.addEventListener('DOMContentLoaded', function() {
+    let updatebtn = document.getElementById('u');
+    updatebtn.addEventListener('click',()=>{
+       
+        let datestart=document.getElementById('date_start');
+         let numberofdays=document.getElementById('number_days');
+        let  daystaken =document.getElementById('days');
+        let daytoresume= document.getElementById('end_date');
+=======
+=======
+>>>>>>> origin
 
 
 <script>
@@ -189,14 +287,40 @@
         
         let  daystaken =document.getElementById('days')
         let daytoresume= document.getElementById('end_date')
+<<<<<<< HEAD
+>>>>>>> e043d26 (Atp (#75))
+=======
+>>>>>>> origin
 
         let date = new Date(datestart.value)
         let day = parseInt(daystaken.value);
         let newdate= new Date(date.getTime() + (day *24 *60 *60 *1000));
+<<<<<<< HEAD
+<<<<<<< HEAD
+       
+        if (parseInt(daystaken.value)>parseInt(numberofdays.value)){
+            let notificationAlert = document.getElementById('notificationAlert');
+            notificationAlert.textContent = daystaken.value + "   exceeds the allowed limit of " + numberofdays.value + "days" ;
+            notificationAlert.classList.remove('d-none');
+          
+        
+        } 
+        else {
+            // If days taken is valid, hide the notification alert
+            let notificationAlert = document.getElementById('notificationAlert');
+            notificationAlert.classList.add('d-none');
+            
+=======
+=======
+>>>>>>> origin
         // if (daystaken.value > numberofdays.value ){
         //    alert(daystaken.value + " exceeds " + numberofdays.value + "please take something lesser")
         // daystaken.value=0;
         // }
+<<<<<<< HEAD
+>>>>>>> e043d26 (Atp (#75))
+=======
+>>>>>>> origin
 
         while (newdate.getDay()==0 || newdate.getDay()==6){
             day++
@@ -216,9 +340,22 @@ let submitbtn=document.getElementById('submit')
 
 submitbtn.disabled = false;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+    }
+        
+    });
+});
+=======
 
         
     })
+>>>>>>> e043d26 (Atp (#75))
+=======
+
+        
+    })
+>>>>>>> origin
 </script>
 
 
@@ -241,3 +378,6 @@ submitbtn.disabled = false;
 
 
 
+=======
+@endcan
+>>>>>>> atp
