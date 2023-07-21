@@ -7,7 +7,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     
+<<<<<<< HEAD
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+=======
+>>>>>>> e043d26 (Atp (#75))
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}

@@ -19,13 +19,24 @@ use Illuminate\Support\Facades\DB;
 use LeaveType;
 use Modules\Shared\Repositories\BranchRepository;
 use Modules\HumanResource\Http\Requests\UpdateLeaveRequests;
+<<<<<<< HEAD
 
 use Modules\HumanResource\Http\Requests\CreateLeaveRequests;
 
+=======
+>>>>>>> e043d26 (Atp (#75))
 
+use Modules\HumanResource\Http\Requests\CreateLeaveRequests;
+
+// use Modules\HumanResource\Http\Requests\UpdateleaveRequests;
 use Modules\HumanResource\Repositories\LeaveRequestRepository;
 use Modules\HumanResource\Repositories\LeavetypeRepository;
 
+<<<<<<< HEAD
+=======
+
+//use Modules\Leaves\Http\Requests\UpdateleavesRequest;
+>>>>>>> e043d26 (Atp (#75))
 
 
 
@@ -40,6 +51,10 @@ class LeaveRequestController extends  AppBaseController
 
     /** @var LeavetypeRepository $branchRepository*/
     private $leavetypeRepository ;
+<<<<<<< HEAD
+=======
+
+>>>>>>> e043d26 (Atp (#75))
 
 
  
@@ -61,7 +76,17 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
      * @return Renderable
      */
 
+<<<<<<< HEAD
    
+=======
+    //  public function getLeaveTypeDuration($id)
+    //  {
+    //     $leaveTypes=$this->leavetypeRepository->find($id);
+    //     //  $leaveType = LeaveType::findOrFail($id);
+    //     dd($leaveTypes);
+    //      return response()->json(['duration' => $leaveTypes->duration]);
+    //  }
+>>>>>>> e043d26 (Atp (#75))
 
 
     public function index()
@@ -83,8 +108,22 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
         
         
 
+<<<<<<< HEAD
         $leavetype = $this->leavetypeRepository->all()->pluck('name','id');
         
+=======
+        // $leavetype = $this->leavetypeRepository->all()->pluck('name','id');
+        $leavetype = $this->leavetypeRepository->all()->pluck('name','id');
+        // dd($duration);
+
+        // $leavetype = $leavetypes->pluck('name', 'id')->map(function ($name, $id) use ($leavetypes) {
+        //     $duration = $leavetypes->where('id', $id)->pluck('duration')->first();
+        //     return $name . ' (' . $duration . ' days)';
+        // });  
+
+        // $leavetype=$this->leavetypeRepository->all()->pluck('name','id');
+
+>>>>>>> e043d26 (Atp (#75))
     
 
         return view('humanresource::leaverequest.create',compact('leavetype'));
@@ -93,7 +132,12 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
 
     public function getDuration($id)
     {
+<<<<<<< HEAD
       
+=======
+        /* $id = $request->input('id');
+        $duration = DB::table('leave_type')->where('id', $id)->value('duration'); */
+>>>>>>> e043d26 (Atp (#75))
         $leavetype = $this->leavetypeRepository->getById($id);
 
         return response()->json(['duration' => $leavetype->duration]);
@@ -106,6 +150,10 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
         $leavetype=$this->leavetypeRepository->find($id)->pluck('duration');
       
 
+<<<<<<< HEAD
+=======
+        // return view('humanresource::leaverequest.create',compact('leavetype'));
+>>>>>>> e043d26 (Atp (#75))
         return $leavetype;
     }
 
@@ -210,7 +258,11 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
 
         $input = $request->all();
 
+<<<<<<< HEAD
         
+=======
+        // $input['staff_id'] = Auth::id();
+>>>>>>> e043d26 (Atp (#75))
         
 
         if ($request->hasFile('uploaded_doc')) {
