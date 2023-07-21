@@ -1479,28 +1479,33 @@
                          </div> --}}
                          <!--end::Menu item-->
                          <!--begin::Menu item-->
-                         <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="left-start" data-kt-menu-offset="-15px, 0">
+                           <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="left-start" data-kt-menu-offset="-15px, 0"> 
                             
                             {{-- <a href="{{ route('home') }}" class="menu-link px-5"> --}}
                                  {{-- <span class="menu-title">My Activities</span> --}}
                                  {{-- <span class="menu-arrow"></span> --}}
                              </a>
                              <!--begin::Menu sub-->
-                             <div class="menu-sub menu-sub-dropdown w-175px py-4">
+                             {{-- <div class="menu-sub menu-sub-dropdown w-175px py-4"> --}}
                                  <!--begin::Menu item-->
-                                 <div class="menu-item px-3">
-                                     <a href="{{ route('home') }}" class="menu-link px-5">Deleted</a>
-                                 </div>
+                                 {{-- <div class="menu-item px-3"> --}}
+                                    {{-- <a href="{{ route('e-signature') }}" class="menu-link px-5">Upload e-signature</a> --}}
+                                {{-- </div> --}}
+                                <!--end::Menu item-->
+                                 <!--begin::Menu item-->
+                                 {{-- <div class="menu-item px-3"> --}}
+                                     {{-- <a href="{{ route('home') }}" class="menu-link px-5">Deleted</a> --}}
+                                 {{-- </div> --}}
                                  <!--end::Menu item-->
                                  <!--begin::Menu item-->
-                                 <div class="menu-item px-3">
-                                     <a href="{{ route('home') }}" class="menu-link px-5">Updated</a>
-                                 </div>
+                                 {{-- <div class="menu-item px-3"> --}}
+                                     {{-- <a href="{{ route('home') }}" class="menu-link px-5">Updated</a> --}}
+                                 {{-- </div> --}}
                                  <!--end::Menu item-->
                                  <!--begin::Menu item-->
-                                 <div class="menu-item px-3">
-                                     <a href="{{ route('home') }}" class="menu-link px-5">Created</a>
-                                 </div>
+                                 {{-- <div class="menu-item px-3"> --}}
+                                     {{-- <a href="{{ route('home') }}" class="menu-link px-5">Created</a> --}}
+                                 {{-- </div> --}}
                                  <!--end::Menu item-->
                                  <!--begin::Menu separator-->
                                  <div class="separator my-2"></div>
@@ -1515,9 +1520,9 @@
                                      </div>
                                  </div>
                                  <!--end::Menu item-->
-                             </div>
+                             {{-- </div> --}}
                              <!--end::Menu sub-->
-                         </div>
+                          </div>  
                          <!--end::Menu item-->
                          <!--begin::Menu separator-->
                          <div class="separator my-2"></div>
@@ -1579,6 +1584,9 @@
                          <div class="menu-item px-5 my-1">
                              <a href="{{ route('profile') }}" class="menu-link px-5">Account Settings</a>
                          </div>
+                         <div class="menu-item px-5 my-1"> 
+                            <a href="{{ route('e-signature') }}" class="menu-link px-5">Upload e-signature</a>
+                        </div> 
                          <!--end::Menu item-->
                          <!--begin::Menu item-->
                          <div class="menu-item px-5">

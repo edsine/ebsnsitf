@@ -26,3 +26,4 @@ Route::resource('users', UserAPIController::class)
 
 Route::resource('leaves', Modules\Leaves\Http\Controllers\API\leavesAPIController::class)
     ->except(['create', 'edit']);
+

@@ -5,9 +5,14 @@ namespace Modules\EmployerManager\Http\Controllers;
 use Modules\EmployerManager\Http\Requests\CreateEmployeeRequest;
 use Modules\EmployerManager\Http\Requests\UpdateEmployeeRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Models\LocalGovt;
+use App\Models\State;
 use Modules\EmployerManager\Repositories\EmployeeRepository;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
+use Modules\EmployerManager\Models\Employee;
+use Modules\EmployerManager\Models\Employer;
 
 class EmployeeController extends AppBaseController
 {
@@ -25,17 +30,33 @@ class EmployeeController extends AppBaseController
     public function index(Request $request)
     {
         $employees = $this->employeeRepository->paginate(10);
+        $state = State::where('status', 1)->get();
+        $local_govt = LocalGovt::where('status', 1)->get();
 
-        return view('employermanager::employees.index')
-            ->with('employees', $employees);
+        return view('employermanager::employees.index', compact('state', 'local_govt','employees'));
     }
 
     /**
      * Show the form for creating a new Employee.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('employermanager::employees.create');
+        $user = Auth::user();
+        $employer = Employer::where('user_id', $user->id)->get();
+        $state = State::where('status', 1)->get();
+        $local_govt = LocalGovt::where('status', 1)->get();
+
+        // $employee = Employee::where('employer_id', $employer->id)->first();
+        return view('employermanager::employees.create', compact('employer','state', 'local_govt'));
+    }
+
+    public function createEmployee(Request $request, $id)
+    {
+        $employerData = Employer::findorFail($id);
+        $state = State::where('status', 1)->get();
+        $local_govt = LocalGovt::where('status', 1)->get();
+        $employer = $employerData->id;
+        return view('employermanager::employees.create', compact('employer','state', 'local_govt'));
     }
 
     /**
@@ -44,7 +65,6 @@ class EmployeeController extends AppBaseController
     public function store(CreateEmployeeRequest $request)
     {
         $input = $request->all();
-
         $employee = $this->employeeRepository->create($input);
 
         Flash::success('Employee saved successfully.');
@@ -58,6 +78,8 @@ class EmployeeController extends AppBaseController
     public function show($id)
     {
         $employee = $this->employeeRepository->find($id);
+        $state = State::where('status', 1)->get();
+        $local_govt = LocalGovt::where('status', 1)->get();
 
         if (empty($employee)) {
             Flash::error('Employee not found');
@@ -65,7 +87,7 @@ class EmployeeController extends AppBaseController
             return redirect(route('employees.index'));
         }
 
-        return view('employermanager::employees.show')->with('employee', $employee);
+        return view('employermanager::employees.show', compact('state', 'local_govt', 'employee'));
     }
 
     /**
@@ -74,6 +96,9 @@ class EmployeeController extends AppBaseController
     public function edit($id)
     {
         $employee = $this->employeeRepository->find($id);
+        $employer = $employee->employer_id;
+        $state = State::where('status', 1)->get();
+        $local_govt = LocalGovt::where('status', 1)->get();
 
         if (empty($employee)) {
             Flash::error('Employee not found');
@@ -81,7 +106,7 @@ class EmployeeController extends AppBaseController
             return redirect(route('employees.index'));
         }
 
-        return view('employermanager::employees.edit')->with('employee', $employee);
+        return view('employermanager::employees.edit', compact('employer','state', 'local_govt'))->with('employee', $employee);
     }
 
     /**

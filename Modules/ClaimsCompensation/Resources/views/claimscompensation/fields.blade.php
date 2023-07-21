@@ -24,7 +24,7 @@
     </div>
 </div>
 
-@can(['approve as regional manager', 'approve as medical team', 'approve as head office'])
+@role('REGIONAL MANAGER')
 <!-- Regional Manager Status Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('regional_manager_status', 'Regional Manager Status') !!}
@@ -33,7 +33,8 @@
     {!! Form::radio('regional_manager_status', 0, true) !!}&nbsp;Unapproved
     </div>
 </div>
-
+@endrole
+@role('MD')
 <!-- Head Office Status Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('head_office_status', 'Head Office Status') !!}
@@ -42,7 +43,8 @@
     {!! Form::radio('head_office_status', 0, true) !!}&nbsp;Unapproved
     </div>
 </div>
-
+@endrole
+@role('HSC')
 <!-- Medical Team Status Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('medical_team_status', 'Medical Team Status') !!}
@@ -51,4 +53,4 @@
     {!! Form::radio('medical_team_status', 0, true) !!}&nbsp;Unapproved
     </div>
 </div>
-@endcan
+@endrole

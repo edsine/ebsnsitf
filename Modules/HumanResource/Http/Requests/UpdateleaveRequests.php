@@ -1,6 +1,5 @@
 <?php
-
-namespace Modules\DTARequests\Http\Requests;
+namespace Modules\HumanResource\Http\Requests;
 
 use Modules\HumanResource\Models\LeaveRequest;
 use Illuminate\Foundation\Http\FormRequest;

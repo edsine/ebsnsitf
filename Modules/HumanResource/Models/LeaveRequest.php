@@ -36,7 +36,8 @@ public $primarykey='id';
         'approve_status',
         'supervisor_office',
         'md_hr',
-        'leave_officer'
+        'leave_officer',
+        'daystaken'
 
     ];
 
@@ -64,17 +65,27 @@ public $primarykey='id';
     ];
     public static array $rules=[
         // 'reasons'=>'required',
-        'date_last_leave'=>'required',
+        // 'date_last_leave'=>'required',
         'date_start_new'=>'required',
         'number_days'=>'required',
         'phone_number'=>'required',
     ];
     
+
+public function leavetypes(){
+    return $this->belongsTo('Modules\HumanResource\Models\LeaveType'); 
+}
+
     // protected static function newFactory()
     // {
     //     return \Modules\HumanResource\Database\factories\LeaveRequestFactory::new();
     // }
 
+
+// public function leavetype(){
+//     return $this->belongsTo([LeaveType::class,'leave_type_id']);
+    
+// }
     public function staff(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(\Modules\Shared\Models\staff::class, 'staff_id', 'id');
