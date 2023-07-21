@@ -5,11 +5,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="mb-3">Assigned Users to {{ $memo->title }}</h1>
+                    <h1 class="mb-3">Assigned Users to {{ $correspondence->subject }}</h1>
 
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-primary float-end" href="{{ route('memos.index') }}">
+                    <a class="btn btn-primary float-end" href="{{ route('correspondences.index') }}">
                         Back
                     </a>
                 </div>
@@ -37,7 +37,7 @@
                             <tr>
                                 <td>{{ $assigned_user->user->email }}</td>
                                 <td style="width: 120px">
-                                    {!! Form::open(['route' => ['memos.assignedUsers.destroy',$assigned_user->user_id,  $memo->id], 'method' => 'delete']) !!}
+                                    {!! Form::open(['route' => ['correspondences.assignedUsers.destroy',$assigned_user->user_id,  $correspondence->id], 'method' => 'delete']) !!}
                                     <div class='btn-group'>
                                         {!! Form::button('<i class="far fa-trash-alt"></i>', [
                                             'type' => 'submit',

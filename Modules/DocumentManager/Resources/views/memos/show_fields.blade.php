@@ -13,13 +13,27 @@
 <!-- Created By Field -->
 <div class="col-sm-12">
     {!! Form::label('created_by', 'Created By:') !!}
-    <p>{{ $memo->created_by }}</p>
+    <p>{{ $memo->createdBy ? $memo->createdBy->first_name : '' }}</p>
 </div>
 
 <!-- Document Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('document_id', 'Document Id:') !!}
-    <p>{{ $memo->document_id }}</p>
+    {!! Form::label('document_id', 'Document URL:') !!}
+    @php
+        $latestDocumentUrl = $memo->document
+            ->documentVersions()
+            ->latest()
+            ->first()
+            ? $memo->document
+                ->documentVersions()
+                ->latest()
+                ->first()->document_url
+            : '#';
+    @endphp
+    {{-- <p>{{ $latestDocumentUrl }}</p> --}}
+    <a target="_blank" href="{{ asset($latestDocumentUrl) }}">
+        <p>View</p>
+    </a>
 </div>
 
 <!-- Created At Field -->
@@ -33,4 +47,3 @@
     {!! Form::label('updated_at', 'Updated At:') !!}
     <p>{{ $memo->updated_at }}</p>
 </div>
-

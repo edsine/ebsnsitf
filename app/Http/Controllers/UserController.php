@@ -14,11 +14,9 @@ use App\Repositories\StaffRepository;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Controllers\AppBaseController;
-use Modules\Shared\Repositories\BranchRepository;
-use Modules\Shared\Repositories\DepartmentRepository;
+use App\Repositories\BranchRepository;
+use App\Repositories\DepartmentRepository;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Collection;
-use App\Models\User;
 
 
 
@@ -229,7 +227,7 @@ class UserController extends AppBaseController
             } else {
                 // prevent picture from updating db since there is no upload
                 unset($input['user_signature']);
-            } 
+            }
             // prevent email from updating since email is unique
             unset($input['email']);
             //Create a new staff
