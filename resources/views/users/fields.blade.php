@@ -122,6 +122,7 @@
         </div>
     </div>
     
+
     <!-- Status Field -->
 <div class="form-group col-sm-4">
     {!! Form::label('status', 'Status') !!}
@@ -200,6 +201,18 @@
         {!! Form::label('about_me', 'About Me') !!}
         {!! Form::textarea('about_me', null, ['class' => 'form-control']) !!}
     </div>
+    
+
+    <!--userv signature upload field-->
+    <div class="col-sm-4">
+        {!! Form::label('user_signature', 'User Signature') !!}
+        <div class="form-group">
+        {!! Form::file('user_signature',null, ['class' => 'form-control','accept'=>'image/*']) !!}
+        </div>
+    </div>
+
+
+    <!--end of user signature field-->
     
    {{--  <!-- Total Received Email Field -->
     <div class="form-group col-sm-4">

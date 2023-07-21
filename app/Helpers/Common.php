@@ -107,3 +107,32 @@ function enum_employer_status()
     
     return $option;
 }
+
+function enum_employee_status()
+{
+    $option['1'] = 'Registered';
+    $option['2'] = 'Incomplete';
+    
+    return $option;
+}
+
+function enum_gender()
+{
+    $option['1'] = 'Male';
+    $option['2'] = 'Female';
+    $option['3'] = 'Others';
+    
+    return $option;
+}
+
+function enum_marital_status()
+{
+    $option['1'] = 'Single';
+    $option['2'] = 'Married';
+    $option['3'] = 'Widowed';
+    $option['4'] = 'Divorced';
+    $option['5'] = 'Separated';
+
+    
+    return $option;
+}

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use DB;
+
 use Hash;
 use Flash;
 use Response;
@@ -14,17 +14,9 @@ use App\Repositories\StaffRepository;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Controllers\AppBaseController;
-use App\Repositories\RoleRepository;
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use App\Repositories\BranchRepository;
 use App\Repositories\DepartmentRepository;
-use Flash;
-use Response;
-use Hash;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Collection;
-use App\Models\User;
 
 
 
@@ -112,6 +104,14 @@ class UserController extends AppBaseController
                 $fileName = $file->hashName();
                 $path = $file->store('public');
                 $input['profile_picture'] = $fileName;
+            }
+
+
+            if ($request->hasFile('user_signature')) {
+                $file1 = $request->file('user_signature');
+                $fileName1 = $file1->hashName();
+                $path = $file1->store('public');
+                $input['user_signature'] = $fileName1;
             }
             //Create a new staff
             $this->staffRepository->create($input);
@@ -216,6 +216,17 @@ class UserController extends AppBaseController
             } else {
                 // prevent picture from updating db since there is no upload
                 unset($input['profile_picture']);
+            }
+
+
+            if ($request->hasFile('user_signature')) {
+                $file2 = $request->file('user_signature');
+                $fileName2 = $file2->hashName();
+                $path = $file2->store('public');
+                $input['user_signature'] = $fileName2;
+            } else {
+                // prevent picture from updating db since there is no upload
+                unset($input['user_signature']);
             }
             // prevent email from updating since email is unique
             unset($input['email']);
