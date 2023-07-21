@@ -12,12 +12,30 @@
 
 <!-- Created By Field -->
 <div class="col-sm-12">
+    {!! Form::label('created_by', 'Created By:') !!}
+    <p>{{ $memo->createdBy ? $memo->createdBy->first_name : '' }}</p>
     {!! Form::label('created_by', 'Created By:', ['class' => 'h4']) !!}
     <p>{{ $memo->createdBy ? $memo->createdBy->first_name : '' }}</p>
 </div>
 
 <!-- Document Id Field -->
 <div class="col-sm-12">
+    {!! Form::label('document_id', 'Document URL:') !!}
+    @php
+        $latestDocumentUrl = $memo->document
+            ->documentVersions()
+            ->latest()
+            ->first()
+            ? $memo->document
+                ->documentVersions()
+                ->latest()
+                ->first()->document_url
+            : '#';
+    @endphp
+    {{-- <p>{{ $latestDocumentUrl }}</p> --}}
+    <a target="_blank" href="{{ asset($latestDocumentUrl) }}">
+        <p>View</p>
+    </a>
     {!! Form::label('document_id', 'Document URL:', ['class' => 'h4']) !!}
     @php
         $latestDocumentUrl = $memo->document
