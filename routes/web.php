@@ -43,6 +43,7 @@ Route::put('profile/{id}', [ProfileController::class, 'update'])->name('profile-
 //Route::resource('users', UserController::class)->middleware('auth');
 //Route::resource('roles', RoleController::class)->middleware('auth');
 Route::post('api/fetch-locals', [DropdownController::class, 'fetchLocal']);
+Route::post('api/fetch-regions', [DropdownController::class, 'fetchRegion']);
 
 Auth::routes();
 

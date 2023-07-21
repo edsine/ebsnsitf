@@ -101,4 +101,14 @@ class Employer extends Model implements Auditable
     {
         return $this->belongsTo('app\Models\LocalGovt','company_localgovt');
     }
+
+    public function branch()
+    {
+        return $this->belongsTo(\Modules\Shared\Models\Branch::class, 'branch_id');
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(\Modules\Shared\Models\Branch::class, 'region_id');
+    }
 }
