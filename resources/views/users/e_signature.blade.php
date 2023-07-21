@@ -6,7 +6,7 @@
             <div class="row mb-2">
                 <div class="col-sm-12">
                     <h1>
-                        Create Correspondences
+                        Upload e-signature
                     </h1>
                 </div>
             </div>
@@ -16,23 +16,23 @@
     <div class="content px-3">
 
         @include('adminlte-templates::common.errors')
-        @include('flash::message')
 
         <div class="card">
 
-            {!! Form::open(['route' => 'correspondences.store', 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::model($esignature, ['route' => ['eSignature-update', $esignature->id], 'method' => 'put','enctype' => 'multipart/form-data']) !!}
+
 
             <div class="card-body">
 
                 <div class="row">
-                    @include('documentmanager::correspondences.fields')
+                    @include('users.fields_eSignature')
                 </div>
 
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('correspondences.index') }}" class="btn btn-default"> Cancel </a>
+                <a href="{{ route('users.index') }}" class="btn btn-default"> Cancel </a>
             </div>
 
             {!! Form::close() !!}

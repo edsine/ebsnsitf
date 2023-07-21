@@ -1,5 +1,6 @@
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div class="alert alert-danger d-none" id="notificationAlert" role="alert">
     <!-- Notification message will be displayed here -->
 </div>
@@ -103,6 +104,8 @@
 
 >>>>>>> e043d26 (Atp (#75))
 
+=======
+>>>>>>> origin
 
     <div class="form-group col-sm-6">
         {!! Form::label('type', 'SELECT LEAVE TYPE:') !!}
@@ -273,6 +276,7 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <script>
       document.addEventListener('DOMContentLoaded', function() {
     let updatebtn = document.getElementById('u');
@@ -283,6 +287,8 @@
         let  daystaken =document.getElementById('days');
         let daytoresume= document.getElementById('end_date');
 =======
+=======
+>>>>>>> origin
 
 
 <script>
@@ -304,11 +310,15 @@
         
         let  daystaken =document.getElementById('days')
         let daytoresume= document.getElementById('end_date')
+<<<<<<< HEAD
 >>>>>>> e043d26 (Atp (#75))
+=======
+>>>>>>> origin
 
         let date = new Date(datestart.value)
         let day = parseInt(daystaken.value);
         let newdate= new Date(date.getTime() + (day *24 *60 *60 *1000));
+<<<<<<< HEAD
 <<<<<<< HEAD
        
         if (parseInt(daystaken.value)>parseInt(numberofdays.value)){
@@ -324,11 +334,16 @@
             notificationAlert.classList.add('d-none');
             
 =======
+=======
+>>>>>>> origin
         // if (daystaken.value > numberofdays.value ){
         //    alert(daystaken.value + " exceeds " + numberofdays.value + "please take something lesser")
         // daystaken.value=0;
         // }
+<<<<<<< HEAD
 >>>>>>> e043d26 (Atp (#75))
+=======
+>>>>>>> origin
 
         while (newdate.getDay()==0 || newdate.getDay()==6){
             day++
@@ -349,6 +364,7 @@ let submitbtn=document.getElementById('submit')
 submitbtn.disabled = false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     }
         
     });
@@ -358,6 +374,11 @@ submitbtn.disabled = false;
         
     })
 >>>>>>> e043d26 (Atp (#75))
+=======
+
+        
+    })
+>>>>>>> origin
 </script>
 
 
