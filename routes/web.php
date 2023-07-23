@@ -39,7 +39,12 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('/view-profile', [ProfileController::class, 'showProfile'])->name('view-profile');
+Route::get('/e-signature', [ProfileController::class, 'eSignature'])->name('e-signature');
+Route::put('eSignature/{id}', [ProfileController::class, 'eSignatureUpdate'])->name('eSignature-update');
 Route::put('profile/{id}', [ProfileController::class, 'update'])->name('profile-update');
+
+
+
 //Route::resource('users', UserController::class)->middleware('auth');
 //Route::resource('roles', RoleController::class)->middleware('auth');
 Route::post('api/fetch-locals', [DropdownController::class, 'fetchLocal']);
@@ -50,4 +55,8 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+    
+
 });
+
+

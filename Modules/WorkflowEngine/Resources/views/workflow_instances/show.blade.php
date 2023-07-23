@@ -10,7 +10,7 @@
                     </h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right" href="{{ route('workflowInstances.index') }}">
+                    <a class="btn btn-secondary float-end" href="{{ route('workflowInstances.index') }}">
                         Back
                     </a>
                 </div>

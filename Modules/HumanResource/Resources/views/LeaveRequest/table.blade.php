@@ -1,10 +1,10 @@
+
 <div class="card-body p-5">
     <div class="table-responsive">
         <table class="table" id="departments-table">
             <thead>
             <tr>
                 <th> STATFF ID</th>
-                <th>DATE OF LAST LEAVE</th>
                 <th>TYPE OF LEAVE</th>
                 <th>NEW LEAVE DATE</th>
                 <th>NUMBER OF DAYS</th>
@@ -16,22 +16,18 @@
                 <th colspan="3">Action</th>
             </tr>
             </thead>
-            
+          
             <tbody>
             @foreach($leaverequest as $leaves)
                 <tr>
+                    
                     <td>{{ $leaves->id }}</td>
-                    <td>{{ $leaves->date_last_leave }}</td>
-                    <td>{{ $leaves->type }}</td>
+                    <td>{{ $leaves->type}}</td>
                     <td>{{ $leaves->date_start_new}}</td>
                     <td>{{ $leaves->number_days }}</td>
                     <td>{{ $leaves->officer_relieve }}</td>
                     <td>{{ $leaves->end_date }}</td>
                     
-                    {{-- <td>{{ $leaves->branch ? $leaves->branch->branch_name : '' }}</td> --}}
-                    {{-- <td>
-                        <img style="width: 50px;height: 50px" src="{{ url('storage/') }}{!! '/'.$leaves->signature !!}" alt="Image">
-                    </td> --}}
                     <td>
                         <p> @if (isset($leaves->regional_manager_status) && $leaves->regional_manager_status == 1)
                             <span class="btn btn-sm btn-success">Approved</span>

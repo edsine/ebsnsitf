@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Module HumanResource</title>
+        <script src="https://unpkg.com/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 
        {{-- Laravel Mix - CSS File --}}
        {{-- <link rel="stylesheet" href="{{ mix('css/humanresource.css') }}"> --}}

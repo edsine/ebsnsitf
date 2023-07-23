@@ -3,27 +3,66 @@
 namespace Modules\HumanResource\Http\Controllers;
 
 use Flash;
-//use LeaveRequest;
+
 use Illuminate\Http\Request;
-
-use Modules\HumanResource\Http\Requests\CreateLeaveRequests;
-use Modules\HumanResource\Http\Requests\UpdateleaveRequests;
-
-// use Modules\HumanResource\Repositories\DTAReviewRepository;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+
+
+
 use App\Repositories\StaffRepository;
 use App\Http\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Contracts\Support\Renderable;
-
+use Illuminate\Support\Facades\DB;
+use LeaveType;
 use Modules\Shared\Repositories\BranchRepository;
+use Modules\HumanResource\Http\Requests\UpdateLeaveRequests;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
+use Modules\HumanResource\Http\Requests\CreateLeaveRequests;
+
+=======
+>>>>>>> origin
+>>>>>>> atp
+
+use Modules\HumanResource\Http\Requests\CreateLeaveRequests;
+
+=======
+>>>>>>> e043d26 (Atp (#75))
+
+use Modules\HumanResource\Http\Requests\CreateLeaveRequests;
+
+=======
+
+use Modules\HumanResource\Http\Requests\CreateLeaveRequests;
+
+>>>>>>> origin
+// use Modules\HumanResource\Http\Requests\UpdateleaveRequests;
 use Modules\HumanResource\Repositories\LeaveRequestRepository;
-//use Modules\Leaves\Http\Requests\UpdateleavesRequest;
+use Modules\HumanResource\Repositories\LeavetypeRepository;
 
-// use Modules\HumanResource\Http\Requests\LeaveRequest;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+//use Modules\Leaves\Http\Requests\UpdateleavesRequest;
+>>>>>>> e043d26 (Atp (#75))
+=======
+
+//use Modules\Leaves\Http\Requests\UpdateleavesRequest;
+=======
+=======
+
+//use Modules\Leaves\Http\Requests\UpdateleavesRequest;
+>>>>>>> atp
+>>>>>>> origin
+
 
 
 class LeaveRequestController extends  AppBaseController
@@ -35,18 +74,35 @@ class LeaveRequestController extends  AppBaseController
     /** @var BranchRepository $branchRepository*/
     private $branchRepository;
 
+    /** @var LeavetypeRepository $branchRepository*/
+    private $leavetypeRepository ;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
 
-    //   /** @var DTAReviewRepository $dtaReviewRepository*/
-    //   private $dtaReviewRepository;
+>>>>>>> origin
+
+>>>>>>> e043d26 (Atp (#75))
+=======
+=======
+
+>>>>>>> origin
+>>>>>>> atp
+
+
+ 
 
 /** @var StaffRepository $staffRepository*/
 private $staffRepository;
 
-public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepository $branchRepo, StaffRepository $staffRepo)
+public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepository $branchRepo, StaffRepository $staffRepo ,LeavetypeRepository $leavetypeRepo)
     {
         $this->leaverequestRepository = $leaverequestRepo;
         $this->branchRepository = $branchRepo;
         $this->staffRepository = $staffRepo;
+        $this->leavetypeRepository = $leavetypeRepo;
     }
 
 
@@ -54,9 +110,39 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
      * Display a listing of the resource.
      * @return Renderable
      */
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+   
+=======
+=======
+>>>>>>> origin
+=======
+   
+=======
+>>>>>>> atp
+    //  public function getLeaveTypeDuration($id)
+    //  {
+    //     $leaveTypes=$this->leavetypeRepository->find($id);
+    //     //  $leaveType = LeaveType::findOrFail($id);
+    //     dd($leaveTypes);
+    //      return response()->json(['duration' => $leaveTypes->duration]);
+    //  }
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> e043d26 (Atp (#75))
+=======
+=======
+>>>>>>> atp
+>>>>>>> origin
+
+
     public function index()
 
     {
+
+        
         $leaverequest=$this->leaverequestRepository->paginate(10);
         return view('humanresource::leaverequest.index',compact('leaverequest'));
     }
@@ -66,9 +152,95 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
      * @return Renderable
      */
     public function create()
+
     {
-        return view('humanresource::leaverequest.create');
+        
+        
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+        $leavetype = $this->leavetypeRepository->all()->pluck('name','id');
+        
+=======
+=======
+>>>>>>> origin
+=======
+        $leavetype = $this->leavetypeRepository->all()->pluck('name','id');
+        
+=======
+>>>>>>> atp
+        // $leavetype = $this->leavetypeRepository->all()->pluck('name','id');
+        $leavetype = $this->leavetypeRepository->all()->pluck('name','id');
+        // dd($duration);
+
+        // $leavetype = $leavetypes->pluck('name', 'id')->map(function ($name, $id) use ($leavetypes) {
+        //     $duration = $leavetypes->where('id', $id)->pluck('duration')->first();
+        //     return $name . ' (' . $duration . ' days)';
+        // });  
+
+        // $leavetype=$this->leavetypeRepository->all()->pluck('name','id');
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> e043d26 (Atp (#75))
+=======
+=======
+>>>>>>> atp
+>>>>>>> origin
+    
+
+        return view('humanresource::leaverequest.create',compact('leavetype'));
+
     }
+
+    public function getDuration($id)
+    {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> atp
+      
+=======
+        /* $id = $request->input('id');
+        $duration = DB::table('leave_type')->where('id', $id)->value('duration'); */
+<<<<<<< HEAD
+>>>>>>> e043d26 (Atp (#75))
+=======
+        /* $id = $request->input('id');
+        $duration = DB::table('leave_type')->where('id', $id)->value('duration'); */
+=======
+>>>>>>> atp
+>>>>>>> origin
+        $leavetype = $this->leavetypeRepository->getById($id);
+
+        return response()->json(['duration' => $leavetype->duration]);
+    }
+
+    public function leavetypeduration(Request $request)
+    {
+        $id=$request->get('id');
+        
+        $leavetype=$this->leavetypeRepository->find($id)->pluck('duration');
+      
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        // return view('humanresource::leaverequest.create',compact('leavetype'));
+>>>>>>> e043d26 (Atp (#75))
+=======
+        // return view('humanresource::leaverequest.create',compact('leavetype'));
+=======
+=======
+        // return view('humanresource::leaverequest.create',compact('leavetype'));
+>>>>>>> atp
+>>>>>>> origin
+        return $leavetype;
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -77,7 +249,11 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
      */
     public function store(CreateLeaveRequests $request)
     {
-//dd($request->all());
+
+
+
+
+        
         $input=$request->all();
         $uid=Auth::id();
 
@@ -137,7 +313,7 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
         if (empty($leaverequest)) {
             Flash::error('Leave Request not found');
 
-            return redirect(route('leaverequest.index'));
+            return redirect(route('leave_request.index'));
         }
         
         $branches = $this->branchRepository->all()->pluck('branch_name', 'id');
@@ -154,19 +330,33 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
      * @param int $id
      * @return Renderable
      */
-    public function update($id, UpdateleavesRequest $request)
+    public function update($id, UpdateLeaveRequests $request)
     {
         $leaverequest = $this->leaverequestRepository->find($id);
 
         if (empty($leaverequest)) {
             Flash::error('leave request not found');
 
-            return redirect(route('leaverequest.index'));
+            return redirect(route('leave_request.index'));
         }
 
         $input = $request->all();
 
-        $input['staff_id'] = Auth::id();
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+        
+=======
+        // $input['staff_id'] = Auth::id();
+>>>>>>> e043d26 (Atp (#75))
+=======
+        // $input['staff_id'] = Auth::id();
+=======
+        
+=======
+        // $input['staff_id'] = Auth::id();
+>>>>>>> atp
+>>>>>>> origin
         
 
         if ($request->hasFile('uploaded_doc')) {
@@ -181,19 +371,11 @@ public function __construct(LeaveRequestRepository $leaverequestRepo, BranchRepo
 
         $leaverequest = $this->leaverequestRepository->update($input, $id);
 
-        // $input_r = null;
-        // $input_r['officer_id'] = $dtarequests->staff_id;
-        // $input_r['dta_reviewid'] = $id;
-        // $input_r['dta_id'] = $id;
-        // $input_r['comments'] = $request->input('comments');
-        // $input_r['review_status'] = $request->input('approval_status');
-        // $input_r['created_at'] = now();
-        // $input_r['updated_at'] = now();
-        // $this->dtaReviewRepository->create($input_r);
+        
 
-        Flash::success('LEAVE REQUEST  successfully SENT.');
+        Flash::success('LEAVE REQUEST Updated successfully .');
 
-        return redirect(route('leaverequest.index'));
+        return redirect(route('leave_request.index'));
     }
 
     /**

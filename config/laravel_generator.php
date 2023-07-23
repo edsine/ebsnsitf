@@ -56,52 +56,52 @@ return [
     //     'menu_file'         => resource_path('views/layouts/menu.blade.php'),
     // ],
 
-    'path' => [
+     'path' => [
 
-        'migration'         => base_path('Modules/DocumentManager/Database/Migrations/'),
+         'migration'         => base_path('Modules/Emailselfservice/Database/Migrations/'),
 
-        'model'             => base_path('Modules/DocumentManager/Models/'),
+         'model'             => base_path('Modules/Emailselfservice/Models/'),
 
-        'datatables'        => base_path('Modules/DocumentManager/DataTables/'),
+         'datatables'        => base_path('Modules/Emailselfservice/DataTables/'),
 
-        'livewire_tables'   => base_path('Modules/DocumentManager/Http/Livewire/'),
+         'livewire_tables'   => base_path('Modules/Emailselfservice/Http/Livewire/'),
 
-        'repository'        => base_path('Modules/DocumentManager/Repositories/'),
+         'repository'        => base_path('Modules/Emailselfservice/Repositories/'),
 
-        'routes'            => base_path('Modules/DocumentManager/Routes/web.php'),
+         'routes'            => base_path('Modules/Emailselfservice/Routes/web.php'),
 
-        'api_routes'        => base_path('Modules/DocumentManager/Routes/api.php'),
+         'api_routes'        => base_path('Modules/Emailselfservice/Routes/api.php'),
 
-        'request'           => base_path('Modules/DocumentManager/Http/Requests/'),
+         'request'           => base_path('Modules/Emailselfservice/Http/Requests/'),
 
-        'api_request'       => base_path('Modules/DocumentManager/Http/Requests/API/'),
+         'api_request'       => base_path('Modules/Emailselfservice/Http/Requests/API/'),
 
-        'controller'        => base_path('Modules/DocumentManager/Http/Controllers/'),
+         'controller'        => base_path('Modules/Emailselfservice/Http/Controllers/'),
 
-        'api_controller'    => base_path('Modules/DocumentManager/Http/Controllers/API/'),
+         'api_controller'    => base_path('Modules/Emailselfservice/Http/Controllers/API/'),
 
-        'api_resource'      => base_path('Modules/DocumentManager/Http/Resources/'),
+         'api_resource'      => base_path('Modules/Emailselfservice/Http/Resources/'),
 
-        'schema_files'      => base_path('Modules/DocumentManager/model_schemas/'),
+         'schema_files'      => base_path('Modules/Emailselfservice/model_schemas/'),
 
-        'seeder'            => base_path('Modules/DocumentManager/Database/Seeders/'),
+       'seeder'            => base_path('Modules/Emailselfservice/Database/Seeders/'),
 
-        'database_seeder'   => base_path('Modules/DocumentManager/Database/Seeders/DatabaseSeeder.php'),
+       'database_seeder'   => base_path('Modules/Emailselfservice/Database/Seeders/DatabaseSeeder.php'),
 
-        'factory'           => base_path('Modules/DocumentManager/Database/factories/'),
+       'factory'           => base_path('Modules/Emailselfservice/Database/factories/'),
 
-        'view_provider'     => base_path('Modules/DocumentManager/Providers/ViewServiceProvider.php'),
+       'view_provider'     => base_path('Modules/Emailselfservice/Providers/ViewServiceProvider.php'),
 
-        'tests'             => base_path('Modules/DocumentManager/Tests/'),
+       'tests'             => base_path('Modules/Emailselfservice/Tests/'),
 
-        'repository_test'   => base_path('Modules/DocumentManager/Tests/Repositories/'),
+       'repository_test'   => base_path('Modules/Emailselfservice/Tests/Repositories/'),
 
-        'api_test'          => base_path('Modules/DocumentManager/Tests/APIs/'),
+       'api_test'          => base_path('Modules/Emailselfservice/Tests/APIs/'),
 
-        'views'             => base_path('Modules/DocumentManager/Resources/views/'),
+       'views'             => base_path('Modules/Emailselfservice/Resources/views/'),
 
-        'menu_file'         => base_path('Modules/DocumentManager/Resources/views/layouts/menu.blade.php'),
-    ],
+       'menu_file'         => base_path('Modules/Emailselfservice/Resources/views/layouts/menu.blade.php'),
+   ],
     /*
     |--------------------------------------------------------------------------
     | Namespaces
@@ -142,7 +142,7 @@ return [
 
     // 'namespace' => [
 
-    //     'model'             => 'Modules\DocumentManager\Models',
+    //     'model'             => 'Modules\Emailselfservice\Models',
 
     //     'datatables'        => 'Modules\DocumentManager\DataTables',
 
@@ -172,33 +172,33 @@ return [
     // ],
     'namespace' => [
 
-        'model'             => 'Modules\DocumentManager\Models',
+        'model'             => 'Modules\Emailselfservice\Models',
 
-        'datatables'        => 'Modules\DocumentManager\DataTables',
+        'datatables'        => 'Modules\Emailselfservice\DataTables',
 
-        'livewire_tables'   => 'Modules\DocumentManager\Http\Livewire',
+        'livewire_tables'   => 'Modules\Emailselfservice\Http\Livewire',
 
-        'repository'        => 'Modules\DocumentManager\Repositories',
+        'repository'        => 'Modules\Emailselfservice\Repositories',
 
-        'controller'        => 'Modules\DocumentManager\Http\Controllers',
+        'controller'        => 'Modules\Emailselfservice\Http\Controllers',
 
-        'api_controller'    => 'Modules\DocumentManager\Http\Controllers\API',
+        'api_controller'    => 'Modules\Emailselfservice\Http\Controllers\API',
 
-        'api_resource'      => 'Modules\DocumentManager\Http\Resources',
+        'api_resource'      => 'Modules\Emailselfservice\Http\Resources',
 
-        'request'           => 'Modules\DocumentManager\Http\Requests',
+        'request'           => 'Modules\Emailselfservice\Http\Requests',
 
-        'api_request'       => 'Modules\DocumentManager\Http\Requests\API',
+        'api_request'       => 'Modules\Emailselfservice\Http\Requests\API',
 
-        'seeder'            => 'Modules\DocumentManager\Database\Seeders',
+        'seeder'            => 'Modules\Emailselfservice\Database\Seeders',
 
-        'factory'           => 'Modules\DocumentManager\Database\Factories',
+        'factory'           => 'Modules\Emailselfservice\Database\Factories',
 
-        'tests'             => 'Modules\DocumentManager\Tests',
+        'tests'             => 'Modules\Emailselfservice\Tests',
 
-        'repository_test'   => 'Modules\DocumentManager\Tests\Repositories',
+        'repository_test'   => 'Modules\Emailselfservice\Tests\Repositories',
 
-        'api_test'          => 'Modules\DocumentManager\Tests\APIs',
+        'api_test'          => 'Modules\Emailselfservice\Tests\APIs',
     ],
 
     /*
