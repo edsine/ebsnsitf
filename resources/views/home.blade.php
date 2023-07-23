@@ -105,7 +105,7 @@
         <!--end::Row-->
         <!--begin::Row-->
         <div class="row g-5 g-xl-8 pt-5">
-            <h1 class="text-black-50 pt-5">Performance Analytics for <b style="color: #000">Andrew Azeez</b></h1>
+            <h1 class="text-black-50 pt-5">Performance Analytics for <b style="color: #000">{{$user->last_name .' '. $user->first_name}}</b></h1>
             <div class="col-xl-3">
                 <!--begin::Statistics Widget 5-->
                 <a href="#" class="card bg-body hoverable card-xl-stretch mb-xl-8">
@@ -126,7 +126,7 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">{{$registered_employers}}</div>
+                        <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">{{$registered_employers_per_staff}}</div>
                         <div class="fw-semibold text-gray-400">REGISTERED EMPLOYERS</div>
                     </div>
                     <!--end::Body-->
@@ -154,7 +154,7 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <div class="text-gray-100 fw-bold fs-2 mb-2 mt-5">{{$pending_employers}}</div>
+                        <div class="text-gray-100 fw-bold fs-2 mb-2 mt-5">{{$pending_employers_per_staff}}</div>
                         <div class="fw-semibold text-gray-100">PENDING EMPLOYERS</div>
                     </div>
                     <!--end::Body-->
