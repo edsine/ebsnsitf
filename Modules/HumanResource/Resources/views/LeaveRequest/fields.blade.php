@@ -1,11 +1,8 @@
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 <div class="alert alert-danger d-none" id="notificationAlert" role="alert">
     <!-- Notification message will be displayed here -->
 </div>
-=======
+
 
     <div class="form-group col-sm-6">
         {!! Form::label('type', 'SELECT LEAVE TYPE:') !!}
@@ -102,17 +99,10 @@
 
 
 
-
->>>>>>> e043d26 (Atp (#75))
-
-=======
->>>>>>> origin
-=======
 <div class="alert alert-danger d-none" id="notificationAlert" role="alert">
     <!-- Notification message will be displayed here -->
 </div>
 
->>>>>>> atp
 
     <div class="form-group col-sm-6">
         {!! Form::label('type', 'SELECT LEAVE TYPE:') !!}
@@ -217,167 +207,4 @@
     {!! Form::radio('approve_status', 0, true) !!}&nbsp;Unapproved
     </div>
 </div>
-<<<<<<< HEAD
 @endcan
-
- 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#leave_type').on('click', function() {
-          const selectedId = $(this).val();          
-       if (selectedId !== '') {
-                    $.ajax({
-                        url: `http://localhost:8000/leave_request_data/get-data/${selectedId}`,
-                        type: 'GET',
-                        data: {id: selectedId},
-                        dataType: 'json',
-                        //headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                        success: function(response) {
-                            var du = JSON.stringify(response.duration);
-                            $('#number_days').val('');
-                            $('#number_days').val(du);
-                            
-                        },
-                        error: function() {
-                            alert('Failed to retrieve duration.');
-                        }
-                    });
-                } else {
-                    $('#number_days').val('');
-                }
-            });
-        });
-    </script>
-
-
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<script>
-      document.addEventListener('DOMContentLoaded', function() {
-    let updatebtn = document.getElementById('u');
-    updatebtn.addEventListener('click',()=>{
-       
-        let datestart=document.getElementById('date_start');
-         let numberofdays=document.getElementById('number_days');
-        let  daystaken =document.getElementById('days');
-        let daytoresume= document.getElementById('end_date');
-=======
-=======
->>>>>>> origin
-
-
-<script>
-    function convertdate(datestring,numberofdays){
-        const date = new Date(dateString);
-  date.setDate(date.getDate() + numberOfDays);
-  return date
-
-    }
-</script>
-
-<script>
-    let updatebtn = document.getElementById('u');
-    updatebtn.addEventListener('click',()=>{
-       
-        let datestart=document.getElementById('date_start')
-      
-         let numberofdays=document.getElementById('number_days')
-        
-        let  daystaken =document.getElementById('days')
-        let daytoresume= document.getElementById('end_date')
-<<<<<<< HEAD
->>>>>>> e043d26 (Atp (#75))
-=======
->>>>>>> origin
-
-        let date = new Date(datestart.value)
-        let day = parseInt(daystaken.value);
-        let newdate= new Date(date.getTime() + (day *24 *60 *60 *1000));
-<<<<<<< HEAD
-<<<<<<< HEAD
-       
-        if (parseInt(daystaken.value)>parseInt(numberofdays.value)){
-            let notificationAlert = document.getElementById('notificationAlert');
-            notificationAlert.textContent = daystaken.value + "   exceeds the allowed limit of " + numberofdays.value + "days" ;
-            notificationAlert.classList.remove('d-none');
-          
-        
-        } 
-        else {
-            // If days taken is valid, hide the notification alert
-            let notificationAlert = document.getElementById('notificationAlert');
-            notificationAlert.classList.add('d-none');
-            
-=======
-=======
->>>>>>> origin
-        // if (daystaken.value > numberofdays.value ){
-        //    alert(daystaken.value + " exceeds " + numberofdays.value + "please take something lesser")
-        // daystaken.value=0;
-        // }
-<<<<<<< HEAD
->>>>>>> e043d26 (Atp (#75))
-=======
->>>>>>> origin
-
-        while (newdate.getDay()==0 || newdate.getDay()==6){
-            day++
-            newdate = new Date(date.getTime() + (day * 24 *60*60*1000 ));
-        }
-        if (newdate.getDate()==0){
-            day +=2;
-            newdate = new Date(date.getTime() + (day * 24 *60*60*1000 ));
-            
-        }
-
-        daytoresume.value=newdate.toISOString().slice(0, 10);
-//
-
-// Enabling the submit button now
-let submitbtn=document.getElementById('submit')
-
-submitbtn.disabled = false;
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-    }
-        
-    });
-});
-=======
-
-        
-    })
->>>>>>> e043d26 (Atp (#75))
-=======
-
-        
-    })
->>>>>>> origin
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
-@endcan
->>>>>>> atp

@@ -16,11 +16,7 @@ use Modules\Shared\Repositories\BranchRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\StaffRepository;
 use Illuminate\Support\Facades\Auth;
-<<<<<<< HEAD
-use DB;
-=======
 use Illuminate\Support\Facades\DB;
->>>>>>> origin
 
 
 class DTARequestsController extends AppBaseController
@@ -61,10 +57,6 @@ class DTARequestsController extends AppBaseController
             $dtarequests = $this->dtaRequestsRepository->paginate(10);
         }
         
-<<<<<<< HEAD
-
-=======
->>>>>>> origin
         return view('dtarequests::dtarequests.index')->with('dtarequests', $dtarequests);
         
     }

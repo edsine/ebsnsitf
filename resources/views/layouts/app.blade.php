@@ -6,19 +6,11 @@
     <title>{{ config('app.name') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-=======
->>>>>>> e043d26 (Atp (#75))
-=======
-=======
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-=======
->>>>>>> atp
->>>>>>> origin
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
@@ -146,9 +138,9 @@
     <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
-    <<<<<<< HEAD=======<script src="{{ asset('assets/js/custom/utilities/modals/create-account.js') }}">
+   <script src="{{ asset('assets/js/custom/utilities/modals/create-account.js') }}">
         </script>
-        >>>>>>> origin/main
+       
 
         @stack('third_party_scripts')
 
