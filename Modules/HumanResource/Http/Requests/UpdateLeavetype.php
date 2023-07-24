@@ -1,11 +1,11 @@
 <?php
 namespace Modules\HumanResource\Http\Requests;
 
-use Modules\HumanResource\Models\LeaveRequest;
+use Modules\HumanResource\Models\LeaveType;
 use Illuminate\Foundation\Http\FormRequest;
 
 
-class UpdateLeaveRequests extends FormRequest
+class UpdateLeavetype extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class UpdateLeaveRequests extends FormRequest
      */
     public function rules()
     {
-        $rules = LeaveRequest::$rules;
+        $rules = LeaveType::$rules;
         
         return $rules;
     }

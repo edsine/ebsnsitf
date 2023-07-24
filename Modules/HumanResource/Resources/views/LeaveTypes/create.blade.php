@@ -6,7 +6,7 @@
             <div class="row mb-2">
                 <div class="col-sm-12">
                     <h1>
-                        LEAVE REQUEST
+                    CREATE STAFF LEAVE TYPE
                     </h1>
                 </div>
             </div>
@@ -19,17 +19,19 @@
 
         <div class="card">
 
-            {!! Form::model($LeaveRequest, ['route' => ['leave_request.update', $LeaveRequest->id], 'method' => 'patch']) !!}
+            {!! Form::open(['route' => 'leave_type.store','enctype' => 'multipart/form-data']) !!}
 
             <div class="card-body">
+
                 <div class="row">
-                    @include('humanresource::leaverequest.editfield')
+                    @include('humanresource::LeaveTypes.fields')
                 </div>
+
             </div>
 
             <div class="card-footer">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('leave_request.index') }}" class="btn btn-default"> Cancel </a>
+                {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
+                <a href="{{ route('leave_type.index') }}" class="btn btn-default"> Cancel </a>
             </div>
 
             {!! Form::close() !!}

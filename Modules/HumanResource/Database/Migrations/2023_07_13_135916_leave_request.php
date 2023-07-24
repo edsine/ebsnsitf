@@ -14,21 +14,21 @@ class LeaveRequest extends Migration
     public function up()
     {
         Schema::create('leave_request', function (Blueprint $table) {
-            $table->id('id');
-            
-             
-             
+            $table->id(); 
+         
+             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
              $table->foreignId('staff_id')->nullable()->constrained('staff')->onDelete('cascade');
-              
-             $table->string('reasons')->nullable();
-             $table->string('type')->nullable();
-             $table->dateTime('date_last_leave')->nullable();
+            $table->unsignedBigInteger('leavetype_id')->nullable();
+            $table->foreign('leavetype_id')->references('id')->on('leavetype')->onDelete('cascade');
+           //  $table->string('reasons')->nullable();
+                     
              $table->dateTime('date_start_new')->nullable();
+             $table->string('type')->nullable();
              $table->integer('number_days')->nullable();
              $table->longText('home_address')->nullable();
              $table->longText('home_number')->nullable();
-             $table->string('street_number')->nullable();
-             $table->string('district')->nullable();
+            //  $table->string('street_number')->nullable();
+            //  $table->string('district')->nullable();
              $table->string('local_council')->nullable();
              $table->string('state')->nullable();
              $table->string('phone_number')->nullable();
@@ -39,6 +39,7 @@ class LeaveRequest extends Migration
              $table->integer('supervisor_office')->nullable()->default(0);
              $table->integer('md_hr')->nullable()->default(0);
              $table->integer('leave_officer')->nullable()->default(0);
+             $table->integer('daystaken')->nullable();
         
              $table->timestamps();
              $table->softDeletes();
@@ -53,6 +54,6 @@ class LeaveRequest extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('leave_requests');
     }
 }

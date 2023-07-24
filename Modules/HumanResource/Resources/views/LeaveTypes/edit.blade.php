@@ -6,7 +6,7 @@
             <div class="row mb-2">
                 <div class="col-sm-12">
                     <h1>
-                        LEAVE REQUEST
+                        CHANGE THE TYPE AND DURATION OF LEAVE
                     </h1>
                 </div>
             </div>
@@ -19,17 +19,17 @@
 
         <div class="card">
 
-            {!! Form::model($LeaveRequest, ['route' => ['leave_request.update', $LeaveRequest->id], 'method' => 'patch']) !!}
+            {!! Form::model($LeaveType, ['route' => ['leave_type.update', $LeaveType->id], 'method' => 'patch']) !!}
 
             <div class="card-body">
                 <div class="row">
-                    @include('humanresource::leaverequest.editfield')
+                    @include('humanresource::leavetypes.fields')
                 </div>
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('leave_request.index') }}" class="btn btn-default"> Cancel </a>
+                <a href="{{ route('leave_type.index') }}" class="btn btn-default"> Cancel </a>
             </div>
 
             {!! Form::close() !!}

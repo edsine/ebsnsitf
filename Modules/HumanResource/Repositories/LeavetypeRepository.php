@@ -2,14 +2,14 @@
 
 namespace Modules\HumanResource\Repositories;
 
-use Modules\HumanResource\Models\LeaveRequest;
+use Modules\HumanResource\Models\LeaveType;
 use App\Repositories\BaseRepository;
-//use LeaveRequest as GlobalLeaveRequest;
+use LeaveType as GlobalLeaveRequest;
 
-class LeaveRequestRepository extends BaseRepository
+class LeavetypeRepository extends BaseRepository
 {
      protected $fieldSearchable = [
-//
+    
      ];
 
     public function getFieldsSearchable(): array
@@ -19,7 +19,7 @@ class LeaveRequestRepository extends BaseRepository
 
     public function model(): string
     {
-        return LeaveRequest::class;
+        return LeaveType::class;
     }
 
     public function findByBranch($branch_id)
@@ -27,5 +27,12 @@ class LeaveRequestRepository extends BaseRepository
         $query = $this->model->newQuery();
 
         return $query->where('branch_id', $branch_id)->get();
+    }
+
+    public function getById($id)
+    {
+        $query = $this->model->newQuery();
+
+        return $query->where('id', $id)->first();
     }
 }

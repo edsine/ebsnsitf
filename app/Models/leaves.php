@@ -70,5 +70,7 @@ use Illuminate\Database\Eloquent\Model;
         'age' => 'required'
     ];
 
+
+    
     
 }

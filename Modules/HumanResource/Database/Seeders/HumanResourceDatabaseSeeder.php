@@ -4,8 +4,9 @@ namespace Modules\HumanResource\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+//use Illuminate\Support\Facades\DB;
 
-class HumanResourceDatabaseSeeder extends Seeder
+class LeaveType extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +15,9 @@ class HumanResourceDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+       // Model::unguard();
+        
 
-        // $this->call("OthersTableSeeder");
+       // $this->call(LeaveType::class);
     }
 }

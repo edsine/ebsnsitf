@@ -29,13 +29,22 @@
                 </span>
                 <span class="menu-title">APPLY FOR LEAVE</span>
             </a>
+            {{-- leave_types --}}
+            <a href="{{ route('atp') }}" class="menu-link {{ Request::is('atp*') ? 'active' : '' }}">
+                <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">LEAVE TYPE</span>
+            </a>
+            
             <!--end:Menu link-->
-			<!--begin:Menu link-->
+			
+            <!--begin:Menu link-->
             <a href="{{route('leave_request.index') }}" class="menu-link {{ Request::is('leaverequest*') ? 'active' : '' }}">
                 <span class="menu-bullet">
                     <span class="bullet bullet-dot"></span>
                 </span>
-                <span class="menu-title"> MY LEAVE STATUS </span>
+                <span class="menu-title"> LEAVE STATUS </span>
             </a>
             <!--end:Menu link-->
         </div>

@@ -4,48 +4,40 @@
 </div>
  
 
-    {{-- <div class="form-group col-sm-6">
-        {!! Form::label('type', 'SELECT LEAVE TYPE:') !!}
-        {!! Form::select('type', $leavetype, null, ['class' => 'form-control form-select', 'required','id'=>'leave_type']) !!}
-    
-    </div> --}}
+
     <div class="form-group col-sm-6">
-        {!! Form::label('type', 'SELECT LEAVE TYPE.:') !!}
-        <select name="type" class="form-control form-select" required id="leave_type" >
-  @foreach ($leavetype as $item )
-  <option value="{{$item->id}}">{{$item->name}} </option>
-      
-  @endforeach  
-        </select>
+        {!! Form::label('type', 'SELECT LEAVE TYPE:') !!}
+        {!! Form::select('type', $leavetype->pluck('name','id'), null, ['class' => 'form-control form-select', 'required','id'=>'leave_type']) !!}
+    
     </div>
 
 
 
     
-    
     <div class="form-group col-sm-6">
         {!! Form::label('date_start_new', 'DATE REQUESTED TO COMMENCE PRESENT LEAVE:') !!}
-        {!! Form::date('date_start_new',    null, ['class' => 'form-control ','id'=>'date_start']) !!}
+        {!! Form::date('date_start_new',  $LeaveRequest->pluck('date_start_new','id') ??   null, ['class' => 'form-control ','id'=>'date_start']) !!}
     </div>
    
     
     <div class="form-group col-sm-6">
         {!! Form::label('number_days', 'NUMBER OF DAYS:') !!}
-        {!! Form::number('number_days',   null, ['class' => 'form-control ','readonly'=>true,'id'=>'number_days']) !!}
+        {!! Form::number('number_days', $LeaveRequest->number_days ??  null, ['class' => 'form-control ','readonly'=>true,'id'=>'number_days']) !!}
     </div>
     
         <div class="form-group col-sm-6">
             {!! Form::label('daystaken', 'Number of days to take:') !!}
-            {!! Form::number('daystaken',  null, ['class' => 'form-control ','placeholder'=>'input the number of days to take','id'=>'days']) !!}
+            {!! Form::number('daystaken',$LeaveRequest->daystaken ??  null, ['class' => 'form-control ','placeholder'=>'input the number of days to take','id'=>'days']) !!}
         </div>
     
     <div class="form-group col-sm-6">
         {!! Form::label('home_address', 'HOME ADDRESS:') !!}
-        {!! Form::text('home_address',  null, ['class' => 'form-control ']) !!}
+        {!! Form::text('home_address',$LeaveRequest->home_address ??  null, ['class' => 'form-control ']) !!}
     </div>
+    
     <div class="form-group col-sm-6">
         {!! Form::label('home_number', 'HOUSE NUMBER:') !!}
-        {!! Form::text('home_number',  null, ['class' => 'form-control ']) !!}
+        {!! Form::text('home_number', $LeaveRequest->home_number ?? null, ['class' => 'form-control ']) !!}
     </div>
 
 
@@ -67,11 +59,11 @@
     </div> --}}
     <div class="form-group col-sm-6">
         {!! Form::label('local_council', 'LOCAL COUNCIL/AREA COUNCIL:') !!}
-        {!! Form::text('local_council',  null, ['class' => 'form-control ']) !!}
+        {!! Form::text('local_council',$LeaveRequest->local_council ??  null, ['class' => 'form-control ']) !!}
     </div>
     <div class="form-group col-sm-6">
         {!! Form::label('end_date', 'EXPECTED DATE TO RESUME:') !!}
-        {!! Form::text('end_date',  null, ['class' => 'form-control ','placeholder'=>'the date for you to resume','id'=>'end_date','readonly'=>true]) !!}
+        {!! Form::text('end_date',$LeaveRequest->end_date ??  null, ['class' => 'form-control ','placeholder'=>'the date for you to resume','id'=>'end_date','readonly'=>true]) !!}
     </div>
     <div class="form-group col-sm-6">
         {!! Form::label('state', 'STATE:') !!}
@@ -83,18 +75,18 @@
     
     <div class="form-group col-sm-6">
         {!! Form::label('phone_number', 'PHONE NUMBER:') !!}
-        {!! Form::text('phone_number',  null, ['class' => 'form-control ']) !!}
+        {!! Form::text('phone_number', $LeaveRequest->phone_number ??  null, ['class' => 'form-control ']) !!}
     </div>
     <div class="form-group col-sm-6">
         {!! Form::label('officer_relieve', 'NAME OF OFFICER TO RELIEVE:') !!}
-        {!! Form::text('officer_relieve',  null, ['class' => 'form-control ']) !!}
+        {!! Form::text('officer_relieve', $LeaveRequest->officer_relieve ?? null, ['class' => 'form-control ']) !!}
     </div>
     
     <!-- Signature Field -->
     <div class="col-sm-4 my-4">
         {!! Form::label('signature_path', 'UPLOAD SIGNATURE PDF ONLY') !!}
         <div class="form-group">
-        {!! Form::file('signature_path',null, ['class' => 'form-control','accept' => 'image/*']) !!}
+        {!! Form::file('signature_path', null, ['class' => 'form-control','accept' => 'image/*']) !!}
         </div>
     </div>
 

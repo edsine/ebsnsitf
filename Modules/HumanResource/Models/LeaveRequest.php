@@ -18,15 +18,16 @@ class LeaveRequest extends Model implements Auditable
 public $primarykey='id';
     public $fillable = [
         'staff_id',
+      'leavetype_id',
         'type',
         'reasons',
-        'date_last_leave',
+       // 'date_last_leave',
         'date_start_new',
         'number_days',
         'home_address',
         'house_number',
-        'street_name',
-        'district',
+      //  'street_name',
+        //'district',
         'local_council',
         'state',
         'phone_number',
@@ -36,21 +37,23 @@ public $primarykey='id';
         'approve_status',
         'supervisor_office',
         'md_hr',
-        'leave_officer'
+        'leave_officer',
+        'daystaken'
 
     ];
 
     protected $cast=[
         'staff_id'=>'integer',
         'type'=>'string',
-        'reasons'=>'string',
-        'date_last_leave'=>'string',
+
+        //'reasons'=>'string',
+        //'date_last_leave'=>'string',
         'date_start_new'=>'string',
         'number_days'=>'string',
         'home_address'=>'string',
         'house_number'=>'string',
         'street_name'=>'string',
-        'district'=>'string',
+        //'district'=>'string',
         'local_council'=>'string',
         'state'=>'string',
         'phone_number'=>'integer',
@@ -64,17 +67,23 @@ public $primarykey='id';
     ];
     public static array $rules=[
         // 'reasons'=>'required',
-        'date_last_leave'=>'required',
+        // 'date_last_leave'=>'required',
+        'daystaken'=>'required',
+        'number_days'=>'required',
         'date_start_new'=>'required',
         'number_days'=>'required',
         'phone_number'=>'required',
     ];
     
-    // protected static function newFactory()
-    // {
-    //     return \Modules\HumanResource\Database\factories\LeaveRequestFactory::new();
-    // }
 
+// public function leavetypes(){
+//     return $this->belongsTo('Modules\HumanResource\Models\LeaveType','leave_request_id','id'); 
+// }
+
+   
+public function leavetype(){
+    return $this->belongsTo(LeaveType::class,'leavetype_id','id');
+}
     public function staff(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(\Modules\Shared\Models\staff::class, 'staff_id', 'id');
